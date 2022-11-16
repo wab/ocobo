@@ -42,7 +42,7 @@ html {
   -o-tab-size: 4;
      tab-size: 4;
   /* 3 */
-  font-family: Graphik, sans-serif;
+  font-family: Arial, sans-serif;
   /* 4 */
 }
 
@@ -510,16 +510,64 @@ video {
   --tw-backdrop-sepia:  ;
 }
 
+.absolute {
+  position: absolute;
+}
+
+.relative {
+  position: relative;
+}
+
+.top-\[1px\] {
+  top: 1px;
+}
+
+.left-\[2px\] {
+  left: 2px;
+}
+
+.flex {
+  display: flex;
+}
+
 .grid {
   display: grid;
+}
+
+.h-2\/3 {
+  height: 66.666667%;
 }
 
 .h-screen {
   height: 100vh;
 }
 
+.h-full {
+  height: 100%;
+}
+
+.w-full {
+  width: 100%;
+}
+
+.flex-col {
+  flex-direction: column;
+}
+
 .place-items-center {
   place-items: center;
+}
+
+.items-center {
+  align-items: center;
+}
+
+.gap-8 {
+  gap: 2rem;
+}
+
+.rounded-2xl {
+  border-radius: 1rem;
 }
 
 .bg-white {
@@ -557,14 +605,83 @@ video {
   background-color: rgb(255 111 97 / var(--tw-bg-opacity));
 }
 
-.fill-coral {
-  fill: #ff6f61;
+.bg-texture {
+  background-image: url('/texture.svg');
 }
 
-.fill-dark {
-  fill: #293241;
+.bg-cover {
+  background-size: cover;
 }
 
-.fill-black {
-  fill: #000000;
+.p-16 {
+  padding: 4rem;
 }
+
+.text-center {
+  text-align: center;
+}
+
+.font-title {
+  font-family: Montserrat Alternates, sans-serif;
+}
+
+.text-xl {
+  font-size: 1.25rem;
+  line-height: 1.75rem;
+}
+
+.text-3xl {
+  font-size: 1.875rem;
+  line-height: 2.25rem;
+}
+
+.font-normal {
+  font-weight: 400;
+}
+
+.text-dark {
+  --tw-text-opacity: 1;
+  color: rgb(41 50 65 / var(--tw-text-opacity));
+}
+
+.text-coral {
+  --tw-text-opacity: 1;
+  color: rgb(255 111 97 / var(--tw-text-opacity));
+}
+
+.text-white {
+  --tw-text-opacity: 1;
+  color: rgb(255 255 255 / var(--tw-text-opacity));
+}
+
+.opacity-5 {
+  opacity: 0.05;
+}
+
+.opacity-80 {
+  opacity: 0.8;
+}
+
+.opacity-20 {
+  opacity: 0.2;
+}
+
+.opacity-10 {
+  opacity: 0.1;
+}
+
+.opacity-40 {
+  opacity: 0.4;
+}
+
+@media (min-width: 1280px) {
+  .desktop\:text-4xl {
+    font-size: 2.25rem;
+    line-height: 2.5rem;
+  }
+
+  .desktop\:leading-\[3rem\] {
+    line-height: 3rem;
+  }
+}
+

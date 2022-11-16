@@ -3,10 +3,9 @@ module.exports = {
   content: ['./app/**/*.{js,ts,jsx,tsx}'],
   theme: {
     screens: {
-      sm: '480px',
-      md: '768px',
-      lg: '976px',
-      xl: '1440px',
+      tablet: '640px',
+      laptop: '1024px',
+      desktop: '1280px',
     },
     colors: {
       white: '#ffffff',
@@ -19,10 +18,14 @@ module.exports = {
       coral: '#ff6f61',
     },
     fontFamily: {
-      sans: ['Graphik', 'sans-serif'],
-      serif: ['Merriweather', 'serif'],
+      sans: ['Arial', 'sans-serif'],
+      title: ['Montserrat Alternates', 'sans-serif'],
     },
-    extend: {},
+    extend: {
+      backgroundImage: {
+        texture: "url('/texture.svg')",
+      },
+    },
   },
   plugins: [],
 };
