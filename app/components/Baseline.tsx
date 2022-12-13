@@ -19,11 +19,12 @@ export const Baseline = () => {
     ],
   });
   return (
-    <h1 className="relative text-center font-title text-xl font-normal desktop:text-4xl desktop:leading-[3rem]">
-      operational connection between&hellip;
-      <br />
-      {text}
+    <div className="relative pl-[2px] font-title">
+      <span className="">o</span>perational <span className="">co</span>
+      nnection&nbsp;
+      <span className="">b</span>etween&hellip;&nbsp;
+      <span className="text-coral">{text}</span>
       <Cursor />
-    </h1>
+    </div>
   );
 };
