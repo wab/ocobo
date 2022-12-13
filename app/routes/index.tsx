@@ -1,30 +1,259 @@
-import { Logo } from '~/components/Logo';
-import { Baseline } from '~/components/Baseline';
-
-const colorsClasseNames = [
-  { text: 'text-coral', background: 'bg-white', texture: 'bg-blue' },
-  { text: 'text-dark', background: 'bg-light' },
-  { text: 'text-dark', background: 'bg-blue' },
-  { text: 'text-white', background: 'bg-dark' },
-  { text: 'text-dark', background: 'bg-papaya' },
-  { text: 'text-dark', background: 'bg-mint' },
-  { text: 'text-dark', background: 'bg-coral' },
-];
+import { Navbar } from '~/components/Navbar';
+import { Hero } from '~/components/Hero';
+import { Section } from '~/components/Section';
+import { Plateforms } from '~/components/Plateforms';
+import { Footer } from '~/components/Footer';
+import { FiLink2 } from 'react-icons/fi';
+import {
+  AiFillFunnelPlot,
+  AiOutlineSetting,
+  AiOutlineDashboard,
+  AiOutlineAim,
+  AiOutlineCompass,
+  AiOutlineDeploymentUnit,
+  AiOutlineHeatMap,
+  AiOutlineTrophy,
+  AiOutlineShop,
+  AiOutlineShoppingCart,
+  AiOutlineClockCircle,
+} from 'react-icons/ai';
 
 export default function Index() {
-  const randomIndex = Math.floor(Math.random() * colorsClasseNames.length);
   return (
-    <div
-      className={`grid h-screen place-items-center ${colorsClasseNames[randomIndex]['background']} ${colorsClasseNames[randomIndex]['text']}`}
-    >
-      <div className="relative flex flex-col items-center gap-8">
-        <div className="relative">
-          <Logo width={280} className="absolute top-[1px] left-[2px] opacity-10" />
-          <Logo width={280} className="relative" />
-        </div>
-        <Baseline />
+    <div className="relative">
+      <Navbar />
+      <div className="relative z-0 bg-white leading-relaxed text-dark desktop:pt-28">
+        <Hero />
+        <Plateforms />
+        <Section.Root className="py-0 desktop:-mt-32">
+          <Section.Container>
+            <Section.Grid className="rounded-lg bg-white p-8 shadow-lg lgDesktop:p-16">
+              <img src="/illustrations/intro.svg" alt="" className="col-span-5 max-w-[70vw]" />
+              <div />
+              <div className="col-span-6">
+                <Section.Title>Qui sommes-nous ?</Section.Title>
+                <p className="mb-8">
+                  Anciens Operations Director, Head of Revenue Ops et Business Analysts, nous avons
+                  vécu et soutenu l'hyper-croissance des plus belles startups & scale-ups françaises
+                  depuis plus de 10 ans.
+                </p>
+                <p className="mb-8">
+                  Pionniers de la discipline en France, nous mettons à profit cette expérience pour
+                  vous proposer le meilleur des méthodologies Business Operations et renforcer la
+                  synergie entre vos équipes Sales, Marketing, Customer Success et Finance.
+                </p>
+                <p>
+                  <a
+                    href="https://www.linkedin.com/company/ocobofr"
+                    className="btn btn--secondary btn--small"
+                  >
+                    <FiLink2 />
+                    Connectons-nous
+                  </a>
+                </p>
+              </div>
+            </Section.Grid>
+          </Section.Container>
+        </Section.Root>
+        <Section.Root>
+          <Section.Container>
+            <h2 className="text-current mt-6 text-center font-title text-3xl desktop:text-4xl">
+              Notre mission : les Ops à 360°
+            </h2>
+            <Section.Grid hasBorder>
+              <div className="col-span-12">
+                <img
+                  src="/illustrations/360.jpg"
+                  alt=""
+                  className="mx-auto my-8 w-[400px] max-w-[70vw]"
+                />
+              </div>
+            </Section.Grid>
+            <Section.Grid id="strategie" hasBorder>
+              <div className="order-2 col-span-5 desktop:order-1">
+                <Section.SubTitle>
+                  Connectez votre <strong className="font-normal text-fuchsia">stratégie</strong>
+                  <br />à la réalité du terrain
+                </Section.SubTitle>
+
+                <p className="mb-8">
+                  Optimisez vos opérations commerciales et alignez l'ensemble de la chaîne de revenu
+                  pour atteindre vos objectifs, en proposant la meilleure expérience à vos clients.
+                </p>
+
+                <ul className="space-y-4 italic">
+                  <li className="flex items-center gap-4">
+                    <div className="text-3xl text-fuchsia">
+                      <AiOutlineSetting />
+                    </div>
+                    <div>
+                      <strong>Fluidifiez</strong> la coopération entre vos équipes
+                      <br /> Sales, Marketing & Customer Success
+                    </div>
+                  </li>
+                  <li className="flex items-center gap-4">
+                    <div className="text-3xl text-fuchsia">
+                      <AiFillFunnelPlot />
+                    </div>
+                    <div>
+                      <strong>Simplifiez</strong> votre funnel de vente
+                      <br /> avec des outils et des process rationalisés
+                    </div>
+                  </li>
+                  <li className="flex items-center gap-4">
+                    <div className="text-3xl text-fuchsia">
+                      <AiOutlineDashboard />
+                    </div>
+                    <div>
+                      <strong>Définissez</strong> les meilleurs
+                      <br />
+                      indicateurs de performance
+                    </div>
+                  </li>
+                  <li className="flex items-center gap-4">
+                    <div className="text-3xl text-fuchsia">
+                      <AiOutlineAim />
+                    </div>
+                    <div>
+                      <strong>Construisez</strong> des plans de commissionnement
+                      <br /> motivants et lisibles
+                    </div>
+                  </li>
+                </ul>
+              </div>
+              <div className="order-1 col-span-6 col-start-7 max-w-[70vw]">
+                <img src="/illustrations/strategie.svg" alt="" />
+              </div>
+            </Section.Grid>
+            <Section.Grid id="deploiement" hasBorder>
+              <div className="col-span-6 max-w-[70vw]">
+                <img src="/illustrations/excel-ops.svg" alt="" />
+              </div>
+              <div className="col-span-1" />
+              <div className="col-span-5">
+                <Section.SubTitle>
+                  Confiez-nous le
+                  <br />
+                  <strong className="font-normal text-blue">déploiement</strong> opérationnel
+                </Section.SubTitle>
+                <p>Laissez vos équipes se concentrer sur ce qu’elles ont à faire&nbsp;!</p>
+                <p className="mb-8">
+                  Appuyez-vous sur nos meilleurs profils Ops pour construire et automatiser des
+                  solutions de process, outils et analytics à fort impact, qui amélioreront la vie
+                  de vos équipes.
+                </p>
+                <ul className="space-y-4 italic">
+                  <li className="flex gap-4">
+                    <div className="pt-2 text-3xl text-blue">
+                      <AiOutlineShop />
+                    </div>
+                    <div>
+                      <strong className="block">Ops as a Service&nbsp;:</strong>
+                      laissez-nous construire et déployer vos solutions clés en main
+                    </div>
+                  </li>
+                  <li className="flex gap-4">
+                    <div className="pt-2 text-3xl text-blue">
+                      <AiOutlineShoppingCart />
+                    </div>
+                    <div>
+                      <strong className="block">Équipez-vous&nbsp;:</strong>
+                      nous renforçons vos équipes de façon ponctuelle ou permanente pour vous aider
+                      à créer des outils qui cartonnent.
+                    </div>
+                  </li>
+                </ul>
+              </div>
+            </Section.Grid>
+            <Section.Grid id="organisation" hasBorder>
+              <div className="col-span-5">
+                <Section.SubTitle>
+                  Développez votre <strong className="font-normal text-papaya">organisation</strong>
+                  <br /> Business Operations
+                </Section.SubTitle>
+                <p className="mb-4">
+                  Déployez la meilleure <strong>organisation orientée opérations</strong>.
+                </p>
+                <p className="mb-8">
+                  Business Operations Managers, Operations Engineers, Revenue Analysts, Strategic
+                  Project Managers, Enablement Managers… nous connaissons ces métiers sur le bout
+                  des doigts.
+                </p>
+                <ul className="space-y-4 italic">
+                  <li className="flex items-center gap-4">
+                    <div className="text-3xl text-papaya">
+                      <AiOutlineCompass />
+                    </div>
+                    <div>
+                      <strong>Définissez</strong> une gouvernance Ops
+                      <br />
+                      au sein de l'entreprise
+                    </div>
+                  </li>
+                  <li className="flex items-center gap-4">
+                    <div className="text-3xl text-papaya">
+                      <AiOutlineDeploymentUnit />
+                    </div>
+                    <div>
+                      <strong>Organisez</strong> vos équipes Ops
+                      <br />
+                      et attirez les meilleurs profils
+                    </div>
+                  </li>
+                  <li className="flex items-center gap-4">
+                    <div className="text-3xl text-papaya">
+                      <AiOutlineHeatMap />
+                    </div>
+                    <div>
+                      <strong>Développez</strong> vos parcours de carrières
+                    </div>
+                  </li>
+                  <li className="flex items-center gap-4">
+                    <div className="text-3xl text-papaya">
+                      <AiOutlineTrophy />
+                    </div>
+                    <div>
+                      <strong>Coachez</strong> vos équipes
+                    </div>
+                  </li>
+                </ul>
+              </div>
+              <div className="col-span-1" />
+              <div className="order-1 col-span-6 col-start-7 max-w-[70vw]">
+                <img src="/illustrations/organisation.svg" alt="" />
+              </div>
+            </Section.Grid>
+            <Section.Grid id="formations">
+              <div className="col-span-6 max-w-[70vw]">
+                <img src="/illustrations/formation.svg" alt="" />
+              </div>
+              <div className="col-span-1" />
+              <div className="col-span-5">
+                <Section.SubTitle>
+                  Accédez à des <br />
+                  <strong className="font-normal text-mint">formations</strong> personnalisées
+                </Section.SubTitle>
+                <p className="mb-4">
+                  <strong>Renforcez</strong> vos compétences et celles de vos équipes.
+                </p>
+                <p className="mb-8">
+                  Nous formons vos Business Operations Managers à nos méthodes de travail pour les
+                  aider à identifier et adresser les problèmes communs de vos équipes.
+                </p>
+                <ul className="space-y-4 italic">
+                  <li className="flex items-center gap-4">
+                    <div className="text-3xl text-mint">
+                      <AiOutlineClockCircle />
+                    </div>
+                    Bientôt disponible
+                  </li>
+                </ul>
+              </div>
+            </Section.Grid>
+          </Section.Container>
+        </Section.Root>
       </div>
+      <Footer />
     </div>
   );
 }
-4;
