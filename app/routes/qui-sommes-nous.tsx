@@ -1,8 +1,13 @@
+import type { MetaFunction } from '@remix-run/node';
 import { Navbar } from '~/components/Navbar';
 import { Footer } from '~/components/Footer';
 import { AnchorLink } from '~/components/Link';
 import { FiTv, FiCloud } from 'react-icons/fi';
 import { FaLinkedin } from 'react-icons/fa';
+
+export const meta: MetaFunction = () => ({
+  title: "Ocobo • l'équipe",
+});
 
 export default function Index() {
   return (

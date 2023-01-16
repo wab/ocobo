@@ -34,7 +34,7 @@ export function links() {
 
 export const meta: MetaFunction = () => ({
   charset: 'utf-8',
-  title: 'ocobo',
+  title: 'Ocobo • Business Ops Expert•e•s',
   viewport: 'width=device-width,initial-scale=1',
 });
 
