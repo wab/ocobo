@@ -3,6 +3,7 @@
 @tailwind utilities;
 
 
+
 @layer components {
   .btn {
     @apply inline-flex items-center gap-2 p-4 rounded-md font-medium font-title text-base transition-colors duration-300 ease-in-out;

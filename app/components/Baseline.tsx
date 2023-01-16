@@ -19,7 +19,7 @@ export const Baseline = () => {
     ],
   });
   return (
-    <div className="relative pl-[2px] font-title text-sm">
+    <div className="relative pl-[2px] font-title text-xs tablet:text-sm">
       operational connection&nbsp; between&hellip;&nbsp;
       <span className="text-coral">{text}</span>
       <Cursor />

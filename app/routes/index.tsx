@@ -3,7 +3,7 @@ import { Hero } from '~/components/Hero';
 import { Section } from '~/components/Section';
 import { Plateforms } from '~/components/Plateforms';
 import { Footer } from '~/components/Footer';
-import { FiLink2 } from 'react-icons/fi';
+import { FiSmile } from 'react-icons/fi';
 import {
   AiFillFunnelPlot,
   AiOutlineSetting,
@@ -18,6 +18,8 @@ import {
   AiOutlineClockCircle,
 } from 'react-icons/ai';
 
+import { NavButton } from '~/components/Link';
+
 export default function Index() {
   return (
     <div className="relative">
@@ -28,7 +30,9 @@ export default function Index() {
         <Section.Root className="py-0 desktop:-mt-32">
           <Section.Container>
             <Section.Grid className="rounded-lg bg-white p-8 shadow-lg lgDesktop:p-16">
-              <img src="/illustrations/intro.svg" alt="" className="col-span-5 max-w-[70vw]" />
+              <div className="col-span-5 hidden desktop:block">
+                <img src="/illustrations/intro.svg" alt="" />
+              </div>
               <div />
               <div className="col-span-6">
                 <Section.Title>Qui sommes-nous ?</Section.Title>
@@ -43,13 +47,10 @@ export default function Index() {
                   synergie entre vos équipes Sales, Marketing, Customer Success et Finance.
                 </p>
                 <p>
-                  <a
-                    href="https://www.linkedin.com/company/ocobofr"
-                    className="btn btn--secondary btn--small"
-                  >
-                    <FiLink2 />
-                    Connectons-nous
-                  </a>
+                  <NavButton to="/qui-sommes-nous" className="btn btn--secondary btn--small">
+                    <FiSmile />
+                    Découvrez-nous
+                  </NavButton>
                 </p>
               </div>
             </Section.Grid>
@@ -127,7 +128,7 @@ export default function Index() {
             </Section.Grid>
             <Section.Grid id="deploiement" hasBorder>
               <div className="col-span-6 max-w-[70vw]">
-                <img src="/illustrations/excel-ops.svg" alt="" />
+                <img src="/illustrations/deploiement.svg" alt="" />
               </div>
               <div className="col-span-1" />
               <div className="col-span-5">
@@ -166,7 +167,7 @@ export default function Index() {
               </div>
             </Section.Grid>
             <Section.Grid id="organisation" hasBorder>
-              <div className="col-span-5">
+              <div className="order-2 col-span-5 desktop:order-1">
                 <Section.SubTitle>
                   Développez votre <strong className="font-normal text-papaya">organisation</strong>
                   <br /> Business Operations
