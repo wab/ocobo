@@ -3,10 +3,7 @@ import { Section } from './Section';
 import { Logo } from './Logo';
 import { FaLinkedin } from 'react-icons/fa';
 // import { FiBookOpen } from 'react-icons/fi';
-import {
-  //NavLink,
-  AnchorLink,
-} from '~/components/Link';
+import { NavLink, AnchorLink } from '~/components/Link';
 
 const ColumnTitle: React.FunctionComponent<React.PropsWithChildren> = ({ children }) => (
   <h2 className="mb-6 text-2xl font-bold">{children}</h2>
@@ -21,11 +18,11 @@ export function Footer() {
             <p className="-mt-2 pb-1">
               <Logo width={140} />
             </p>
-            <p>Une communauté d'expert•e•s Buisiness Operations au service de votre entreprise</p>
+            <p>Une communauté d'expert•e•s Business Operations au service de votre entreprise.</p>
             <p>
-              Basé à Paris 18
+              Basé à Paris 18,
               <br />
-              Nous parlons français et anglais
+              Nous parlons français et anglais.
             </p>
             <p>&copy; 2022</p>
           </div>
@@ -34,16 +31,16 @@ export function Footer() {
             <ColumnTitle>Notre offre</ColumnTitle>
             <ul className="space-y-6">
               <li>
-                <AnchorLink href="#strategie">Stratégie</AnchorLink>
+                <NavLink to="/#strategie">Stratégie</NavLink>
               </li>
               <li>
-                <AnchorLink href="#deploiement">Déploiement</AnchorLink>
+                <NavLink to="/#deploiement">Déploiement</NavLink>
               </li>
               <li>
-                <AnchorLink href="#organisation">Organisation</AnchorLink>
+                <NavLink to="/#organisation">Organisation</NavLink>
               </li>
               <li>
-                <AnchorLink href="#formation">Formation</AnchorLink>
+                <NavLink to="/#formation">Formation</NavLink>
               </li>
             </ul>
           </div>
@@ -51,10 +48,10 @@ export function Footer() {
           <div className="col-span-2">
             <ColumnTitle>Ocobo</ColumnTitle>
             <ul className="space-y-6">
-              {/* <li>
+              <li>
                 <NavLink to="/qui-sommes-nous">Qui sommes-nous ?</NavLink>
               </li>
-              <li>
+              {/* <li>
                 <NavLink to="/jobs">Nous rejoindre</NavLink>
               </li> */}
               <li>

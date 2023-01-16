@@ -6,7 +6,7 @@ export function Hero() {
   return (
     <div className="desktop:bg-hero">
       <Section.Container>
-        <header className="h-[550px] grid-cols-12 items-center gap-4 pt-12 desktop:grid desktop:h-[700px]">
+        <header className="min-h-[550px] grid-cols-12 items-center gap-4 pt-12 desktop:grid desktop:min-h-[700px]">
           <div className="col-span-5">
             <h1 className="font-title text-4xl font-light tracking-wider lgDesktop:text-6xl">
               Faites plus
@@ -20,6 +20,8 @@ export function Hero() {
               <a
                 href="https://calendly.com/ocobo/30min"
                 className="btn btn--primary btn--large btn--outlined"
+                target="_blank"
+                rel="noreferrer"
               >
                 <FiCoffee />
                 Discutons-en
