@@ -7,6 +7,8 @@ import { FaLinkedin } from 'react-icons/fa';
 
 export const meta: MetaFunction = () => ({
   title: "Ocobo • l'équipe",
+  description:
+    "Anciens Operations Director, Head of Revenue Ops et Business Analysts, nous avons vécu et soutenu l'hyper-croissance des plus belles startups & scale-ups françaises depuis plus de 10 ans.",
 });
 
 export default function Index() {

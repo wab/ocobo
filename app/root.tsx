@@ -35,6 +35,8 @@ export function links() {
 export const meta: MetaFunction = () => ({
   charset: 'utf-8',
   title: 'Ocobo • Business Ops Expert•e•s',
+  description:
+    'Optimisez votre efficacité commerciale et boostez vos revenus en étant accompagné par la première agence française spécialisée en Business Operations.',
   viewport: 'width=device-width,initial-scale=1',
 });
 
