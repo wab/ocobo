@@ -1,3 +1,6 @@
+import { json } from '@remix-run/node';
+import type { MetaFunction } from '@remix-run/node';
+
 import { Navbar } from '~/components/Navbar';
 import { Hero } from '~/components/Hero';
 import { Section } from '~/components/Section';
@@ -19,6 +22,28 @@ import {
 } from 'react-icons/ai';
 
 import { NavButton } from '~/components/Link';
+
+export const loader = async () => {
+  return json({
+    title: 'Ocobo • Business Ops Expert•e•s',
+    description:
+      'Optimisez votre efficacité commerciale et boostez vos revenus en étant accompagné par la première agence française de conseil en Business Operations.',
+    coverImage: 'https://ocobo.co/cover-coral.png',
+  });
+};
+
+export const meta: MetaFunction = ({ data, location }) => {
+  return {
+    title: data.title,
+    description: data.description,
+    'twitter:card': 'summary_large_image',
+    'og:title': data.title,
+    'og:type': 'siteweb',
+    'og:url': `https://ocobo.co${location.pathname}`,
+    'og:description': data.description,
+    'og:image': data.coverImage,
+  };
+};
 
 export default function Index() {
   return (
@@ -58,7 +83,7 @@ export default function Index() {
         </Section.Root>
         <Section.Root>
           <Section.Container>
-            <h2 className="text-current mt-6 text-center font-title text-3xl desktop:text-4xl">
+            <h2 className="mt-6 text-center font-title text-3xl text-current desktop:text-4xl">
               Notre mission : les Ops à 360°
             </h2>
             <Section.Grid hasBorder>

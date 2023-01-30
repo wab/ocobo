@@ -1,9 +1,13 @@
+import { clsx } from 'clsx';
 import { Link } from '@remix-run/react';
 import type { LinkProps } from '@remix-run/react';
 
-export const NavLink: React.FunctionComponent<LinkProps> = ({ children, ...props }) => (
+export const NavLink: React.FunctionComponent<LinkProps> = ({ children, className, ...props }) => (
   <Link
-    className="flex cursor-pointer items-center gap-1 underline-offset-1 transition-colors duration-300 ease-in-out hover:text-coral"
+    className={clsx(
+      'flex cursor-pointer items-center gap-1 underline-offset-1 transition-colors duration-300 ease-in-out hover:text-coral',
+      className
+    )}
     {...props}
   >
     {children}

@@ -1,5 +1,4 @@
 import * as React from 'react';
-import type { MetaFunction } from '@remix-run/node';
 import { json } from '@remix-run/node';
 import {
   Links,
@@ -11,7 +10,9 @@ import {
   useLoaderData,
   useLocation,
 } from '@remix-run/react';
+import clsx from 'clsx';
 import * as gtag from '~/utils/gtags.client';
+import { ThemeProvider, useTheme } from '~/utils/theme-provider';
 
 import styles from './styles/app.css';
 
@@ -27,25 +28,19 @@ export function links() {
       rel: 'stylesheet',
       href: 'https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,400;0,700;1,400;1,700&display=swap',
     },
+
     { rel: 'stylesheet', href: styles },
     { type: 'text/javascript', src: 'https://assets.calendly.com/assets/external/widget.js' },
   ];
 }
-
-export const meta: MetaFunction = () => ({
-  charset: 'utf-8',
-  title: 'Ocobo • Business Ops Expert•e•s',
-  description:
-    'Optimisez votre efficacité commerciale et boostez vos revenus en étant accompagné par la première agence française de conseil en Business Operations.',
-  viewport: 'width=device-width,initial-scale=1',
-});
 
 // Load the GA tracking id from the .env
 export const loader = async () => {
   return json({ gaTrackingId: process.env.GA_TRACKING_ID });
 };
 
-export default function App() {
+function App() {
+  const [theme] = useTheme();
   const location = useLocation();
   const { gaTrackingId } = useLoaderData<typeof loader>();
 
@@ -56,12 +51,14 @@ export default function App() {
   }, [location, gaTrackingId]);
 
   return (
-    <html lang="en">
+    <html lang="en" className={clsx(theme)}>
       <head>
+        <meta charSet="utf-8" />
+        <meta name="viewport" content="width=device-width,initial-scale=1" />
         <Meta />
         <Links />
       </head>
-      <body>
+      <body className="dark:bg-dark">
         {process.env.NODE_ENV === 'development' || !gaTrackingId ? null : (
           <>
             <script async src={`https://www.googletagmanager.com/gtag/js?id=${gaTrackingId}`} />
@@ -87,5 +84,13 @@ export default function App() {
         <LiveReload />
       </body>
     </html>
+  );
+}
+
+export default function AppWithProviders() {
+  return (
+    <ThemeProvider>
+      <App />
+    </ThemeProvider>
   );
 }
