@@ -18,7 +18,7 @@ function postFromModule(mod: any) {
 
 export async function loader() {
   return json({
-    title: 'Ococob • le Nouvel Ops',
+    title: 'Ocobo • le Nouvel Ops',
     description:
       "Ocobo Le Nouvel Ops, c'est le média qui accompagne les Business Ops d'aujourd'hui et de demain. L’idée ? Vous éclairer sur diverses thématiques en vous partageant des articles sur les tendances du marché, les méthodologies, les bonnes pratiques & benchmarks qui gravitent autour de notre passionnant métier",
     coverImage: 'https://ocobo.co/cover.png',
