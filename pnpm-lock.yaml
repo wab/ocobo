@@ -7,10 +7,12 @@ specifiers:
   '@remix-run/react': ^1.7.3
   '@remix-run/serve': ^1.7.3
   '@remix-run/vercel': ^1.7.3
+  '@tailwindcss/typography': ^0.5.9
   '@types/react': ^18.0.15
   '@types/react-dom': ^18.0.6
   '@vercel/node': ^2.4.4
   autoprefixer: ^10.4.12
+  clsx: ^1.2.1
   concurrently: ^7.4.0
   eslint: ^8.23.1
   postcss: ^8.4.18
@@ -38,9 +40,11 @@ devDependencies:
   '@remix-run/dev': 1.7.3_sezze4ptun2xkjucuotrbicmpe
   '@remix-run/eslint-config': 1.7.3_ceius3krcep667lesqygbylwku
   '@remix-run/serve': 1.7.3_biqbaboplfbrettd7655fr4n2y
+  '@tailwindcss/typography': 0.5.9_tailwindcss@3.2.0
   '@types/react': 18.0.21
   '@types/react-dom': 18.0.6
   autoprefixer: 10.4.12_postcss@8.4.18
+  clsx: 1.2.1
   concurrently: 7.4.0
   eslint: 8.25.0
   postcss: 8.4.18
@@ -1777,6 +1781,18 @@ packages:
       defer-to-connect: 2.0.1
     dev: true
 
+  /@tailwindcss/typography/0.5.9_tailwindcss@3.2.0:
+    resolution: {integrity: sha512-t8Sg3DyynFysV9f4JDOVISGsjazNb48AeIYQwcL+Bsq5uf4RYL75C1giZ43KISjeDGBaTN3Kxh7Xj/vRSMJUUg==}
+    peerDependencies:
+      tailwindcss: '>=3.0.0 || insiders'
+    dependencies:
+      lodash.castarray: 4.4.0
+      lodash.isplainobject: 4.0.6
+      lodash.merge: 4.6.2
+      postcss-selector-parser: 6.0.10
+      tailwindcss: 3.2.0_postcss@8.4.18
+    dev: true
+
   /@testing-library/dom/8.19.0:
     resolution: {integrity: sha512-6YWYPPpxG3e/xOo6HIWwB/58HukkwIVTOaZ0VwdMVjhRUX/01E4FtQbck9GazOOj7MXHc5RBzMrU86iBJHbI+A==}
     engines: {node: '>=12'}
@@ -2776,6 +2792,11 @@ packages:
   /clone/1.0.4:
     resolution: {integrity: sha512-JQHZ2QMW6l3aH/j6xCqQThY/9OH4D/9ls34cgkUBiEeocRTU04tHfKPBsUK1PqZCUQM7GiA0IIXJSuXHI64Kbg==}
     engines: {node: '>=0.8'}
+    dev: true
+
+  /clsx/1.2.1:
+    resolution: {integrity: sha512-EcR6r5a8bj6pu3ycsa/E/cKVGuTgZJZdsyUYHOksG/UHIiKfjxzRxYJpyVBwYaQeOvghal9fcc4PidlgzugAQg==}
+    engines: {node: '>=6'}
     dev: true
 
   /code-block-writer/10.1.1:
@@ -5401,8 +5422,16 @@ packages:
       p-locate: 5.0.0
     dev: true
 
+  /lodash.castarray/4.4.0:
+    resolution: {integrity: sha512-aVx8ztPv7/2ULbArGJ2Y42bG1mEQ5mGjpdvrbJcJFU3TbYybe+QlLS4pst9zV52ymy2in1KpFPiZnAOATxD4+Q==}
+    dev: true
+
   /lodash.debounce/4.0.8:
     resolution: {integrity: sha512-FT1yDzDYEoYWhnSGnpE/4Kj1fLZkDFyqRb7fNt6FdYOSxlUWAtp42Eh6Wb0rGIv/m9Bgo7x4GhQbm5Ys4SG5ow==}
+    dev: true
+
+  /lodash.isplainobject/4.0.6:
+    resolution: {integrity: sha512-oSXzaWypCMHkPC3NvBEaPHf0KsA5mvPrOPgQWDsbg8n7orZ290M0BmC/jgRZ4vcJ6DTAhjrsSYgdsW/F+MFOBA==}
     dev: true
 
   /lodash.merge/4.6.2:
