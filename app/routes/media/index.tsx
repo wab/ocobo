@@ -6,6 +6,7 @@ import { PostCard } from '~/components/PostCard';
 
 import * as post1 from './1.mdx';
 import * as post2 from './2.mdx';
+import * as post3 from './3.mdx';
 
 function postFromModule(mod: any) {
   return {
@@ -23,7 +24,7 @@ export async function loader() {
     description:
       "Ocobo Le Nouvel Ops, c'est le média qui accompagne les Business Ops d'aujourd'hui et de demain. L’idée ? Vous éclairer sur diverses thématiques en vous partageant des articles sur les tendances du marché, les méthodologies, les bonnes pratiques & benchmarks qui gravitent autour de notre passionnant métier",
     coverImage: 'https://ocobo.co/cover.png',
-    posts: [postFromModule(post2), postFromModule(post1)],
+    posts: [postFromModule(post3), postFromModule(post2), postFromModule(post1)],
   });
 }
 
