@@ -21,8 +21,8 @@
     @apply text-white bg-dark hover:bg-coral hover:text-dark;
   }
 
-  .callout {
-    @apply rounded-lg border-2 border-dashed border-papya bg-papaya bg-opacity-10 p-8;
+  .relief {
+    @apply border-l-2 border-solid border-sand pl-4;
   }
 }
 
