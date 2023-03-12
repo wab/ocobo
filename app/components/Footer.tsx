@@ -57,6 +57,14 @@ export function Footer() {
               <li>
                 <AnchorLink href="mailto:contact@ocobo.co">Nous contacter</AnchorLink>
               </li>
+              <li>
+                <AnchorLink href="/legal/cgu">CGU</AnchorLink>
+              </li>
+              <li>
+                <AnchorLink href="/legal/politique-confidentialite">
+                  Politique de confidentialité
+                </AnchorLink>
+              </li>
               {/* <li>
                 <NavLink to="/mentions-legales">Mentions légales</NavLink>
               </li> */}
