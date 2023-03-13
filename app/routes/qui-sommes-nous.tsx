@@ -32,7 +32,7 @@ export default function Index() {
   return (
     <div className="relative">
       <Navbar />
-      <div className="relative z-0 bg-white  leading-relaxed text-dark desktop:pt-28">
+      <div className="relative z-0 bg-white leading-relaxed text-dark desktop:pt-28">
         <div className="container mx-auto px-4 py-12">
           <div className="grid-cols-12 items-center gap-8 border-b border-light pb-12 desktop:grid">
             <div className="col-span-4 mb-8">
