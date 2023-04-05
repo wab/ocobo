@@ -10,6 +10,7 @@ import * as post3 from './3.mdx';
 import * as post4 from './4.mdx';
 import * as post5 from './5.mdx';
 import * as post6 from './6.mdx';
+import * as post7 from './7.mdx';
 
 function postFromModule(mod: any) {
   return {
@@ -28,6 +29,7 @@ export async function loader() {
       "Ocobo Le Nouvel Ops, c'est le média qui accompagne les Business Ops d'aujourd'hui et de demain. L’idée ? Vous éclairer sur diverses thématiques en vous partageant des articles sur les tendances du marché, les méthodologies, les bonnes pratiques & benchmarks qui gravitent autour de notre passionnant métier",
     coverImage: 'https://ocobo.co/cover.png',
     posts: [
+      postFromModule(post7),
       postFromModule(post6),
       postFromModule(post5),
       postFromModule(post4),
