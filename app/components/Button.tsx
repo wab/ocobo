@@ -5,6 +5,8 @@ const padding = 'px-7 lg:px-10 py-3 lg:py-4';
 
 const color = {
   primary: 'text-white',
+  white: 'text-coral',
+  dark: 'text-white',
   secondary: 'text-slate-700 dark:text-slate-200',
   text: 'text-slate-700 hover:text-white dark:text-slate-200 dark:hover:text-white',
 };
@@ -12,17 +14,21 @@ const color = {
 const backgroundColors = {
   primary: 'bg-coral',
   secondary: 'bg-transparent',
+  white: 'bg-white',
+  dark: 'bg-dark',
   text: 'bg-light-button hover:bg-blue-500 dark:bg-gray-800 dark:hover:bg-blue-500',
 };
 
 const border = {
   primary: 'border-none',
+  white: 'border-none',
+  dark: 'border-none',
   secondary: 'border-2 border-gray-800 dark:border-white',
   text: 'border-none',
 };
 
 interface ButtonProps extends React.ComponentPropsWithoutRef<'button'> {
-  variant?: 'primary' | 'secondary' | 'text';
+  variant?: 'primary' | 'secondary' | 'text' | 'white' | 'dark';
 }
 
 export const Button: React.FunctionComponent<ButtonProps> = ({
@@ -31,6 +37,7 @@ export const Button: React.FunctionComponent<ButtonProps> = ({
   disabled,
   children,
   onClick,
+  ...rest
 }) => {
   const disabledStyle = disabled
     ? 'opacity-50 cursor-not-allowed'
@@ -50,7 +57,7 @@ export const Button: React.FunctionComponent<ButtonProps> = ({
     baseClasses = [...baseClasses, ...className.split(' ')];
   }
   return (
-    <button onClick={onClick} className={baseClasses.join(' ')}>
+    <button onClick={onClick} className={baseClasses.join(' ')} {...rest}>
       {children}
     </button>
   );
