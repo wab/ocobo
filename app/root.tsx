@@ -1,5 +1,6 @@
 import * as React from 'react';
-import { json } from '@remix-run/node';
+import type { ActionFunction, LoaderFunction } from '@remix-run/node';
+import { json, redirect } from '@remix-run/node';
 import {
   Links,
   LiveReload,
@@ -9,10 +10,13 @@ import {
   ScrollRestoration,
   useLoaderData,
   useLocation,
+  Form,
 } from '@remix-run/react';
 import clsx from 'clsx';
 import * as gtag from '~/utils/gtags.client';
 import { ThemeProvider, useTheme } from '~/utils/theme-provider';
+import { gdprConsent } from '~/utils/cookies';
+import { CookieBanner } from '~/components/CookieBanner';
 
 import styles from './styles/app.css';
 
@@ -34,21 +38,49 @@ export function links() {
   ];
 }
 
+export const action: ActionFunction = async ({ request }) => {
+  const formData = await request.formData();
+  const cookieHeader = request.headers.get('Cookie');
+  const cookie = (await gdprConsent.parse(cookieHeader)) || {};
+
+  if (formData.get('accept-gdpr') === 'true') {
+    cookie.gdprConsent = true;
+  }
+
+  if (formData.get('accept-gdpr') === 'false') {
+    cookie.gdprConsent = false;
+  }
+
+  return redirect('/', {
+    headers: {
+      'Set-Cookie': await gdprConsent.serialize(cookie),
+    },
+  });
+};
+
 // Load the GA tracking id from the .env
-export const loader = async () => {
-  return json({ gaTrackingId: process.env.GA_TRACKING_ID });
+export const loader: LoaderFunction = async ({ request }) => {
+  const cookieHeader = request.headers.get('Cookie');
+  const cookie = (await gdprConsent.parse(cookieHeader)) || {};
+  return json({
+    gaTrackingId: process.env.GA_TRACKING_ID,
+    showGdprBanner: cookie.gdprConsent === undefined,
+    cookieConsent: cookie.gdprConsent,
+  });
 };
 
 function App() {
   const [theme] = useTheme();
   const location = useLocation();
-  const { gaTrackingId } = useLoaderData<typeof loader>();
+  const { gaTrackingId, showGdprBanner, cookieConsent } = useLoaderData<typeof loader>();
 
   React.useEffect(() => {
     if (gaTrackingId?.length) {
       gtag.pageview(location.pathname, gaTrackingId);
     }
   }, [location, gaTrackingId]);
+
+  const isTrackingEnabled = process.env.NODE_ENV === 'development' && Boolean(cookieConsent);
 
   return (
     <html lang="en" className={clsx(theme)}>
@@ -58,8 +90,8 @@ function App() {
         <Meta />
         <Links />
       </head>
-      <body className="dark:bg-dark">
-        {process.env.NODE_ENV === 'development' || !gaTrackingId ? null : (
+      <body className="relative dark:bg-dark">
+        {isTrackingEnabled ? (
           <>
             <script async src={`https://www.googletagmanager.com/gtag/js?id=${gaTrackingId}`} />
             <script
@@ -77,7 +109,8 @@ function App() {
               }}
             />
           </>
-        )}
+        ) : null}
+        <CookieBanner isVisible={showGdprBanner} />
         <Outlet />
         <ScrollRestoration />
         <Scripts />
