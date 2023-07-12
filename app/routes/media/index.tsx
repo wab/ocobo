@@ -60,17 +60,14 @@ export default function Index() {
 
   return (
     <div className="not-prose min-h-screen">
-      <ul className="grid gap-8 desktop:grid-cols-2">
+      <ul className="grid gap-8">
         {posts.map((post, index) => (
           <li
             key={post.slug}
-            className={clsx(
-              index === 0 ? 'col-span-2' : 'col-span-1',
-              'group overflow-hidden rounded-md bg-white shadow-lg dark:text-dark'
-            )}
+            className="group overflow-hidden rounded-md bg-white shadow-lg dark:text-dark"
           >
             <NavLink to={post.slug} className="block">
-              <PostCard {...post.card} isHightlighted={index === 0} />
+              <PostCard {...post.card} isHightlighted />
             </NavLink>
           </li>
         ))}
