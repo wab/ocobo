@@ -25,7 +25,7 @@ export const AnchorLink: React.FunctionComponent<
 > = ({ href, children, isUnderline, ...props }) => (
   <a
     href={href}
-    className={`flex cursor-pointer items-center gap-1 ${
+    className={`inline-flex cursor-pointer items-center gap-1 ${
       isUnderline ? 'underline' : ''
     } underline-offset-1 transition-colors duration-300 ease-in-out hover:text-coral`}
     {...props}
