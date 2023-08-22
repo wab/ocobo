@@ -6,7 +6,7 @@ import { Hero } from '~/components/Hero';
 import { Section } from '~/components/Section';
 import { Plateforms } from '~/components/Plateforms';
 import { Footer } from '~/components/Footer';
-import { FiSmile } from 'react-icons/fi';
+import { FiSmile, FiMic } from 'react-icons/fi';
 import {
   AiFillFunnelPlot,
   AiOutlineSetting,
@@ -22,6 +22,10 @@ import {
 } from 'react-icons/ai';
 
 import { NavButton } from '~/components/Link';
+import { testimonialFromModule } from '~/utils/parsers';
+
+import * as leeway from './testimonial/leeway.mdx';
+import { useLoaderData } from '@remix-run/react';
 
 export const loader = async () => {
   return json({
@@ -29,6 +33,7 @@ export const loader = async () => {
     description:
       'Optimisez votre efficacité commerciale et boostez vos revenus en étant accompagné par la première agence française de conseil en Business Operations.',
     coverImage: 'https://ocobo.co/cover-coral.png',
+    testimonials: [testimonialFromModule(leeway)],
   });
 };
 
@@ -46,13 +51,15 @@ export const meta: MetaFunction = ({ data, location }) => {
 };
 
 export default function Index() {
+  const { testimonials } = useLoaderData<typeof loader>();
+  const testimonial = testimonials[Math.floor(Math.random() * testimonials.length)];
   return (
     <div className="relative">
       <Navbar />
       <div className="relative z-0 bg-white leading-relaxed text-dark desktop:pt-28">
         <Hero />
         <Plateforms />
-        <Section.Root className="py-0 desktop:-mt-32">
+        <Section.Root className="relative z-10 py-0 desktop:-mt-32">
           <Section.Container>
             <Section.Grid className="rounded-lg bg-white p-8 shadow-lg lgDesktop:p-16">
               <div className="col-span-5 hidden desktop:block">
@@ -79,6 +86,42 @@ export default function Index() {
                 </p>
               </div>
             </Section.Grid>
+          </Section.Container>
+        </Section.Root>
+        <Section.Root className="border-b-2 border-light bg-light bg-opacity-20 desktop:-mt-16 desktop:pt-32">
+          <Section.Container>
+            <Section.Title className="text-center text-current">
+              Il nous ont fait confiance
+            </Section.Title>
+            <Section.Grid>
+              <div className="col-span-2" />
+              <div className=" col-span-3">
+                <div className="relative w-[240px]">
+                  <div className="h-[240px] w-full overflow-hidden rounded-full border-4 border-mint shadow-lg">
+                    <img src={testimonial.coverImage} alt="" className="h-[240px] object-cover" />
+                  </div>
+                  <img
+                    src={testimonial.logo}
+                    alt=""
+                    className="absolute bottom-0 right-0 h-16 w-16 shadow-md"
+                  />
+                </div>
+              </div>
+              <div className="col-span-5">
+                <p className="mb-4 text-xl italic leading-relaxed">"{testimonial.description}"</p>
+                <p className="mb-4 text-lg">
+                  <strong>{testimonial.guest}</strong> • {testimonial.position} {testimonial.title}
+                </p>
+                <p className="mb-4">
+                  <NavButton to={`/testimonial/${testimonial.slug}`}>
+                    <FiMic /> Lire son témoignage
+                  </NavButton>
+                </p>
+              </div>
+            </Section.Grid>
+            {/* <div className="p-6 text-center">
+              <AnchorLink href="/testimonial">Tous les témoignages</AnchorLink>
+            </div> */}
           </Section.Container>
         </Section.Root>
         <Section.Root>

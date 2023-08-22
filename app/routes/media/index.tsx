@@ -1,8 +1,9 @@
 import { json } from '@remix-run/node';
 import type { MetaFunction } from '@remix-run/node';
 import { NavLink, useLoaderData } from '@remix-run/react';
-import { clsx } from 'clsx';
+
 import { PostCard } from '~/components/PostCard';
+import { postFromModule } from '~/utils/parsers';
 
 import * as post1 from './1.mdx';
 import * as post2 from './2.mdx';
@@ -13,16 +14,6 @@ import * as post6 from './6.mdx';
 import * as post7 from './7.mdx';
 import * as post8 from './8.mdx';
 import * as post9 from './9.mdx';
-
-function postFromModule(mod: any) {
-  return {
-    slug: mod.filename.replace(/\.mdx?$/, ''),
-    card: {
-      ...mod.attributes.meta,
-      tags: mod.attributes.tags.split(', '),
-    },
-  };
-}
 
 export async function loader() {
   return json({
