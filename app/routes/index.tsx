@@ -63,7 +63,7 @@ export default function Index() {
           <Section.Container>
             <Section.Grid className="rounded-lg bg-white p-8 shadow-lg lgDesktop:p-16">
               <div className="col-span-5 hidden desktop:block">
-                <img src="/illustrations/intro.svg" alt="" />
+                <img src="/illustrations/about-us.svg" alt="" className="" />
               </div>
               <div />
               <div className="col-span-6">
