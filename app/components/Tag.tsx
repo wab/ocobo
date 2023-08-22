@@ -16,7 +16,7 @@ export const Tag: React.FunctionComponent<React.PropsWithChildren> = ({ children
         isStrategy && 'bg-fuchsia text-fuchsia',
         isTraining && 'bg-mint text-mint',
         isOther && 'bg-sand text-sand',
-        'mr-2 rounded bg-opacity-20 px-2.5 py-0.5 text-xs font-medium '
+        'whitespace-nowrap rounded bg-opacity-20 px-2.5 py-0.5 text-xs font-medium'
       )}
     >
       {children}

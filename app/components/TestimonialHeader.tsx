@@ -7,46 +7,52 @@ export const TestimonialHeader: React.FunctionComponent<Testimonial> = (props) =
   return (
     <header className="pt-6">
       <img src={props.logo} alt="" className="float-right mt-0 w-24 rounded-lg shadow-md" />
-      <h1 className="font-blog desktop:text-5xl">{props.title}</h1>
-      <strong className="text-md mb-3 flex flex-wrap items-center gap-2 font-bold">
-        <FiMic className="text-coral" />
+      <h1 className="font-blog leading-none desktop:text-5xl">{props.title}</h1>
+      <div className="mb-4 flex flex-wrap items-start gap-2 leading-none">
+        <span>
+          <FiMic className="text-coral" />
+        </span>
         {props.guest} • {props.position}
-      </strong>
-      <div className="mb-3 flex items-center gap-2">
-        <FiClock className="text-coral" />
+      </div>
+      <div className="mb-4 flex items-start gap-2 leading-none">
+        <span>
+          <FiClock className="text-coral" />
+        </span>
         {props.duration}
       </div>
-      <div className="mb-3 flex items-center gap-2">
-        <AiFillFunnelPlot className="text-coral" />
-        <ul className="not-prose m-0 flex list-none gap-1 p-0">
+      <div className="mb-4 flex items-start gap-2">
+        <span>
+          <AiFillFunnelPlot className="text-coral" />
+        </span>
+        <ul className="not-prose m-0 flex list-none flex-wrap gap-1 p-0 leading-none">
           {props.scope.map((scope, i) => (
-            <li key={scope}>
+            <li key={scope} className="flex gap-1">
               {scope}
-              {i !== props.scope.length - 1 && (
-                <span className="ml-1 inline-block text-coral">•</span>
-              )}
+              {i !== props.scope.length - 1 && <span className="text-coral">•</span>}
             </li>
           ))}
         </ul>
       </div>
-      <div className="mb-3 flex items-center gap-2">
-        <FiTool className="text-coral" />
-        <ul className="not-prose m-0 flex list-none gap-1 p-0">
+      <div className="mb-4 flex items-start gap-2">
+        <span>
+          <FiTool className="text-coral" />
+        </span>
+        <ul className="not-prose m-0 flex list-none flex-wrap gap-1 p-0 leading-none">
           {props.tools.map((tool, i) => (
-            <li key={tool}>
+            <li key={tool} className="flex gap-1">
               {tool}
-              {i !== props.tools.length - 1 && (
-                <span className="ml-1 inline-block text-coral">•</span>
-              )}
+              {i !== props.tools.length - 1 && <span className="text-coral">•</span>}
             </li>
           ))}
         </ul>
       </div>
-      <div className="mb-3 flex items-center gap-2">
-        <FiTag className="text-coral" />
-        <ul className="not-prose m-0 flex list-none gap-1 p-0">
+      <div className="mb-4 flex items-start gap-2">
+        <span>
+          <FiTag className="text-coral" />
+        </span>
+        <ul className="not-prose m-0 flex list-none flex-wrap gap-1 p-0 leading-none">
           {props.tags.map((tag: string) => (
-            <li key={tag}>
+            <li key={tag} className="flex gap-1">
               <Tag>{tag}</Tag>
             </li>
           ))}
