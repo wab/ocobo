@@ -41,7 +41,7 @@ export default function Index() {
   const { posts } = useLoaderData<typeof loader>();
   return (
     <div className="pt-8">
-      <h1 className="font-title font-normal">Il nous ont fait confiance</h1>
+      <h1 className="font-title font-normal">Ils nous ont fait confiance</h1>
 
       <ol className="list-none p-0">
         {posts.map((post) => (
