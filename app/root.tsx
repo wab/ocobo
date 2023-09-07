@@ -10,7 +10,6 @@ import {
   ScrollRestoration,
   useLoaderData,
   useLocation,
-  Form,
 } from '@remix-run/react';
 import clsx from 'clsx';
 import * as gtag from '~/utils/gtags.client';
@@ -80,7 +79,7 @@ function App() {
     }
   }, [location, gaTrackingId]);
 
-  const isTrackingEnabled = process.env.NODE_ENV === 'development' && Boolean(cookieConsent);
+  const isTrackingEnabled = process.env.NODE_ENV === 'production' && Boolean(cookieConsent);
 
   return (
     <html lang="en" className={clsx(theme)}>
