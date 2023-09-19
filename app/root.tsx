@@ -65,13 +65,16 @@ export const loader: LoaderFunction = async ({ request }) => {
     gaTrackingId: process.env.GA_TRACKING_ID,
     showGdprBanner: cookie.gdprConsent === undefined,
     cookieConsent: cookie.gdprConsent,
+    ENV: {
+      HUBSPOT_PORTAL_ID: process.env.HUBSPOT_PORTAL_ID,
+    },
   });
 };
 
 function App() {
   const [theme] = useTheme();
   const location = useLocation();
-  const { gaTrackingId, showGdprBanner, cookieConsent } = useLoaderData<typeof loader>();
+  const { gaTrackingId, showGdprBanner, cookieConsent, ENV } = useLoaderData<typeof loader>();
 
   React.useEffect(() => {
     if (gaTrackingId?.length) {
@@ -112,6 +115,11 @@ function App() {
         <CookieBanner isVisible={showGdprBanner} />
         <Outlet />
         <ScrollRestoration />
+        <script
+          dangerouslySetInnerHTML={{
+            __html: `window.ENV = ${JSON.stringify(ENV)}`,
+          }}
+        />
         <Scripts />
         <LiveReload />
       </body>
