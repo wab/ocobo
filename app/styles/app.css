@@ -1232,6 +1232,11 @@ video {
   margin-bottom: 2rem;
 }
 
+.my-2 {
+  margin-top: 0.5rem;
+  margin-bottom: 0.5rem;
+}
+
 .-mt-2 {
   margin-top: -0.5rem;
 }
@@ -1324,6 +1329,14 @@ video {
   height: 40px;
 }
 
+.h-16 {
+  height: 4rem;
+}
+
+.h-12 {
+  height: 3rem;
+}
+
 .max-h-\[40px\] {
   max-height: 40px;
 }
@@ -1334,6 +1347,10 @@ video {
 
 .min-h-screen {
   min-height: 100vh;
+}
+
+.w-32 {
+  width: 8rem;
 }
 
 .w-\[240px\] {

@@ -23,6 +23,7 @@ export async function loader() {
 const Item: React.FunctionComponent<Testimonial> = ({
   slug,
   title,
+  logo,
   guest,
   position,
   scope,
@@ -36,9 +37,7 @@ const Item: React.FunctionComponent<Testimonial> = ({
       >
         <div className="flex items-center gap-4 p-4">
           <div>
-            <span className="mb-1 block text-lg font-bold transition-colors group-hover:text-coral">
-              {title}
-            </span>
+            <img src={logo} alt={title} className="my-2 h-10" />
             <div className="mb-2 italic">
               {guest} • {position}
             </div>

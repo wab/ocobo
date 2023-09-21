@@ -17,19 +17,16 @@ export const TestimonialHeader: React.FunctionComponent<React.PropsWithChildren<
             <div className="h-[340px] w-full overflow-hidden rounded-full border-4 border-mint">
               <img src={props.coverImage} alt={props.guest} className="h-[340px] object-cover" />
             </div>
-            <img
-              src={props.logo}
-              alt={props.title}
-              className="absolute bottom-[-32px] left-0 h-24 translate-x-[50%] rounded-md bg-white shadow-md"
-            />
           </div>
         </div>
 
         <div className="col-span-8">
-          <h1 className="mb-4 font-blog leading-none desktop:text-5xl">{props.title}</h1>
+          <h1 className="mb-4 font-blog leading-none desktop:text-5xl">
+            <img src={props.logo} alt={props.title} className="h-16" />
+          </h1>
           <p className="mb-4 font-title text-lg">{props.description}</p>
 
-          <div className="prose mb-6 rounded-md border-2 border-dashed border-blue bg-blue bg-opacity-10 p-4">
+          <div className="mb-6 rounded-md border-2 border-dashed border-blue bg-blue bg-opacity-10 p-4">
             <div className="mb-4 flex flex-wrap items-start gap-2 font-bold leading-none">
               <span>
                 <FiMic className="text-coral" />
@@ -46,7 +43,7 @@ export const TestimonialHeader: React.FunctionComponent<React.PropsWithChildren<
               <span>
                 <AiFillFunnelPlot className="text-coral" />
               </span>
-              <ul className="not-prose m-0 flex list-none flex-wrap gap-1 p-0 leading-none">
+              <ul className="m-0 flex list-none flex-wrap gap-1 p-0 leading-none">
                 {props.scope.map((scope, i) => (
                   <li key={scope} className="flex gap-1">
                     {scope}
@@ -59,7 +56,7 @@ export const TestimonialHeader: React.FunctionComponent<React.PropsWithChildren<
               <span>
                 <FiTool className="text-coral" />
               </span>
-              <ul className="not-prose m-0 flex list-none flex-wrap gap-1 p-0 leading-none">
+              <ul className="m-0 flex list-none flex-wrap gap-1 p-0 leading-none">
                 {props.tools.map((tool, i) => (
                   <li key={tool} className="flex gap-1">
                     {tool}
@@ -73,7 +70,7 @@ export const TestimonialHeader: React.FunctionComponent<React.PropsWithChildren<
             <span>
               <FiTag className="text-coral" />
             </span>
-            <ul className="not-prose m-0 flex list-none flex-wrap gap-1 p-0 leading-none">
+            <ul className="m-0 flex list-none flex-wrap gap-1 p-0 leading-none">
               {props.tags.map((tag: string) => (
                 <li key={tag} className="flex gap-1">
                   <Tag>{tag}</Tag>

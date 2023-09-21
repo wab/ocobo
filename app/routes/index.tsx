@@ -103,7 +103,8 @@ export default function Index() {
                 </div>
               </div>
               <div className="col-span-8">
-                <h2 className="mb-4 font-title text-3xl">{testimonial.title}</h2>
+                <img src={testimonial.logo} alt={testimonial.title} className="mb-4 h-10" />
+
                 <div className="mb-4 flex items-start gap-2">
                   <span>
                     <AiFillFunnelPlot className="text-coral" />
