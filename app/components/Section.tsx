@@ -40,7 +40,7 @@ const Grid: React.FunctionComponent<React.PropsWithChildren<TGrid & {}>> = ({
 const Title: FunctionComponentWithChildrenAndClassName = (props) => {
   return (
     <h2
-      className={`text-current mb-6 font-title text-2xl leading-normal desktop:text-4xl ${props.className}`}
+      className={`mb-6 font-title text-2xl leading-normal text-current desktop:text-4xl ${props.className}`}
     >
       <span>{props.children}</span>
     </h2>
@@ -50,7 +50,7 @@ const Title: FunctionComponentWithChildrenAndClassName = (props) => {
 const SubTitle: FunctionComponentWithChildrenAndClassName = (props) => {
   return (
     <h3
-      className={`text-current mb-6 font-title text-xl leading-normal desktop:text-3xl ${props.className}`}
+      className={`mb-6 font-title text-xl leading-normal text-current desktop:text-3xl ${props.className}`}
     >
       {props.children}
     </h3>

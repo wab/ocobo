@@ -47,7 +47,7 @@ export default function MediaIndex() {
             </li>
           </ul>
         </nav>
-        <div className="lg:prose-2xl prose mx-auto py-10 prose-a:text-coral dark:prose-invert">
+        <div className="lg:prose-2xl prose mx-auto py-10 dark:prose-invert prose-a:text-coral">
           <Outlet />
         </div>
       </div>

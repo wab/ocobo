@@ -19,7 +19,7 @@ export const PostCard: React.FunctionComponent<PostCardProps> = (props) => {
       <div
         className={clsx(
           'overflow-hidden',
-          props.isHightlighted ? 'desktop:h-[420px]' : 'h-[200px]'
+          props.isHightlighted ? 'desktop:h-[420px]' : 'h-[200px]',
         )}
       >
         <img

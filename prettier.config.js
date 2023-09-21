@@ -1,11 +1,14 @@
 module.exports = {
   printWidth: 100,
+  proseWrap: 'always',
   tabWidth: 2,
   semi: true,
   singleQuote: true,
-  trailingComma: "es5",
+  trailingComma: 'all',
+  embeddedLanguageFormatting: 'auto',
+  endOfLine: 'lf',
   bracketSpacing: true,
-  htmlWhitespaceSensitivity: "ignore",
-  arrowParens: "always",
+  htmlWhitespaceSensitivity: 'ignore',
+  arrowParens: 'always',
   plugins: [require('prettier-plugin-tailwindcss')],
 };
