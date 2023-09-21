@@ -183,7 +183,7 @@ export default function Index() {
                 <strong>Business Analyst</strong>.
               </p>
               <p>
-                Elle rejoint par la suite, <strong>Spendesk</strong> (post-Série A) en tant que{' '}
+                Elle rejoint par la suite, <strong>Spendesk</strong> (post-Série A) en tant que
                 Customer Success Operations, puis évolue en tant que{' '}
                 <strong>Head of Revenue Operations</strong> voyant l’organisation évoluer de 80 à
                 600+ employés.

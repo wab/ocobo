@@ -6,7 +6,7 @@ export const NavLink: React.FunctionComponent<LinkProps> = ({ children, classNam
   <Link
     className={clsx(
       'flex cursor-pointer items-center gap-1 underline-offset-1 transition-colors duration-300 ease-in-out hover:text-coral',
-      className
+      className,
     )}
     {...props}
   >

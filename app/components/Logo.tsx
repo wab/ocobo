@@ -1,9 +1,9 @@
 import React from 'react';
 
-export const Logo: React.FunctionComponent<{ width?: number; className?: string }> = ({
-  width = 180,
-  ...rest
-}) => {
+export const Logo: React.FunctionComponent<{
+  width?: number;
+  className?: string;
+}> = ({ width = 180, ...rest }) => {
   return (
     <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 460 120" width={width} {...rest}>
       <path

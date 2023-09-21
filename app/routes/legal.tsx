@@ -22,7 +22,7 @@ export default function MediaIndex() {
     <div className="relative">
       <Navbar />
       <div className="relative px-6 text-dark desktop:pt-28">
-        <div className="lg:prose-2xl prose mx-auto py-10 prose-a:text-coral dark:prose-invert">
+        <div className="lg:prose-2xl prose mx-auto py-10 dark:prose-invert prose-a:text-coral">
           <Outlet />
         </div>
       </div>
