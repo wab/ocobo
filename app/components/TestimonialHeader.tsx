@@ -9,21 +9,28 @@ export const TestimonialHeader: React.FunctionComponent<React.PropsWithChildren<
 }) => {
   return (
     <>
-      <header className="mb-6 flex items-center gap-6">
-        <img src={props.logo} alt="Leeway" className="w-16 rounded-lg shadow-md" />
-        <h1 className="font-blog leading-none desktop:text-5xl">{props.title}</h1>
-      </header>
+      <header className="mb-6 flex items-center gap-6"></header>
 
-      <div className="grid-cols-12 gap-8 pb-12 desktop:grid">
-        <div className="col-span-4">
-          <img src={props.coverImage} alt="" className="rounded-lg shadow-md" />
+      <header className="grid-cols-12 gap-8 pb-12 desktop:grid">
+        <div className="relative col-span-4">
+          <div className="relative w-[340px]">
+            <div className="h-[340px] w-full overflow-hidden rounded-full border-4 border-mint">
+              <img src={props.coverImage} alt={props.guest} className="h-[340px] object-cover" />
+            </div>
+            <img
+              src={props.logo}
+              alt={props.title}
+              className="absolute bottom-[-32px] left-0 h-24 translate-x-[50%] rounded-md bg-white shadow-md"
+            />
+          </div>
         </div>
 
         <div className="col-span-8">
+          <h1 className="mb-4 font-blog leading-none desktop:text-5xl">{props.title}</h1>
           <p className="mb-4 font-title text-lg">{props.description}</p>
 
           <div className="prose mb-6 rounded-md border-2 border-dashed border-blue bg-blue bg-opacity-10 p-4">
-            <div className="mb-4 flex flex-wrap items-start gap-2 leading-none">
+            <div className="mb-4 flex flex-wrap items-start gap-2 font-bold leading-none">
               <span>
                 <FiMic className="text-coral" />
               </span>
@@ -75,7 +82,7 @@ export const TestimonialHeader: React.FunctionComponent<React.PropsWithChildren<
             </ul>
           </div>
         </div>
-      </div>
+      </header>
     </>
   );
 };
