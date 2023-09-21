@@ -2,7 +2,7 @@ import { json } from '@remix-run/node';
 // import type { MetaFunction } from '@remix-run/node';
 import { NavLink, useLoaderData } from '@remix-run/react';
 
-import * as leeway from './leeway.mdx';
+import * as leeway from './leeway/index.mdx';
 import type { Testimonial } from '~/utils/parsers';
 import { testimonialFromModule } from '~/utils/parsers';
 

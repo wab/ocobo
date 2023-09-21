@@ -24,7 +24,7 @@ import {
 import { NavButton } from '~/components/Link';
 import { testimonialFromModule } from '~/utils/parsers';
 
-import * as leeway from './testimonial/leeway.mdx';
+import * as leeway from './testimonial/leeway/index.mdx';
 import { useLoaderData } from '@remix-run/react';
 
 export const loader = async () => {
@@ -108,7 +108,9 @@ export default function Index() {
                 </div>
               </div>
               <div className="col-span-5">
-                <p className="mb-4 text-xl italic leading-relaxed">"{testimonial.description}"</p>
+                <p className="mb-4 text-xl italic leading-relaxed">
+                  "{testimonial.quotes[Math.floor(Math.random() * testimonial.quotes.length)]}"
+                </p>
                 <p className="mb-4 text-lg">
                   <strong>{testimonial.guest}</strong> • {testimonial.position} {testimonial.title}
                 </p>

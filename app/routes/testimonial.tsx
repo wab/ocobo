@@ -21,7 +21,7 @@ export default function MediaIndex() {
   return (
     <div className="relative">
       <Navbar />
-      <div className="container prose mx-auto min-h-screen px-4 desktop:pt-28">
+      <div className="container mx-auto min-h-screen px-4 desktop:pt-28">
         <div className="py-8">
           <Outlet />
         </div>
