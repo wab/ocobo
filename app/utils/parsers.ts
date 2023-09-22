@@ -40,6 +40,7 @@ type Testimonial = {
   scope: string[];
   tools: string[];
   tags: string[];
+  quotes: string[];
 };
 
 function testimonialFromModule(mod: any): Testimonial {
@@ -48,13 +49,14 @@ function testimonialFromModule(mod: any): Testimonial {
     description: mod.attributes.meta.description,
     coverImage: mod.attributes.coverImage,
     logo: mod.attributes.logo,
-    slug: mod.filename.replace(/\.mdx?$/, ''),
+    slug: mod.attributes.slug,
     duration: mod.attributes.duration,
     guest: mod.attributes.guest,
     position: mod.attributes.position,
-    scope: mod.attributes.scope.split(', '),
-    tools: mod.attributes.tools.split(', '),
-    tags: mod.attributes.tags.split(', '),
+    scope: mod.attributes.scope,
+    tools: mod.attributes.tools,
+    tags: mod.attributes.tags,
+    quotes: mod.attributes.quotes,
   };
 }
 

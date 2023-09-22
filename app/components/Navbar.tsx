@@ -1,9 +1,5 @@
 import { Baseline } from './Baseline';
-import {
-  // FiMic,
-  FiMail,
-  FiSmile,
-} from 'react-icons/fi';
+import { FiMail, FiMic, FiSmile } from 'react-icons/fi';
 import { ImNewspaper } from 'react-icons/im';
 import { Logo } from '~/components/Logo';
 import { NavLink } from '~/components/Link';
@@ -21,16 +17,16 @@ export function Navbar() {
               <Baseline />
             </div>
             <ul className="flex flex-col gap-4 py-4 font-title tablet:flex-row tablet:items-center">
-              {/* <li>
-                <NavLink>
-                  <FiMic />
-                  Nous recrutons
-                </NavLink>
-              </li> */}
               <li>
                 <NavLink to="/qui-sommes-nous">
                   <FiSmile />
                   Qui sommes-nous ?
+                </NavLink>
+              </li>
+              <li>
+                <NavLink to="/testimonial">
+                  <FiMic />
+                  Cas client
                 </NavLink>
               </li>
               <li>

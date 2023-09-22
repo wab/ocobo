@@ -1138,16 +1138,16 @@ video {
   position: relative;
 }
 
-.bottom-0 {
-  bottom: 0px;
-}
-
 .bottom-4 {
   bottom: 1rem;
 }
 
-.right-0 {
-  right: 0px;
+.bottom-\[-32px\] {
+  bottom: -32px;
+}
+
+.left-0 {
+  left: 0px;
 }
 
 .right-4 {
@@ -1210,12 +1210,12 @@ video {
   grid-column: span 7 / span 7;
 }
 
-.col-start-7 {
-  grid-column-start: 7;
+.col-span-8 {
+  grid-column: span 8 / span 8;
 }
 
-.float-right {
-  float: right;
+.col-start-7 {
+  grid-column-start: 7;
 }
 
 .m-0 {
@@ -1232,8 +1232,17 @@ video {
   margin-bottom: 2rem;
 }
 
+.my-2 {
+  margin-top: 0.5rem;
+  margin-bottom: 0.5rem;
+}
+
 .-mt-2 {
   margin-top: -0.5rem;
+}
+
+.mb-1 {
+  margin-bottom: 0.25rem;
 }
 
 .mb-2 {
@@ -1258,10 +1267,6 @@ video {
 
 .mr-auto {
   margin-right: auto;
-}
-
-.mt-0 {
-  margin-top: 0px;
 }
 
 .mt-4 {
@@ -1304,16 +1309,8 @@ video {
   height: 2.5rem;
 }
 
-.h-12 {
-  height: 3rem;
-}
-
-.h-16 {
-  height: 4rem;
-}
-
-.h-28 {
-  height: 7rem;
+.h-24 {
+  height: 6rem;
 }
 
 .h-\[200px\] {
@@ -1324,8 +1321,20 @@ video {
   height: 240px;
 }
 
+.h-\[340px\] {
+  height: 340px;
+}
+
 .h-\[40px\] {
   height: 40px;
+}
+
+.h-16 {
+  height: 4rem;
+}
+
+.h-12 {
+  height: 3rem;
 }
 
 .max-h-\[40px\] {
@@ -1340,20 +1349,16 @@ video {
   min-height: 100vh;
 }
 
-.w-12 {
-  width: 3rem;
-}
-
-.w-16 {
-  width: 4rem;
-}
-
-.w-24 {
-  width: 6rem;
+.w-32 {
+  width: 8rem;
 }
 
 .w-\[240px\] {
   width: 240px;
+}
+
+.w-\[340px\] {
+  width: 340px;
 }
 
 .w-\[400px\] {
@@ -1390,6 +1395,11 @@ video {
 
 .table-auto {
   table-layout: auto;
+}
+
+.translate-x-\[50\%\] {
+  --tw-translate-x: 50%;
+  transform: translate(var(--tw-translate-x), var(--tw-translate-y)) rotate(var(--tw-rotate)) skewX(var(--tw-skew-x)) skewY(var(--tw-skew-y)) scaleX(var(--tw-scale-x)) scaleY(var(--tw-scale-y));
 }
 
 .cursor-not-allowed {
@@ -1462,6 +1472,10 @@ video {
 
 .gap-4 {
   gap: 1rem;
+}
+
+.gap-6 {
+  gap: 1.5rem;
 }
 
 .gap-8 {
@@ -1770,10 +1784,6 @@ video {
 
 .pt-4 {
   padding-top: 1rem;
-}
-
-.pt-6 {
-  padding-top: 1.5rem;
 }
 
 .pt-8 {

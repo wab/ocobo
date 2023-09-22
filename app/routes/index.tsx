@@ -6,7 +6,7 @@ import { Hero } from '~/components/Hero';
 import { Section } from '~/components/Section';
 import { Plateforms } from '~/components/Plateforms';
 import { Footer } from '~/components/Footer';
-import { FiSmile, FiMic } from 'react-icons/fi';
+import { FiSmile, FiMic, FiTag } from 'react-icons/fi';
 import {
   AiFillFunnelPlot,
   AiOutlineSetting,
@@ -21,11 +21,13 @@ import {
   AiOutlineClockCircle,
 } from 'react-icons/ai';
 
-import { NavButton } from '~/components/Link';
+import { AnchorLink, NavButton } from '~/components/Link';
 import { testimonialFromModule } from '~/utils/parsers';
 
-import * as leeway from './testimonial/leeway.mdx';
+import * as leeway from './testimonial/leeway/index.mdx';
+import * as qare from './testimonial/qare/index.mdx';
 import { useLoaderData } from '@remix-run/react';
+import { Tag } from '~/components/Tag';
 
 export const loader = async () => {
   return json({
@@ -33,7 +35,7 @@ export const loader = async () => {
     description:
       'Optimisez votre efficacité commerciale et boostez vos revenus en étant accompagné par la première agence française de conseil en Business Operations.',
     coverImage: 'https://ocobo.co/cover-coral.png',
-    testimonials: [testimonialFromModule(leeway)],
+    testimonials: [testimonialFromModule(qare), testimonialFromModule(leeway)],
   });
 };
 
@@ -94,23 +96,47 @@ export default function Index() {
               Ils nous ont fait confiance
             </Section.Title>
             <Section.Grid>
-              <div className="col-span-2" />
-              <div className=" col-span-3">
-                <div className="relative w-[240px]">
-                  <div className="h-[240px] w-full overflow-hidden rounded-full border-4 border-mint shadow-lg">
-                    <img src={testimonial.coverImage} alt="" className="h-[240px] object-cover" />
-                  </div>
-                  <img
-                    src={testimonial.logo}
-                    alt=""
-                    className="absolute bottom-0 right-0 h-16 w-16 shadow-md"
-                  />
+              <div className="col-span-1" />
+              <div className="col-span-3">
+                <div className="h-[240px] w-[240px] overflow-hidden rounded-full border-4 border-mint shadow-lg">
+                  <img src={testimonial.coverImage} alt="" className="h-[240px] object-cover" />
                 </div>
               </div>
-              <div className="col-span-5">
-                <p className="mb-4 text-xl italic leading-relaxed">"{testimonial.description}"</p>
+              <div className="col-span-8">
+                <img src={testimonial.logo} alt={testimonial.title} className="mb-4 h-10" />
+
+                <div className="mb-4 flex items-start gap-2">
+                  <span>
+                    <AiFillFunnelPlot className="text-coral" />
+                  </span>
+                  <ul className="not-prose m-0 flex list-none flex-wrap gap-1 p-0 leading-none">
+                    {testimonial.scope.map((scope, i) => (
+                      <li key={scope} className="flex gap-1">
+                        {scope}
+                        {i !== testimonial.scope.length - 1 && (
+                          <span className="text-coral">•</span>
+                        )}
+                      </li>
+                    ))}
+                  </ul>
+                </div>
+                <div className="mb-4 flex items-start gap-2">
+                  <span>
+                    <FiTag className="text-coral" />
+                  </span>
+                  <ul className="not-prose m-0 flex list-none flex-wrap gap-1 p-0 leading-none">
+                    {testimonial.tags.map((tag: string) => (
+                      <li key={tag} className="flex gap-1">
+                        <Tag>{tag}</Tag>
+                      </li>
+                    ))}
+                  </ul>
+                </div>
+                <p className="mb-4 text-xl italic leading-relaxed">
+                  "{testimonial.quotes[Math.floor(Math.random() * testimonial.quotes.length)]}"
+                </p>
                 <p className="mb-4 text-lg">
-                  <strong>{testimonial.guest}</strong> • {testimonial.position} {testimonial.title}
+                  <strong>{testimonial.guest}</strong> • {testimonial.position}
                 </p>
                 <p className="mb-4">
                   <NavButton to={`/testimonial/${testimonial.slug}`}>
@@ -119,9 +145,9 @@ export default function Index() {
                 </p>
               </div>
             </Section.Grid>
-            {/* <div className="p-6 text-center">
+            <div className="p-6 text-center">
               <AnchorLink href="/testimonial">Tous les témoignages</AnchorLink>
-            </div> */}
+            </div>
           </Section.Container>
         </Section.Root>
         <Section.Root>
