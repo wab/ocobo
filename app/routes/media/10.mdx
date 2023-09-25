@@ -1,30 +1,47 @@
 ---
 meta:
-  title: L’agence de conseil en Revenue Operations, un vrai "Business Partner" externalisé
-  coverImage: https://images.unsplash.com/photo-1493612276216-ee3925520721?ixlib=rb-4.0.3&q=85&fm=jpg&cs=srgb&w=1200&h=800&fit=crop
-  description:
-    Avec cet article, nous vous expliquons concrètement le fonctionnement et l’organisation d’une
-    agence de conseil experte en Business Operations et comment, chez Ocobo, nous accompagnons nos
-    clients au quotidien.
-  author: Aude Cadiot
-  date: 2023-09-12
-  og:title: L’agence de conseil en Revenue Operations, un vrai "Business Partner" externalisé
-  og:type: article
-  og:image: https://images.unsplash.com/photo-1493612276216-ee3925520721?ixlib=rb-4.0.3&q=85&fm=jpg&&cs=srgb&w=1200&h=800&fit=crop
-  og:description:
-    Avec cet article, nous vous expliquons concrètement le fonctionnement et l’organisation d’une
-    agence de conseil experte en Business Operations et comment, chez Ocobo, nous accompagnons nos
-    clients au quotidien.
-  og:url: https://ocobo.co/media/10
+  - title: L’agence de conseil en Revenue Operations, un vrai "Business Partner" externalisé
+  - name: author
+    content: Aude Cadiot
+  - name: description
+    content:
+      Avec cet article, nous vous expliquons concrètement le fonctionnement et l’organisation d’une
+      agence de conseil experte en Business Operations et comment, chez Ocobo, nous accompagnons nos
+      clients au quotidien.
+  - name: og:title
+    content: L’agence de conseil en Revenue Operations, un vrai "Business Partner" externalisé
+  - name: og:type
+    content: article
+  - name: og:image
+    content: https://images.unsplash.com/photo-1493612276216-ee3925520721?ixlib=rb-4.0.3&q=85&fm=jpg&&cs=srgb&w=1200&h=800&fit=crop
+  - name: og:description
+    content:
+      Avec cet article, nous vous expliquons concrètement le fonctionnement et l’organisation d’une
+      agence de conseil experte en Business Operations et comment, chez Ocobo, nous accompagnons nos
+      clients au quotidien.
+  - name: og:url
+    content: https://ocobo.co/media/10
 read: 4 min
-tags: stratégie, organisation, déploiement
+coverImage: https://images.unsplash.com/photo-1493612276216-ee3925520721?ixlib=rb-4.0.3&q=85&fm=jpg&cs=srgb&w=1200&h=800&fit=crop
+date: 2023-09-12
+tags:
+  - stratégie
+  - organisation
+  - déploiement
 status: published
 ---
 
 import { PostHeader } from '~/components/PostHeader';
 import { Callout } from '~/components/Callout';
 
-<PostHeader {...attributes.meta} read={attributes.read} tags={attributes.tags.split(', ')} />
+<PostHeader
+  title={attributes.meta.find((m) => m.title).title}
+  author={attributes.meta.find((m) => m.name === 'author').content}
+  date={attributes.date}
+  read={attributes.read}
+  tags={attributes.tags}
+  coverImage={attributes.coverImage}
+/>
 
 ## 🏪 Préambule : pourquoi une agence de conseil en Revenue Operations ?
 

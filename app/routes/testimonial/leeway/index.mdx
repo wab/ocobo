@@ -1,14 +1,20 @@
 ---
 meta:
-  title: Leeway
-  description: Optimisation des process d’acquisition outbound (Growth, Demande et Découverte)
-  date: 2023-08-14
-  og:title: Leeway
-  og:type: article
-  og:image: /testimonials/leeway/leeway-cover.jpg
-  og:description: Optimisation des process d’acquisition outbound (Growth, Demande et Découverte)
-  og:url: https://ocobo.co/testimonial/leeway
+  - title: Leeway
+  - name: description
+    content: Optimisation des process d’acquisition outbound (Growth, Demande et Découverte)
+  - name: og:title
+    content: Leeway
+  - name: og:type
+    content: article
+  - name: og:image
+    content: /testimonials/leeway/leeway-cover.jpg
+  - name: og:description
+    content: Optimisation des process d’acquisition outbound (Growth, Demande et Découverte)
+  - name: og:url
+    content: https://ocobo.co/testimonial/leeway
 coverImage: /testimonials/leeway/leeway-cover.jpg
+date: 2023-08-14
 logo: /testimonials/leeway/leeway-logo.png
 tags:
   - stratégie
@@ -50,7 +56,7 @@ export default function Layout({ children }) {
 
 <div className="col-span-12">
   <TestimonialHeader
-    title={attributes.meta.title}
+    title={attributes.meta.find((m) => m.title).title}
     guest={attributes.guest}
     position={attributes.position}
     duration={attributes.duration}
@@ -59,7 +65,7 @@ export default function Layout({ children }) {
     tags={attributes.tags}
     scope={attributes.scope}
     tools={attributes.tools}
-    description={attributes.meta.description}
+    description={attributes.meta.find((m) => m.name === 'description').content}
   />
 </div>
 

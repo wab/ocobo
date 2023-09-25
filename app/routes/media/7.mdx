@@ -1,33 +1,49 @@
 ---
 meta:
-  title: Les étapes de conception d’un plan de compensation • les contours
-  coverImage: https://images.unsplash.com/photo-1472070153210-15e27d938957?ixlib=rb-4.0.3&q=80&fm=jpg&crop=entropy&cs=tinysrgb&w=1200
-  description:
-    La conception d’un plan de compensation repose sur des étapes indispensables. En effet, nombreux
-    sont les plans imparfaits voire inefficaces qui ont négligé certaines règles, ou qui sont fondés
-    sur des schémas inadaptés. Voici donc une série d’articles qui vous permettra de comprendre en
-    détail ces étapes. Dans ce premier article, on aborde le sujet des contours du plan de
-    compensation ; le salaire variable cible, et les limites basse et haute.
-  author: Corentin Guérin
-  date: 2023-04-05
-  og:title: Les étapes de conception d’un plan de compensation • les contours
-  og:type: article
-  og:image: https://images.unsplash.com/photo-1472070153210-15e27d938957?ixlib=rb-4.0.3&q=80&fm=jpg&crop=entropy&cs=tinysrgb&w=1200
-  og:description:
-    La conception d’un plan de compensation repose sur des étapes indispensables. En effet, nombreux
-    sont les plans imparfaits voire inefficaces qui ont négligé certaines règles, ou qui sont fondés
-    sur des schémas inadaptés. Voici donc une série d’articles qui vous permettra de comprendre en
-    détail ces étapes. Dans ce premier article, on aborde le sujet des contours du plan de
-    compensation ; le salaire variable cible, et les limites basse et haute.
-  og:url: https://ocobo.co/media/7
+  - title: Les étapes de conception d’un plan de compensation • les contours
+  - name: author
+    content: Corentin Guérin
+  - name: description
+    content:
+      La conception d’un plan de compensation repose sur des étapes indispensables. En effet,
+      nombreux sont les plans imparfaits voire inefficaces qui ont négligé certaines règles, ou qui
+      sont fondés sur des schémas inadaptés. Voici donc une série d’articles qui vous permettra de
+      comprendre en détail ces étapes. Dans ce premier article, on aborde le sujet des contours du
+      plan de compensation ; le salaire variable cible, et les limites basse et haute.
+  - name: og:title
+    content: Les étapes de conception d’un plan de compensation • les contours
+  - name: og:type
+    content: article
+  - name: og:image
+    content: https://images.unsplash.com/photo-1472070153210-15e27d938957?ixlib=rb-4.0.3&q=80&fm=jpg&crop=entropy&cs=tinysrgb&w=1200
+  - name: og:description
+    content:
+      La conception d’un plan de compensation repose sur des étapes indispensables. En effet,
+      nombreux sont les plans imparfaits voire inefficaces qui ont négligé certaines règles, ou qui
+      sont fondés sur des schémas inadaptés. Voici donc une série d’articles qui vous permettra de
+      comprendre en détail ces étapes. Dans ce premier article, on aborde le sujet des contours du
+      plan de compensation ; le salaire variable cible, et les limites basse et haute.
+  - name: og:url
+    content: https://ocobo.co/media/7
 read: 7 min
-tags: stratégie, compensation
+coverImage: https://images.unsplash.com/photo-1472070153210-15e27d938957?ixlib=rb-4.0.3&q=80&fm=jpg&crop=entropy&cs=tinysrgb&w=1200
+date: 2023-04-05
+tags:
+  - stratégie
+  - compensation
 status: published
 ---
 
 import { PostHeader } from '~/components/PostHeader';
 
-<PostHeader {...attributes.meta} read={attributes.read} tags={attributes.tags.split(', ')} />
+<PostHeader
+  title={attributes.meta.find((m) => m.title).title}
+  author={attributes.meta.find((m) => m.name === 'author').content}
+  date={attributes.date}
+  read={attributes.read}
+  tags={attributes.tags}
+  coverImage={attributes.coverImage}
+/>
 
 ## Préambule
 

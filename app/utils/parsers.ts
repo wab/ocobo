@@ -13,17 +13,22 @@ type Post = {
   card: PostCard;
 };
 
+type Meta = {
+  name: string;
+  content: string;
+};
+
 function postFromModule(mod: any): Post {
   return {
     slug: mod.filename.replace(/\.mdx?$/, ''),
     card: {
-      title: mod.attributes.meta.title,
-      description: mod.attributes.meta.description,
-      author: mod.attributes.meta.author,
+      title: mod.attributes.meta.find((m: { title: string }) => m.title).title,
+      description: mod.attributes.meta.find((m: Meta) => m.name === 'description').content,
+      author: mod.attributes.meta.find((m: Meta) => m.name === 'author').content,
       read: mod.attributes.read,
-      coverImage: mod.attributes.meta.coverImage,
-      date: mod.attributes.meta.date,
-      tags: mod.attributes.tags.split(', '),
+      coverImage: mod.attributes.coverImage,
+      date: mod.attributes.date,
+      tags: mod.attributes.tags,
     },
   };
 }
@@ -45,8 +50,8 @@ type Testimonial = {
 
 function testimonialFromModule(mod: any): Testimonial {
   return {
-    title: mod.attributes.meta.title,
-    description: mod.attributes.meta.description,
+    title: mod.attributes.meta.find((m: { title: string }) => m.title).title,
+    description: mod.attributes.meta.find((m: Meta) => m.name === 'description').content,
     coverImage: mod.attributes.coverImage,
     logo: mod.attributes.logo,
     slug: mod.attributes.slug,

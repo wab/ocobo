@@ -3,8 +3,7 @@ import { Tag } from '~/components/Tag';
 
 interface PostHeaderProps {
   title: string;
-  date: string;
-  description: string;
+  date: Date;
   author: string;
   coverImage: string;
   read: string;

@@ -1,34 +1,50 @@
 ---
 meta:
-  title: Les grands principes d’un plan de compensation réussi
-  coverImage: https://images.unsplash.com/photo-1601067179601-37820bd0339a?&w=1200&h=800&fit=crop
-  description:
-    Ces dernières années, plusieurs facteurs ont amené la rémunération variable des équipes
-    commerciales à être pensée et conçue de manière plus scientifique par les équipes Ops. Cet
-    article vous explique de manière succincte les grands principes qui vous amèneront à mettre en
-    place des plans de compensations efficaces en termes de résultats, motivants pour les équipes,
-    et contrôlables pour l’organisation.
-  author: Corentin Guérin
-  date: 2023-02-28
-  og:title: Les grands principes d’un plan de compensation réussi
-  og:type: article
-  og:image: https://images.unsplash.com/photo-1601067179601-37820bd0339a?&w=800&h=600&fit=crop
-  og:description:
-    Ces dernières années, plusieurs facteurs ont amené la rémunération variable des équipes
-    commerciales à être pensée et conçue de manière plus scientifique par les équipes Ops. Cet
-    article vous explique de manière succincte les grands principes qui vous amèneront à mettre en
-    place des plans de compensations efficaces en termes de résultats, motivants pour les équipes,
-    et contrôlables pour l’organisation.
-  og:url: https://ocobo.co/media/4
+  - title: Les grands principes d’un plan de compensation réussi
+  - name: author
+    content: Corentin Guérin
+  - name: description
+    content:
+      Ces dernières années, plusieurs facteurs ont amené la rémunération variable des équipes
+      commerciales à être pensée et conçue de manière plus scientifique par les équipes Ops. Cet
+      article vous explique de manière succincte les grands principes qui vous amèneront à mettre en
+      place des plans de compensations efficaces en termes de résultats, motivants pour les équipes,
+      et contrôlables pour l’organisation.
+  - name: og:title
+    content: Les grands principes d’un plan de compensation réussi
+  - name: og:type
+    content: article
+  - name: og:image
+    content: https://images.unsplash.com/photo-1601067179601-37820bd0339a?&w=800&h=600&fit=crop
+  - name: og:description
+    content:
+      Ces dernières années, plusieurs facteurs ont amené la rémunération variable des équipes
+      commerciales à être pensée et conçue de manière plus scientifique par les équipes Ops. Cet
+      article vous explique de manière succincte les grands principes qui vous amèneront à mettre en
+      place des plans de compensations efficaces en termes de résultats, motivants pour les équipes,
+      et contrôlables pour l’organisation.
+  - name: og:url
+    content: https://ocobo.co/media/4
 read: 6 min
-tags: stratégie, compensation
+coverImage: https://images.unsplash.com/photo-1601067179601-37820bd0339a?&w=1200&h=800&fit=crop
+date: 2023-02-28
+tags:
+  - stratégie
+  - compensation
 status: published
 ---
 
 import { PostHeader } from '~/components/PostHeader';
 import { Callout } from '~/components/Callout';
 
-<PostHeader {...attributes.meta} read={attributes.read} tags={attributes.tags.split(', ')} />
+<PostHeader
+  title={attributes.meta.find((m) => m.title).title}
+  author={attributes.meta.find((m) => m.name === 'author').content}
+  date={attributes.date}
+  read={attributes.read}
+  tags={attributes.tags}
+  coverImage={attributes.coverImage}
+/>
 
 ## Préambule
 

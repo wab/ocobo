@@ -1,30 +1,46 @@
 ---
 meta:
-  title: Business Ops, Revenue Ops, qu’est ce que c’est ?
-  coverImage: https://images.unsplash.com/photo-1493476523860-a6de6ce1b0c3?ixlib=rb-4.0.3&q=80&fm=jpg&crop=entropy&cs=tinysrgb&w=1200
-  description:
-    On ne pouvait pas commencer cette partie Articles ☕️, sans vous exposer notre vision de la
-    notion de Business Operations (aka BizOps) et de ses différentes itérations, notamment celle qui
-    nous intéresse le plus, la partie Revenue Operations (aka RevOps).
-  author: Benjamin Boileux
-  date: 2023-01-30
-  og:title: Business Ops, Revenue Ops, qu’est ce que c’est ?
-  og:type: article
-  og:image: https://images.unsplash.com/photo-1493476523860-a6de6ce1b0c3?ixlib=rb-4.0.3&q=80&fm=jpg&crop=entropy&cs=tinysrgb&w=800
-  og:description:
-    On ne pouvait pas commencer cette partie Articles ☕️, sans vous exposer notre vision de la
-    notion de Business Operations (aka BizOps) et de ses différentes itérations, notamment celle qui
-    nous intéresse le plus, la partie Revenue Operations (aka RevOps).
-  og:url: https://ocobo.co/media/1
+  - title: Business Ops, Revenue Ops, qu’est ce que c’est ?
+  - name: author
+    content: Benjamin Boileux
+  - name: description
+    content:
+      'On ne pouvait pas commencer cette partie Articles ☕️, sans vous exposer notre vision de la
+      notion de Business Operations (aka BizOps) et de ses différentes itérations, notamment celle
+      qui nous intéresse le plus, la partie Revenue Operations (aka RevOps).'
+  - name: og:title
+    content: Business Ops, Revenue Ops, qu’est ce que c’est ?
+  - name: og:type
+    content: article
+  - name: og:image
+    content: https://images.unsplash.com/photo-1493476523860-a6de6ce1b0c3?ixlib=rb-4.0.3&q=80&fm=jpg&crop=entropy&cs=tinysrgb&w=800
+  - name: og:description
+    content:
+      'On ne pouvait pas commencer cette partie Articles ☕️, sans vous exposer notre vision de la
+      notion de Business Operations (aka BizOps) et de ses différentes itérations, notamment celle
+      qui nous intéresse le plus, la partie Revenue Operations (aka RevOps).'
+  - name: og:url
+    content: https://ocobo.co/media/1
 read: 5 min
-tags: organisation, l'équipe
+coverImage: https://images.unsplash.com/photo-1493476523860-a6de6ce1b0c3?ixlib=rb-4.0.3&q=80&fm=jpg&crop=entropy&cs=tinysrgb&w=1200
+date: 2023-01-30
+tags:
+  - organisation
+  - l'équipe
 status: published
 ---
 
 import { PostHeader } from '~/components/PostHeader';
 import { Callout } from '~/components/Callout';
 
-<PostHeader {...attributes.meta} read={attributes.read} tags={attributes.tags.split(', ')} />
+<PostHeader
+  title={attributes.meta.find((m) => m.title).title}
+  author={attributes.meta.find((m) => m.name === 'author').content}
+  date={attributes.date}
+  read={attributes.read}
+  tags={attributes.tags}
+  coverImage={attributes.coverImage}
+/>
 
 ## 🫶 Préambule : Business Operations, un terme à la mode
 
