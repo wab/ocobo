@@ -37,10 +37,6 @@ export function links() {
     },
 
     { rel: 'stylesheet', href: styles },
-    {
-      type: 'text/javascript',
-      src: 'https://assets.calendly.com/assets/external/widget.js',
-    },
   ];
 }
 
