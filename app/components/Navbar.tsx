@@ -26,7 +26,7 @@ export function Navbar() {
               <li>
                 <NavLink to="/testimonial">
                   <FiMic />
-                  Cas client
+                  Témoignages clients
                 </NavLink>
               </li>
               <li>

@@ -93,7 +93,7 @@ export default function Index() {
         <Section.Root className="border-b-2 border-light bg-light bg-opacity-20 desktop:-mt-16 desktop:pt-32">
           <Section.Container>
             <Section.Title className="text-center text-current">
-              Ils nous ont fait confiance
+              Ils nous font confiance
             </Section.Title>
             <Section.Grid>
               <div className="col-span-1" />

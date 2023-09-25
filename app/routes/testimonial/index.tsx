@@ -12,7 +12,7 @@ import { Tag } from '~/components/Tag';
 
 export async function loader() {
   return json({
-    title: 'Ocobo • Ils nous ont fait confiance',
+    title: 'Ocobo • Ils nous font confiance',
     description:
       "Ocobo Le Nouvel Ops, c'est le média qui accompagne les Business Ops d'aujourd'hui et de demain. L’idée ? Vous éclairer sur diverses thématiques en vous partageant des articles sur les tendances du marché, les méthodologies, les bonnes pratiques & benchmarks qui gravitent autour de notre passionnant métier",
     coverImage: 'https://ocobo.co/cover.png',
@@ -77,7 +77,7 @@ export default function Index() {
   const { posts } = useLoaderData<typeof loader>();
   return (
     <div className="prose pt-8">
-      <h1 className="font-title font-normal">Ils nous ont fait confiance</h1>
+      <h1 className="font-title font-normal">Ils nous font confiance</h1>
 
       <ol className="list-none space-y-4 p-0">
         {posts.map((post) => (
