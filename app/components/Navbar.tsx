@@ -1,5 +1,5 @@
 import { Baseline } from './Baseline';
-import { FiMail, FiMic, FiSmile } from 'react-icons/fi';
+import { FiCalendar, FiMic, FiSmile } from 'react-icons/fi';
 import { ImNewspaper } from 'react-icons/im';
 import { Logo } from '~/components/Logo';
 import { NavLink } from '~/components/Link';
@@ -16,7 +16,7 @@ export function Navbar() {
               </NavLink>
               <Baseline />
             </div>
-            <ul className="flex flex-col gap-4 py-4 font-title tablet:flex-row tablet:items-center">
+            <ul className="flex flex-col gap-4 py-4 font-title desktop:flex-row desktop:items-center">
               <li>
                 <NavLink to="/qui-sommes-nous">
                   <FiSmile />
@@ -36,9 +36,14 @@ export function Navbar() {
                 </NavLink>
               </li>
               <li>
-                <a href="mailto:contact@ocobo.co" className="btn btn--small btn--secondary">
-                  <FiMail />
-                  Écrivez-nous
+                <a
+                  href="https://meetings-eu1.hubspot.com/benjamin-boileux/discovery"
+                  target="_blank"
+                  className="btn btn--small btn--secondary"
+                  rel="noreferrer"
+                >
+                  <FiCalendar />
+                  Prenez rendez-vous
                 </a>
               </li>
             </ul>
