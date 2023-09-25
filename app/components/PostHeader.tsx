@@ -3,7 +3,7 @@ import { Tag } from '~/components/Tag';
 
 interface PostHeaderProps {
   title: string;
-  date: Date;
+  date: string;
   description: string;
   author: string;
   coverImage: string;
@@ -12,6 +12,7 @@ interface PostHeaderProps {
 }
 
 export const PostHeader: React.FunctionComponent<PostHeaderProps> = (props) => {
+  console.log(props);
   return (
     <header>
       <h1 className="font-blog desktop:text-5xl">{props.title}</h1>
@@ -23,7 +24,7 @@ export const PostHeader: React.FunctionComponent<PostHeaderProps> = (props) => {
         •
         <span className="flex items-center gap-1">
           <FiCalendar className="text-coral" />
-          Publié le {props.date.toLocaleDateString('fr')}
+          Publié le {new Date(props.date).toLocaleDateString('fr')}
         </span>
         •
         <span className="flex items-center gap-1">

@@ -1,5 +1,4 @@
 import { json } from '@remix-run/node';
-// import type { MetaFunction } from '@remix-run/node';
 import { NavLink, useLoaderData } from '@remix-run/react';
 
 import * as leeway from './leeway/index.mdx';

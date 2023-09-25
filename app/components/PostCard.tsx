@@ -4,7 +4,7 @@ import { Tag } from '~/components/Tag';
 
 interface PostCardProps {
   title: string;
-  date: Date;
+  date: string;
   description: string;
   author: string;
   coverImage: string;
