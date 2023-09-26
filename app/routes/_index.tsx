@@ -81,7 +81,7 @@ export default function Index() {
                   synergie entre vos équipes Sales, Marketing, Customer Success et Finance.
                 </p>
                 <p>
-                  <NavButton to="/about" className="btn btn--secondary btn--small">
+                  <NavButton to="/about-us" className="btn btn--secondary btn--small">
                     <FiSmile />
                     Découvrez-nous
                   </NavButton>

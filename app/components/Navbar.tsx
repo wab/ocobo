@@ -18,7 +18,7 @@ export function Navbar() {
             </div>
             <ul className="flex flex-col gap-4 py-4 font-title desktop:flex-row desktop:items-center">
               <li>
-                <NavLink to="/about">
+                <NavLink to="/about-us">
                   <FiSmile />
                   Qui sommes-nous ?
                 </NavLink>
