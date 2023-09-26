@@ -6,7 +6,7 @@ import { FiTv, FiCloud } from 'react-icons/fi';
 import { FaLinkedin } from 'react-icons/fa';
 import type { MetaFunction } from '@remix-run/react';
 
-export const loader = async () => {
+export async function loader() {
   return json({
     title: "Ocobo • l'équipe",
     description:

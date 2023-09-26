@@ -1,5 +1,5 @@
 import * as React from 'react';
-import type { ActionFunction, LoaderFunction } from '@remix-run/node';
+import type {  ActionFunctionArgs, LoaderFunctionArgs } from '@remix-run/node';
 import { json, redirect } from '@remix-run/node';
 import {
   Links,
@@ -37,10 +37,15 @@ export function links() {
     },
 
     { rel: 'stylesheet', href: styles },
+    {
+      rel: 'icon',
+      href: '/favicon.ico',
+      type: 'image/png',
+    },
   ];
 }
 
-export const action: ActionFunction = async ({ request }) => {
+export async function action({ request }: ActionFunctionArgs) {
   const formData = await request.formData();
   const cookieHeader = request.headers.get('Cookie');
   const cookie = (await gdprConsent.parse(cookieHeader)) || {};
@@ -61,7 +66,7 @@ export const action: ActionFunction = async ({ request }) => {
 };
 
 // Load the GA tracking id from the .env
-export const loader: LoaderFunction = async ({ request }) => {
+export async function loader({ request }: LoaderFunctionArgs) {
   const cookieHeader = request.headers.get('Cookie');
   const cookie = (await gdprConsent.parse(cookieHeader)) || {};
   return json({
