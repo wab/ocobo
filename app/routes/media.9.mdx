@@ -1,32 +1,49 @@
 ---
 meta:
-  title: The Most Comprehensive Report on Sales Compensation Structures in Europe
-  coverImage: /posts/9/cover.png
-  description:
-    Avec Figures, Amalia et Ocobo, nous sommes ravis de partager notre livre blanc sur la
-    rémunération variable des ventes 2023 en Europe 🇪🇺 ! Étude comparative des structures de
-    rémunération entre les différentes fonctions. Répartition par taille d'entreprise et
-    localisation. Tendances 2023 et outils de rémunération les plus utilisés.
-  author: Aude Cadiot
-  date: 2023-07-12
-  og:title: The Most Comprehensive Report on Sales Compensation Structures in Europe
-  og:type: article
-  og:image: /posts/9/cover.png
-  og:description:
-    Avec Figures, Amalia et Ocobo, nous sommes ravis de partager notre livre blanc sur la
-    rémunération variable des ventes 2023 en Europe 🇪🇺 ! Étude comparative des structures de
-    rémunération entre les différentes fonctions. Répartition par taille d'entreprise et
-    localisation. Tendances 2023 et outils de rémunération les plus utilisés.
-  og:url: https://ocobo.co/media/9
+  - title: The Most Comprehensive Report on Sales Compensation Structures in Europe
+  - name: author
+  - content: Aude Cadiot
+  - name: description
+  - content:
+      Avec Figures, Amalia et Ocobo, nous sommes ravis de partager notre livre blanc sur la
+      rémunération variable des ventes 2023 en Europe 🇪🇺 ! Étude comparative des structures de
+      rémunération entre les différentes fonctions. Répartition par taille d'entreprise et
+      localisation. Tendances 2023 et outils de rémunération les plus utilisés.
+  - name: og:title
+    content: The Most Comprehensive Report on Sales Compensation Structures in Europe
+  - name: og:type
+    content: article
+  - name: og:image
+    content: /posts/9/cover.png
+  - name: og:description
+    content:
+      Avec Figures, Amalia et Ocobo, nous sommes ravis de partager notre livre blanc sur la
+      rémunération variable des ventes 2023 en Europe 🇪🇺 ! Étude comparative des structures de
+      rémunération entre les différentes fonctions. Répartition par taille d'entreprise et
+      localisation. Tendances 2023 et outils de rémunération les plus utilisés.
+  - name: og:url
+    content: https://ocobo.co/media/9
 read: 20 min
-tags: compensation, livre blanc
+coverImage: /posts/9/cover.png
+date: 2023-07-12
+tags:
+  - compensation
+  - livre blanc
 status: published
+slug: 9
 ---
 
 import { PostHeader } from '~/components/PostHeader';
 import { HubspotForm } from '~/components/HubspotForm';
 
-<PostHeader {...attributes.meta} read={attributes.read} tags={attributes.tags.split(', ')} />
+<PostHeader
+  title={attributes.meta.find((m) => m.title).title}
+  author={attributes.meta.find((m) => m.name === 'author').content}
+  date={attributes.date}
+  read={attributes.read}
+  tags={attributes.tags}
+  coverImage={attributes.coverImage}
+/>
 
 ## Introduction
 

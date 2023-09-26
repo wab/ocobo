@@ -1,32 +1,49 @@
 ---
 meta:
-  title: Le rôle de Business Operations Engineer
-  coverImage: https://images.unsplash.com/photo-1581092335397-9583eb92d232?&w=1200&h=800&fit=crop
-  description:
-    Sales Ops Manager, Revenue Ops Manager, Business Ops Manager, Growth Hacker, Sales Enablement,
-    Performance Manager… des postes difficiles à appréhender même quand on gravite dans le milieu.
-    Cette série d’articles a été pensée pour vous aider à y voir plus clair et mieux comprendre
-    leurs rôles et missions. Aujourd’hui, on vous explique le rôle du Business Ops Engineer.
-  author: Benjamin Boileux
-  date: 2023-03-20
-  og:title: Le rôle de Business Operations Engineer
-  og:type: article
-  og:image: https://images.unsplash.com/photo-1581092335397-9583eb92d232?&w=800&h=600&fit=crop
-  og:description:
-    Sales Ops Manager, Revenue Ops Manager, Business Ops Manager, Growth Hacker, Sales Enablement,
-    Performance Manager… des postes difficiles à appréhender même quand on gravite dans le milieu.
-    Cette série d’articles a été pensée pour vous aider à y voir plus clair et mieux comprendre
-    leurs rôles et missions. Aujourd’hui, on vous explique le rôle du Business Ops Engineer.
-  og:url: https://ocobo.co/media/6
+  - title: Le rôle de Business Operations Engineer
+  - name: author
+    content: Benjamin Boileux
+  - name: description
+    content:
+      Sales Ops Manager, Revenue Ops Manager, Business Ops Manager, Growth Hacker, Sales Enablement,
+      Performance Manager… des postes difficiles à appréhender même quand on gravite dans le milieu.
+      Cette série d’articles a été pensée pour vous aider à y voir plus clair et mieux comprendre
+      leurs rôles et missions. Aujourd’hui, on vous explique le rôle du Business Ops Engineer.
+  - name: og:title
+    content: Le rôle de Business Operations Engineer
+  - name: og:type
+    content: article
+  - name: og:image
+    content: https://images.unsplash.com/photo-1581092335397-9583eb92d232?&w=800&h=600&fit=crop
+  - name: og:description
+    content:
+      Sales Ops Manager, Revenue Ops Manager, Business Ops Manager, Growth Hacker, Sales Enablement,
+      Performance Manager… des postes difficiles à appréhender même quand on gravite dans le milieu.
+      Cette série d’articles a été pensée pour vous aider à y voir plus clair et mieux comprendre
+      leurs rôles et missions. Aujourd’hui, on vous explique le rôle du Business Ops Engineer.
+  - name: og:url
+    content: https://ocobo.co/media/6
 read: 5 min
-tags: organisation, l'ops
+coverImage: https://images.unsplash.com/photo-1581092335397-9583eb92d232?&w=1200&h=800&fit=crop
+date: 2023-03-20
+tags:
+  - organisation
+  - l'ops
 status: published
+slug: 6
 ---
 
 import { PostHeader } from '~/components/PostHeader';
 import { Callout } from '~/components/Callout';
 
-<PostHeader {...attributes.meta} read={attributes.read} tags={attributes.tags.split(', ')} />
+<PostHeader
+  title={attributes.meta.find((m) => m.title).title}
+  author={attributes.meta.find((m) => m.name === 'author').content}
+  date={attributes.date}
+  read={attributes.read}
+  tags={attributes.tags}
+  coverImage={attributes.coverImage}
+/>
 
 Voir Chapitre 1 : [le rôle de Business Ops Manager](https://www.ocobo.co/media/3)
 

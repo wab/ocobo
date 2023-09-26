@@ -1,10 +1,10 @@
 import { json } from '@remix-run/node';
-import type { MetaFunction } from '@remix-run/node';
 import { Navbar } from '~/components/Navbar';
 import { Footer } from '~/components/Footer';
 import { AnchorLink } from '~/components/Link';
 import { FiTv, FiCloud } from 'react-icons/fi';
 import { FaLinkedin } from 'react-icons/fa';
+import type { MetaFunction } from '@remix-run/react';
 
 export const loader = async () => {
   return json({
@@ -15,17 +15,17 @@ export const loader = async () => {
   });
 };
 
-export const meta: MetaFunction = ({ data, location }) => {
-  return {
-    title: data.title,
-    description: data.description,
-    'twitter:card': 'summary_large_image',
-    'og:title': data.title,
-    'og:type': 'article',
-    'og:url': `https://ocobo.co${location.pathname}`,
-    'og:description': data.description,
-    'og:image': data.coverImage,
-  };
+export const meta: MetaFunction<typeof loader> = ({ data, location }) => {
+  return [
+    { title: data?.title },
+    { name: 'description', content: data?.description },
+    { name: 'twitter:card', content: 'summary_large_image' },
+    { name: 'og:title', content: data?.title },
+    { name: 'og:type', content: 'article' },
+    { name: 'og:url', content: `https://ocobo.co${location.pathname}` },
+    { name: 'og:description', content: data?.description },
+    { name: 'og:image', content: data?.coverImage },
+  ];
 };
 
 export default function Index() {

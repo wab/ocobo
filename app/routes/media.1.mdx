@@ -1,30 +1,46 @@
 ---
 meta:
-  title: Business Ops, Revenue Ops, qu’est ce que c’est ?
-  coverImage: https://images.unsplash.com/photo-1493476523860-a6de6ce1b0c3?ixlib=rb-4.0.3&q=80&fm=jpg&crop=entropy&cs=tinysrgb&w=1200
-  description:
-    On ne pouvait pas commencer cette partie Articles ☕️, sans vous exposer notre vision de la
-    notion de Business Operations (aka BizOps) et de ses différentes itérations, notamment celle qui
-    nous intéresse le plus, la partie Revenue Operations (aka RevOps).
-  author: Benjamin Boileux
-  date: 2023-01-30
-  og:title: Business Ops, Revenue Ops, qu’est ce que c’est ?
-  og:type: article
-  og:image: https://images.unsplash.com/photo-1493476523860-a6de6ce1b0c3?ixlib=rb-4.0.3&q=80&fm=jpg&crop=entropy&cs=tinysrgb&w=800
-  og:description:
-    On ne pouvait pas commencer cette partie Articles ☕️, sans vous exposer notre vision de la
-    notion de Business Operations (aka BizOps) et de ses différentes itérations, notamment celle qui
-    nous intéresse le plus, la partie Revenue Operations (aka RevOps).
-  og:url: https://ocobo.co/media/1
+  - title: Business Ops, Revenue Ops, qu’est ce que c’est ?
+  - name: author
+    content: Benjamin Boileux
+  - name: description
+    content:
+      'On ne pouvait pas commencer cette partie Articles ☕️, sans vous exposer notre vision de la
+      notion de Business Operations (aka BizOps) et de ses différentes itérations, notamment celle
+      qui nous intéresse le plus, la partie Revenue Operations (aka RevOps).'
+  - name: og:title
+    content: Business Ops, Revenue Ops, qu’est ce que c’est ?
+  - name: og:type
+    content: article
+  - name: og:image
+    content: https://images.unsplash.com/photo-1493476523860-a6de6ce1b0c3?ixlib=rb-4.0.3&q=80&fm=jpg&crop=entropy&cs=tinysrgb&w=800
+  - name: og:description
+    content:
+      'On ne pouvait pas commencer cette partie Articles ☕️, sans vous exposer notre vision de la
+      notion de Business Operations (aka BizOps) et de ses différentes itérations, notamment celle
+      qui nous intéresse le plus, la partie Revenue Operations (aka RevOps).'
+  - name: og:url
+    content: https://ocobo.co/media/1
 read: 5 min
-tags: organisation, l'équipe
+coverImage: https://images.unsplash.com/photo-1493476523860-a6de6ce1b0c3?ixlib=rb-4.0.3&q=80&fm=jpg&crop=entropy&cs=tinysrgb&w=1200
+date: 2023-01-30
+tags:
+  - organisation
+  - l'équipe
 status: published
 ---
 
 import { PostHeader } from '~/components/PostHeader';
 import { Callout } from '~/components/Callout';
 
-<PostHeader {...attributes.meta} read={attributes.read} tags={attributes.tags.split(', ')} />
+<PostHeader
+  title={attributes.meta.find((m) => m.title).title}
+  author={attributes.meta.find((m) => m.name === 'author').content}
+  date={attributes.date}
+  read={attributes.read}
+  tags={attributes.tags}
+  coverImage={attributes.coverImage}
+/>
 
 ## 🫶 Préambule : Business Operations, un terme à la mode
 
@@ -65,11 +81,11 @@ Nous allons nous concentrer ici sur la première itération de cette discipline,
 jour : la partie **Revenue Operations, dédiée aux équipes Revenue (Sales, Marketing, Customer
 Success & Customer Care voire Finance).**
 
-## 💸 Le premier chapitre, Revenue Operations.
+## 💸 Le premier chapitre, Revenue Operations.
 
 ![Business ops revenue](/posts/1/2.png)
 
-### 🌱 De l’émergence initiale des Sales Ops…
+### 🌱 De l’émergence initiale des Sales Ops…
 
 On a vraiment vu émerger la notion d’opérations ces dernières années à travers le rôle de Sales Ops,
 l’équipe Sales étant la première à avoir bénéficié de ce type de profil dédié pour l’accompagner à
@@ -88,7 +104,7 @@ De fait, un Sales Ops est plus simple à défendre dans une organisation car son
 matérialiser par du CA supplémentaire. C’est pour cela qu’on l’a rapidement vu se déployer dans de
 nombreuses entreprises.
 
-### 🏡 … vers le besoin de plus d’ops
+### 🏡 … vers le besoin de plus d’ops
 
 Mais si les Sales Op sont essentiels, ils ne suffisent pas ! Si on optimise concrètement
 l’efficacité opérationnelle des équipes commerciales, on vend plus et mieux mais on ne répond à
@@ -123,7 +139,7 @@ adosser des Revenue Ops Manager, avec par exemple des Customer Success Ops Manag
 Mais pour rendre tout cela un peu moins théorique, nous allons essayer de résumer ici les missions
 des équipes Revenue Operations à nos yeux.
 
-### 🎫 La carte de visite d’une équipe Revenue Operations
+### 🎫 La carte de visite d’une équipe Revenue Operations
 
 ![Revenue operations position](/posts/1/4.png)
 
@@ -152,7 +168,7 @@ des équipes Revenue Operations à nos yeux.
 
 Cela se concrétise par **3 missions** claires :
 
-#### 🔎 Mission 1 : détecter et adresser les poches d’inefficacité des équipes
+#### 🔎 Mission 1 : détecter et adresser les poches d’inefficacité des équipes
 
 - Identifier les processus ou les outils qui manquent d’efficacité pour maximiser l’excellence
   opérationnelle des équipes Marketing, Sales, Service et Finance :
@@ -166,14 +182,14 @@ Cela se concrétise par **3 missions** claires :
   - Designer les nouveaux processus, les évolutions d’outils pour les supporter et définir le plan
     de déploiement.
 
-#### 🎯 Mission 2 : s’assurer de l’alignement de toutes les équipes sur les priorités
+#### 🎯 Mission 2 : s’assurer de l’alignement de toutes les équipes sur les priorités
 
 - Travailler avec les C-Level, les directeurs et la leadership team pour définir des OKRs
   trimestriels issues des projets identifiés en amont
 - Construire les plans de transformations avec des étapes réalistes et mesurables
 - Suivre la bonne mise en place de ce plan par les équipes
 
-#### **🚀** Mission 3 : soutenir la croissance de l’entreprise en déployant la vision opérationnelle
+#### **🚀** Mission 3 : soutenir la croissance de l’entreprise en déployant la vision opérationnelle
 
 - Construire et mettre à disposition de toutes les équipes Revenue les processus optimisés, les
   produits, les outils, les analyses, l’onboarding et le support nécessaire pour maximiser leur

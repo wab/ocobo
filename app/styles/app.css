@@ -1126,10 +1126,6 @@ video {
   visibility: visible;
 }
 
-.static {
-  position: static;
-}
-
 .fixed {
   position: fixed;
 }
@@ -1299,10 +1295,6 @@ video {
 
 .h-16 {
   height: 4rem;
-}
-
-.h-\[1000px\] {
-  height: 1000px;
 }
 
 .h-\[200px\] {
@@ -2080,22 +2072,9 @@ video {
 }
 
 @media (min-width: 640px) {
-  .tablet\:flex-row {
-    flex-direction: row;
-  }
-
-  .tablet\:items-center {
-    align-items: center;
-  }
-
   .tablet\:text-sm {
     font-size: 0.875rem;
     line-height: 1.25rem;
-  }
-
-  .tablet\:text-xs {
-    font-size: 0.75rem;
-    line-height: 1rem;
   }
 }
 

@@ -10,5 +10,5 @@ module.exports = {
   bracketSpacing: true,
   htmlWhitespaceSensitivity: 'ignore',
   arrowParens: 'always',
-  plugins: [require('prettier-plugin-tailwindcss')],
+  plugins: ['prettier-plugin-tailwindcss'],
 };

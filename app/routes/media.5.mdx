@@ -1,30 +1,47 @@
 ---
 meta:
-  title: Les 3 étapes pour choisir un nouvel outil
-  coverImage: https://images.unsplash.com/photo-1569803903286-eb86d49af323?&w=1200&h=800&fit=crop
-  description:
-    Face à un éco-système d’outils de plus en plus vaste, il est difficile de savoir quel outil
-    choisir et de s’assurer qu’il répondra le mieux au besoin de votre business. Nous vous proposons
-    trois étapes clés pour vous accompagner dans cette démarche.
-  author: Aude Cadiot
-  date: 2023-03-08
-  og:title: Les 3 étapes pour choisir un nouvel outil
-  og:type: article
-  og:image: https://images.unsplash.com/photo-1569803903286-eb86d49af323?&w=800&h=600&fit=crop
-  og:description:
-    Face à un éco-système d’outils de plus en plus vaste, il est difficile de savoir quel outil
-    choisir et de s’assurer qu’il répondra le mieux au besoin de votre business. Nous vous proposons
-    trois étapes clés pour vous accompagner dans cette démarche.
-  og:url: https://ocobo.co/media/5
+  - title: Les 3 étapes pour choisir un nouvel outil
+  - name: author
+    content: Aude Cadiot
+  - name: description
+    content:
+      Face à un éco-système d’outils de plus en plus vaste, il est difficile de savoir quel outil
+      choisir et de s’assurer qu’il répondra le mieux au besoin de votre business. Nous vous
+      proposons trois étapes clés pour vous accompagner dans cette démarche.
+  - name: og:title
+    content: Les 3 étapes pour choisir un nouvel outil
+  - name: og:type
+    content: article
+  - name: og:image
+    content: https://images.unsplash.com/photo-1569803903286-eb86d49af323?&w=800&h=600&fit=crop
+  - name: og:description
+    content:
+      Face à un éco-système d’outils de plus en plus vaste, il est difficile de savoir quel outil
+      choisir et de s’assurer qu’il répondra le mieux au besoin de votre business. Nous vous
+      proposons trois étapes clés pour vous accompagner dans cette démarche.
+  - name: og:url
+    content: https://ocobo.co/media/5
 read: 6 min
-tags: déploiement, process & outils
+coverImage: https://images.unsplash.com/photo-1569803903286-eb86d49af323?&w=1200&h=800&fit=crop
+date: 2023-03-08
+tags:
+  - déploiement
+  - process & outils
 status: published
+slug: 5
 ---
 
 import { PostHeader } from '~/components/PostHeader';
 import { Callout } from '~/components/Callout';
 
-<PostHeader {...attributes.meta} read={attributes.read} tags={attributes.tags.split(', ')} />
+<PostHeader
+  title={attributes.meta.find((m) => m.title).title}
+  author={attributes.meta.find((m) => m.name === 'author').content}
+  date={attributes.date}
+  read={attributes.read}
+  tags={attributes.tags}
+  coverImage={attributes.coverImage}
+/>
 
 ## Introduction
 

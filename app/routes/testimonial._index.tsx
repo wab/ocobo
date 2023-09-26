@@ -1,9 +1,8 @@
 import { json } from '@remix-run/node';
-// import type { MetaFunction } from '@remix-run/node';
 import { NavLink, useLoaderData } from '@remix-run/react';
 
-import * as leeway from './leeway/index.mdx';
-import * as qare from './qare/index.mdx';
+import * as leeway from './testimonial.leeway.mdx';
+import * as qare from './testimonial.qare.mdx';
 import type { Testimonial } from '~/utils/parsers';
 import { testimonialFromModule } from '~/utils/parsers';
 import { AiFillFunnelPlot } from 'react-icons/ai';

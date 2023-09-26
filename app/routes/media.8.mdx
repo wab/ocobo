@@ -1,36 +1,53 @@
 ---
 meta:
-  title: Les étapes de conception d’un plan de compensation • le contenu
-  coverImage: https://images.unsplash.com/photo-1522826657326-0466ba28c41f?ixlib=rb-4.0.3&q=85&fm=jpg&crop=entropy&cs=srgb&w=1200
-  description:
-    La conception d’un plan de compensation repose sur des étapes indispensables. En effet, nombreux
-    sont les plans imparfaits voire inefficaces qui ont négligé certaines règles, ou qui sont fondés
-    sur des schémas inadaptés. Voici donc une série d’articles qui vous permettra de comprendre en
-    détail ces étapes. Dans ce second article, on aborde le sujet du contenu du plan de compensation
-    ; les indicateurs, les méthodes de rétribution, les mécanismes de courbes, et bien d’autres
-    sujets.
-  author: Corentin Guérin
-  date: 2023-05-03
-  og:title: Les étapes de conception d’un plan de compensation • le contenu
-  og:type: article
-  og:image: https://images.unsplash.com/photo-1522826657326-0466ba28c41f?ixlib=rb-4.0.3&q=85&fm=jpg&crop=entropy&cs=srgb&w=1200
-  og:description:
-    La conception d’un plan de compensation repose sur des étapes indispensables. En effet, nombreux
-    sont les plans imparfaits voire inefficaces qui ont négligé certaines règles, ou qui sont fondés
-    sur des schémas inadaptés. Voici donc une série d’articles qui vous permettra de comprendre en
-    détail ces étapes. Dans ce second article, on aborde le sujet du contenu du plan de compensation
-    ; les indicateurs, les méthodes de rétribution, les mécanismes de courbes, et bien d’autres
-    sujets.
-  og:url: https://ocobo.co/media/8
+  - title: Les étapes de conception d’un plan de compensation • le contenu
+  - name: author
+    content: Corentin Guérin
+  - name: description
+    content:
+      La conception d’un plan de compensation repose sur des étapes indispensables. En effet,
+      nombreux sont les plans imparfaits voire inefficaces qui ont négligé certaines règles, ou qui
+      sont fondés sur des schémas inadaptés. Voici donc une série d’articles qui vous permettra de
+      comprendre en détail ces étapes. Dans ce second article, on aborde le sujet du contenu du plan
+      de compensation ; les indicateurs, les méthodes de rétribution, les mécanismes de courbes, et
+      bien d’autres sujets.
+  - name: og:type
+    content: article
+  - name: og:title
+    content: Les étapes de conception d’un plan de compensation • le contenu
+  - name: og:description
+    content:
+      La conception d’un plan de compensation repose sur des étapes indispensables. En effet,
+      nombreux sont les plans imparfaits voire inefficaces qui ont négligé certaines règles, ou qui
+      sont fondés sur des schémas inadaptés. Voici donc une série d’articles qui vous permettra de
+      comprendre en détail ces étapes. Dans ce second article, on aborde le sujet du contenu du plan
+      de compensation ; les indicateurs, les méthodes de rétribution, les mécanismes de courbes, et
+      bien d’autres sujets.
+  - name: og:image
+    content: https://images.unsplash.com/photo-1522826657326-0466ba28c41f?ixlib=rb-4.0.3&q=85&fm=jpg&crop=entropy&cs=srgb&w=1200
+  - name: og:url
+    content: https://ocobo.co/media/8
 read: 6 min
-tags: stratégie, compensation
+coverImage: https://images.unsplash.com/photo-1522826657326-0466ba28c41f?ixlib=rb-4.0.3&q=85&fm=jpg&crop=entropy&cs=srgb&w=1200
+date: 2023-05-03
+tags:
+  - stratégie
+  - compensation
 status: published
+slug: 8
 ---
 
 import { PostHeader } from '~/components/PostHeader';
 import { Callout } from '~/components/Callout';
 
-<PostHeader {...attributes.meta} read={attributes.read} tags={attributes.tags.split(', ')} />
+<PostHeader
+  title={attributes.meta.find((m) => m.title).title}
+  author={attributes.meta.find((m) => m.name === 'author').content}
+  date={attributes.date}
+  read={attributes.read}
+  tags={attributes.tags}
+  coverImage={attributes.coverImage}
+/>
 
 ## Préambule
 
