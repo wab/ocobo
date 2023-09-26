@@ -55,7 +55,13 @@ export function Footer() {
                 <NavLink to="/jobs">Nous rejoindre</NavLink>
               </li> */}
               <li>
-                <AnchorLink href="mailto:contact@ocobo.co">Nous contacter</AnchorLink>
+                <AnchorLink
+                  href="https://meetings-eu1.hubspot.com/benjamin-boileux/discovery"
+                  target="_blank"
+                  rel="noreferrer"
+                >
+                  Nous contacter
+                </AnchorLink>
               </li>
               <li>
                 <AnchorLink href="/legal/cgu">CGU</AnchorLink>
