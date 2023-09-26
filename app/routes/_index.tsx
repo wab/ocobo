@@ -23,8 +23,8 @@ import {
 import { AnchorLink, NavButton } from '~/components/Link';
 import { testimonialFromModule } from '~/utils/parsers';
 
-import * as leeway from './testimonial/leeway/index.mdx';
-import * as qare from './testimonial/qare/index.mdx';
+import * as leeway from './testimonial.leeway.mdx';
+import * as qare from './testimonial.qare.mdx';
 import type { MetaFunction } from '@remix-run/react';
 import { useLoaderData } from '@remix-run/react';
 import { Tag } from '~/components/Tag';
@@ -81,7 +81,7 @@ export default function Index() {
                   synergie entre vos équipes Sales, Marketing, Customer Success et Finance.
                 </p>
                 <p>
-                  <NavButton to="/qui-sommes-nous" className="btn btn--secondary btn--small">
+                  <NavButton to="/about" className="btn btn--secondary btn--small">
                     <FiSmile />
                     Découvrez-nous
                   </NavButton>

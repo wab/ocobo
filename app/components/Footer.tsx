@@ -49,7 +49,7 @@ export function Footer() {
             <ColumnTitle>Ocobo</ColumnTitle>
             <ul className="space-y-6">
               <li>
-                <NavLink to="/qui-sommes-nous">Qui sommes-nous ?</NavLink>
+                <NavLink to="/about">Qui sommes-nous ?</NavLink>
               </li>
               {/* <li>
                 <NavLink to="/jobs">Nous rejoindre</NavLink>

@@ -11,7 +11,6 @@ interface PostHeaderProps {
 }
 
 export const PostHeader: React.FunctionComponent<PostHeaderProps> = (props) => {
-  console.log(props);
   return (
     <header>
       <h1 className="font-blog desktop:text-5xl">{props.title}</h1>

@@ -19,8 +19,9 @@ type Meta = {
 };
 
 function postFromModule(mod: any): Post {
+  console.log(mod.filename);
   return {
-    slug: mod.filename.replace(/\.mdx?$/, ''),
+    slug: mod.filename.replace(/\.mdx?$/, '').replace(/media\./, ''),
     card: {
       title: mod.attributes.meta.find((m: { title: string }) => m.title).title,
       description: mod.attributes.meta.find((m: Meta) => m.name === 'description').content,
@@ -54,7 +55,7 @@ function testimonialFromModule(mod: any): Testimonial {
     description: mod.attributes.meta.find((m: Meta) => m.name === 'description').content,
     coverImage: mod.attributes.coverImage,
     logo: mod.attributes.logo,
-    slug: mod.attributes.slug,
+    slug: mod.filename.replace(/\.mdx?$/, '').replace(/testimonial\./, ''),
     duration: mod.attributes.duration,
     guest: mod.attributes.guest,
     position: mod.attributes.position,
