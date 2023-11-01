@@ -5,7 +5,7 @@ import { Hero } from '~/components/Hero';
 import { Section } from '~/components/Section';
 import { Plateforms } from '~/components/Plateforms';
 import { Footer } from '~/components/Footer';
-import { FiSmile, FiMic, FiTag } from 'react-icons/fi';
+import { FiSmile, FiMic } from 'react-icons/fi';
 import {
   AiFillFunnelPlot,
   AiOutlineSetting,
@@ -25,9 +25,9 @@ import { testimonialFromModule } from '~/utils/parsers';
 
 import * as leeway from './testimonial.leeway.mdx';
 import * as qare from './testimonial.qare.mdx';
+import * as qobra from './testimonial.qobra.mdx';
 import type { MetaFunction } from '@remix-run/react';
 import { useLoaderData } from '@remix-run/react';
-import { Tag } from '~/components/Tag';
 
 export const loader = async () => {
   return json({
@@ -35,7 +35,11 @@ export const loader = async () => {
     description:
       'Optimisez votre efficacité commerciale et boostez vos revenus en étant accompagné par la première agence française de conseil en Business Operations.',
     coverImage: 'https://ocobo.co/cover-coral.png',
-    testimonials: [testimonialFromModule(qare), testimonialFromModule(leeway)],
+    testimonials: [
+      testimonialFromModule(qobra),
+      testimonialFromModule(qare),
+      testimonialFromModule(leeway),
+    ],
   });
 };
 
@@ -105,33 +109,6 @@ export default function Index() {
               <div className="col-span-8">
                 <img src={testimonial.logo} alt={testimonial.title} className="mb-4 h-10" />
 
-                <div className="mb-4 flex items-start gap-2">
-                  <span>
-                    <AiFillFunnelPlot className="text-coral" />
-                  </span>
-                  <ul className="not-prose m-0 flex list-none flex-wrap gap-1 p-0 leading-none">
-                    {testimonial.scope.map((scope, i) => (
-                      <li key={scope} className="flex gap-1">
-                        {scope}
-                        {i !== testimonial.scope.length - 1 && (
-                          <span className="text-coral">•</span>
-                        )}
-                      </li>
-                    ))}
-                  </ul>
-                </div>
-                <div className="mb-4 flex items-start gap-2">
-                  <span>
-                    <FiTag className="text-coral" />
-                  </span>
-                  <ul className="not-prose m-0 flex list-none flex-wrap gap-1 p-0 leading-none">
-                    {testimonial.tags.map((tag: string) => (
-                      <li key={tag} className="flex gap-1">
-                        <Tag>{tag}</Tag>
-                      </li>
-                    ))}
-                  </ul>
-                </div>
                 <p className="mb-4 text-xl italic leading-relaxed">
                   "{testimonial.quotes[Math.floor(Math.random() * testimonial.quotes.length)]}"
                 </p>
