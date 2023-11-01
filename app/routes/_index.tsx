@@ -28,6 +28,7 @@ import * as qare from './testimonial.qare.mdx';
 import * as qobra from './testimonial.qobra.mdx';
 import type { MetaFunction } from '@remix-run/react';
 import { useLoaderData } from '@remix-run/react';
+import { Clients } from '~/components/Clients';
 
 export const loader = async () => {
   return json({
@@ -62,10 +63,11 @@ export default function Index() {
   return (
     <div className="relative">
       <Navbar />
-      <div className="relative z-0 bg-white leading-relaxed text-dark desktop:pt-28">
+      <div className="relative z-0 leading-relaxed text-dark desktop:pt-28">
         <Hero />
-        <Plateforms />
-        <Section.Root className="relative z-10 py-0 desktop:-mt-32">
+        <div className="hidden desktop:block"></div>
+
+        <Section.Root className="relative z-10 border-t-2 border-light bg-light bg-opacity-20 px-4 py-0 pt-8">
           <Section.Container>
             <Section.Grid className="rounded-lg bg-white p-8 shadow-lg lgDesktop:p-16">
               <div className="col-span-5 hidden desktop:block">
@@ -94,7 +96,7 @@ export default function Index() {
             </Section.Grid>
           </Section.Container>
         </Section.Root>
-        <Section.Root className="border-b-2 border-light bg-light bg-opacity-20 desktop:-mt-16 desktop:pt-32">
+        <Section.Root className="border-b-2 border-light bg-light bg-opacity-20">
           <Section.Container>
             <Section.Title className="text-center text-current">
               Ils nous font confiance
@@ -122,10 +124,8 @@ export default function Index() {
                 </p>
               </div>
             </Section.Grid>
-            <div className="p-6 text-center">
-              <AnchorLink href="/testimonial">Tous les témoignages</AnchorLink>
-            </div>
           </Section.Container>
+          <Clients />
         </Section.Root>
         <Section.Root>
           <Section.Container>
@@ -325,6 +325,7 @@ export default function Index() {
           </Section.Container>
         </Section.Root>
       </div>
+      <Plateforms />
       <Footer />
     </div>
   );
