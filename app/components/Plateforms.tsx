@@ -6,7 +6,7 @@ const LogoImage: React.FunctionComponent<React.ImgHTMLAttributes<HTMLImageElemen
 
 export function Plateforms() {
   return (
-    <div className="hidden border-t-2 border-light bg-light bg-opacity-20 px-4 pb-28 pt-8 desktop:block">
+    <div className="hidden border-t-2 border-light bg-light bg-opacity-20 px-4 py-8 desktop:block">
       <ul className="grid grid-cols-6 items-center justify-center gap-8 lgDesktop:grid-cols-12">
         <li className="text-center">
           <LogoImage src="/plateforms/salesforce.png" alt="salesforce" />
