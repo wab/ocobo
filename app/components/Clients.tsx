@@ -15,9 +15,9 @@ export function Clients() {
         <li>
           <LogoImage src="/logos/qobra-logo.png" alt="qobra" />
         </li>
-        <li>
+        {/* <li>
           <LogoImage src="/logos/citron-logo.png" alt="citron" />
-        </li>
+        </li> */}
         <li>
           <LogoImage src="/logos/qonto-logo.png" alt="qonto" />
         </li>
