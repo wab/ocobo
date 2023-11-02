@@ -4,52 +4,34 @@ const LogoImage: React.FunctionComponent<React.ImgHTMLAttributes<HTMLImageElemen
 
 export function Clients() {
   return (
-    <div className="hidden px-4 py-8 desktop:block">
-      <ul className="flex items-center justify-center gap-12">
+    <div className="px-4 py-8">
+      <ul className="flex flex-wrap items-center justify-center gap-12">
         <li className="text-center">
-          <a href="https://www.getleeway.com" target="_blank" rel="noreferrer">
-            <LogoImage src="/logos/leeway-logo.png" alt="leeway" />
-          </a>
+          <LogoImage src="/logos/leeway-logo.png" alt="leeway" />
         </li>
         <li>
-          <a href="https://www.qare.fr" target="_blank" rel="noreferrer">
-            <LogoImage src="/logos/qare-logo.png" alt="qare" />
-          </a>
+          <LogoImage src="/logos/qare-logo.png" alt="qare" />
         </li>
         <li>
-          <a href="https://fr.qobra.co" target="_blank" rel="noreferrer">
-            <LogoImage src="/logos/qobra-logo.png" alt="qobra" />
-          </a>
+          <LogoImage src="/logos/qobra-logo.png" alt="qobra" />
         </li>
         <li>
-          <a href="https://citron.io" target="_blank" rel="noreferrer">
-            <LogoImage src="/logos/citron-logo.png" alt="citron" />
-          </a>
+          <LogoImage src="/logos/citron-logo.png" alt="citron" />
         </li>
         <li>
-          <a href="https://qonto.com" target="_blank" rel="noreferrer">
-            <LogoImage src="/logos/qonto-logo.png" alt="qonto" />
-          </a>
+          <LogoImage src="/logos/qonto-logo.png" alt="qonto" />
         </li>
         <li>
-          <a href="https://www.sortlist.fr" target="_blank" rel="noreferrer">
-            <LogoImage src="/logos/sortlist-logo.png" alt="sortlist" />
-          </a>
+          <LogoImage src="/logos/sortlist-logo.png" alt="sortlist" />
         </li>
         <li>
-          <a href="https://www.resilience.care" target="_blank" rel="noreferrer">
-            <LogoImage src="/logos/resilience-logo.png" alt="resilience" />
-          </a>
+          <LogoImage src="/logos/resilience-logo.png" alt="resilience" />
         </li>
         <li>
-          <a href="https://steeple.com" target="_blank" rel="noreferrer">
-            <LogoImage src="/logos/steeple-logo.png" alt="steeple" />
-          </a>
+          <LogoImage src="/logos/steeple-logo.png" alt="steeple" />
         </li>
         <li>
-          <a href="https://fabriq.tech" target="_blank" rel="noreferrer">
-            <LogoImage src="/logos/fabriq-logo.png" alt="fabriq" />
-          </a>
+          <LogoImage src="/logos/fabriq-logo.png" alt="fabriq" />
         </li>
       </ul>
     </div>
