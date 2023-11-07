@@ -14,6 +14,8 @@ import * as post7 from './media.7.mdx';
 import * as post8 from './media.8.mdx';
 import * as post9 from './media.9.mdx';
 import * as post10 from './media.10.mdx';
+import * as post11 from './media.11.mdx';
+
 import { FiCalendar, FiPenTool } from 'react-icons/fi';
 import { Tag } from '~/components/Tag';
 
@@ -24,6 +26,7 @@ export async function loader() {
       "Ocobo Le Nouvel Ops, c'est le média qui accompagne les Business Ops d'aujourd'hui et de demain. L’idée ? Vous éclairer sur diverses thématiques en vous partageant des articles sur les tendances du marché, les méthodologies, les bonnes pratiques & benchmarks qui gravitent autour de notre passionnant métier",
     coverImage: 'https://ocobo.co/cover.png',
     posts: [
+      postFromModule(post11),
       postFromModule(post10),
       postFromModule(post9),
       postFromModule(post8),
