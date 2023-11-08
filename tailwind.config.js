@@ -26,6 +26,12 @@ module.exports = {
       title: ['Montserrat Alternates', 'sans-serif'],
       blog: ['Dancing Script', 'cursive'],
     },
+    listStyleType: {
+      none: 'none',
+      disc: 'disc',
+      decimal: 'decimal',
+      alpha: 'lower-alpha',
+    },
     extend: {
       typography: ({ theme }) => ({
         ocobo: {
