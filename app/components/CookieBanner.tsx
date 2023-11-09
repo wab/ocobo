@@ -1,5 +1,5 @@
-import { Form } from '@remix-run/react';
-import { Link } from '@remix-run/react';
+import { Form, Link } from '@remix-run/react';
+
 import { BiCookie } from 'react-icons/bi';
 import { Button } from './Button';
 
@@ -11,7 +11,7 @@ export const CookieBanner: React.FunctionComponent<CookieBannerProps> = ({ isVis
   if (!isVisible) return null;
   return (
     <div className="fixed bottom-4 right-4 z-50 w-full max-w-xs rounded-lg bg-coral p-4 text-white shadow-lg">
-      <Form method="post" reloadDocument>
+      <Form method="post">
         <p className="mb-4 text-3xl">
           <BiCookie />
         </p>
