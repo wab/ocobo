@@ -1,5 +1,5 @@
 import * as React from 'react';
-import type {  ActionFunctionArgs, LoaderFunctionArgs } from '@remix-run/node';
+import type { ActionFunctionArgs, LoaderFunctionArgs } from '@remix-run/node';
 import { json, redirect } from '@remix-run/node';
 import {
   Links,
@@ -58,12 +58,12 @@ export async function action({ request }: ActionFunctionArgs) {
     cookie.gdprConsent = false;
   }
 
-  return redirect('/', {
+  return redirect(request.headers.get('Referer') ?? '?', {
     headers: {
       'Set-Cookie': await gdprConsent.serialize(cookie),
     },
   });
-};
+}
 
 // Load the GA tracking id from the .env
 export async function loader({ request }: LoaderFunctionArgs) {
@@ -77,7 +77,7 @@ export async function loader({ request }: LoaderFunctionArgs) {
       HUBSPOT_PORTAL_ID: process.env.HUBSPOT_PORTAL_ID,
     },
   });
-};
+}
 
 function App() {
   const [theme] = useTheme();
