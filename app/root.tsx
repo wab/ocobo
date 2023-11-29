@@ -99,6 +99,10 @@ function App() {
         <meta name="viewport" content="width=device-width,initial-scale=1" />
         <Meta />
         <Links />
+        <script
+          src="https://tag.clearbitscripts.com/v1/pk_38c2f75e7330f98606d3fda7c9686cc9/tags.js"
+          referrerPolicy="strict-origin-when-cross-origin"
+        />
       </head>
       <body className="relative dark:bg-dark">
         {isTrackingEnabled ? (
