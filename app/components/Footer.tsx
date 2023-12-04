@@ -18,12 +18,13 @@ export function Footer() {
             <p className="-mt-2 pb-1">
               <Logo width={140} />
             </p>
-            <p>Une communauté d'expert•e•s Business Operations au service de votre entreprise.</p>
             <p>
-              Basé à Paris 18,
-              <br />
-              Nous parlons français et anglais.
+              L’agence RevOps qui transforme les Revenue teams des startups & scale-ups françaises.
             </p>
+            <address>
+              <p>5 Rue Marguerite de Rochechouart, 75009 Paris.</p>
+            </address>
+            <p>Nous parlons français et anglais.</p>
             <p>&copy; 2022</p>
           </div>
           <div />
