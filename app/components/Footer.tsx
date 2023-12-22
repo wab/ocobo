@@ -4,6 +4,7 @@ import { Logo } from './Logo';
 import { FaLinkedin } from 'react-icons/fa';
 // import { FiBookOpen } from 'react-icons/fi';
 import { NavLink, AnchorLink } from '~/components/Link';
+import { mailto } from '~/utils/contact';
 
 const ColumnTitle: React.FunctionComponent<React.PropsWithChildren> = ({ children }) => (
   <h2 className="mb-6 text-2xl font-bold">{children}</h2>
@@ -56,13 +57,7 @@ export function Footer() {
                 <NavLink to="/jobs">Nous rejoindre</NavLink>
               </li> */}
               <li>
-                <AnchorLink
-                  href="https://meetings-eu1.hubspot.com/benjamin-boileux/discovery"
-                  target="_blank"
-                  rel="noreferrer"
-                >
-                  Nous contacter
-                </AnchorLink>
+                <AnchorLink href={`mailto:${mailto}`}>Nous contacter</AnchorLink>
               </li>
               <li>
                 <AnchorLink href="/legal/cgu">CGU</AnchorLink>
