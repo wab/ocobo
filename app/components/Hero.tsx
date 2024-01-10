@@ -1,3 +1,4 @@
+import { contactLink } from '~/utils/contact';
 import { Section } from './Section';
 
 import { FiCoffee } from 'react-icons/fi';
@@ -18,7 +19,7 @@ export function Hero() {
             </p>
             <p className="mt-8 space-x-2">
               <a
-                href="https://meetings-eu1.hubspot.com/benjamin-boileux/discovery"
+                href={contactLink}
                 className="btn btn--primary btn--large btn--outlined"
                 target="_blank"
                 rel="noreferrer"

@@ -3,7 +3,7 @@ import { FiCalendar, FiMic, FiSmile } from 'react-icons/fi';
 import { ImNewspaper } from 'react-icons/im';
 import { Logo } from '~/components/Logo';
 import { NavLink } from '~/components/Link';
-import { mailto } from '~/utils/contact';
+import { contactLink } from '~/utils/contact';
 
 export function Navbar() {
   return (
@@ -37,7 +37,12 @@ export function Navbar() {
                 </NavLink>
               </li>
               <li>
-                <a href={`mailto:${mailto}`} className="btn btn--small btn--secondary">
+                <a
+                  href={contactLink}
+                  target="_blank"
+                  className="btn btn--small btn--secondary"
+                  rel="noreferrer"
+                >
                   <FiCalendar />
                   Prenez rendez-vous
                 </a>

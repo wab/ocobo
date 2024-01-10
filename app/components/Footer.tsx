@@ -4,7 +4,7 @@ import { Logo } from './Logo';
 import { FaLinkedin } from 'react-icons/fa';
 // import { FiBookOpen } from 'react-icons/fi';
 import { NavLink, AnchorLink } from '~/components/Link';
-import { mailto } from '~/utils/contact';
+import { contactLink } from '~/utils/contact';
 
 const ColumnTitle: React.FunctionComponent<React.PropsWithChildren> = ({ children }) => (
   <h2 className="mb-6 text-2xl font-bold">{children}</h2>
@@ -57,7 +57,9 @@ export function Footer() {
                 <NavLink to="/jobs">Nous rejoindre</NavLink>
               </li> */}
               <li>
-                <AnchorLink href={`mailto:${mailto}`}>Nous contacter</AnchorLink>
+                <AnchorLink href={contactLink} target="_blank" rel="noreferrer">
+                  Nous contacter
+                </AnchorLink>
               </li>
               <li>
                 <AnchorLink href="/legal/cgu">CGU</AnchorLink>
