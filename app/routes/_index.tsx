@@ -20,12 +20,13 @@ import {
   AiOutlineClockCircle,
 } from 'react-icons/ai';
 
-import { AnchorLink, NavButton } from '~/components/Link';
+import { NavButton } from '~/components/Link';
 import { testimonialFromModule } from '~/utils/parsers';
 
 import * as leeway from './testimonial.leeway.mdx';
 import * as qare from './testimonial.qare.mdx';
 import * as qobra from './testimonial.qobra.mdx';
+import * as steeple from './testimonial.steeple.mdx';
 import type { MetaFunction } from '@remix-run/react';
 import { useLoaderData } from '@remix-run/react';
 import { Clients } from '~/components/Clients';
@@ -37,6 +38,7 @@ export const loader = async () => {
       'Optimisez votre efficacité commerciale et boostez vos revenus en étant accompagné par la première agence française de conseil en Business Operations.',
     coverImage: 'https://ocobo.co/cover-coral.png',
     testimonials: [
+      testimonialFromModule(steeple),
       testimonialFromModule(qobra),
       testimonialFromModule(qare),
       testimonialFromModule(leeway),
