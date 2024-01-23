@@ -4,6 +4,7 @@ import { NavLink, useLoaderData } from '@remix-run/react';
 import * as leeway from './testimonial.leeway.mdx';
 import * as qare from './testimonial.qare.mdx';
 import * as qobra from './testimonial.qobra.mdx';
+import * as steeple from './testimonial.steeple.mdx';
 import type { Testimonial } from '~/utils/parsers';
 import { testimonialFromModule } from '~/utils/parsers';
 import { AiFillFunnelPlot } from 'react-icons/ai';
@@ -17,6 +18,7 @@ export async function loader() {
       "Ocobo Le Nouvel Ops, c'est le média qui accompagne les Business Ops d'aujourd'hui et de demain. L’idée ? Vous éclairer sur diverses thématiques en vous partageant des articles sur les tendances du marché, les méthodologies, les bonnes pratiques & benchmarks qui gravitent autour de notre passionnant métier",
     coverImage: 'https://ocobo.co/cover.png',
     posts: [
+      testimonialFromModule(steeple),
       testimonialFromModule(qobra),
       testimonialFromModule(qare),
       testimonialFromModule(leeway),
