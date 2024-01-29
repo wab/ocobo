@@ -36,7 +36,7 @@ export const loader = async () => {
     title: 'Ocobo • Business Ops Expert•e•s',
     description:
       'Optimisez votre efficacité commerciale et boostez vos revenus en étant accompagné par la première agence française de conseil en Business Operations.',
-    coverImage: 'https://ocobo.co/cover-coral.png',
+    coverImage: 'https://www.ocobo.co/cover-coral.png',
     testimonials: [
       testimonialFromModule(steeple),
       testimonialFromModule(qobra),
@@ -53,7 +53,7 @@ export const meta: MetaFunction<typeof loader> = ({ data, location }) => {
     { name: 'twitter:card', content: 'summary_large_image' },
     { name: 'og:title', content: data?.title },
     { name: 'og:type', content: 'siteweb' },
-    { name: 'og:url', content: `https://ocobo.co${location.pathname}` },
+    { name: 'og:url', content: `https://www.ocobo.co${location.pathname}` },
     { name: 'og:description', content: data?.description },
     { name: 'og:image', content: data?.coverImage },
   ];
