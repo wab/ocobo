@@ -16,7 +16,7 @@ export async function loader() {
     title: 'Ocobo • Ils nous font confiance',
     description:
       "Ocobo Le Nouvel Ops, c'est le média qui accompagne les Business Ops d'aujourd'hui et de demain. L’idée ? Vous éclairer sur diverses thématiques en vous partageant des articles sur les tendances du marché, les méthodologies, les bonnes pratiques & benchmarks qui gravitent autour de notre passionnant métier",
-    coverImage: 'https://ocobo.co/cover.png',
+    coverImage: 'https://www.ocobo.co/cover.png',
     posts: [
       testimonialFromModule(steeple),
       testimonialFromModule(qobra),

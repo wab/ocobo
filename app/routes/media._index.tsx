@@ -24,7 +24,7 @@ export async function loader() {
     title: 'Ocobo • le Nouvel Ops',
     description:
       "Ocobo Le Nouvel Ops, c'est le média qui accompagne les Business Ops d'aujourd'hui et de demain. L’idée ? Vous éclairer sur diverses thématiques en vous partageant des articles sur les tendances du marché, les méthodologies, les bonnes pratiques & benchmarks qui gravitent autour de notre passionnant métier",
-    coverImage: 'https://ocobo.co/cover.png',
+    coverImage: 'https://www.ocobo.co/cover.png',
     posts: [
       postFromModule(post11),
       postFromModule(post10),
@@ -88,7 +88,7 @@ export const meta: MetaFunction<typeof loader> = ({ data, location }) => {
     { name: 'twitter:card', content: 'summary_large_image' },
     { name: 'og:title', content: data?.title },
     { name: 'og:type', content: 'article' },
-    { name: 'og:url', content: `https://ocobo.co${location.pathname}` },
+    { name: 'og:url', content: `https://www.ocobo.co${location.pathname}` },
     { name: 'og:description', content: data?.description },
     { name: 'og:image', content: data?.coverImage },
   ];

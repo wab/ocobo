@@ -11,9 +11,9 @@ export async function loader() {
     title: "Ocobo • l'équipe",
     description:
       "Anciens Operations Director, Head of Revenue Ops et Business Analysts, nous avons vécu et soutenu l'hyper-croissance des plus belles startups & scale-ups françaises depuis plus de 10 ans.",
-    coverImage: 'https://ocobo.co/illustrations/about-us.svg',
+    coverImage: 'https://www.ocobo.co/illustrations/about-us.svg',
   });
-};
+}
 
 export const meta: MetaFunction<typeof loader> = ({ data, location }) => {
   return [
@@ -22,7 +22,7 @@ export const meta: MetaFunction<typeof loader> = ({ data, location }) => {
     { name: 'twitter:card', content: 'summary_large_image' },
     { name: 'og:title', content: data?.title },
     { name: 'og:type', content: 'article' },
-    { name: 'og:url', content: `https://ocobo.co${location.pathname}` },
+    { name: 'og:url', content: `https://www.ocobo.co${location.pathname}` },
     { name: 'og:description', content: data?.description },
     { name: 'og:image', content: data?.coverImage },
   ];
