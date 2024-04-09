@@ -1,4 +1,4 @@
-import { type LoaderFunctionArgs, json } from "@remix-run/node";
+import { type LoaderFunctionArgs, json, LinksFunction } from "@remix-run/node";
 import {
   Links,
   Meta,
@@ -11,7 +11,10 @@ import {
 import { useTranslation } from "react-i18next";
 import { useChangeLanguage } from "remix-i18next/react";
 
-import { getLang } from "./utils/lang";
+import styles from "~/index.css?url";
+import { getLang } from "~/utils/lang";
+
+export const links: LinksFunction = () => [{ rel: "stylesheet", href: styles }];
 
 export const handle = { i18n: ["common"] };
 
@@ -26,7 +29,7 @@ export function Layout({ children }: { children: React.ReactNode }) {
   const { i18n } = useTranslation();
 
   return (
-    <html lang={loaderData?.locale ?? "fr"} dir={i18n.dir()}>
+    <html lang={loaderData?.locale ?? "fr"} dir={i18n.dir()} translate="no">
       <head>
         <meta charSet="utf-8" />
         <meta name="viewport" content="width=device-width, initial-scale=1" />

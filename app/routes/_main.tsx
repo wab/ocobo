@@ -1,6 +1,7 @@
 import type { LoaderFunctionArgs } from "@remix-run/node";
 import { Outlet, redirect } from "@remix-run/react";
 
+import { css } from "styled-system/css";
 import { Footer } from "~/components/Footer";
 import { Navigation } from "~/components/Navigation";
 
@@ -16,7 +17,7 @@ export async function loader({ request, params }: LoaderFunctionArgs) {
 
 export default function Index() {
   return (
-    <div>
+    <div className={css({ px: "4" })}>
       <Navigation />
       <Outlet />
       <Footer />

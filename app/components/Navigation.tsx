@@ -1,14 +1,16 @@
 import { Link } from "@remix-run/react";
 import { useTranslation } from "react-i18next";
 
+import { css } from "styled-system/css";
+
 import { LocalizedLink } from "./LocalizedLink";
 
 const Navigation = () => {
   const { t, i18n } = useTranslation();
 
   return (
-    <nav>
-      <ul>
+    <nav className={css({ py: "4" })}>
+      <ul className={css({ display: "flex", gap: "4" })}>
         <li>
           <LocalizedLink to="/">
             {t("navigation.home", { ns: "common" })}

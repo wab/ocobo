@@ -5,3 +5,7 @@ node_modules
 .env
 
 .DS_store
+
+## Panda
+styled-system
+styled-system-studio
