@@ -1,8 +1,8 @@
-import { Link, useLocation, useParams } from "@remix-run/react";
-import { useTranslation } from "react-i18next";
+import { Link, useLocation, useParams } from '@remix-run/react';
+import { useTranslation } from 'react-i18next';
 
-import { supportedLngs } from "~/localization/i18n";
-import { getLang } from "~/utils/lang";
+import { supportedLngs } from '~/localization/i18n';
+import { getLang } from '~/utils/lang';
 
 const LanguageSwitcher = () => {
   const { pathname } = useLocation();

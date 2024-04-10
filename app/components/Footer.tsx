@@ -1,10 +1,10 @@
-import { css } from "styled-system/css";
+import { css } from 'styled-system/css';
 
-import { LanguageSwitcher } from "./LanguageSwitcher";
+import { LanguageSwitcher } from './LanguageSwitcher';
 
 const Footer = () => {
   return (
-    <footer className={css({ py: "4" })}>
+    <footer className={css({ py: '4' })}>
       <LanguageSwitcher />
     </footer>
   );

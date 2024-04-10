@@ -1,4 +1,4 @@
-import { type LoaderFunctionArgs, json, LinksFunction } from "@remix-run/node";
+import { type LoaderFunctionArgs, json, LinksFunction } from '@remix-run/node';
 import {
   Links,
   Meta,
@@ -7,16 +7,16 @@ import {
   ScrollRestoration,
   useLoaderData,
   useRouteLoaderData,
-} from "@remix-run/react";
-import { useTranslation } from "react-i18next";
-import { useChangeLanguage } from "remix-i18next/react";
+} from '@remix-run/react';
+import { useTranslation } from 'react-i18next';
+import { useChangeLanguage } from 'remix-i18next/react';
 
-import styles from "~/index.css?url";
-import { getLang } from "~/utils/lang";
+import styles from '~/index.css?url';
+import { getLang } from '~/utils/lang';
 
-export const links: LinksFunction = () => [{ rel: "stylesheet", href: styles }];
+export const links: LinksFunction = () => [{ rel: 'stylesheet', href: styles }];
 
-export const handle = { i18n: ["common"] };
+export const handle = { i18n: ['common'] };
 
 export async function loader({ params }: LoaderFunctionArgs) {
   const locale = getLang(params);
@@ -25,11 +25,11 @@ export async function loader({ params }: LoaderFunctionArgs) {
 
 export function Layout({ children }: { children: React.ReactNode }) {
   // Get the locale from the loader
-  const loaderData = useRouteLoaderData<typeof loader>("root");
+  const loaderData = useRouteLoaderData<typeof loader>('root');
   const { i18n } = useTranslation();
 
   return (
-    <html lang={loaderData?.locale ?? "fr"} dir={i18n.dir()} translate="no">
+    <html lang={loaderData?.locale ?? 'fr'} dir={i18n.dir()} translate="no">
       <head>
         <meta charSet="utf-8" />
         <meta name="viewport" content="width=device-width, initial-scale=1" />

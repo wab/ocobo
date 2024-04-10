@@ -1,6 +1,6 @@
-import { RemixI18Next } from "remix-i18next/server";
+import { RemixI18Next } from 'remix-i18next/server';
 
-import * as i18n from "~/localization/i18n";
+import * as i18n from '~/localization/i18n';
 
 export default new RemixI18Next({
   detection: {

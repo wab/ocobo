@@ -1,9 +1,9 @@
-import { Params } from "@remix-run/react";
+import { Params } from '@remix-run/react';
 
-import { type Language, languages } from "~/localization/resources";
+import { type Language, languages } from '~/localization/resources';
 
 export function getLang(params: Params<string>) {
-  const lang = params.lang ?? "fr";
+  const lang = params.lang ?? 'fr';
 
   if (!languages.includes(lang as Language)) {
     throw new Response(null, {
@@ -15,5 +15,5 @@ export function getLang(params: Params<string>) {
 }
 
 export function getLocaleFromPathname(pathname: string) {
-  return pathname.split("/")[1] as Language;
+  return pathname.split('/')[1] as Language;
 }

@@ -1,12 +1,12 @@
-import type { MetaFunction } from "@remix-run/node";
+import type { MetaFunction } from '@remix-run/node';
 
 export const meta: MetaFunction = () => {
   return [
-    { title: "Ocobo | Agence RevOps & Stratégies Revenus" },
+    { title: 'Ocobo | Agence RevOps & Stratégies Revenus' },
     {
-      name: "description",
+      name: 'description',
       content:
-        "Ocobo vous permet de faire plus avec moins. Organisez vos équipes, déployez des processus de pointe et boostez vos performances.",
+        'Ocobo vous permet de faire plus avec moins. Organisez vos équipes, déployez des processus de pointe et boostez vos performances.',
     },
   ];
 };
