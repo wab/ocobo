@@ -11,10 +11,14 @@ import {
 import { useTranslation } from 'react-i18next';
 import { useChangeLanguage } from 'remix-i18next/react';
 
+import fonts from '~/fonts.css?url';
 import styles from '~/index.css?url';
 import { getLang } from '~/utils/lang';
 
-export const links: LinksFunction = () => [{ rel: 'stylesheet', href: styles }];
+export const links: LinksFunction = () => [
+  { rel: 'stylesheet', href: fonts },
+  { rel: 'stylesheet', href: styles },
+];
 
 export const handle = { i18n: ['common'] };
 

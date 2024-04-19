@@ -5,6 +5,10 @@ import {
 } from '@remix-run/node';
 import { useTranslation } from 'react-i18next';
 
+import { css } from '@ocobo/styled-system/css';
+import { container, grid, gridItem } from '@ocobo/styled-system/patterns';
+import { button, typography } from '@ocobo/styled-system/recipes';
+
 import { LocalizedLink } from '~/components/LocalizedLink';
 import i18nServer from '~/localization/i18n.server';
 import { getLang } from '~/utils/lang';
@@ -27,16 +31,39 @@ export const meta: MetaFunction<typeof loader> = ({ data }) => {
 export default function Index() {
   const { t } = useTranslation();
   return (
-    <div>
-      <div>
-        <h1>{t('hero.title', { ns: 'home' })}</h1>
-        <p>
-          <strong>{t('hero.subtitle', { ns: 'home' })}</strong>
-        </p>
-        <p>{t('hero.description', { ns: 'home' })}</p>
-        <LocalizedLink to="/contact">
-          {t('hero.cta', { ns: 'home' })}
-        </LocalizedLink>
+    <div className={container()}>
+      <div
+        className={grid({
+          columns: 12,
+          gap: '4',
+          gridTemplateRows: '[800px]',
+          alignItems: 'center',
+        })}
+      >
+        <div className={gridItem({ colSpan: 6 })}>
+          <h1 className={typography({ variant: 'heading1' })}>
+            {t('hero.title', { ns: 'home' })}
+          </h1>
+          <div
+            className={css({
+              pr: '36',
+              mt: '4',
+            })}
+          >
+            <p className={typography({ variant: 'heading3' })}>
+              {t('hero.subtitle', { ns: 'home' })}
+            </p>
+            <p>{t('hero.description', { ns: 'home' })}</p>
+            <p>
+              <LocalizedLink to="/contact" className={button()}>
+                {t('contact.cta', { ns: 'common' })}
+              </LocalizedLink>
+            </p>
+          </div>
+        </div>
+        <div className={gridItem({ colStart: 8, colEnd: 13 })}>
+          <img src="/illus/homepage_hero.svg" alt="" />
+        </div>
       </div>
     </div>
   );

@@ -88,6 +88,24 @@ module.exports = {
     'import/order': [
       'error',
       {
+        pathGroups: [
+          {
+            pattern: 'react',
+            group: 'external',
+            position: 'before',
+          },
+          {
+            pattern: '~/**',
+            group: 'internal',
+            position: 'after',
+          },
+          {
+            pattern: '@ocobo/**',
+            group: 'external',
+            position: 'after',
+          },
+        ],
+        pathGroupsExcludedImportTypes: ['react', '@ocobo'],
         groups: ['builtin', 'external', 'internal', 'sibling', 'parent'],
         'newlines-between': 'always',
         alphabetize: { order: 'asc', caseInsensitive: true },
