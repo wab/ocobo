@@ -29,27 +29,35 @@ export const navigationMenu = defineSlotRecipe({
       flex: '1',
       listStyleType: 'none',
       alignItems: 'center',
-      justifyContent: 'center',
-      gap: '1',
+      justifyContent: 'start',
+      gap: '2',
+      xl: {
+        gap: '4',
+      },
     },
     item: {
       '& > [data-radix-collection-item]': {
         display: 'inline-flex',
-        h: '10',
+        h: '24px',
         w: 'max-content',
         alignItems: 'center',
         justifyContent: 'center',
-        rounded: 'md',
         bg: 'background',
-        px: '4',
+        px: '2',
         py: '2',
-        textStyle: 'sm',
+        textStyle: 'nav',
         fontWeight: 'medium',
-        transition: 'colors',
         cursor: 'pointer',
+        border: 'none',
+        borderLeft: 'thick',
+        borderColor: 'transparent',
+        boxSizing: 'border-box',
+        transition: 'colors',
+        transitionDuration: 'normal',
+        transitionBehavior: 'smooth',
 
         _hover: {
-          bg: 'accent',
+          borderColor: 'gray',
           color: 'accent.foreground',
         },
 
@@ -64,20 +72,20 @@ export const navigationMenu = defineSlotRecipe({
           opacity: '50',
         },
 
-        '&[data-active]': {
-          bga: 'accent/50',
-        },
+        // '&[data-active]': {
+        //   bga: 'accent/50',
+        // },
 
-        '&[data-state=open]': {
-          bga: 'accent/50',
-        },
+        // '&[data-state=open]': {
+        //   bga: 'accent/50',
+        // },
       },
     },
     trigger: {
       '& > svg': {
         position: 'relative',
         top: '1px',
-        ml: '1',
+        ml: '4px',
         h: '3',
         w: '3',
         transition: 'all',
@@ -93,9 +101,14 @@ export const navigationMenu = defineSlotRecipe({
       },
     },
     content: {
-      left: '0',
-      top: '0',
-      w: 'full',
+      top: '100%',
+      border: 'thin',
+      borderColor: 'gray.light',
+      bg: 'popover',
+      color: 'popover.foreground',
+      shadow: 'base',
+      minWidth: 'max-content',
+      maxWidth: 240,
 
       '&[data-motion^=from-]': {
         animateIn: true,
@@ -142,31 +155,28 @@ export const navigationMenu = defineSlotRecipe({
       h: 'var(--radix-navigation-menu-viewport-height)',
       w: 'full',
       overflow: 'hidden',
-      rounded: 'md',
+      rounded: 'none',
       border: 'base',
       bg: 'popover',
       color: 'popover.foreground',
-      shadow: 'lg',
-
+      shadow: 'base',
       '&[data-state=open]': {
         animateIn: true,
         zoomIn: 90,
       },
-
       '&[data-state=closed]': {
         animateOut: true,
         zoomOut: 95,
       },
-
       md: {
         w: 'var(--radix-navigation-menu-viewport-width)',
       },
     },
     indicator: {
-      top: '100%',
+      top: '95%',
       zIndex: '1',
       display: 'flex',
-      h: '1.5',
+      h: '10px',
       alignItems: 'flex-end',
       justifyContent: 'center',
       overflow: 'hidden',
@@ -183,13 +193,16 @@ export const navigationMenu = defineSlotRecipe({
 
       '& > div': {
         position: 'relative',
-        top: '60%',
-        h: '2',
-        w: '2',
+        top: '50%',
+        h: '10px',
+        w: '10px',
         transform: 'rotate(45deg)',
-        roundedTopLeft: 'sm',
-        bg: 'border',
-        shadow: 'md',
+        //roundedTopLeft: 'sm',
+        //bg: 'border',
+        border: 'thin',
+        borderColor: 'gray.light',
+        shadow: 'base',
+        backgroundColor: 'popover',
       },
     },
   },

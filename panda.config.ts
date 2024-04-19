@@ -18,7 +18,7 @@ export default defineConfig({
   // Files to exclude
   exclude: [],
   strictPropertyValues: true,
-  strictTokens: true,
+  strictTokens: false,
 
   // Useful for theme customization
   theme: {

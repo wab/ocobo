@@ -9,7 +9,10 @@ export const textStyles = defineTextStyles({
         fontSize: '26px',
         lineHeight: 1.1,
       },
-      lg: {
+      md: {
+        fontSize: '36px',
+      },
+      xl: {
         fontSize: '64px',
       },
     },
@@ -23,7 +26,10 @@ export const textStyles = defineTextStyles({
         fontSize: '24px',
         lineHeight: 1.2,
       },
-      lg: {
+      md: {
+        fontSize: '30px',
+      },
+      xl: {
         fontSize: '36px',
       },
     },
@@ -36,7 +42,10 @@ export const textStyles = defineTextStyles({
         fontSize: '20px',
         lineHeight: 1.3,
       },
-      lg: {
+      md: {
+        fontSize: '24px',
+      },
+      xl: {
         fontSize: '30px',
       },
     },
@@ -49,7 +58,10 @@ export const textStyles = defineTextStyles({
         fontSize: '12px',
         lineHeight: 1.3,
       },
-      lg: {
+      md: {
+        fontSize: '14px',
+      },
+      xl: {
         fontSize: '16px',
       },
     },
@@ -62,7 +74,10 @@ export const textStyles = defineTextStyles({
         fontSize: '14px',
         lineHeight: 1.3,
       },
-      lg: {
+      md: {
+        fontSize: '16px',
+      },
+      xl: {
         fontSize: '20px',
       },
     },
@@ -89,8 +104,7 @@ export const textStyles = defineTextStyles({
         lineHeight: 1,
       },
       md: {
-        //fontSize: '20px',
-        fontSize: '24px',
+        fontSize: '16px',
       },
       xl: {
         fontSize: '24px',

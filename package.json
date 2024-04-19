@@ -34,6 +34,7 @@
   },
   "devDependencies": {
     "@pandacss/dev": "^0.37.2",
+    "@pandacss/preset-base": "^0.37.2",
     "@pandacss/preset-panda": "^0.37.2",
     "@pandacss/types": "^0.37.2",
     "@remix-run/dev": "^2.8.1",

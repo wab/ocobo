@@ -33,6 +33,18 @@ export const tokens = defineTokens({
     base: { value: '0px 4px 50px 0px rgba(0, 0, 0, 0.12)' },
     inner: { value: 'inset 0 2px 4px 0 rgba(0, 0, 0, 0.06)' },
     outline: { value: '0 0 0 3px rgba(66, 153, 225, 0.5)' },
+    sm: {
+      value: [
+        '0 1px 3px 0 rgb(0 0 0 / 0.1)',
+        '0 1px 2px -1px rgb(0 0 0 / 0.1)',
+      ],
+    },
+    md: {
+      value: [
+        '0 4px 6px -1px rgb(0 0 0 / 0.1)',
+        '0 2px 4px -2px rgb(0 0 0 / 0.1)',
+      ],
+    },
     none: { value: 'none' },
   },
   blurs: {

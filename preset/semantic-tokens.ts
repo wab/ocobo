@@ -71,13 +71,13 @@ export const semanticTokens = defineSemanticTokens({
     accent: {
       DEFAULT: {
         value: {
-          base: '{colors.gray}',
+          base: '{colors.gray.light}',
           _dark: '{colors.gray}',
         },
       },
       foreground: {
         value: {
-          base: '{colors.gray.light}',
+          base: '{colors.dark}',
           _dark: '{colors.gray}',
         },
       },
@@ -104,7 +104,7 @@ export const semanticTokens = defineSemanticTokens({
     },
   },
   borders: {
-    base: { value: '1px solid {colors.border}' },
+    base: { value: '1px solid {colors.gray.light}' },
     input: { value: '1px solid {colors.input}' },
     destructive: { value: '1px solid {colors.destructive}' },
   },

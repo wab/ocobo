@@ -61,6 +61,9 @@ devDependencies:
   '@pandacss/dev':
     specifier: ^0.37.2
     version: 0.37.2(typescript@5.4.3)
+  '@pandacss/preset-base':
+    specifier: ^0.37.2
+    version: 0.37.2
   '@pandacss/preset-panda':
     specifier: ^0.37.2
     version: 0.37.2
