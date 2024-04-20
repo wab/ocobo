@@ -8,6 +8,7 @@ import {
   useLoaderData,
   useRouteLoaderData,
 } from '@remix-run/react';
+import { SpeedInsights } from '@vercel/speed-insights/remix';
 import { useTranslation } from 'react-i18next';
 import { useChangeLanguage } from 'remix-i18next/react';
 
@@ -42,6 +43,7 @@ export function Layout({ children }: { children: React.ReactNode }) {
         {children}
         <ScrollRestoration />
         <Scripts />
+        <SpeedInsights />
       </body>
     </html>
   );

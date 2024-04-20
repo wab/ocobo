@@ -25,6 +25,7 @@
     "@remix-run/react": "^2.8.1",
     "@remix-run/serve": "^2.8.1",
     "@shadow-panda/style-context": "^0.7.1",
+    "@vercel/speed-insights": "^1.0.10",
     "i18next": "^23.11.2",
     "i18next-browser-languagedetector": "^7.2.1",
     "i18next-fs-backend": "^2.3.1",
