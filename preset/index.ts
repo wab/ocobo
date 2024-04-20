@@ -15,6 +15,10 @@ import { utilities } from './utilities';
 
 export default definePreset({
   presets: [pandaPreset],
+  globalVars: {
+    // Add your global variables here
+    '--main-header-height': '110px',
+  },
   globalCss,
   conditions,
   utilities,

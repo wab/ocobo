@@ -111,4 +111,17 @@ export const textStyles = defineTextStyles({
       },
     },
   },
+  subnav: {
+    value: {
+      base: {
+        fontFamily: 'body',
+        fontWeight: 400,
+        fontSize: '20px',
+        lineHeight: 1,
+      },
+      md: {
+        fontSize: '24px',
+      },
+    },
+  },
 });

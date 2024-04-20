@@ -4,7 +4,7 @@ import ocoboPreset from 'preset';
 
 export default defineConfig({
   // Whether to use css reset
-  preflight: false,
+  preflight: true,
 
   jsxFramework: 'react',
   presets: [ocoboPreset],

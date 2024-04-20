@@ -5,7 +5,9 @@ import { css, cx } from '@ocobo/styled-system/css';
 import { typography } from '@ocobo/styled-system/recipes';
 
 import { Footer } from '~/components/Footer';
-import { Navigation } from '~/components/Navigation';
+import { Header } from '~/components/Header';
+import { MainMobileMenu } from '~/components/MainMobileMenu';
+import { MobileMenuProvider } from '~/components/MobileMenu';
 
 export async function loader({ request, params }: LoaderFunctionArgs) {
   const url = new URL(request.url);
@@ -19,18 +21,21 @@ export async function loader({ request, params }: LoaderFunctionArgs) {
 
 export default function Index() {
   return (
-    <div
-      className={cx(
-        typography(),
-        css({
-          color: 'text',
-          bg: 'background',
-        }),
-      )}
-    >
-      <Navigation />
-      <Outlet />
-      <Footer />
-    </div>
+    <MobileMenuProvider>
+      <MainMobileMenu />
+      <div
+        className={cx(
+          typography(),
+          css({
+            color: 'foreground',
+            bg: 'background',
+          }),
+        )}
+      >
+        <Header />
+        <Outlet />
+        <Footer />
+      </div>
+    </MobileMenuProvider>
   );
 }

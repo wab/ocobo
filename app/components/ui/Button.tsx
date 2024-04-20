@@ -25,5 +25,5 @@ BaseButton.displayName = 'Button';
 const Button = styled(BaseButton, button);
 type ButtonProps = HTMLStyledProps<typeof Button>;
 
-export { Button };
+export { Button, BaseButton };
 export type { ButtonProps };

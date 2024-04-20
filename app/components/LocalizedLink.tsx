@@ -1,17 +1,20 @@
+import * as React from 'react';
+
 import { NavLink, type NavLinkProps } from '@remix-run/react';
 
 import { useLocalizedPathname } from '~/hooks/useLocalizedPathname';
 
-const LocalizedLink: React.FunctionComponent<NavLinkProps> = ({
-  to,
-  ...props
-}) => {
-  const getLocalizedPath = useLocalizedPathname();
-
-  return <NavLink to={getLocalizedPath(to)} {...props} />;
-};
+const LocalizedLink = React.forwardRef<HTMLAnchorElement, NavLinkProps>(
+  ({ children, to, ...props }, ref) => {
+    const getLocalizedPath = useLocalizedPathname();
+    return (
+      <NavLink ref={ref} to={getLocalizedPath(to)} {...props}>
+        {children}
+      </NavLink>
+    );
+  },
+);
 
 LocalizedLink.displayName = 'LocalizedLink';
-LocalizedLink.propTypes = NavLink.propTypes;
 
 export { LocalizedLink };

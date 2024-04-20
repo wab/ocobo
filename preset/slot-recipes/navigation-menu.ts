@@ -173,7 +173,7 @@ export const navigationMenu = defineSlotRecipe({
       },
     },
     indicator: {
-      top: '95%',
+      top: 'calc(100% - 9px)',
       zIndex: '1',
       display: 'flex',
       h: '10px',

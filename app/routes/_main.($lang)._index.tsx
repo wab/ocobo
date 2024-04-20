@@ -65,6 +65,21 @@ export default function Index() {
           <img src="/illus/homepage_hero.svg" alt="" />
         </div>
       </div>
+      <div
+        className={grid({
+          columns: 12,
+          gap: '4',
+          gridTemplateRows: '[800px]',
+          alignItems: 'center',
+        })}
+      >
+        <div>
+          Lorem ipsum dolor sit amet consectetur adipisicing elit. Eaque nam
+          asperiores soluta suscipit molestiae, ex iste optio commodi sed,
+          maiores in corporis? Delectus eos repudiandae totam ullam molestias
+          labore dolorum.
+        </div>
+      </div>
     </div>
   );
 }
