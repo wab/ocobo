@@ -1,7 +1,7 @@
 import { spacing } from './spacing';
 
 const largeSizes = {
-  xs: { value: '20rem' },
+  xs: { value: '15rem' },
   sm: { value: '24rem' },
   md: { value: '28rem' },
   lg: { value: '32rem' },
@@ -12,7 +12,7 @@ const largeSizes = {
   '5xl': { value: '64rem' },
   '6xl': { value: '72rem' },
   '7xl': { value: '80rem' },
-  '8xl': { value: '95rem' },
+  '8xl': { value: '98rem' },
   prose: { value: '65ch' },
 };
 
