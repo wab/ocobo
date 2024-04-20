@@ -3,6 +3,7 @@ node_modules
 /.cache
 /build
 .env
+/.vercel
 
 .DS_store
 

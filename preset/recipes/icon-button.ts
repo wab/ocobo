@@ -26,7 +26,7 @@ export const iconButton = defineRecipe({
 
     _disabled: {
       pointerEvents: 'none',
-      bg: 'muted.DEFAULT',
+      bg: 'muted',
       color: 'muted.foreground',
       cursor: 'not-allowed',
     },
