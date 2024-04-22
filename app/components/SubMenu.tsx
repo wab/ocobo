@@ -8,7 +8,7 @@ const SubMenuRoot = styled('ul', {
 const SubMenuItem = styled('li', {
   base: {
     borderLeft: 'thick',
-    textStyle: 'subnav',
+    textStyle: 'nav',
 
     '& > a': {
       px: '2',
