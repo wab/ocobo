@@ -4,10 +4,10 @@ import { Check, ChevronRight, Menu, X } from 'lucide-react';
 import { css, cx } from '@ocobo/styled-system/css';
 import { styled } from '@ocobo/styled-system/jsx';
 import { container, grid, hstack, vstack } from '@ocobo/styled-system/patterns';
-import { icon, typography } from '@ocobo/styled-system/recipes';
+import { icon } from '@ocobo/styled-system/recipes';
 
 import { Button } from '~/components/ui/Button';
-import { Callout } from '~/components/ui/Callout';
+import { Card } from '~/components/ui/Card';
 import { Illustration } from '~/components/ui/Illustration';
 import { Input } from '~/components/ui/Input';
 import { Label } from '~/components/ui/Label';
@@ -35,7 +35,7 @@ const Section = styled('section', {
   },
 });
 
-const sectionTitle = cx(typography({ variant: 'heading2' }), css({ mb: '4' }));
+const sectionTitle = css({ textStyle: 'heading2', mb: '4' });
 
 const ColorBox = styled('div', {
   base: {
@@ -84,18 +84,18 @@ export default function Index() {
           marginBottom: '8',
         })}
       >
-        <h1 className={typography({ variant: 'heading1' })}>Design System</h1>
+        <h1 className={css({ textStyle: 'heading1' })}>Design System</h1>
       </header>
       <Section>
         <h2 className={sectionTitle}>Logo</h2>
         <Logocobo width="300" />
       </Section>
       <Section>
-        <h2 className={sectionTitle}>Typography</h2>
+        <h2 className={sectionTitle}>css</h2>
         <ul className={css({ maxWidth: 'prose' })}>
           <li>
             <span className={fontTitle}>heading1</span>
-            <p className={typography({ variant: 'heading1' })}>
+            <p className={css({ textStyle: 'heading1' })}>
               RevOps pour Entreprises Modernes
             </p>
           </li>
@@ -105,14 +105,14 @@ export default function Index() {
           </li>
           <li>
             <span className={fontTitle}>heading3</span>
-            <p className={typography({ variant: 'heading3' })}>
+            <p className={css({ textStyle: 'heading3' })}>
               Agence leader en revenue operations et stratégies revenus b2b &
               b2c
             </p>
           </li>
           <li>
             <span className={fontTitle}>large</span>
-            <p className={typography({ variant: 'large' })}>
+            <p className={css({ textStyle: 'large' })}>
               Nous vous aidons à transformer l’organisation et les processus de
               vos équipes Revenues pour leur permettre d’être plus performantes
               et d’atteindre vos objectifs de croissance et de rentabilité.
@@ -120,7 +120,7 @@ export default function Index() {
           </li>
           <li>
             <span className={fontTitle}>medium</span>
-            <p className={typography()}>
+            <p className={css()}>
               Nous vous aidons à transformer l’organisation et les processus de
               vos équipes Revenues pour leur permettre d’être plus performantes
               et d’atteindre vos objectifs de croissance et de rentabilité.
@@ -128,7 +128,7 @@ export default function Index() {
           </li>
           <li>
             <span className={fontTitle}>small</span>
-            <p className={typography({ variant: 'small' })}>
+            <p className={css({ textStyle: 'small' })}>
               Nous vous aidons à transformer l’organisation et les processus de
               vos équipes Revenues pour leur permettre d’être plus performantes
               et d’atteindre vos objectifs de croissance et de rentabilité.
@@ -136,7 +136,7 @@ export default function Index() {
           </li>
           <li>
             <span className={fontTitle}>nav</span>
-            <p className={typography({ variant: 'nav' })}>navigation item</p>
+            <p className={css({ textStyle: 'nav' })}>navigation item</p>
           </li>
         </ul>
       </Section>
@@ -321,75 +321,167 @@ export default function Index() {
         </ul>
       </Section>
       <Section>
-        <h2 className={sectionTitle}>Callout</h2>
+        <h2 className={sectionTitle}>Card</h2>
         <ul className={grid({ columns: 2, gap: '10', maxWidth: '[1200px]' })}>
           <li>
-            <Callout title="Stratégies Revenue Operations">
-              <p className={typography({ variant: 'large' })}>
-                Nos experts en stratégies Revenue vous fournissent un plan
-                d’actions RevOps, comprennent vos équipes et vos processus,
-                optimisent la data, et brisent les silos.
-              </p>
-              <p>
-                Analyses du funnel et mapping du customer journey. Organisation
-                d’équipes. Forecasting & budgets. Segmentation. Territory
-                Planning.
-              </p>
-              <p>
-                <Link href="#">En savoir plus</Link>
-              </p>
-            </Callout>
+            <Card.Root variant="yellow">
+              <Card.Title>Stratégies Revenue Operations</Card.Title>
+              <Card.Content>
+                <p className={css({ textStyle: 'large' })}>
+                  Nos experts en stratégies Revenue vous fournissent un plan
+                  d’actions RevOps, comprennent vos équipes et vos processus,
+                  optimisent la data, et brisent les silos.
+                </p>
+                <p>
+                  Analyses du funnel et mapping du customer journey.
+                  Organisation d’équipes. Forecasting & budgets. Segmentation.
+                  Territory Planning.
+                </p>
+                <p>
+                  <Link href="#">En savoir plus</Link>
+                </p>
+              </Card.Content>
+            </Card.Root>
           </li>
           <li>
-            <Callout variant="sky" title="Stratégies Revenue Operations">
-              <p className={typography({ variant: 'large' })}>
-                Nos experts en stratégies Revenue vous fournissent un plan
-                d’actions RevOps, comprennent vos équipes et vos processus,
-                optimisent la data, et brisent les silos.
-              </p>
-              <p>
-                Analyses du funnel et mapping du customer journey. Organisation
-                d’équipes. Forecasting & budgets. Segmentation. Territory
-                Planning.
-              </p>
-              <p>
-                <Link href="#">En savoir plus</Link>
-              </p>
-            </Callout>
+            <Card.Root variant="sky">
+              <Card.Title>Stratégies Revenue Operations</Card.Title>
+              <Card.Content>
+                <p className={css({ textStyle: 'large' })}>
+                  Nos experts en stratégies Revenue vous fournissent un plan
+                  d’actions RevOps, comprennent vos équipes et vos processus,
+                  optimisent la data, et brisent les silos.
+                </p>
+                <p>
+                  Analyses du funnel et mapping du customer journey.
+                  Organisation d’équipes. Forecasting & budgets. Segmentation.
+                  Territory Planning.
+                </p>
+                <p>
+                  <Link href="#">En savoir plus</Link>
+                </p>
+              </Card.Content>
+            </Card.Root>
           </li>
           <li>
-            <Callout variant="mint" title="Stratégies Revenue Operations">
-              <p className={typography({ variant: 'large' })}>
-                Nos experts en stratégies Revenue vous fournissent un plan
-                d’actions RevOps, comprennent vos équipes et vos processus,
-                optimisent la data, et brisent les silos.
-              </p>
-              <p>
-                Analyses du funnel et mapping du customer journey. Organisation
-                d’équipes. Forecasting & budgets. Segmentation. Territory
-                Planning.
-              </p>
-              <p>
-                <Link href="#">En savoir plus</Link>
-              </p>
-            </Callout>
+            <Card.Root variant="mint">
+              <Card.Title>Stratégies Revenue Operations</Card.Title>
+              <Card.Content>
+                <p className={css({ textStyle: 'large' })}>
+                  Nos experts en stratégies Revenue vous fournissent un plan
+                  d’actions RevOps, comprennent vos équipes et vos processus,
+                  optimisent la data, et brisent les silos.
+                </p>
+                <p>
+                  Analyses du funnel et mapping du customer journey.
+                  Organisation d’équipes. Forecasting & budgets. Segmentation.
+                  Territory Planning.
+                </p>
+                <p>
+                  <Link href="#">En savoir plus</Link>
+                </p>
+              </Card.Content>
+            </Card.Root>
           </li>
           <li>
-            <Callout variant="coral" title="Stratégies Revenue Operations">
-              <p className={typography({ variant: 'large' })}>
-                Nos experts en stratégies Revenue vous fournissent un plan
-                d’actions RevOps, comprennent vos équipes et vos processus,
-                optimisent la data, et brisent les silos.
-              </p>
-              <p>
-                Analyses du funnel et mapping du customer journey. Organisation
-                d’équipes. Forecasting & budgets. Segmentation. Territory
-                Planning.
-              </p>
-              <p>
-                <Link href="#">En savoir plus</Link>
-              </p>
-            </Callout>
+            <Card.Root variant="coral">
+              <Card.Title>Stratégies Revenue Operations</Card.Title>
+              <Card.Content>
+                <p className={css({ textStyle: 'large' })}>
+                  Nos experts en stratégies Revenue vous fournissent un plan
+                  d’actions RevOps, comprennent vos équipes et vos processus,
+                  optimisent la data, et brisent les silos.
+                </p>
+                <p>
+                  Analyses du funnel et mapping du customer journey.
+                  Organisation d’équipes. Forecasting & budgets. Segmentation.
+                  Territory Planning.
+                </p>
+                <p>
+                  <Link href="#">En savoir plus</Link>
+                </p>
+              </Card.Content>
+            </Card.Root>
+          </li>
+          <li>
+            <Card.Root variant="yellow" isColoured>
+              <Card.Title>Stratégies Revenue Operations</Card.Title>
+              <Card.Content>
+                <p className={css({ textStyle: 'large' })}>
+                  Nos experts en stratégies Revenue vous fournissent un plan
+                  d’actions RevOps, comprennent vos équipes et vos processus,
+                  optimisent la data, et brisent les silos.
+                </p>
+                <p>
+                  Analyses du funnel et mapping du customer journey.
+                  Organisation d’équipes. Forecasting & budgets. Segmentation.
+                  Territory Planning.
+                </p>
+                <p>
+                  <Link href="#">En savoir plus</Link>
+                </p>
+              </Card.Content>
+            </Card.Root>
+          </li>
+          <li>
+            <Card.Root variant="sky" isColoured>
+              <Card.Title>Stratégies Revenue Operations</Card.Title>
+              <Card.Content>
+                <p className={css({ textStyle: 'large' })}>
+                  Nos experts en stratégies Revenue vous fournissent un plan
+                  d’actions RevOps, comprennent vos équipes et vos processus,
+                  optimisent la data, et brisent les silos.
+                </p>
+                <p>
+                  Analyses du funnel et mapping du customer journey.
+                  Organisation d’équipes. Forecasting & budgets. Segmentation.
+                  Territory Planning.
+                </p>
+                <p>
+                  <Link href="#">En savoir plus</Link>
+                </p>
+              </Card.Content>
+            </Card.Root>
+          </li>
+          <li>
+            <Card.Root variant="mint" isColoured>
+              <Card.Title>Stratégies Revenue Operations</Card.Title>
+              <Card.Content>
+                <p className={css({ textStyle: 'large' })}>
+                  Nos experts en stratégies Revenue vous fournissent un plan
+                  d’actions RevOps, comprennent vos équipes et vos processus,
+                  optimisent la data, et brisent les silos.
+                </p>
+                <p>
+                  Analyses du funnel et mapping du customer journey.
+                  Organisation d’équipes. Forecasting & budgets. Segmentation.
+                  Territory Planning.
+                </p>
+                <p>
+                  <Link href="#">En savoir plus</Link>
+                </p>
+              </Card.Content>
+            </Card.Root>
+          </li>
+          <li>
+            <Card.Root variant="coral" isColoured>
+              <Card.Title>Stratégies Revenue Operations</Card.Title>
+              <Card.Content>
+                <p className={css({ textStyle: 'large' })}>
+                  Nos experts en stratégies Revenue vous fournissent un plan
+                  d’actions RevOps, comprennent vos équipes et vos processus,
+                  optimisent la data, et brisent les silos.
+                </p>
+                <p>
+                  Analyses du funnel et mapping du customer journey.
+                  Organisation d’équipes. Forecasting & budgets. Segmentation.
+                  Territory Planning.
+                </p>
+                <p>
+                  <Link href="#">En savoir plus</Link>
+                </p>
+              </Card.Content>
+            </Card.Root>
           </li>
         </ul>
       </Section>
