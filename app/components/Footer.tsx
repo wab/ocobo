@@ -32,7 +32,7 @@ const FooterMenu: React.FunctionComponent<{
   return (
     <div>
       <Title>{title}</Title>
-      <ul className={typography({ variant: 'small' })}>
+      <ul className={css({ textStyle: 'small' })}>
         {items.map(({ title, path }) => (
           <li key={title} className={css({ mb: '3' })}>
             <NavLink

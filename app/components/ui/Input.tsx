@@ -1,5 +1,4 @@
-import { cva, cx } from '@ocobo/styled-system/css';
-import { typography } from '@ocobo/styled-system/recipes';
+import { css, cva, cx } from '@ocobo/styled-system/css';
 
 const input = cva({
   base: {
@@ -49,7 +48,7 @@ const Input: React.FunctionComponent<InputProps> = ({
   <input
     className={cx(
       input({ error: isError }),
-      typography({ variant: 'small' }),
+      css({ textStyle: 'small' }),
       className,
     )}
     {...props}

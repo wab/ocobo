@@ -4,7 +4,16 @@ import {
   type MetaFunction,
 } from '@remix-run/node';
 
-import { Hero } from '~/components/homepage';
+import {
+  Aligned,
+  Better,
+  Contact,
+  Faster,
+  Hero,
+  Stories,
+  Stronger,
+  Tools,
+} from '~/components/homepage';
 import i18nServer from '~/localization/i18n.server';
 import { getLang } from '~/utils/lang';
 
@@ -24,5 +33,16 @@ export const meta: MetaFunction<typeof loader> = ({ data }) => {
 };
 
 export default function Index() {
-  return <Hero />;
+  return (
+    <div>
+      <Hero />
+      <Stories />
+      <Faster />
+      <Better />
+      <Aligned />
+      <Stronger />
+      <Tools />
+      <Contact />
+    </div>
+  );
 }

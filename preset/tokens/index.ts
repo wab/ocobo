@@ -52,4 +52,20 @@ export const tokens = defineTokens({
   },
   spacing,
   sizes,
+  assets: {
+    checked: {
+      value: {
+        type: 'svg',
+        value:
+          '<svg width="38" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 38 27"><path stroke="#9ADBBA" stroke-width="5" d="m1.768 10.232 11 11M35.768 1.768l-23 23"/></svg>',
+      },
+    },
+    unchecked: {
+      value: {
+        type: 'svg',
+        value:
+          '<svg height="27" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 28 27"><path stroke="#FE9C87" stroke-width="5" d="m25.768 1.768-23 23M25.232 24.768l-23-23"/></svg>',
+      },
+    },
+  },
 });

@@ -3,5 +3,45 @@
   "meta.description": "Ocobo vous permet de faire plus avec moins. Organisez vos équipes, déployez des processus de pointe et boostez vos performances",
   "hero.title": "RevOps pour\n Entreprises Modernes",
   "hero.subtitle": "Agence leader en revenue operations et stratégies revenus b2b & b2c",
-  "hero.description": "Nous vous aidons à transformer l’organisation et les processus de vos équipes Revenues pour les rendre plus performantes et vous permettre d’atteindre vos objectifs de croissance et de rentabilité"
+  "hero.description": "Nous vous aidons à transformer l’organisation et les processus de vos équipes Revenues pour les rendre plus performantes et vous permettre d’atteindre vos objectifs de croissance et de rentabilité",
+  "faster.title": "Plus vite à vos fins",
+  "faster.subtitle": "Profitez de la double compétence métier et technique de ceux qui l’ont déjà fait. ",
+  "faster.description": "Atteignez vos objectifs et accélérez les initiatives de vos équipes Revenues - Marketing, Sales, Clients - grâce aux meilleures stratégies RevOps, et de l’aide d’experts intégrés à votre équipe. Nous évaluons votre organisation, identifions les bons leviers de croissance et travaillons dans le détail avec vous pour y parvenir.",
+  "faster.items": [
+    "Faites plus avec moins de ressources",
+    "Gagnez en performance avec des stratégies et des process de pointe",
+    "Planifiez, lancez et scalez des projets RevOps"
+  ],
+  "better.title": "Avec la meilleure\n agence du marché",
+  "better.cards.0.title": "Ocobo",
+  "better.cards.0.items": [
+    "Allie connaissance métier et expertise technique",
+    "Structure et présente de la donnée utile",
+    "Déploie les dernières stratégies et les meilleurs pratiques",
+    "Brise les silos et connecte vos équipes"
+  ],
+  "better.cards.1.title": "Les intégrateurs\n et les cabinets de conseil",
+  "better.cards.1.items": [
+    "Spécialistes d’un outil ou d’une thématique",
+    "Vous noient sous les tableaux",
+    "Utilisent des frameworks datés",
+    "Favorisent les silos (Sales Ops, Marketing Ops, CS Ops…)"
+  ],
+  "aligned.title": "Alignés sur vos objectifs",
+  "aligned.subtitle": "Un nouvel outil ne paiera pas vos factures.",
+  "aligned.description": "Nous nous concentrons sur les principaux facteurs de croissance et d'évolution d'une entreprise, tels que le revenu, le pipeline, et les métriques composant le NRR et la Sales Velocity.",
+  "aligned.cta": "Découvrez nos cas clients",
+  "stronger.title": "Remarquable seul.\n Incroyables ensemble.",
+  "stronger.description": "Nous analysons vos objectifs et initiatives clés, identifions vos principaux leviers de croissance, et élaborons un plan personnalisé pour vous aider à les atteindre.",
+  "stronger.cards.0.title": "Stratégies Revenue Operations",
+  "stronger.cards.0.description": "Nos experts en stratégies Revenue vous fournissent un plan d’actions RevOps, comprennent vos équipes et vos processus, optimisent la data, et brisent les silos.",
+  "stronger.cards.0.caption": "Analyses du funnel et mapping du customer journey. Organisation d’équipes. Forecasting & budgets. Segmentation. Territory Planning.",
+  "stronger.cards.1.title": "Projets RevOps",
+  "stronger.cards.1.description": "L'appui d'experts en exécution accélère le déploiement de vos initiatives et vous permet de profiter de l’expertise de ceux qui l’ont déjà fait.",
+  "stronger.cards.1.caption": "Process de ventes. Support clients. Reports & Dashboards. Plan de rémunérations. Setup d’acquisition Inbound & Outbound.",
+  "tools.title": "Experts de vos technologies",
+  "tools.description": "Nous collaborons directement au sein de vos systèmes et outils avec votre équipe, en élaborant une architecture robuste, qui évoluera avec le développement l’entreprise.",
+  "contact.title": "Rencontrez un Expert RevOps",
+  "contact.subtitle": "Prenez rendez-vous pour découvrir si nous sommes le partenaire idéal pour vous accompagner dans votre croissance.",
+  "contact.description": "Nous évaluerons votre situation pour déterminer si nous pouvons vous aider."
 }

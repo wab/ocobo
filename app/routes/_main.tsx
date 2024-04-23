@@ -1,8 +1,7 @@
 import type { LoaderFunctionArgs } from '@remix-run/node';
 import { Outlet, redirect } from '@remix-run/react';
 
-import { css, cx } from '@ocobo/styled-system/css';
-import { typography } from '@ocobo/styled-system/recipes';
+import { css } from '@ocobo/styled-system/css';
 
 import { Footer } from '~/components/Footer';
 import { Header } from '~/components/Header';
@@ -24,13 +23,11 @@ export default function Index() {
     <MobileMenuProvider>
       <MainMobileMenu />
       <div
-        className={cx(
-          typography(),
-          css({
-            color: 'foreground',
-            bg: 'background',
-          }),
-        )}
+        className={css({
+          color: 'foreground',
+          bg: 'background',
+          textStyle: 'medium',
+        })}
       >
         <Header />
         <Outlet />

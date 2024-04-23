@@ -28,8 +28,20 @@ export const typography = defineRecipe({
         textStyle: 'nav',
       },
     },
+    align: {
+      left: {
+        textAlign: 'left',
+      },
+      center: {
+        textAlign: 'center',
+      },
+      right: {
+        textAlign: 'right',
+      },
+    },
   },
   defaultVariants: {
     variant: 'medium',
+    align: 'left',
   },
 });

@@ -4,5 +4,12 @@
   "title": "Rencontrez un vrai spécialiste des Revenue Operations. Pas un SDR ni un BDR.",
   "desc.1": "Après avoir rempli le formulaire, vous serez invité à choisir un horaire de rendez-vous.",
   "desc.2": "Lors de notre premier échange, nous déterminons si, et comment, nous pouvons vous aider.",
-  "desc.3": "Ensuite, nous élaborons pour vous un plan sur mesure, que nous exécuterons pour atteindre ensemble vos objectifs."
+  "desc.3": "Ensuite, nous élaborons pour vous un plan sur mesure, que nous exécuterons pour atteindre ensemble vos objectifs.",
+  "form.email": "E-mail professionnel",
+  "form.firstname": "Prénom",
+  "form.lastname": "Nom",
+  "form.job": "Intitulé du poste",
+  "form.team": "Combien de personnes compte votre équipe Revenue (Sales, CS, Marketing) ?",
+  "form.source": "Comment avez-vous entendu parler de nous ?",
+  "form.submit": "Continuer"
 }

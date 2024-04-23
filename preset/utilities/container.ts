@@ -15,7 +15,6 @@ export const container: UtilityConfig = {
         '@breakpoint sm': {
           maxWidth: breakpoints['sm'],
         },
-
         '@breakpoint md': {
           maxWidth: breakpoints['md'],
         },

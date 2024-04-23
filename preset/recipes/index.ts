@@ -3,6 +3,7 @@ import { icon } from './icon';
 import { iconButton } from './icon-button';
 import { input } from './input';
 import { link } from './link';
+import { section } from './section';
 import { typography } from './typography';
 
 export const recipes = {
@@ -12,4 +13,5 @@ export const recipes = {
   link,
   input,
   icon,
+  section,
 };
