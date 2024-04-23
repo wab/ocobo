@@ -3,12 +3,13 @@ import { useTranslation } from 'react-i18next';
 
 import { css, cx } from '@ocobo/styled-system/css';
 import { Flex, Grid, GridItem, styled } from '@ocobo/styled-system/jsx';
-import { container, flex } from '@ocobo/styled-system/patterns';
-import { button, icon, typography } from '@ocobo/styled-system/recipes';
+import { flex } from '@ocobo/styled-system/patterns';
+import { button, icon } from '@ocobo/styled-system/recipes';
 
 import { useLocalizedPathname } from '~/hooks/useLocalizedPathname';
 
 import { LanguageSwitcher } from './LanguageSwitcher';
+import { Container } from './ui/Container';
 import { Input } from './ui/Input';
 import { Logocobo } from './ui/Logocobo';
 
@@ -123,7 +124,7 @@ const Footer = () => {
           }),
         )}
       >
-        <div className={container()}>
+        <Container>
           <Grid columns={12} className={css({ py: '4' })}>
             <GridItem
               colSpan={{ base: 12, lg: 3 }}
@@ -133,7 +134,7 @@ const Footer = () => {
                 alignItems: { base: 'center', lg: 'start' },
               })}
             >
-              <Logocobo height="50" className={css({ fill: 'current' })} />
+              <Logocobo height="46" className={css({ fill: 'current' })} />
               <Socials />
               <Link to={getLocalizedPath('/contact')} className={button()}>
                 {t('contact.cta')}
@@ -206,10 +207,10 @@ const Footer = () => {
               </div>
             </GridItem>
           </Grid>
-        </div>
+        </Container>
       </div>
 
-      <div className={container()}>
+      <Container>
         <Flex
           direction={{ base: 'column', lg: 'row' }}
           gap={4}
@@ -217,6 +218,7 @@ const Footer = () => {
             minHeight: '[90px]',
             alignItems: 'center',
             py: '4',
+            textStyle: 'small',
           })}
         >
           <div>
@@ -232,7 +234,7 @@ const Footer = () => {
             <Link to="/cgu">Conditions d&apos;utilisations</Link>
           </div>
         </Flex>
-      </div>
+      </Container>
     </footer>
   );
 };

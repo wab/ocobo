@@ -3,11 +3,12 @@ import { Check, ChevronRight, Menu, X } from 'lucide-react';
 
 import { css, cx } from '@ocobo/styled-system/css';
 import { styled } from '@ocobo/styled-system/jsx';
-import { container, grid, hstack, vstack } from '@ocobo/styled-system/patterns';
+import { grid, hstack, vstack } from '@ocobo/styled-system/patterns';
 import { icon } from '@ocobo/styled-system/recipes';
 
 import { Button } from '~/components/ui/Button';
 import { Card } from '~/components/ui/Card';
+import { Container } from '~/components/ui/Container';
 import { Illustration } from '~/components/ui/Illustration';
 import { Input } from '~/components/ui/Input';
 import { Label } from '~/components/ui/Label';
@@ -78,7 +79,7 @@ const fontTitle = css({
 
 export default function Index() {
   return (
-    <div className={container()}>
+    <Container>
       <header
         className={css({
           marginBottom: '8',
@@ -626,6 +627,6 @@ export default function Index() {
           <li>col 12</li>
         </ul>
       </Section>
-    </div>
+    </Container>
   );
 }

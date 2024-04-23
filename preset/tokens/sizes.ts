@@ -12,7 +12,7 @@ const largeSizes = {
   '5xl': { value: '64rem' },
   '6xl': { value: '72rem' },
   '7xl': { value: '80rem' },
-  '8xl': { value: '98rem' },
+  '8xl': { value: '82rem' },
   prose: { value: '65ch' },
 };
 
@@ -21,11 +21,11 @@ export const sizes = {
   ...largeSizes,
   full: { value: '100%' },
   screen: { value: '100vw' },
-  mobile: { value: '80%' },
-  desktop: { value: '98rem' },
+  mobile: { value: '84vw' },
+  desktop: { value: '75rem' },
+  xlarge: { value: '82rem' },
   min: { value: 'min-content' },
   max: { value: 'max-content' },
   fit: { value: 'fit-content' },
-  button: { value: '55px' },
   input: { value: '40px' },
 };

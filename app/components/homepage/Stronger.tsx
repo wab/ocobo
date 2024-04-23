@@ -2,10 +2,11 @@ import { useTranslation } from 'react-i18next';
 
 import { css, cx } from '@ocobo/styled-system/css';
 import { Grid, GridItem } from '@ocobo/styled-system/jsx';
-import { container, flex } from '@ocobo/styled-system/patterns';
+import { container } from '@ocobo/styled-system/patterns';
 import { link, section } from '@ocobo/styled-system/recipes';
 
 import { Card } from '../ui/Card';
+import { Container } from '../ui/Container';
 import { Link } from '../ui/Link';
 
 const Stronger = () => {
@@ -17,7 +18,7 @@ const Stronger = () => {
         className={css({
           layerStyle: 'reversed',
           w: 'full',
-          h: '450px',
+          h: '320px',
           pos: 'absolute',
           bottom: '0',
         })}
@@ -44,13 +45,10 @@ const Stronger = () => {
         </div>
       </div>
 
-      <div
-        className={cx(
-          container({
-            maxWidth: { base: 'mobile', lg: 'desktop' },
-            pt: { base: '8', md: '16', xl: '24' },
-          }),
-        )}
+      <Container
+        className={css({
+          pt: { base: '8', md: '16', xl: '24' },
+        })}
       >
         <div
           className={container({
@@ -80,8 +78,8 @@ const Stronger = () => {
           alignItems="stretch"
           className={cx(section())}
         >
-          <GridItem className={css({ hideBelow: 'xl' })} />
-          <GridItem colSpan={{ base: 1, lg: 6, xl: 5 }}>
+          <GridItem className={css({ hideBelow: 'lg' })} />
+          <GridItem colSpan={{ base: 1, lg: 5 }}>
             <Card.Root
               variant="yellow"
               isColoured
@@ -89,56 +87,40 @@ const Stronger = () => {
             >
               <Card.Title>{t('stronger.cards.0.title')}</Card.Title>
               <Card.Content>
-                <div
-                  className={flex({
-                    direction: 'column',
-                    gap: '4',
-                    h: { base: 'auto', lg: '420px' },
-                  })}
-                >
-                  <div className={css({ textStyle: 'large' })}>
-                    {t('stronger.cards.0.description')}
-                  </div>
-                  <div className={css({ hideBelow: 'lg' })}>
-                    {t('stronger.cards.0.caption')}
-                  </div>
-                  <div className={css({ mt: 'auto' })}>
-                    <Link className={link()}>
-                      {t('see_more', { ns: 'common' })}
-                    </Link>
-                  </div>
+                <div className={css({ textStyle: 'large' })}>
+                  {t('stronger.cards.0.description')}
+                </div>
+                <div className={css({ hideBelow: 'lg' })}>
+                  {t('stronger.cards.0.caption')}
+                </div>
+                <div className={css({ mt: 'auto' })}>
+                  <Link className={link()}>
+                    {t('see_more', { ns: 'common' })}
+                  </Link>
                 </div>
               </Card.Content>
             </Card.Root>
           </GridItem>
-          <GridItem colSpan={{ base: 1, lg: 6, xl: 5 }}>
+          <GridItem colSpan={{ base: 1, lg: 5 }}>
             <Card.Root variant="sky" isColoured className={css({ h: 'full' })}>
               <Card.Title>{t('stronger.cards.1.title')}</Card.Title>
               <Card.Content>
-                <div
-                  className={flex({
-                    direction: 'column',
-                    gap: '4',
-                    h: { base: 'auto', lg: '420px' },
-                  })}
-                >
-                  <div className={css({ textStyle: 'large' })}>
-                    {t('stronger.cards.1.description')}
-                  </div>
-                  <div className={css({ hideBelow: 'lg' })}>
-                    {t('stronger.cards.1.caption')}
-                  </div>
-                  <div className={css({ mt: 'auto' })}>
-                    <Link className={link()}>
-                      {t('see_more', { ns: 'common' })}
-                    </Link>
-                  </div>
+                <div className={css({ textStyle: 'large' })}>
+                  {t('stronger.cards.1.description')}
+                </div>
+                <div className={css({ hideBelow: 'lg' })}>
+                  {t('stronger.cards.1.caption')}
+                </div>
+                <div className={css({ mt: 'auto' })}>
+                  <Link className={link()}>
+                    {t('see_more', { ns: 'common' })}
+                  </Link>
                 </div>
               </Card.Content>
             </Card.Root>
           </GridItem>
         </Grid>
-      </div>
+      </Container>
     </section>
   );
 };

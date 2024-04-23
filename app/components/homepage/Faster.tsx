@@ -2,8 +2,9 @@ import { useTranslation } from 'react-i18next';
 
 import { css, cx } from '@ocobo/styled-system/css';
 import { Grid, GridItem, styled } from '@ocobo/styled-system/jsx';
-import { container } from '@ocobo/styled-system/patterns';
 import { section } from '@ocobo/styled-system/recipes';
+
+import { Container } from '../ui/Container';
 
 const List = styled('ul', {
   base: {
@@ -23,11 +24,7 @@ const Faster = () => {
   const items = t('faster.items', { returnObjects: true });
   return (
     <section className={cx(section(), css({ overflow: 'hidden' }))}>
-      <div
-        className={container({
-          maxWidth: { base: 'mobile', lg: 'desktop' },
-        })}
-      >
+      <Container>
         <Grid columns={{ base: 1, lg: 12 }}>
           <GridItem
             colSpan={{ base: 1, lg: 5 }}
@@ -42,7 +39,11 @@ const Faster = () => {
               <img
                 src="/illus/homepage_faster.svg"
                 alt=""
-                className={css({ w: 'full', maxWidth: '320px', mx: 'auto' })}
+                className={css({
+                  w: 'full',
+                  maxWidth: { base: '320px', lg: '220px', '2xl': '320px' },
+                  mx: 'auto',
+                })}
               />
             </div>
             <h2 className={css({ textStyle: 'heading1' })}>
@@ -88,7 +89,7 @@ const Faster = () => {
             </div>
           </GridItem>
         </Grid>
-      </div>
+      </Container>
     </section>
   );
 };

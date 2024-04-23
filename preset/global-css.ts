@@ -6,6 +6,7 @@ export const globalCss = defineGlobalStyles({
     textRendering: 'optimizeLegibility',
     WebkitFontSmoothing: 'antialiased',
     WebkitTextSizeAdjust: '100%',
+    fontSize: '16px',
   },
   body: {
     bg: 'background',
@@ -25,9 +26,4 @@ export const globalCss = defineGlobalStyles({
     color: 'inherit',
     textDecoration: 'none',
   },
-
-  // button: {
-  //   color: 'inherit',
-  //   outline: '2px solid transparent',
-  // },
 });

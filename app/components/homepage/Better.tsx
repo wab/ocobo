@@ -2,8 +2,9 @@ import { useTranslation } from 'react-i18next';
 
 import { css, cx } from '@ocobo/styled-system/css';
 import { Grid, GridItem, styled } from '@ocobo/styled-system/jsx';
-import { container } from '@ocobo/styled-system/patterns';
 import { section } from '@ocobo/styled-system/recipes';
+
+import { Container } from '../ui/Container';
 
 const Root = styled('div', {
   base: {
@@ -20,22 +21,22 @@ const Title = styled('h3', {
     textAlign: { base: 'center', md: 'left' },
     display: 'flex',
     alignItems: 'center',
-    minHeight: { base: '120px', md: '160px' },
-    px: { base: '8', md: '16' },
+    minHeight: '4em',
+    px: '1em',
   },
 });
 const List = styled('ul', {
   base: {
-    p: { base: '8', md: '16' },
+    p: '1.5em',
+    pr: '3em',
     textStyle: 'large',
     listStylePosition: 'outside',
 
     '& > li': {
-      pl: '48px',
+      pl: '1.5em',
       bgRepeat: 'no-repeat',
-      bgSize: '28px',
-      bgPosition: { base: '0 2px', lg: '0 6px' },
-      minHeight: '38px',
+      bgSize: '1em',
+      bgPosition: '0 0.25em',
     },
 
     '& > li + li': {
@@ -79,9 +80,7 @@ const Better = () => {
         }),
       )}
     >
-      <div
-        className={container({ maxWidth: { base: 'mobile', lg: 'desktop' } })}
-      >
+      <Container>
         <h2 className={css({ textStyle: 'heading1', textAlign: 'center' })}>
           {t('better.title')}
         </h2>
@@ -114,7 +113,7 @@ const Better = () => {
             </Card.Root>
           </GridItem>
         </Grid>
-      </div>
+      </Container>
     </section>
   );
 };
