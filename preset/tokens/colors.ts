@@ -2,6 +2,7 @@ export const colors = {
   current: { value: 'currentColor' },
   transparent: { value: 'transparent' },
   dark: { value: '#212323' },
+  darker: { value: '#000' },
   white: { value: '#ffffff' },
   yellow: {
     DEFAULT: { value: '#f1cf25' },

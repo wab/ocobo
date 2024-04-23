@@ -5,6 +5,6 @@ export const section = defineRecipe({
   description:
     'A section is a thematic grouping of content, typically with a heading.',
   base: {
-    py: { base: '8', md: '16', xl: '24' },
+    py: { base: '16', xl: '24' },
   },
 });

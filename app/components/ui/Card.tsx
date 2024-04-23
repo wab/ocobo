@@ -30,6 +30,8 @@ const Root: React.FunctionComponent<React.PropsWithChildren<CardRootProps>> = ({
             boxShadow: 'base',
             borderLeft: 'thick',
             borderColor: variant,
+            display: 'flex',
+            flexDirection: 'column',
           }),
           className,
         )}
@@ -49,10 +51,8 @@ const Title: React.FunctionComponent<React.PropsWithChildren> = (props) => {
         textStyle: 'heading2',
         borderBottom: 'thin',
         borderColor: variant,
-        pl: '8',
-        pr: '[25%]',
-        py: '6',
-        minHeight: '100px',
+        p: '0.5em 2.375rem 0.5em 2.375rem',
+        minHeight: '3em',
         display: 'flex',
         alignItems: 'center',
         boxSizing: 'content-box',
@@ -67,8 +67,12 @@ const Content: React.FunctionComponent<React.PropsWithChildren> = (props) => {
   return (
     <div
       className={css({
-        p: '8',
-        pr: '[25%]',
+        py: '2.375rem',
+        px: '2.375rem 4.5em',
+        display: 'flex',
+        flexDirection: 'column',
+        gap: '4',
+        flexGrow: 1,
       })}
     >
       {props.children}

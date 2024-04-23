@@ -3,106 +3,59 @@ import { defineTextStyles } from '@pandacss/dev';
 export const textStyles = defineTextStyles({
   heading1: {
     value: {
-      base: {
-        fontFamily: 'header',
-        fontWeight: 400,
-        fontSize: '26px',
-        lineHeight: 1.1,
-      },
-      md: {
-        fontSize: '36px',
-      },
-      xl: {
-        fontSize: '64px',
-      },
+      fontFamily: 'header',
+      fontWeight: 400,
+      fontSize: { base: '1.625rem', lg: '2.75rem', '2xl': '3.5rem' },
+      lineHeight: 1.1,
     },
   },
 
   heading2: {
     value: {
-      base: {
-        fontFamily: 'header',
-        fontWeight: 400,
-        fontSize: '24px',
-        lineHeight: 1.2,
-      },
-      md: {
-        fontSize: '30px',
-      },
-      xl: {
-        fontSize: '36px',
-      },
+      fontFamily: 'header',
+      fontWeight: 400,
+      fontSize: { base: '1.125rem', lg: '1.8rem', '2xl': '2rem' },
+      lineHeight: 1.2,
     },
   },
   heading3: {
     value: {
-      base: {
-        fontFamily: 'body',
-        fontWeight: 700,
-        fontSize: '20px',
-        lineHeight: 1.3,
-      },
-      md: {
-        fontSize: '24px',
-      },
-      xl: {
-        fontSize: '30px',
-      },
+      fontFamily: 'body',
+      fontWeight: 700,
+      fontSize: { base: '1.25rem', lg: '1.25rem', '2xl': '1.375rem' },
+      lineHeight: 1.3,
     },
   },
   small: {
     value: {
-      base: {
-        fontFamily: 'body',
-        fontWeight: 400,
-        fontSize: '12px',
-        lineHeight: 1.3,
-      },
-      md: {
-        fontSize: '14px',
-      },
-      xl: {
-        fontSize: '16px',
-      },
+      fontFamily: 'body',
+      fontWeight: 400,
+      fontSize: { base: '0.75rem', lg: '0.875rem', '2xl': '1rem' },
+      lineHeight: 1.3,
     },
   },
   medium: {
     value: {
-      base: {
-        fontFamily: 'body',
-        fontWeight: 400,
-        fontSize: '14px',
-        lineHeight: 1.3,
-      },
-      md: {
-        fontSize: '16px',
-      },
-      xl: {
-        fontSize: '20px',
-      },
+      fontFamily: 'body',
+      fontWeight: 400,
+      fontSize: { base: '1rem', lg: '1.125rem', '2xl': '1.25rem' },
+      lineHeight: 1.3,
     },
   },
   large: {
     value: {
-      base: {
-        fontFamily: 'body',
-        fontWeight: 400,
-        fontSize: '20px',
-        lineHeight: 1.3,
-      },
-      lg: {
-        fontSize: '28px',
-      },
+      fontFamily: 'body',
+      fontWeight: 400,
+      fontSize: { base: '1rem', lg: '1.25rem', '2xl': '1.375rem' },
+      lineHeight: 1.3,
     },
   },
   nav: {
     value: {
-      base: {
-        fontFamily: 'body',
-        fontWeight: 400,
-        fontSize: '20px',
-        lineHeight: 1,
-      },
+      fontFamily: 'body',
+      fontWeight: 400,
+      fontSize: { base: '1.2rem', lg: '1rem', '2xl': '1.125rem' },
+      lineHeight: 1,
     },
   },
 });

@@ -83,7 +83,8 @@ const LanguageSwitcher = () => {
       <Select.Trigger
         aria-label="Lang"
         className={css({
-          maxWidth: '[180px]',
+          maxWidth: 'none',
+          width: 'auto',
           backgroundColor: 'transparent',
           borderColor: 'transparent',
           color: 'current',

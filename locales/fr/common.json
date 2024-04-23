@@ -1,9 +1,9 @@
- {
+{
   "language.fr": "Français",
   "language.en": "Anglais",
   "navigation.services.title": "Services",
   "navigation.services.strategy": "Stratégies Revenue Operations",
-  "navigation.services.revops": "Projets RevOps",
+  "navigation.services.revops": "Projets Revenue Operations",
   "navigation.stories": "Success Stories",
   "navigation.company.title": "À propos",
   "navigation.company.about": "Qui sommes-nous ?",
@@ -21,7 +21,7 @@
   "footer.company.jobs": "Nous rejoindre",
   "footer.services.title": "Services",
   "footer.services.strategy": "Stratégies\n Revenue Operations",
-  "footer.services.revops": "Projets RevOps",
+  "footer.services.revops": "Projets Revenue Operations",
   "footer.resources.title": "En savoir plus",
   "footer.resources.events": "Webinars & Événements",
   "footer.resources.blog": "Blog",

@@ -3,14 +3,14 @@ import * as React from 'react';
 import { MenuIcon, X } from 'lucide-react';
 
 import { css, cx } from '@ocobo/styled-system/css';
-import { container, flex } from '@ocobo/styled-system/patterns';
+import { flex } from '@ocobo/styled-system/patterns';
 import { icon } from '@ocobo/styled-system/recipes';
 
 import { LocalizedLink } from './LocalizedLink';
 import { MainMenu } from './MainMenu';
 import { useMobileMenuContext } from './MobileMenu';
+import { Container } from './ui/Container';
 import { IconButton } from './ui/IconButton';
-import { Logocobo } from './ui/Logocobo';
 
 type ScrollState = 'at-top' | 'scrolling-up' | 'scrolling-down';
 
@@ -76,11 +76,7 @@ const Header: React.FunctionComponent<{ ghost?: boolean }> = ({ ghost }) => {
           }),
         )}
       >
-        <div
-          className={container({
-            height: 'full',
-          })}
-        >
+        <Container className={css({ height: 'full' })}>
           <div
             className={flex({
               alignItems: 'center',
@@ -89,7 +85,15 @@ const Header: React.FunctionComponent<{ ghost?: boolean }> = ({ ghost }) => {
             })}
           >
             <LocalizedLink to="/">
-              <Logocobo height="52" />
+              <img
+                src="/logo-ocobo.png"
+                alt="Ocobo"
+                className={css({
+                  display: 'block',
+                  height: '46px',
+                  translateY: '-5px',
+                })}
+              />
             </LocalizedLink>
             <MainMenu />
             <div
@@ -116,7 +120,7 @@ const Header: React.FunctionComponent<{ ghost?: boolean }> = ({ ghost }) => {
               </IconButton>
             </div>
           </div>
-        </div>
+        </Container>
       </div>
     </div>
   );

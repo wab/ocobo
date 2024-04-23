@@ -104,7 +104,7 @@ const MainMenu = () => {
               </SubMenu.Root>
             </NavigationMenu.Content>
           </NavigationMenu.Item>
-          <NavigationMenu.Item>
+          <NavigationMenu.Item className={css({ ml: '8' })}>
             <Button asChild variant="solid">
               <LocalizedLink to="/contact">{t('contact.cta')}</LocalizedLink>
             </Button>

@@ -3,19 +3,19 @@ import { useTranslation } from 'react-i18next';
 
 import { css, cx } from '@ocobo/styled-system/css';
 import { Flex, Grid, GridItem, styled } from '@ocobo/styled-system/jsx';
-import { container, flex } from '@ocobo/styled-system/patterns';
-import { button, icon, typography } from '@ocobo/styled-system/recipes';
+import { flex } from '@ocobo/styled-system/patterns';
+import { button, icon } from '@ocobo/styled-system/recipes';
 
 import { useLocalizedPathname } from '~/hooks/useLocalizedPathname';
 
 import { LanguageSwitcher } from './LanguageSwitcher';
+import { Container } from './ui/Container';
 import { Input } from './ui/Input';
 import { Logocobo } from './ui/Logocobo';
 
 const Title = styled('p', {
   base: {
-    color: 'white',
-    fontWeight: 'bold',
+    textStyle: 'medium',
     mb: '3',
   },
 });
@@ -112,35 +112,35 @@ const Footer = () => {
   const getLocalizedPath = useLocalizedPathname();
 
   return (
-    <footer className={css({})}>
+    <footer>
       <div
         className={cx(
           'dark',
           css({
             backgroundColor: 'background',
             color: 'foreground',
-            py: '12',
+            py: '1.75em',
           }),
         )}
       >
-        <div className={container()}>
-          <Grid columns={12} className={css({ py: '4' })}>
+        <Container>
+          <Grid columns={{ base: 2, lg: 12 }}>
             <GridItem
-              colSpan={{ base: 12, lg: 3 }}
+              colSpan={{ base: 2, lg: 3 }}
               className={css({
                 display: 'flex',
                 flexDirection: 'column',
                 alignItems: { base: 'center', lg: 'start' },
+                pb: { base: '6', lg: '0' },
               })}
             >
-              <Logocobo height="50" className={css({ fill: 'current' })} />
+              <Logocobo height="46" className={css({ fill: 'current' })} />
               <Socials />
               <Link to={getLocalizedPath('/contact')} className={button()}>
                 {t('contact.cta')}
               </Link>
             </GridItem>
-            <GridItem colSpan={1} className={css({ hideFrom: 'lg' })} />
-            <GridItem colSpan={{ base: 4, lg: 2 }}>
+            <GridItem colSpan={{ base: 1, lg: 2 }}>
               <FooterMenu
                 title={t('footer.company.title')}
                 items={[
@@ -155,8 +155,8 @@ const Footer = () => {
                 ]}
               />
             </GridItem>
-            <GridItem colSpan={2} className={css({ hideFrom: 'lg' })} />
-            <GridItem colSpan={{ base: 4, lg: 2 }}>
+
+            <GridItem colSpan={{ base: 1, lg: 2 }}>
               <FooterMenu
                 title={t('footer.services.title')}
                 items={[
@@ -171,9 +171,8 @@ const Footer = () => {
                 ]}
               />
             </GridItem>
-            <GridItem colSpan={1} className={css({ hideFrom: 'lg' })} />
-            <GridItem colSpan={1} className={css({ hideFrom: 'lg' })} />
-            <GridItem colSpan={{ base: 4, lg: 2 }}>
+
+            <GridItem colSpan={{ base: 1, lg: 2 }}>
               <FooterMenu
                 title={t('footer.resources.title')}
                 items={[
@@ -192,7 +191,7 @@ const Footer = () => {
                 ]}
               />
             </GridItem>
-            <GridItem colSpan={{ base: 12, lg: 2 }}>
+            <GridItem colSpan={{ base: 2, lg: 3 }}>
               <Title>{t('footer.newsletter.title')}</Title>
               <div className={css({ mb: '6' })}>
                 <Input placeholder="nom@email.com" />
@@ -206,17 +205,18 @@ const Footer = () => {
               </div>
             </GridItem>
           </Grid>
-        </div>
+        </Container>
       </div>
 
-      <div className={container()}>
+      <Container>
         <Flex
           direction={{ base: 'column', lg: 'row' }}
           gap={4}
           className={css({
-            minHeight: '[90px]',
+            minHeight: '5em',
             alignItems: 'center',
             py: '4',
+            textStyle: 'small',
           })}
         >
           <div>
@@ -232,7 +232,7 @@ const Footer = () => {
             <Link to="/cgu">Conditions d&apos;utilisations</Link>
           </div>
         </Flex>
-      </div>
+      </Container>
     </footer>
   );
 };

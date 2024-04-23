@@ -28,7 +28,7 @@ export const select = defineSlotRecipe({
       bg: 'white',
       px: '3',
       py: '2',
-      textStyle: 'small',
+      gap: '2',
       cursor: 'pointer',
       focusRingOffsetColor: 'background',
 
@@ -117,7 +117,6 @@ export const select = defineSlotRecipe({
       py: '1.5',
       pl: '8',
       pr: '2',
-      textStyle: 'small',
       fontWeight: 'bold',
     },
     item: {
@@ -129,7 +128,6 @@ export const select = defineSlotRecipe({
       py: '1.5',
       pl: '8',
       pr: '2',
-      textStyle: 'small',
       outline: '2px solid transparent',
 
       _focus: {

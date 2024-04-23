@@ -13,12 +13,12 @@ export const button = defineRecipe({
     transition: 'colors',
     cursor: 'pointer',
     border: 'thin',
-    height: 'button',
-    minWidth: '[200px]',
-    px: '8',
+    height: { base: '44px', '2xl': '50px' },
+    px: '4',
     gap: '2',
     textTransform: 'uppercase',
     textDecoration: 'none',
+    fontSize: 'medium',
 
     _focusVisible: {
       outline: 'none',

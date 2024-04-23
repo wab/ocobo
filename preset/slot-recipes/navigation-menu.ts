@@ -55,14 +55,15 @@ export const navigationMenu = defineSlotRecipe({
         transition: 'colors',
         transitionDuration: 'normal',
         transitionBehavior: 'smooth',
+        color: 'dark',
 
         _hover: {
           borderColor: 'gray',
-          color: 'accent.foreground',
+          color: 'darker',
         },
 
         _focus: {
-          bg: 'accent',
+          borderColor: 'gray',
           color: 'accent.foreground',
           outline: 'none',
         },
@@ -71,14 +72,6 @@ export const navigationMenu = defineSlotRecipe({
           pointerEvents: 'none',
           opacity: '50',
         },
-
-        // '&[data-active]': {
-        //   bga: 'accent/50',
-        // },
-
-        // '&[data-state=open]': {
-        //   bga: 'accent/50',
-        // },
       },
     },
     trigger: {

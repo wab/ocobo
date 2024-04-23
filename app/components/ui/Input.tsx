@@ -44,16 +44,7 @@ const Input: React.FunctionComponent<InputProps> = ({
   className,
   isError,
   ...props
-}) => (
-  <input
-    className={cx(
-      input({ error: isError }),
-      css({ textStyle: 'small' }),
-      className,
-    )}
-    {...props}
-  />
-);
+}) => <input className={cx(input({ error: isError }), className)} {...props} />;
 
 Input.displayName = 'Input';
 export { Input };

@@ -4,6 +4,7 @@ import pandaPreset from '@pandacss/preset-panda';
 import { breakpoints } from './breakpoints';
 import { conditions } from './conditions';
 import { globalCss } from './global-css';
+import { globalVars } from './global-vars';
 import { keyframes } from './keyframes';
 import { layerStyles } from './layer-styles';
 import { recipes } from './recipes';
@@ -15,10 +16,7 @@ import { utilities } from './utilities';
 
 export default definePreset({
   presets: [pandaPreset],
-  globalVars: {
-    // Add your global variables here
-    '--main-header-height': '110px',
-  },
+  globalVars,
   globalCss,
   conditions,
   utilities,
