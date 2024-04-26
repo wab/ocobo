@@ -71,6 +71,9 @@ dependencies:
   react-remove-scroll:
     specifier: ^2.5.9
     version: 2.5.9(@types/react@18.2.79)(react@18.2.0)
+  react-snap-carousel:
+    specifier: ^0.4.0
+    version: 0.4.0(react@18.2.0)
   remix-i18next:
     specifier: ^6.1.0
     version: 6.1.0(@remix-run/node@2.8.1)(@remix-run/react@2.8.1)(i18next@23.11.2)(react-i18next@14.1.0)(react@18.2.0)
@@ -6766,6 +6769,14 @@ packages:
       react: '>=16.8'
     dependencies:
       '@remix-run/router': 1.15.3
+      react: 18.2.0
+    dev: false
+
+  /react-snap-carousel@0.4.0(react@18.2.0):
+    resolution: {integrity: sha512-uPrXbH2BxJnPodQ+GwEYnbygGZ368RpnAJkNYyiOfko3i0D5cIAuSA4mz+pv9r/O5WhIMo5WOuP4DU56sO7QeA==}
+    peerDependencies:
+      react: ^16.8.0 || ^17.0.0 || ^18.0.0
+    dependencies:
       react: 18.2.0
     dev: false
 
