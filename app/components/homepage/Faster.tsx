@@ -5,6 +5,7 @@ import { Grid, GridItem, styled } from '@ocobo/styled-system/jsx';
 import { section } from '@ocobo/styled-system/recipes';
 
 import { Container } from '../ui/Container';
+import { Illustration } from '../ui/Illustration';
 
 const List = styled('ul', {
   base: {
@@ -36,8 +37,8 @@ const Faster = () => {
                 py: '8',
               })}
             >
-              <img
-                src="/illus/homepage_faster.svg"
+              <Illustration
+                name="homepage_faster"
                 alt=""
                 className={css({
                   w: 'full',
@@ -85,7 +86,7 @@ const Faster = () => {
                 translateY: '-50%',
               })}
             >
-              <img src="/illus/homepage_faster.svg" alt="" />
+              <Illustration name="homepage_faster" alt="" />
             </div>
           </GridItem>
         </Grid>

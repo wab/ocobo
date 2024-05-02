@@ -4,6 +4,7 @@ import { iconButton } from './icon-button';
 import { input } from './input';
 import { link } from './link';
 import { section } from './section';
+import { subtitle } from './subtitle';
 import { typography } from './typography';
 
 export const recipes = {
@@ -14,4 +15,5 @@ export const recipes = {
   input,
   icon,
   section,
+  subtitle,
 };

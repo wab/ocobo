@@ -43,37 +43,47 @@ const Root: React.FunctionComponent<React.PropsWithChildren<CardRootProps>> = ({
   );
 };
 
-const Title: React.FunctionComponent<React.PropsWithChildren> = (props) => {
+const Title: React.FunctionComponent<
+  React.PropsWithChildren<React.HTMLAttributes<HTMLDivElement>>
+> = (props) => {
   const { variant } = useCardContext('card');
   return (
     <div
-      className={css({
-        textStyle: 'heading2',
-        borderBottom: 'thin',
-        borderColor: variant,
-        p: '0.5em 2.375rem 0.5em 2.375rem',
-        minHeight: '3em',
-        display: 'flex',
-        alignItems: 'center',
-        boxSizing: 'content-box',
-      })}
+      className={cx(
+        css({
+          textStyle: 'heading2',
+          borderBottom: 'thin',
+          borderColor: variant,
+          p: '0.5em 2.375rem 0.5em 2.375rem',
+          minHeight: '3em',
+          display: 'flex',
+          alignItems: 'center',
+          boxSizing: 'content-box',
+        }),
+        props.className,
+      )}
     >
       {props.children}
     </div>
   );
 };
 
-const Content: React.FunctionComponent<React.PropsWithChildren> = (props) => {
+const Content: React.FunctionComponent<
+  React.PropsWithChildren<React.HTMLAttributes<HTMLDivElement>>
+> = (props) => {
   return (
     <div
-      className={css({
-        py: '2.375rem',
-        px: '2.375rem 4.5em',
-        display: 'flex',
-        flexDirection: 'column',
-        gap: '4',
-        flexGrow: 1,
-      })}
+      className={cx(
+        css({
+          py: '2.375rem',
+          px: '2.375rem 4.5em',
+          display: 'flex',
+          flexDirection: 'column',
+          gap: '4',
+          flexGrow: 1,
+        }),
+        props.className,
+      )}
     >
       {props.children}
     </div>

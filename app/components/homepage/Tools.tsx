@@ -96,7 +96,7 @@ const Tools = () => {
       </Container>
 
       <Carousel
-        className={css({ hideFrom: 'lg' })}
+        className={css({ hideFrom: 'lg', mt: 8 })}
         items={items}
         renderItem={({ item, isSnapPoint }) => (
           <CarouselItem key={item.src} isSnapPoint={isSnapPoint}>

@@ -5,7 +5,7 @@ export const textStyles = defineTextStyles({
     value: {
       fontFamily: 'header',
       fontWeight: 400,
-      fontSize: { base: '1.625rem', lg: '2.75rem', '2xl': '3.5rem' },
+      fontSize: { base: '1.625rem', lg: '2.75rem', '2xl': '3.25rem' },
       lineHeight: 1.1,
     },
   },

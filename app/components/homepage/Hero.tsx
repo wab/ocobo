@@ -4,9 +4,12 @@ import { css, cx } from '@ocobo/styled-system/css';
 import { Grid, GridItem } from '@ocobo/styled-system/jsx';
 import { section } from '@ocobo/styled-system/recipes';
 
+import { url } from '~/utils/url';
+
 import { LocalizedLink } from '../LocalizedLink';
 import { Button } from '../ui/Button';
 import { Container } from '../ui/Container';
+import { Illustration } from '../ui/Illustration';
 
 const Hero = () => {
   const { t } = useTranslation('home');
@@ -22,8 +25,8 @@ const Hero = () => {
             })}
           >
             <div className={cx(css({ hideFrom: 'lg', py: '8' }))}>
-              <img
-                src="/illus/homepage_hero_mobile.svg"
+              <Illustration
+                name="homepage_hero_mobile"
                 alt=""
                 className={css({ w: 'full', maxWidth: '320px', mx: 'auto' })}
               />
@@ -45,7 +48,7 @@ const Hero = () => {
               </p>
               <p>
                 <Button asChild>
-                  <LocalizedLink to="/contact">
+                  <LocalizedLink to={url.contact}>
                     {t('contact.cta', { ns: 'common' })}
                   </LocalizedLink>
                 </Button>
@@ -56,8 +59,8 @@ const Hero = () => {
             colSpan={{ base: 1, lg: 5 }}
             className={css({ hideBelow: 'lg' })}
           >
-            <img
-              src="/illus/homepage_hero.svg"
+            <Illustration
+              name="homepage_hero"
               alt=""
               className={css({ w: 'full' })}
             />

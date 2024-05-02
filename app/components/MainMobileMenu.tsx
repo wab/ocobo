@@ -5,6 +5,8 @@ import { css, cva, cx } from '@ocobo/styled-system/css';
 import { styled } from '@ocobo/styled-system/jsx';
 import { flex } from '@ocobo/styled-system/patterns';
 
+import { url } from '~/utils/url';
+
 import { Header } from './Header';
 import { LocalizedLink } from './LocalizedLink';
 import { MobileMenu } from './MobileMenu';
@@ -55,12 +57,12 @@ const MainMobileMenu = () => {
             <Accordion.Content>
               <SubMenu.Root>
                 <SubMenu.Item variant="yellow">
-                  <LocalizedLink to="/strategy">
+                  <LocalizedLink to={url.strategy}>
                     {t('navigation.services.strategy')}
                   </LocalizedLink>
                 </SubMenu.Item>
                 <SubMenu.Item variant="sky">
-                  <LocalizedLink to="/revops">
+                  <LocalizedLink to={url.project}>
                     {t('navigation.services.revops')}
                   </LocalizedLink>
                 </SubMenu.Item>
@@ -132,7 +134,7 @@ const MainMobileMenu = () => {
             })}
           >
             <Button asChild variant="solid">
-              <LocalizedLink to="/contact">
+              <LocalizedLink to={url.contact}>
                 {t('contact.cta', { ns: 'common' })}
               </LocalizedLink>
             </Button>

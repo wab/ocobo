@@ -5,8 +5,12 @@ import { Grid, GridItem } from '@ocobo/styled-system/jsx';
 import { container } from '@ocobo/styled-system/patterns';
 import { link, section } from '@ocobo/styled-system/recipes';
 
+import { url } from '~/utils/url';
+
+import { LocalizedLink } from '../LocalizedLink';
 import { Card } from '../ui/Card';
 import { Container } from '../ui/Container';
+import { Illustration } from '../ui/Illustration';
 import { Link } from '../ui/Link';
 
 const Stronger = () => {
@@ -41,7 +45,7 @@ const Stronger = () => {
             bg: 'white',
           })}
         >
-          <img src="/illus/homepage_stronger.svg" alt="" />
+          <Illustration name="homepage_stronger" alt="" />
         </div>
       </div>
 
@@ -101,7 +105,9 @@ const Stronger = () => {
                   className={css({ mt: 'auto', pt: '4', textStyle: 'small' })}
                 >
                   <Link className={link()}>
-                    {t('see_more', { ns: 'common' })}
+                    <LocalizedLink to={url.strategy}>
+                      {t('see_more', { ns: 'common' })}
+                    </LocalizedLink>
                   </Link>
                 </div>
               </Card.Content>

@@ -7,6 +7,7 @@ interface CarouselProps<T> extends React.HTMLAttributes<HTMLElement> {
   readonly renderItem: (
     props: CarouselRenderItemProps<T>,
   ) => React.ReactElement<CarouselItemProps>;
+  shouldDisplayDots?: boolean;
 }
 
 interface CarouselRenderItemProps<T> {
@@ -14,12 +15,14 @@ interface CarouselRenderItemProps<T> {
   readonly isSnapPoint: boolean;
 }
 
-export const Carousel = <T extends { src: string }>({
+export const Carousel = <T extends object>({
   items,
   renderItem,
+  shouldDisplayDots,
   ...props
 }: CarouselProps<T>) => {
-  const { scrollRef, snapPointIndexes } = useSnapCarousel();
+  const { scrollRef, snapPointIndexes, pages, activePageIndex, goTo } =
+    useSnapCarousel();
   return (
     <div {...props}>
       <ul
@@ -27,10 +30,10 @@ export const Carousel = <T extends { src: string }>({
           position: 'relative',
           display: 'flex',
           alignItems: 'center',
-          gap: '10',
+          gap: '1rem',
           overflow: 'auto',
           scrollSnapType: 'x mandatory',
-          py: '8',
+          py: '4',
         })}
         ref={scrollRef}
       >
@@ -41,6 +44,36 @@ export const Carousel = <T extends { src: string }>({
           }),
         )}
       </ul>
+      <div
+        aria-hidden
+        className={css({
+          display: 'flex',
+          justifyContent: 'center',
+          alignItems: 'center',
+        })}
+      >
+        {shouldDisplayDots &&
+          pages.map((_, i) => (
+            <button
+              key={i}
+              className={css({
+                margin: '0.5rem',
+              })}
+              onClick={() => goTo(i)}
+            >
+              <svg
+                className={css({
+                  fill: activePageIndex === i ? 'yellow' : 'white',
+                  stroke: 'yellow',
+                  width: '12px',
+                })}
+                viewBox="0 0 24 24"
+              >
+                <circle cx="12" cy="12" r="10" />
+              </svg>
+            </button>
+          ))}
+      </div>
     </div>
   );
 };
@@ -53,7 +86,7 @@ interface CarouselItemProps {
 export const CarouselItem = ({ isSnapPoint, children }: CarouselItemProps) => (
   <li
     className={css({
-      flexShrink: 0,
+      //flexShrink: 0,
       scrollSnapAlign: isSnapPoint ? 'start' : 'none',
     })}
   >

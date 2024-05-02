@@ -76,7 +76,7 @@ const Header: React.FunctionComponent<{ ghost?: boolean }> = ({ ghost }) => {
           }),
         )}
       >
-        <Container className={css({ height: 'full' })}>
+        <Container isMobileFullWidth className={css({ height: 'full' })}>
           <div
             className={flex({
               alignItems: 'center',

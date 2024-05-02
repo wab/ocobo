@@ -123,7 +123,7 @@ const Footer = () => {
           }),
         )}
       >
-        <Container>
+        <Container isMobileFullWidth>
           <Grid columns={{ base: 2, lg: 12 }}>
             <GridItem
               colSpan={{ base: 2, lg: 3 }}

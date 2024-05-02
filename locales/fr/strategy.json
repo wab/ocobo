@@ -1,0 +1,73 @@
+{
+  "meta.title": "Ocobo · Stratégies Revenue Operations",
+  "meta.description": "Ocobo transforme votre organisation business et vous fait passer à une nouvelle étape de maturité pour atteindre l’excellence et une croissance durable.",
+  "hero.title": "Les stratégies gagnantes des sociétés qui passent à l’échelle",
+  "hero.subtitle": "Comment les entreprises les plus performantes organisent et déploient leurs activités business\u00a0?",
+  "hero.description": "Nourris par nos expériences, nous adaptons les meilleures architectures revenues à votre contexte pour vous aider à franchir une nouvelle étape de maturité opérationnelle.",
+  "hero.cta": "Télécharger le livre blanc",
+  "needs.title": "Pourquoi vous avez besoin des Revenues Operations\u00a0?",
+  "needs.description": "<0>Votre société grandit rapidement</0> et vous percevez qu’elle serait plus performante en <0>repensant l’organisation et les activités</0> liées au business, mais vous ne savez ni par où, ni comment commencer.",
+  "needs.subtitle": "Des problèmes rencontrés à tous les niveaux de l'organisation :",
+  "needs.0.title": "CEO",
+  "needs.0.items": [
+    "Manque de visibilité sur le business",
+    "Difficulté à déployer la vision high-level"
+  ],
+  "needs.1.title": "Directeurs / Managers",
+  "needs.1.items": [
+    "Manque de visibilité sur les forecast",
+    "Absence d’insight et de contenu pour faire progresser les équipes",
+    "Mauvaise allocation des ressources (RH, budget marketing, etc)"
+  ],
+  "needs.2.title": "Contributeurs individuels",
+  "needs.2.items": [
+    "Pertes de productivité",
+    "Manque de training et d’enablement",
+    "Manque de visibilité sur la prospection",
+    "Manque de compréhension de la stratégie commerciale"
+  ],
+  "needs.3.title": "Prospects / Clients",
+  "needs.3.items": [
+    "Manque d’accessibilité à l’information",
+    "Expérience client dégradée",
+    "Mauvaise compréhension produit"
+  ],
+  "needs.conclusion": "Les Revenues Operations connectent et alignent le marketing, la vente, le service client pour optimiser l'efficacité opérationnelle, augmenter les revenus et améliorer la rentabilité<0> à travers une approche intégrée et basée sur une donnée fiable et utile</0>.",
+  "method.title": "Notre méthode éprouvée pour transformer votre organisation",
+  "method.evaluation.title": "Évaluation",
+  "method.evaluation.subtitle": "4 leviers d’excellence pour analyser la situation dans le détail",
+  "method.evaluation.description": "Au cœur de notre méthode, <0>une évaluation approfondie</0> nous permet d'identifier précisément où et comment votre organisation peut évoluer. Voici un <0>aperçu des quatre leviers d'excellence</0> que nous analysons\u00a0:",
+  "method.evaluation.items.0.title": "Stratégie de croissance et organisation d’équipes",
+  "method.evaluation.items.0.description": "Nous évaluons la pertinence de vos stratégies au regard de la capture de vos segments cibles, et auditons l'orchestration de vos équipes Marketing, Ventes, et Service Client.",
+  "method.evaluation.items.1.title": "Processus et maîtrise des outils",
+  "method.evaluation.items.1.description": "Nous réalisons un mapping minutieux du parcours client et de l'architecture CRM & outils pour identifier les inefficacités et les points de friction.",
+  "method.evaluation.items.2.title": "Analyse de la data et de la performance",
+  "method.evaluation.items.2.description": "Nous utilisons des données et des indicateurs de performance clés pour évaluer l'effet de votre stratégie tout au long du cycle de vie du client, complétée par une analyse approfondie des budgets et des forecasts",
+  "method.evaluation.items.3.title": "Rémunération variable et mobilisation des talents",
+  "method.evaluation.items.3.description": "Nous menons une évaluation critique de vos stratégies de compensation et de gestion de la performance, pour vérifier leur capacité à stimuler la motivation et l'engagement des équipes.",
+  "method.roadmap.title": "Roadmap",
+  "method.roadmap.subtitle": "Une nouvelle stratégie nécessite un plan d’actions finement calibré",
+  "method.roadmap.items.0.title": "La roadmap de projets RevOps",
+  "method.roadmap.items.0.description": "Notre analyse aboutit à un diagnostic complet, un score de maturité, et des projets RevOps concrets prêts à être orchestrés.",
+  "method.roadmap.items.1.title": "Scoring et priorisation",
+  "method.roadmap.items.1.description": "Chaque projet est soigneusement évalué et scoré, en fonction de son impact business potentiel, de sa consommation en ressources et de sa complexité.",
+  "method.execution.title": "Execution",
+  "method.execution.subtitle": "Donner vie aux initiatives qui ont un réel impact",
+  "method.execution.items.0.title": "Une mobilisation à 100% pour un maximum d’impact",
+  "method.execution.items.0.description": "Difficile de choisir car tout semble prioritaire\u00a0? Notre équipe cadence le déploiement de l’ensemble des projets, progressivement, tout en pilotant le changement.",
+  "method.execution.items.1.title": "Un déploiement à la carte",
+  "method.execution.items.1.description": "Vous sélectionnez les projets à lancer en fonction de vos capacités et profitez du support de nos équipes pour les executer sans accrocs.",
+  "method.execution.cta": "Voir des exemples de projets RevOps",
+  "team.title": "Votre équipe Stratégies Revenue Operations",
+  "team.items.0.title": "Stratégiste RevOps",
+  "team.items.0.description": "Stratège dans l’organisation d’équipe, la définition des rôles, la segmentation de marché, la définition des ICPs, et le territory planning.",
+  "team.items.1.title": "Architecte RevOps",
+  "team.items.1.description": "Expert de la customer journey et du sales funnel, des processus et outils qui permettent aux opérations d’être exécutées avec excellence.",
+  "team.items.2.title": "Analyste RevOps",
+  "team.items.2.description": "Spécialisé dans l’analyse de la data business, la définition KPIs, la visualisation, la budgétisation, le forecasting, et la compensation.",
+  "choose.title": "Pourquoi choisir\n la méthode Ocobo\u00a0?",
+  "choose.items": [
+    "Vous bénéficiez d'un <0>diagnostic complet</0> et d'un <0>plan d'action sur mesure</0> pour catalyser le changement au sein de votre organisation.",
+    "Notre <0>équipe d’experts</0> vous guide à chaque étape de la transformation, assurant des <0>améliorations mesurables et durables.</0>"
+  ]
+}
