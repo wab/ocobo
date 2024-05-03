@@ -1,15 +1,18 @@
 {
-  "meta.title": "Ocobo · Contact us",
+  "meta.title": "Ocobo - Contact us",
   "meta.description": "Contact page description",
-  "title": "Meet a real Revenue Operations specialist. Not an SDR or BDR.",
-  "desc.1": "After completing the form, you will be asked to choose an appointment time.",
-  "desc.2": "During our first exchange, we determine if, and how, we can help you.",
-  "desc.3": "Then we draw up a tailor-made plan for you, which we will execute to achieve your goals together.",
-  "form.email": "Professional email",
-  "form. firstname": "First name",
+  "title": "Meet a real Revenue Operations specialist. <0>Not an SDR or a BDR.</0>",
+  "subtitle": "After filling in the form, you will be asked to choose an appointment time.",
+  "description": [
+    "During our <0>first exchange</0>, we determine if, and how, we can help you.",
+    "Then, we develop for you <0>a customized plan</0>, which we will execute to achieve your goals together."
+  ],
+
+  "form.email": "Professional e-mail",
+  "form.firstname": "First name",
   "form.lastname": "Last name",
   "form.job": "Job title",
-  "form.team": "How many people are in your Revenue team (Sales, CS, Marketing) ?",
+  "form.team": "How many people are in your Revenue team (Sales, CS, Marketing)?",
   "form.source": "How did you hear about us?",
   "form.submit": "Continue"
 }
