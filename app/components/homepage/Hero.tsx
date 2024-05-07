@@ -17,20 +17,13 @@ const Hero = () => {
   return (
     <header className={section()}>
       <Container>
-        <Grid columns={{ base: 1, lg: 12 }} alignItems="center">
+        <Grid columns={{ base: 1, lg: 12 }} alignItems="center" rowGap="2rem">
           <GridItem
             colSpan={{ base: 1, lg: 7 }}
             className={css({
               textAlign: { base: 'center', lg: 'left' },
             })}
           >
-            <div className={cx(css({ hideFrom: 'lg', py: '8' }))}>
-              <Illustration
-                name="homepage_hero_mobile"
-                alt=""
-                className={css({ w: 'full', maxWidth: '320px', mx: 'auto' })}
-              />
-            </div>
             <h1 className={css({ textStyle: 'heading1' })}>
               {t('hero.title')}
             </h1>
@@ -55,14 +48,15 @@ const Hero = () => {
               </p>
             </div>
           </GridItem>
-          <GridItem
-            colSpan={{ base: 1, lg: 5 }}
-            className={css({ hideBelow: 'lg' })}
-          >
+          <GridItem colSpan={{ base: 1, lg: 5 }}>
             <Illustration
               name="homepage_hero"
               alt=""
-              className={css({ w: 'full' })}
+              className={css({
+                display: 'block',
+                w: { base: '3/4', lg: 'full' },
+                mx: 'auto',
+              })}
             />
           </GridItem>
         </Grid>
