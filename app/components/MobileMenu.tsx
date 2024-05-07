@@ -3,6 +3,7 @@ import * as React from 'react';
 import { createContext } from '@radix-ui/react-context';
 import * as Portal from '@radix-ui/react-portal';
 import { Slot } from '@radix-ui/react-slot';
+import { useLocation } from '@remix-run/react';
 import { RemoveScroll } from 'react-remove-scroll';
 
 import { css } from '@ocobo/styled-system/css';
@@ -17,24 +18,16 @@ const MobileMenuProvider: React.FunctionComponent<React.PropsWithChildren> = ({
 }) => {
   const [open, setOpen] = React.useState(false);
 
-  // const router = useRouter();
+  const { pathname } = useLocation();
 
-  // React.useEffect(() => {
-  //   const handleRouteChangeComplete = () => {
-  //     // Dismiss mobile keyboard if focusing an input (e.g. when searching)
-  //     if (document.activeElement instanceof HTMLInputElement) {
-  //       document.activeElement.blur();
-  //     }
+  React.useEffect(() => {
+    // Dismiss mobile keyboard if focusing an input (e.g. when searching)
+    if (document.activeElement instanceof HTMLInputElement) {
+      document.activeElement.blur();
+    }
 
-  //     setOpen(false);
-  //   };
-
-  //   router.events.on('routeChangeComplete', handleRouteChangeComplete);
-
-  //   return () => {
-  //     router.events.off('routeChangeComplete', handleRouteChangeComplete);
-  //   };
-  // }, []);
+    setOpen(false);
+  }, [pathname]);
 
   React.useEffect(() => {
     // Match @media (--md)
