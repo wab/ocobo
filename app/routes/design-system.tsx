@@ -4,7 +4,7 @@ import { Check, ChevronRight, Menu, X } from 'lucide-react';
 import { css, cx } from '@ocobo/styled-system/css';
 import { styled } from '@ocobo/styled-system/jsx';
 import { grid, hstack, vstack } from '@ocobo/styled-system/patterns';
-import { icon } from '@ocobo/styled-system/recipes';
+import { icon, link } from '@ocobo/styled-system/recipes';
 
 import { Button } from '~/components/ui/Button';
 import { Card } from '~/components/ui/Card';
@@ -12,7 +12,6 @@ import { Container } from '~/components/ui/Container';
 import { Illustration } from '~/components/ui/Illustration';
 import { Input } from '~/components/ui/Input';
 import { Label } from '~/components/ui/Label';
-import { Link } from '~/components/ui/Link';
 import { Logocobo } from '~/components/ui/Logocobo';
 import { Select } from '~/components/ui/Select';
 
@@ -217,7 +216,7 @@ export default function Index() {
         </ul>
       </Section>
       <Section>
-        <h2 className={sectionTitle}>Buttons & links</h2>
+        <h2 className={sectionTitle}>Buttons & a className={link()}s</h2>
         <ul
           className={css({
             display: 'flex',
@@ -300,7 +299,9 @@ export default function Index() {
               gap: '2',
             })}
           >
-            <Link href="#">En savoir plus</Link>
+            <a className={link()} href="/#">
+              En savoir plus
+            </a>
           </li>
         </ul>
       </Section>
@@ -339,7 +340,9 @@ export default function Index() {
                   Territory Planning.
                 </p>
                 <p>
-                  <Link href="#">En savoir plus</Link>
+                  <a className={link()} href="/#">
+                    En savoir plus
+                  </a>
                 </p>
               </Card.Content>
             </Card.Root>
@@ -359,7 +362,9 @@ export default function Index() {
                   Territory Planning.
                 </p>
                 <p>
-                  <Link href="#">En savoir plus</Link>
+                  <a className={link()} href="/#">
+                    En savoir plus
+                  </a>
                 </p>
               </Card.Content>
             </Card.Root>
@@ -379,7 +384,9 @@ export default function Index() {
                   Territory Planning.
                 </p>
                 <p>
-                  <Link href="#">En savoir plus</Link>
+                  <a className={link()} href="/#">
+                    En savoir plus
+                  </a>
                 </p>
               </Card.Content>
             </Card.Root>
@@ -399,7 +406,9 @@ export default function Index() {
                   Territory Planning.
                 </p>
                 <p>
-                  <Link href="#">En savoir plus</Link>
+                  <a className={link()} href="/#">
+                    En savoir plus
+                  </a>
                 </p>
               </Card.Content>
             </Card.Root>
@@ -419,7 +428,9 @@ export default function Index() {
                   Territory Planning.
                 </p>
                 <p>
-                  <Link href="#">En savoir plus</Link>
+                  <a className={link()} href="/#">
+                    En savoir plus
+                  </a>
                 </p>
               </Card.Content>
             </Card.Root>
@@ -439,7 +450,9 @@ export default function Index() {
                   Territory Planning.
                 </p>
                 <p>
-                  <Link href="#">En savoir plus</Link>
+                  <a className={link()} href="/#">
+                    En savoir plus
+                  </a>
                 </p>
               </Card.Content>
             </Card.Root>
@@ -459,7 +472,9 @@ export default function Index() {
                   Territory Planning.
                 </p>
                 <p>
-                  <Link href="#">En savoir plus</Link>
+                  <a className={link()} href="/#">
+                    En savoir plus
+                  </a>
                 </p>
               </Card.Content>
             </Card.Root>
@@ -479,7 +494,9 @@ export default function Index() {
                   Territory Planning.
                 </p>
                 <p>
-                  <Link href="#">En savoir plus</Link>
+                  <a className={link()} href="/#">
+                    En savoir plus
+                  </a>
                 </p>
               </Card.Content>
             </Card.Root>

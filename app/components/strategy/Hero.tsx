@@ -1,18 +1,19 @@
+import { NavLink } from '@remix-run/react';
 import { useTranslation } from 'react-i18next';
 
 import { css } from '@ocobo/styled-system/css';
 import { Grid, GridItem } from '@ocobo/styled-system/jsx';
-import { section } from '@ocobo/styled-system/recipes';
+import { button, section } from '@ocobo/styled-system/recipes';
 
+import { useLocalizedPathname } from '~/hooks/useLocalizedPathname';
 import { url } from '~/utils/url';
 
-import { LocalizedLink } from '../LocalizedLink';
-import { Button } from '../ui/Button';
 import { Container } from '../ui/Container';
 import { Illustration } from '../ui/Illustration';
 
 const Hero = () => {
   const { t } = useTranslation('strategy');
+  const getLocalizedPath = useLocalizedPathname();
 
   return (
     <header className={section()}>
@@ -68,11 +69,12 @@ const Hero = () => {
                   {t('hero.description')}
                 </p>
                 <p>
-                  <Button asChild>
-                    <LocalizedLink to={url.contact}>
-                      {t('contact.cta', { ns: 'common' })}
-                    </LocalizedLink>
-                  </Button>
+                  <NavLink
+                    to={getLocalizedPath(url.contact)}
+                    className={button()}
+                  >
+                    {t('contact.cta', { ns: 'common' })}
+                  </NavLink>
                 </p>
               </div>
               <div

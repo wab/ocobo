@@ -1,3 +1,5 @@
+import * as React from 'react';
+
 import { Trans, useTranslation } from 'react-i18next';
 
 import { css } from '@ocobo/styled-system/css';
@@ -72,12 +74,8 @@ const MethodEvaluation = () => {
               evaluation.map((item, index) => {
                 const isOdd = Boolean((index + 1) % 2);
                 return (
-                  <>
-                    <GridItem
-                      colSpan={4}
-                      key={index}
-                      className={css({ hideBelow: 'lg' })}
-                    >
+                  <React.Fragment key={`evaluation-${index}`}>
+                    <GridItem colSpan={4} className={css({ hideBelow: 'lg' })}>
                       <Card.Root className={css({ h: 'full' })}>
                         <Card.Title
                           className={css({
@@ -98,24 +96,23 @@ const MethodEvaluation = () => {
                       </Card.Root>
                     </GridItem>
                     {isOdd && <GridItem />}
-                  </>
+                  </React.Fragment>
                 );
               })}
           </Grid>
         </div>
       </Container>
-      <div
-        className={css({
-          //pl: 12,
-        })}
-      >
+      <div>
         {Array.isArray(evaluation) && (
           <Carousel
             shouldDisplayDots
             className={css({ hideFrom: 'lg' })}
             items={evaluation}
             renderItem={({ item, isSnapPoint }) => (
-              <CarouselItem key={item.title} isSnapPoint={isSnapPoint}>
+              <CarouselItem
+                key={`carousel-${item.title}`}
+                isSnapPoint={isSnapPoint}
+              >
                 <div
                   className={css({
                     textStyle: 'heading2',

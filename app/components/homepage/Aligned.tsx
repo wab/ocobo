@@ -1,15 +1,19 @@
+import { NavLink } from '@remix-run/react';
 import { useTranslation } from 'react-i18next';
 
 import { css } from '@ocobo/styled-system/css';
 import { Grid, GridItem } from '@ocobo/styled-system/jsx';
 import { center } from '@ocobo/styled-system/patterns';
-import { section } from '@ocobo/styled-system/recipes';
+import { link, section } from '@ocobo/styled-system/recipes';
+
+import { useLocalizedPathname } from '~/hooks/useLocalizedPathname';
+import { url } from '~/utils/url';
 
 import { Container } from '../ui/Container';
-import { Link } from '../ui/Link';
 
 const Aligned = () => {
   const { t } = useTranslation('home');
+  const getLocalizedPath = useLocalizedPathname();
 
   return (
     <section className={section()}>
@@ -48,7 +52,9 @@ const Aligned = () => {
               />
             </div>
             <p>
-              <Link>{t('aligned.cta')}</Link>
+              <NavLink to={getLocalizedPath(url.stories)} className={link()}>
+                {t('aligned.cta')}
+              </NavLink>
             </p>
           </GridItem>
         </Grid>

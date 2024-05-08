@@ -1,3 +1,4 @@
+import { NavLink } from '@remix-run/react';
 import { ChevronRight } from 'lucide-react';
 import { useTranslation } from 'react-i18next';
 
@@ -5,10 +6,10 @@ import { css, cva, cx } from '@ocobo/styled-system/css';
 import { styled } from '@ocobo/styled-system/jsx';
 import { flex } from '@ocobo/styled-system/patterns';
 
+import { useLocalizedPathname } from '~/hooks/useLocalizedPathname';
 import { url } from '~/utils/url';
 
 import { Header } from './Header';
-import { LocalizedLink } from './LocalizedLink';
 import { MobileMenu } from './MobileMenu';
 import { SubMenu } from './SubMenu';
 import { Accordion } from './ui/Accordion';
@@ -38,6 +39,7 @@ const AccordionItem = styled(Accordion.Item, itemStyles);
 
 const MainMobileMenu = () => {
   const { t } = useTranslation('common');
+  const getLocalizedPath = useLocalizedPathname();
   return (
     <MobileMenu>
       <Header />
@@ -57,26 +59,23 @@ const MainMobileMenu = () => {
             <Accordion.Content>
               <SubMenu.Root>
                 <SubMenu.Item variant="yellow">
-                  <LocalizedLink to={url.strategy}>
+                  <NavLink to={getLocalizedPath(url.strategy)}>
                     {t('navigation.services.strategy')}
-                  </LocalizedLink>
+                  </NavLink>
                 </SubMenu.Item>
                 <SubMenu.Item variant="sky">
-                  <LocalizedLink to={url.project}>
+                  <NavLink to={getLocalizedPath(url.projects)}>
                     {t('navigation.services.revops')}
-                  </LocalizedLink>
+                  </NavLink>
                 </SubMenu.Item>
               </SubMenu.Root>
             </Accordion.Content>
           </AccordionItem>
 
-          <LocalizedLink
-            to="/stories"
-            className={cx(itemStyles(), triggerStyles())}
-          >
+          <NavLink to="/stories" className={cx(itemStyles(), triggerStyles())}>
             {t('navigation.stories')}
             <ChevronRight />
-          </LocalizedLink>
+          </NavLink>
 
           <AccordionItem value="about">
             <AccordionTrigger>
@@ -85,14 +84,10 @@ const MainMobileMenu = () => {
             <Accordion.Content>
               <SubMenu.Root>
                 <SubMenu.Item variant="coral">
-                  <LocalizedLink to="/about">
-                    {t('navigation.company.about')}
-                  </LocalizedLink>
+                  <NavLink to="/about">{t('navigation.company.about')}</NavLink>
                 </SubMenu.Item>
                 <SubMenu.Item variant="coral">
-                  <LocalizedLink to="/jobs">
-                    {t('navigation.company.jobs')}
-                  </LocalizedLink>
+                  <NavLink to="/jobs">{t('navigation.company.jobs')}</NavLink>
                 </SubMenu.Item>
               </SubMenu.Root>
             </Accordion.Content>
@@ -104,24 +99,20 @@ const MainMobileMenu = () => {
             <Accordion.Content>
               <SubMenu.Root>
                 <SubMenu.Item>
-                  <LocalizedLink to="/news">
-                    {t('navigation.resources.news')}
-                  </LocalizedLink>
+                  <NavLink to="/news">{t('navigation.resources.news')}</NavLink>
                 </SubMenu.Item>
                 <SubMenu.Item>
-                  <LocalizedLink to="/webinars">
+                  <NavLink to="/webinars">
                     {t('navigation.resources.webinars')}
-                  </LocalizedLink>
+                  </NavLink>
                 </SubMenu.Item>
                 <SubMenu.Item>
-                  <LocalizedLink to="/blog">
-                    {t('navigation.resources.blog')}
-                  </LocalizedLink>
+                  <NavLink to="/blog">{t('navigation.resources.blog')}</NavLink>
                 </SubMenu.Item>
                 <SubMenu.Item>
-                  <LocalizedLink to="/tools">
+                  <NavLink to="/tools">
                     {t('navigation.resources.tools')}
-                  </LocalizedLink>
+                  </NavLink>
                 </SubMenu.Item>
               </SubMenu.Root>
             </Accordion.Content>
@@ -134,9 +125,9 @@ const MainMobileMenu = () => {
             })}
           >
             <Button asChild variant="solid">
-              <LocalizedLink to={url.contact}>
+              <NavLink to={getLocalizedPath(url.contact)}>
                 {t('contact.cta', { ns: 'common' })}
-              </LocalizedLink>
+              </NavLink>
             </Button>
           </div>
         </Accordion.Root>

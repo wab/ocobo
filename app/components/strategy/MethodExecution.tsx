@@ -1,18 +1,19 @@
+import { NavLink } from '@remix-run/react';
 import { useTranslation } from 'react-i18next';
 
 import { css, cx } from '@ocobo/styled-system/css';
 import { Grid, GridItem } from '@ocobo/styled-system/jsx';
-import { subtitle } from '@ocobo/styled-system/recipes';
+import { link, subtitle } from '@ocobo/styled-system/recipes';
 
+import { useLocalizedPathname } from '~/hooks/useLocalizedPathname';
 import { url } from '~/utils/url';
 
-import { LocalizedLink } from '../LocalizedLink';
 import { Container } from '../ui/Container';
 import { Illustration } from '../ui/Illustration';
-import { Link } from '../ui/Link';
 
 const MethodExecution = () => {
   const { t } = useTranslation('strategy');
+  const getLocalizedPath = useLocalizedPathname();
 
   const execution = [
     {
@@ -77,11 +78,9 @@ const MethodExecution = () => {
                 <Illustration name="strategy_execution" />
               </p>
               <p className={css({ hideBelow: 'lg' })}>
-                <Link>
-                  <LocalizedLink to={url.strategy}>
-                    {t('method.execution.cta')}
-                  </LocalizedLink>
-                </Link>
+                <NavLink to={getLocalizedPath(url.projects)} className={link()}>
+                  {t('method.execution.cta')}
+                </NavLink>
               </p>
             </GridItem>
             <GridItem className={css({ hideBelow: 'lg' })} />
@@ -128,11 +127,9 @@ const MethodExecution = () => {
                 })}
             </ul>
             <p className={css({ hideFrom: 'lg', bleft: 'transparent' })}>
-              <Link>
-                <LocalizedLink to={url.strategy}>
-                  {t('see_more', { ns: 'common' })}
-                </LocalizedLink>
-              </Link>
+              <NavLink to={getLocalizedPath(url.projects)} className={link()}>
+                {t('see_more', { ns: 'common' })}
+              </NavLink>
             </p>
           </Grid>
           <div

@@ -1,3 +1,4 @@
+import { NavLink } from '@remix-run/react';
 import { Trans, useTranslation } from 'react-i18next';
 
 import { css, cx } from '@ocobo/styled-system/css';
@@ -7,11 +8,9 @@ import { link, section } from '@ocobo/styled-system/recipes';
 
 import { url } from '~/utils/url';
 
-import { LocalizedLink } from '../LocalizedLink';
 import { Card } from '../ui/Card';
 import { Container } from '../ui/Container';
 import { Illustration } from '../ui/Illustration';
-import { Link } from '../ui/Link';
 
 const Stronger = () => {
   const { t } = useTranslation('home');
@@ -104,11 +103,9 @@ const Stronger = () => {
                 <div
                   className={css({ mt: 'auto', pt: '4', textStyle: 'small' })}
                 >
-                  <Link className={link()}>
-                    <LocalizedLink to={url.strategy}>
-                      {t('see_more', { ns: 'common' })}
-                    </LocalizedLink>
-                  </Link>
+                  <NavLink to={url.strategy} className={link()}>
+                    {t('see_more', { ns: 'common' })}
+                  </NavLink>
                 </div>
               </Card.Content>
             </Card.Root>
@@ -130,9 +127,9 @@ const Stronger = () => {
                 <div
                   className={css({ mt: 'auto', pt: '4', textStyle: 'small' })}
                 >
-                  <Link className={link()}>
+                  <NavLink to={url.projects} className={link()}>
                     {t('see_more', { ns: 'common' })}
-                  </Link>
+                  </NavLink>
                 </div>
               </Card.Content>
             </Card.Root>

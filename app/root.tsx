@@ -37,7 +37,7 @@ export const links: LinksFunction = () => [
   { rel: 'manifest', href: '/site.webmanifest' },
 ];
 
-export const handle = { i18n: ['common'] };
+export const handle = { i18n: ['common', 'home', 'strategy', 'projects'] };
 
 export async function loader({ params }: LoaderFunctionArgs) {
   const locale = getLang(params);

@@ -1,4 +1,4 @@
-import { Link, NavLink } from '@remix-run/react';
+import { NavLink } from '@remix-run/react';
 import { useTranslation } from 'react-i18next';
 
 import { css, cx } from '@ocobo/styled-system/css';
@@ -136,9 +136,9 @@ const Footer = () => {
             >
               <Logocobo height="46" className={css({ fill: 'current' })} />
               <Socials />
-              <Link to={getLocalizedPath('/contact')} className={button()}>
+              <NavLink to={getLocalizedPath('/contact')} className={button()}>
                 {t('contact.cta')}
-              </Link>
+              </NavLink>
             </GridItem>
             <GridItem colSpan={{ base: 1, lg: 2 }}>
               <FooterMenu
@@ -226,10 +226,10 @@ const Footer = () => {
             })}
           </div>
           <div>
-            <Link to="/legal">Confidentialité</Link>
+            <NavLink to="/legal">Confidentialité</NavLink>
           </div>
           <div>
-            <Link to="/cgu">Conditions d&apos;utilisations</Link>
+            <NavLink to="/cgu">Conditions d&apos;utilisations</NavLink>
           </div>
         </Flex>
       </Container>

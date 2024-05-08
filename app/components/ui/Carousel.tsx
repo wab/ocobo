@@ -34,6 +34,9 @@ export const Carousel = <T extends object>({
           overflow: 'auto',
           scrollSnapType: 'x mandatory',
           py: '4',
+          '&::-webkit-scrollbar': {
+            width: 0,
+          },
         })}
         ref={scrollRef}
       >

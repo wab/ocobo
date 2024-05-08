@@ -1,12 +1,14 @@
 import * as React from 'react';
 
+import { NavLink } from '@remix-run/react';
 import { MenuIcon, X } from 'lucide-react';
 
 import { css, cx } from '@ocobo/styled-system/css';
 import { flex } from '@ocobo/styled-system/patterns';
 import { icon } from '@ocobo/styled-system/recipes';
 
-import { LocalizedLink } from './LocalizedLink';
+import { useLocalizedPathname } from '~/hooks/useLocalizedPathname';
+
 import { MainMenu } from './MainMenu';
 import { useMobileMenuContext } from './MobileMenu';
 import { Container } from './ui/Container';
@@ -16,6 +18,7 @@ type ScrollState = 'at-top' | 'scrolling-up' | 'scrolling-down';
 
 const Header: React.FunctionComponent<{ ghost?: boolean }> = ({ ghost }) => {
   const mobileMenu = useMobileMenuContext();
+  const getLocalizedPath = useLocalizedPathname();
 
   const [scrollState, setScrollState] = React.useState<ScrollState>('at-top');
 
@@ -84,7 +87,7 @@ const Header: React.FunctionComponent<{ ghost?: boolean }> = ({ ghost }) => {
               height: 'full',
             })}
           >
-            <LocalizedLink to="/">
+            <NavLink to={getLocalizedPath('/')}>
               <img
                 src="/logo-ocobo.png"
                 alt="Ocobo"
@@ -94,7 +97,7 @@ const Header: React.FunctionComponent<{ ghost?: boolean }> = ({ ghost }) => {
                   translateY: '-5px',
                 })}
               />
-            </LocalizedLink>
+            </NavLink>
             <MainMenu />
             <div
               className={css({

@@ -1,17 +1,18 @@
+import { NavLink } from '@remix-run/react';
 import { Trans, useTranslation } from 'react-i18next';
 
 import { css } from '@ocobo/styled-system/css';
-import { section } from '@ocobo/styled-system/recipes';
+import { button, section } from '@ocobo/styled-system/recipes';
 
+import { useLocalizedPathname } from '~/hooks/useLocalizedPathname';
 import { url } from '~/utils/url';
 
-import { LocalizedLink } from '../LocalizedLink';
-import { Button } from '../ui/Button';
 import { Container } from '../ui/Container';
 import { Illustration } from '../ui/Illustration';
 
 const Choose = () => {
   const { t } = useTranslation('strategy');
+  const getLocalizedPath = useLocalizedPathname();
 
   const items = t('choose.items', {
     returnObjects: true,
@@ -61,11 +62,12 @@ const Choose = () => {
               );
             })}
           <p>
-            <Button variant="solid" asChild>
-              <LocalizedLink to={url.contact}>
-                {t('contact.cta', { ns: 'common' })}
-              </LocalizedLink>
-            </Button>
+            <NavLink
+              to={getLocalizedPath(url.contact)}
+              className={button({ variant: 'solid' })}
+            >
+              {t('contact.cta', { ns: 'common' })}
+            </NavLink>
           </p>
         </div>
       </Container>

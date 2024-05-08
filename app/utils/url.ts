@@ -1,7 +1,8 @@
 export const url = {
   homepage: '/',
   strategy: '/strategies-revenue-operations',
-  project: '/revops',
+  projects: '/projets-revops',
+  stories: '/stories',
   contact: '/contact',
   privacy: '/privacy',
   imprint: '/imprint',

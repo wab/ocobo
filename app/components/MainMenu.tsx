@@ -1,16 +1,18 @@
+import { NavLink } from '@remix-run/react';
 import { useTranslation } from 'react-i18next';
 
 import { css } from '@ocobo/styled-system/css';
+import { button } from '@ocobo/styled-system/recipes';
 
+import { useLocalizedPathname } from '~/hooks/useLocalizedPathname';
 import { url } from '~/utils/url';
 
-import { LocalizedLink } from './LocalizedLink';
 import { SubMenu } from './SubMenu';
-import { Button } from './ui/Button';
 import { NavigationMenu } from './ui/NavigationMenu';
 
 const MainMenu = () => {
   const { t } = useTranslation('common');
+  const getLocalizedPath = useLocalizedPathname();
 
   return (
     <div className={css({ ml: 'auto', hideBelow: 'lg' })}>
@@ -24,16 +26,16 @@ const MainMenu = () => {
               <SubMenu.Root>
                 <SubMenu.Item variant="yellow">
                   <NavigationMenu.Link asChild>
-                    <LocalizedLink to={url.strategy}>
+                    <NavLink to={getLocalizedPath(url.strategy)}>
                       {t('navigation.services.strategy')}
-                    </LocalizedLink>
+                    </NavLink>
                   </NavigationMenu.Link>
                 </SubMenu.Item>
                 <SubMenu.Item variant="sky">
                   <NavigationMenu.Link asChild>
-                    <LocalizedLink to={url.project}>
+                    <NavLink to={getLocalizedPath(url.projects)}>
                       {t('navigation.services.revops')}
-                    </LocalizedLink>
+                    </NavLink>
                   </NavigationMenu.Link>
                 </SubMenu.Item>
               </SubMenu.Root>
@@ -41,9 +43,7 @@ const MainMenu = () => {
           </NavigationMenu.Item>
           <NavigationMenu.Item>
             <NavigationMenu.Link asChild>
-              <LocalizedLink to="/stories">
-                {t('navigation.stories')}
-              </LocalizedLink>
+              <NavLink to="/stories">{t('navigation.stories')}</NavLink>
             </NavigationMenu.Link>
           </NavigationMenu.Item>
           <NavigationMenu.Item>
@@ -54,16 +54,14 @@ const MainMenu = () => {
               <SubMenu.Root>
                 <SubMenu.Item variant="coral">
                   <NavigationMenu.Link asChild>
-                    <LocalizedLink to="/about">
+                    <NavLink to="/about">
                       {t('navigation.company.about')}
-                    </LocalizedLink>
+                    </NavLink>
                   </NavigationMenu.Link>
                 </SubMenu.Item>
                 <SubMenu.Item variant="coral">
                   <NavigationMenu.Link asChild>
-                    <LocalizedLink to="/jobs">
-                      {t('navigation.company.jobs')}
-                    </LocalizedLink>
+                    <NavLink to="/jobs">{t('navigation.company.jobs')}</NavLink>
                   </NavigationMenu.Link>
                 </SubMenu.Item>
               </SubMenu.Root>
@@ -77,39 +75,42 @@ const MainMenu = () => {
               <SubMenu.Root>
                 <SubMenu.Item>
                   <NavigationMenu.Link asChild>
-                    <LocalizedLink to="/news">
+                    <NavLink to="/news">
                       {t('navigation.resources.news')}
-                    </LocalizedLink>
+                    </NavLink>
                   </NavigationMenu.Link>
                 </SubMenu.Item>
                 <SubMenu.Item>
                   <NavigationMenu.Link asChild>
-                    <LocalizedLink to="/webinars">
+                    <NavLink to="/webinars">
                       {t('navigation.resources.webinars')}
-                    </LocalizedLink>
+                    </NavLink>
                   </NavigationMenu.Link>
                 </SubMenu.Item>
                 <SubMenu.Item>
                   <NavigationMenu.Link asChild>
-                    <LocalizedLink to="/blog">
+                    <NavLink to="/blog">
                       {t('navigation.resources.blog')}
-                    </LocalizedLink>
+                    </NavLink>
                   </NavigationMenu.Link>
                 </SubMenu.Item>
                 <SubMenu.Item>
                   <NavigationMenu.Link asChild>
-                    <LocalizedLink to="/tools">
+                    <NavLink to="/tools">
                       {t('navigation.resources.tools')}
-                    </LocalizedLink>
+                    </NavLink>
                   </NavigationMenu.Link>
                 </SubMenu.Item>
               </SubMenu.Root>
             </NavigationMenu.Content>
           </NavigationMenu.Item>
           <NavigationMenu.Item className={css({ ml: '8' })}>
-            <Button asChild variant="solid">
-              <LocalizedLink to={url.contact}>{t('contact.cta')}</LocalizedLink>
-            </Button>
+            <NavLink
+              to={getLocalizedPath(url.contact)}
+              className={button({ variant: 'solid' })}
+            >
+              {t('contact.cta')}
+            </NavLink>
           </NavigationMenu.Item>
         </NavigationMenu.List>
         <NavigationMenu.Indicator />
