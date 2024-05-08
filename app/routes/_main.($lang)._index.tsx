@@ -4,6 +4,7 @@ import {
   type MetaFunction,
 } from '@remix-run/node';
 
+import { ClientCarousel } from '~/components/ClientCarousel';
 import {
   Aligned,
   Better,
@@ -36,6 +37,7 @@ export default function Index() {
   return (
     <div>
       <Hero />
+      <ClientCarousel />
       <Stories />
       <Faster />
       <Better />

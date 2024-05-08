@@ -1,51 +1,42 @@
-import { css, cx } from '@ocobo/styled-system/css';
-import { container } from '@ocobo/styled-system/patterns';
+import { css } from '@ocobo/styled-system/css';
 
-const PADDING = '3rem';
-const MARGIN = '110px';
+import { Container } from '../ui/Container';
 
 const Stories = () => {
   return (
-    <section>
-      <div
-        className={css({
+    <section
+      className={css({
+        hideBelow: 'lg',
+        position: 'relative',
+
+        _before: {
+          content: '""',
+          position: 'absolute',
+          top: 0,
+          left: 0,
+          right: 0,
+          bottom: '50%',
           bg: 'dark',
-          color: 'white',
-          pt: { base: 6, lg: PADDING },
-          pb: { base: 6, lg: `calc(${PADDING} + ${MARGIN})` },
-          textAlign: 'center',
-        })}
-      >
-        <p
-          className={cx(
-            container({ maxWidth: '70%' }),
-            css({
-              textStyle: 'heading2',
-              pb: { base: 6, lg: `calc(${PADDING} / 2)` },
-            }),
-          )}
-        >
-          Favoris des leaders actuels et futurs
-        </p>
-        <div>défilement des logos clients</div>
-      </div>
-      <div
-        className={cx(
-          container({ maxWidth: '4xl' }),
-          css({
-            hideBelow: 'lg',
+        },
+      })}
+    >
+      <Container>
+        <div
+          className={css({
             bg: 'mint.light',
             py: '8',
+            px: '4rem',
             borderTop: 'thick',
             borderColor: 'mint',
-            mt: `-${MARGIN}`,
-          }),
-        )}
-      >
-        Lorem ipsum dolor sit amet consectetur adipisicing elit. Velit quod
-        nobis molestias facere itaque, explicabo tempore optio, excepturi ab quo
-        expedita at. Dicta, minima minus autem saepe ut nam dolorum!
-      </div>
+            width: '4/6',
+            mx: 'auto',
+          })}
+        >
+          Lorem ipsum dolor sit amet consectetur adipisicing elit. Velit quod
+          nobis molestias facere itaque, explicabo tempore optio, excepturi ab
+          quo expedita at. Dicta, minima minus autem saepe ut nam dolorum!
+        </div>
+      </Container>
     </section>
   );
 };
