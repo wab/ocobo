@@ -43,7 +43,7 @@ const Tools = () => {
             colSpan={{ base: 1, lg: 5 }}
             className={css({ hideBelow: 'lg' })}
           >
-            <img src="/illus/homepage_tools.png" alt="" />
+            <img src="/illus/tools.png" alt="" />
           </GridItem>
         </Grid>
       </Container>

@@ -1,0 +1,62 @@
+{
+  "meta.title": "Ocobo · RevOps Projects that move your organization forward",
+  "meta.description": "Ocobo deploys all the resources and skills necessary for the smooth running and success of your RevOps projects.",
+  "hero.title": "A RevOps project that addresses an urgent problem",
+  "hero.subtitle": "A RevOps issue that you don't have the expertise or bandwidth to resolve internally?",
+  "hero.description": "Ocobo immediately switches to solution mode and deploys all the resources and skills necessary to resolve it effectively.",
+  "levers.title": "Projects spanning the entire customer life cycle <0>and based on your organization's levers of excellence:</0>",
+  "levers.team.title": "Team & planning",
+  "levers.team.items.0.title": "Revenue strategy architecture",
+  "levers.team.items.0.items": [
+    "Sales-Led",
+    "Product-Led",
+    "Channel Sales",
+    "Field, or outside Sales",
+    "Land & Expand"
+  ],
+  "levers.team.items.1.title": "Team roles and missions",
+  "levers.team.items.1.items": [
+    "Return team",
+    "Acquisition (Outbound/Inbound)",
+    "Expansion (CSM/AM)",
+    "Routines and frequencies"
+  ],
+  "levers.team.items.2.title": "Segmentation and attribution",
+  "levers.team.items.2.items": [
+    "ICPs / Tiering / Scoring / Assignment",
+    "Quotas and Territories Planning"
+  ],
+  "levers.process.title": "Process & Tools",
+  "levers.process.items.0.title": "Process",
+  "levers.process.items.0.items": [
+    "Belly Funnel (Acquisition/Expansion)",
+    "Customer journey mapping",
+    "Quote to cash (quote, product catalog, invoicing)",
+    "Omnichannel customer operations"
+  ],
+  "levers.process.items.1.title": "Tooling",
+  "levers.process.items.1.description": "Deployment / Redesign / Evolution / Migration:",
+  "levers.process.items.1.items": [
+    "CRM & Sales Engagement Platform",
+    "Marketing Hub",
+    "Customer Engagement Platform",
+    "Compensation platforms",
+    "Billing",
+    "Help Desk & Ticketing"
+  ],
+  "levers.data.title": "Data & Performance",
+  "levers.data.items": [
+    "Modeling of customer life cycle KPIs",
+    "Budgeting Models",
+    "Income Forecasting",
+    "Dashboards & Reports by function (C-level, Manager, IC)"
+  ],
+  "levers.income.title": "Variable remuneration",
+  "levers.income.items": [
+    "Structure of compensation plans",
+    "Preparation and reliability of the data model",
+    "Target setting and performance monitoring system",
+    "Implementation of a commission management platform",
+    "Team training"
+  ]
+}
