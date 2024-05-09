@@ -1,17 +1,22 @@
 import * as React from 'react';
 
 import { Trans, useTranslation } from 'react-i18next';
+import { useSnapCarousel } from 'react-snap-carousel';
 
 import { css } from '@ocobo/styled-system/css';
 import { Grid, GridItem } from '@ocobo/styled-system/jsx';
+import { carousel, carouselItem } from '@ocobo/styled-system/patterns';
 import { subtitle } from '@ocobo/styled-system/recipes';
 
 import { Card } from '../ui/Card';
-import { Carousel, CarouselItem } from '../ui/Carousel';
 import { Container } from '../ui/Container';
+import { DotPagination } from '../ui/DotPagination';
 
 const MethodEvaluation = () => {
   const { t } = useTranslation('strategy');
+
+  const { scrollRef, snapPointIndexes, pages, activePageIndex, goTo } =
+    useSnapCarousel();
 
   const evaluation = [
     {
@@ -102,38 +107,47 @@ const MethodEvaluation = () => {
           </Grid>
         </div>
       </Container>
-      <div>
-        {Array.isArray(evaluation) && (
-          <Carousel
-            shouldDisplayDots
-            className={css({ hideFrom: 'lg' })}
-            items={evaluation}
-            renderItem={({ item, isSnapPoint }) => (
-              <CarouselItem
-                key={`carousel-${item.title}`}
-                isSnapPoint={isSnapPoint}
+      <div className={css({ hideFrom: 'lg' })}>
+        <ul
+          ref={scrollRef}
+          className={carousel({
+            alignItems: 'stretch',
+          })}
+        >
+          {evaluation.map((item, i) => (
+            <li
+              key={`evaluation-mobile-${i}`}
+              className={carouselItem({
+                shouldScrollSnapAlignStart: snapPointIndexes.has(i),
+                width: '240px',
+              })}
+            >
+              <div
+                className={css({
+                  textStyle: 'heading2',
+                  p: '0.5em 1.5rem 0.5em 1.5rem',
+                  display: 'flex',
+                  alignItems: 'center',
+                  boxSizing: 'border-box',
+                  bg: 'white',
+                  borderLeft: 'thick',
+                  borderColor: 'yellow',
+                  height: 'full',
+                })}
               >
-                <div
-                  className={css({
-                    textStyle: 'heading2',
-                    p: '0.5em 1.5rem 0.5em 1.5rem',
-                    ml: '1.5rem',
-                    display: 'flex',
-                    alignItems: 'center',
-                    boxSizing: 'border-box',
-                    bg: 'white',
-                    borderLeft: 'thick',
-                    borderColor: 'yellow',
-                    width: '240px',
-                    height: '140px',
-                  })}
-                >
-                  {item.title}
-                </div>
-              </CarouselItem>
-            )}
-          />
-        )}
+                {item.title}
+              </div>
+            </li>
+          ))}
+        </ul>
+        <DotPagination
+          pageCount={pages.length}
+          activePageIndex={activePageIndex}
+          goTo={goTo}
+          className={css({
+            color: 'yellow',
+          })}
+        />
       </div>
     </div>
   );

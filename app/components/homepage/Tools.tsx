@@ -4,55 +4,8 @@ import { css, cx } from '@ocobo/styled-system/css';
 import { Grid, GridItem } from '@ocobo/styled-system/jsx';
 import { section } from '@ocobo/styled-system/recipes';
 
-import { Carousel, CarouselItem } from '../ui/Carousel';
+import { ToolCarousel } from '../ToolCarousel';
 import { Container } from '../ui/Container';
-
-const items = [
-  {
-    src: '/logos/qobra.png',
-    title: 'Qobra',
-  },
-  {
-    src: '/logos/tableau.png',
-    title: 'Tableau',
-  },
-  {
-    src: '/logos/intercom.png',
-    title: 'Intercom',
-  },
-  {
-    src: '/logos/make.png',
-    title: 'Make',
-  },
-  {
-    src: '/logos/chargebee.png',
-    title: 'Chargebee',
-  },
-  {
-    src: '/logos/hubspot.png',
-    title: 'Hubspot',
-  },
-  {
-    src: '/logos/salesforce.png',
-    title: 'salesforce',
-  },
-  {
-    src: '/logos/lemlist.png',
-    title: 'lemlist',
-  },
-  {
-    src: '/logos/pipedrive.png',
-    title: 'pipedrive',
-  },
-  {
-    src: '/logos/planhat.png',
-    title: 'planhat',
-  },
-  {
-    src: '/logos/zendesk.png',
-    title: 'zendesk',
-  },
-];
 
 const Tools = () => {
   const { t } = useTranslation('home');
@@ -95,22 +48,9 @@ const Tools = () => {
         </Grid>
       </Container>
 
-      <Carousel
-        className={css({ hideFrom: 'lg', mt: 8 })}
-        items={items}
-        renderItem={({ item, isSnapPoint }) => (
-          <CarouselItem key={item.src} isSnapPoint={isSnapPoint}>
-            <img
-              src={item.src}
-              className={css({
-                maxHeight: 50,
-                maxWidth: 150,
-              })}
-              alt={item.title}
-            />
-          </CarouselItem>
-        )}
-      />
+      <div className={css({ hideFrom: 'lg', mt: 8 })}>
+        <ToolCarousel />
+      </div>
     </section>
   );
 };

@@ -4,6 +4,7 @@ import { useTranslation } from 'react-i18next';
 import { useSnapCarousel } from 'react-snap-carousel';
 
 import { css } from '@ocobo/styled-system/css';
+import { carousel, carouselItem } from '@ocobo/styled-system/patterns';
 
 const items = [
   {
@@ -99,30 +100,14 @@ const ClientCarousel = () => {
           {t('clients.title')}
         </p>
 
-        <ul
-          ref={scrollRef}
-          className={css({
-            position: 'relative',
-            display: 'flex',
-            alignItems: 'center',
-            overflow: 'auto',
-            scrollSnapType: 'x mandatory',
-            gap: '2rem',
-            p: 0,
-            m: 0,
-            '&::-webkit-scrollbar': {
-              width: 0,
-            },
-          })}
-        >
+        <ul ref={scrollRef} className={carousel()}>
           {items.map((item, i) => (
             <li
               key={item.src}
-              className={css({
-                scrollSnapAlign: snapPointIndexes.has(i) ? 'start' : 'initial',
+              className={carouselItem({
+                shouldScrollSnapAlignStart: snapPointIndexes.has(i),
                 width: 'auto',
                 height: '60px',
-                flexShrink: 0,
                 placeContent: 'center',
               })}
             >

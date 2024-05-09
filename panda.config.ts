@@ -47,46 +47,6 @@ export default defineConfig({
     ],
   },
 
-  utilities: {
-    extend: {
-      grid: {
-        className: 'grid', // css({ br: "sm" }) => rounded-sm
-        values: ['2', '3', '4'], // connect values to the radii tokens
-        transform(value) {
-          return {
-            display: 'grid',
-            gridTemplateColumns: `repeat(${value}, minmax(0, 1fr))`,
-            gap: '1rem',
-          };
-        },
-      },
-      bleft: {
-        className: 'bleft', // css({ br: "sm" }) => rounded-sm
-        values: ['yellow', 'sky', 'mint', ' coral'], // connect values to the radii tokens
-        transform(value) {
-          return {
-            paddingLeft: '1rem',
-            borderLeft: '10px solid var(--colors-' + value + ')',
-          };
-        },
-      },
-    },
-  },
-
-  patterns: {
-    extend: {
-      // Extend the default `flex` pattern
-      grid: {
-        defaultValues(props) {
-          return {
-            gap: props.columnGap || props.rowGap ? undefined : '1rem',
-            columns: 12,
-          };
-        },
-      },
-    },
-  },
-
   // The output directory for your css system
   outdir: '@ocobo/styled-system',
 });
