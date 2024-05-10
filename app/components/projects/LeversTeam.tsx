@@ -28,8 +28,8 @@ const LeversTeam = () => {
       subItems: t('levers.team.items.1.items', { returnObjects: true }),
     },
     {
-      title: t('levers.team.items.1.title'),
-      subItems: t('levers.team.items.1.items', { returnObjects: true }),
+      title: t('levers.team.items.2.title'),
+      subItems: t('levers.team.items.2.items', { returnObjects: true }),
     },
   ];
 
@@ -60,13 +60,17 @@ const LeversTeam = () => {
             </GridItem>
           ))}
 
-          <GridItem>
+          <GridItem
+            className={css({
+              position: 'relative',
+            })}
+          >
             <Illustration
-              name="strategy_hero"
+              name="projects_levers_team"
               className={css({
-                translateY: { base: 'none', lg: '-30%' },
+                translateY: '-100px',
                 mx: 'auto',
-                height: '200px',
+                position: 'absolute',
               })}
             />
           </GridItem>

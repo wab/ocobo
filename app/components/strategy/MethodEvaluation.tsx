@@ -120,12 +120,18 @@ const MethodEvaluation = () => {
               className={carouselItem({
                 shouldScrollSnapAlignStart: snapPointIndexes.has(i),
                 width: '240px',
+                _first: {
+                  ml: '4',
+                },
+                _last: {
+                  mr: '4',
+                },
               })}
             >
               <div
                 className={css({
-                  textStyle: 'heading2',
-                  p: '0.5em 1.5rem 0.5em 1.5rem',
+                  textStyle: 'heading3',
+                  p: '1.5rem',
                   display: 'flex',
                   alignItems: 'center',
                   boxSizing: 'border-box',

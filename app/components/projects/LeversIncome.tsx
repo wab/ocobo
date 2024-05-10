@@ -39,9 +39,9 @@ const LeversIncome = () => {
             })}
           >
             <Illustration
-              name="strategy_hero"
+              name="projects_levers_income"
               className={css({
-                maxWidth: '2/3',
+                maxWidth: '11/12',
               })}
             />
           </GridItem>

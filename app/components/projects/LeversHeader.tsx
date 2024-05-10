@@ -35,11 +35,6 @@ const LeversHeader = () => {
         <header>
           <Grid columns={{ base: 1, lg: 12 }} alignItems="center">
             <GridItem
-              className={css({
-                hideBelow: 'lg',
-              })}
-            />
-            <GridItem
               colSpan={{ base: 1, lg: 4 }}
               className={css({
                 textAlign: { base: 'center', lg: 'left' },
@@ -72,12 +67,12 @@ const LeversHeader = () => {
               })}
             />
             <GridItem
-              colSpan={{ base: 1, lg: 5 }}
+              colSpan={{ base: 1, lg: 7 }}
               className={css({
                 hideBelow: 'lg',
               })}
             >
-              <Illustration name="strategy_hero" />
+              <Illustration name="projects_levers_header" extension="png" />
             </GridItem>
           </Grid>
         </header>

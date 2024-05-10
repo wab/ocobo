@@ -27,17 +27,18 @@ const ContactForm: React.FunctionComponent<React.PropsWithChildren> = (
       <div
         className={css({
           display: 'flex',
+          flexWrap: 'wrap',
           gap: '6',
           mb: '6',
         })}
       >
-        <div className={css({ w: '1/2' })}>
+        <div className={css({ w: { base: 'full', lg: '1/2' } })}>
           <Label htmlFor="firstname">
             {t('form.firstname', { ns: 'contact' })}*
           </Label>
           <Input id="firstname" name="firstname" required />
         </div>
-        <div className={css({ w: '1/2' })}>
+        <div className={css({ w: { base: 'full', lg: '1/2' } })}>
           <Label htmlFor="lastname">
             {t('form.lastname', { ns: 'contact' })}*
           </Label>

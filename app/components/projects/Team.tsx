@@ -6,6 +6,7 @@ import { section } from '@ocobo/styled-system/recipes';
 
 import { ToolCarousel } from '../ToolCarousel';
 import { Container } from '../ui/Container';
+import { Illustration } from '../ui/Illustration';
 
 const Team = () => {
   const { t } = useTranslation('projects');
@@ -40,8 +41,9 @@ const Team = () => {
             colSpan={{ base: 1, lg: 7 }}
             className={css({ hideBelow: 'lg' })}
           >
-            <img
-              src="/illus/tools.png"
+            <Illustration
+              name="tools"
+              extension="png"
               alt=""
               className={css({
                 display: 'block',

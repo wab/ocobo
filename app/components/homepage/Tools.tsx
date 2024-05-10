@@ -6,6 +6,7 @@ import { section } from '@ocobo/styled-system/recipes';
 
 import { ToolCarousel } from '../ToolCarousel';
 import { Container } from '../ui/Container';
+import { Illustration } from '../ui/Illustration';
 
 const Tools = () => {
   const { t } = useTranslation('home');
@@ -43,7 +44,7 @@ const Tools = () => {
             colSpan={{ base: 1, lg: 5 }}
             className={css({ hideBelow: 'lg' })}
           >
-            <img src="/illus/tools.png" alt="" />
+            <Illustration name="tools" extension="png" alt="" />
           </GridItem>
         </Grid>
       </Container>

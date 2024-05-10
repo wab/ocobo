@@ -52,13 +52,7 @@ const LeversData = () => {
               hideBelow: 'lg',
             })}
           >
-            <Illustration
-              name="strategy_hero"
-              className={css({
-                maxWidth: '2/3',
-                mx: 'auto',
-              })}
-            />
+            <Illustration name="projects_levers_data" className={css({})} />
           </GridItem>
         </Grid>
       </Container>

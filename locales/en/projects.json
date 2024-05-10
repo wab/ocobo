@@ -4,6 +4,7 @@
   "hero.title": "A RevOps project that addresses an urgent problem",
   "hero.subtitle": "A RevOps issue that you don't have the expertise or bandwidth to resolve internally?",
   "hero.description": "Ocobo immediately switches to solution mode and deploys all the resources and skills necessary to resolve it effectively.",
+  "hero.description_mobile": "A RevOps problem? Ocobo switches to “solution” mode and deploys all the resources and skills necessary to resolve it effectively.",
   "levers.title": "Projects spanning the entire customer life cycle <0>and based on your organization's levers of excellence:</0>",
   "levers.team.title": "Team & planning",
   "levers.team.items.0.title": "Revenue strategy architecture",
@@ -29,7 +30,7 @@
   "levers.process.title": "Process & Tools",
   "levers.process.items.0.title": "Process",
   "levers.process.items.0.items": [
-    "Belly Funnel (Acquisition/Expansion)",
+    "Sales Funnel (Acquisition/Expansion)",
     "Customer journey mapping",
     "Quote to cash (quote, product catalog, invoicing)",
     "Omnichannel customer operations"
@@ -40,7 +41,7 @@
     "CRM & Sales Engagement Platform",
     "Marketing Hub",
     "Customer Engagement Platform",
-    "Compensation platforms",
+    "Compensation Platform",
     "Billing",
     "Help Desk & Ticketing"
   ],

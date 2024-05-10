@@ -37,11 +37,14 @@ const Hero = () => {
                 <h1 className={css({ textStyle: 'heading1' })}>
                   {t('hero.title')}
                 </h1>
-                <p className={css({ textStyle: 'heading3' })}>
+                <p className={css({ textStyle: 'heading3', hideBelow: 'lg' })}>
                   {t('hero.subtitle')}
                 </p>
                 <p className={css({ hideBelow: 'lg' })}>
                   {t('hero.description')}
+                </p>
+                <p className={css({ hideFrom: 'lg' })}>
+                  {t('hero.description_mobile')}
                 </p>
                 <p>
                   <NavLink
@@ -63,8 +66,16 @@ const Hero = () => {
                   })}
                 >
                   <Illustration
-                    name="strategy_hero"
+                    name="projects_hero"
                     className={css({
+                      hideBelow: 'lg',
+                      transform: { base: 'none', lg: 'scale(1.3)' },
+                    })}
+                  />
+                  <Illustration
+                    name="projects_hero_mobile"
+                    className={css({
+                      hideFrom: 'lg',
                       transform: { base: 'none', lg: 'scale(1.3)' },
                     })}
                   />

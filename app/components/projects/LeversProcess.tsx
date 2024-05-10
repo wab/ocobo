@@ -49,9 +49,10 @@ const LeversProcess = () => {
         >
           <GridItem colSpan={{ base: 1, lg: 4 }}>
             <Illustration
-              name="strategy_hero"
+              name="projects_levers_process"
               className={css({
                 maxWidth: '2/3',
+                mx: 'auto',
               })}
             />
           </GridItem>
