@@ -15,6 +15,8 @@ import { useChangeLanguage } from 'remix-i18next/react';
 import styles from '~/index.css?url';
 import { getLang } from '~/utils/lang';
 
+import { useSetViewportHeight } from './hooks/useSetViewportHeight';
+
 export const links: LinksFunction = () => [
   { rel: 'stylesheet', href: styles },
   {
@@ -74,5 +76,6 @@ export default function App() {
   const { locale } = useLoaderData<typeof loader>();
   // change the language of the instance to the locale detected by the loader
   useChangeLanguage(locale);
+  useSetViewportHeight();
   return <Outlet />;
 }

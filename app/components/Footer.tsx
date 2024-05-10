@@ -7,6 +7,8 @@ import { flex } from '@ocobo/styled-system/patterns';
 import { button, icon } from '@ocobo/styled-system/recipes';
 
 import { useLocalizedPathname } from '~/hooks/useLocalizedPathname';
+import { useMenuItems } from '~/hooks/useMenuItems';
+import { url } from '~/utils/url';
 
 import { LanguageSwitcher } from './LanguageSwitcher';
 import { Container } from './ui/Container';
@@ -109,7 +111,35 @@ const Socials = () => {
 
 const Footer = () => {
   const { t } = useTranslation('common');
+  const items = useMenuItems();
   const getLocalizedPath = useLocalizedPathname();
+
+  const company =
+    items
+      ?.find((item) => item.key === 'company')
+      ?.subItems?.filter((item) => !item.shouldHide)
+      ?.map((item) => ({
+        title: item.title,
+        path: item.url,
+      })) ?? [];
+
+  const services =
+    items
+      ?.find((item) => item.key === 'services')
+      ?.subItems?.filter((item) => !item.shouldHide)
+      ?.map((item) => ({
+        title: item.title,
+        path: item.url,
+      })) ?? [];
+
+  const resources =
+    items
+      ?.find((item) => item.key === 'resources')
+      ?.subItems?.filter((item) => !item.shouldHide)
+      ?.map((item) => ({
+        title: item.title,
+        path: item.url,
+      })) ?? [];
 
   return (
     <footer>
@@ -136,59 +166,22 @@ const Footer = () => {
             >
               <Logocobo height="46" className={css({ fill: 'current' })} />
               <Socials />
-              <NavLink to={getLocalizedPath('/contact')} className={button()}>
+              <NavLink to={getLocalizedPath(url.contact)} className={button()}>
                 {t('contact.cta')}
               </NavLink>
             </GridItem>
             <GridItem colSpan={{ base: 1, lg: 2 }}>
-              <FooterMenu
-                title={t('footer.company.title')}
-                items={[
-                  {
-                    title: t('footer.company.about'),
-                    path: getLocalizedPath('/about'),
-                  },
-                  {
-                    title: t('footer.company.jobs'),
-                    path: '/jobs',
-                  },
-                ]}
-              />
+              <FooterMenu title={t('footer.company.title')} items={company} />
             </GridItem>
 
             <GridItem colSpan={{ base: 1, lg: 2 }}>
-              <FooterMenu
-                title={t('footer.services.title')}
-                items={[
-                  {
-                    title: t('footer.services.strategy'),
-                    path: getLocalizedPath('/strategy'),
-                  },
-                  {
-                    title: t('footer.services.revops'),
-                    path: getLocalizedPath('/revops'),
-                  },
-                ]}
-              />
+              <FooterMenu title={t('footer.services.title')} items={services} />
             </GridItem>
 
             <GridItem colSpan={{ base: 1, lg: 2 }}>
               <FooterMenu
                 title={t('footer.resources.title')}
-                items={[
-                  {
-                    title: t('footer.resources.events'),
-                    path: '/events',
-                  },
-                  {
-                    title: t('footer.resources.blog'),
-                    path: '/blog',
-                  },
-                  {
-                    title: t('footer.resources.tools'),
-                    path: '/tools',
-                  },
-                ]}
+                items={resources}
               />
             </GridItem>
             <GridItem colSpan={{ base: 2, lg: 3 }}>

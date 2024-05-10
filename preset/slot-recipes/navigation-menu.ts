@@ -9,7 +9,6 @@ export const navigationMenu = defineSlotRecipe({
     'item',
     'trigger',
     'content',
-    'link',
     'viewportWrapper',
     'viewport',
     'indicator',
@@ -36,13 +35,17 @@ export const navigationMenu = defineSlotRecipe({
       },
     },
     item: {
-      '& > [data-radix-collection-item]': {
+      _last: {
+        pl: '8',
+      },
+      '& > [data-radix-collection-item]:not(.button)': {
         display: 'inline-flex',
         h: '24px',
         w: 'max-content',
         alignItems: 'center',
         justifyContent: 'center',
         bg: 'background',
+        m: 0,
         px: '2',
         py: '2',
         textStyle: 'nav',
@@ -75,10 +78,12 @@ export const navigationMenu = defineSlotRecipe({
       },
     },
     trigger: {
+      display: 'inline-flex',
+      alignItems: 'center',
+      gap: '2',
       '& > svg': {
         position: 'relative',
         top: '1px',
-        ml: '4px',
         h: '3',
         w: '3',
         transition: 'all',

@@ -54,7 +54,7 @@ const List = withContext(styled(NavigationMenuPrimitive.List), 'list');
 const Item = withContext(styled(NavigationMenuPrimitive.Item), 'item');
 const Trigger = withContext(styled(BaseNavigationMenuTrigger), 'trigger');
 const Content = withContext(styled(NavigationMenuPrimitive.Content), 'content');
-const Link = withContext(styled(NavigationMenuPrimitive.Link), 'link');
+const Link = NavigationMenuPrimitive.Link;
 const Viewport = withContext(styled(BaseNavigationMenuViewport), 'viewport');
 const Indicator = withContext(
   styled(NavigationMenuPrimitive.Indicator),
