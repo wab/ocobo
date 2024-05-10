@@ -1,10 +1,12 @@
-import { type NavLinkProps, useLocation } from '@remix-run/react';
+import { type NavLinkProps, useParams } from '@remix-run/react';
+
+import { getLang } from '~/utils/lang';
 
 function useLocalizedPathname() {
-  const { pathname } = useLocation();
+  const params = useParams();
 
   return (path: NavLinkProps['to']) => {
-    const lang = pathname.split('/')[1];
+    const lang = getLang(params);
     return `/${lang}${path === '/' ? '' : path}`;
   };
 }

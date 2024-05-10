@@ -9,9 +9,11 @@ import { Hero, Levers, Team } from '~/components/projects';
 import { Contact } from '~/components/projects/Contact';
 import i18nServer from '~/localization/i18n.server';
 import { getLang } from '~/utils/lang';
+import { redirectWithLocale } from '~/utils/redirections';
 
-export async function loader({ params }: LoaderFunctionArgs) {
-  const t = await i18nServer.getFixedT(getLang(params), 'projects');
+export async function loader(args: LoaderFunctionArgs) {
+  redirectWithLocale(args);
+  const t = await i18nServer.getFixedT(getLang(args.params), 'projects');
   return json({
     title: t('meta.title'),
     description: t('meta.description'),

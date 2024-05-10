@@ -65,17 +65,18 @@ const LanguageSwitcher = () => {
   const { pathname } = useLocation();
   const navigate = useNavigate();
   const params = useParams();
-  const lang = getLang(params);
   const { t, i18n } = useTranslation();
+  const lang = getLang(params);
 
-  const convertPathname = (lng: string) => {
-    return pathname.replace(`/${lang}`, `/${lng}`);
-  };
+  if (!params.lang) return null;
 
   return (
     <Select.Root
       defaultValue={lang}
       onValueChange={(value) => {
+        const convertPathname = (lng: string) => {
+          return pathname.replace(`/${lang}`, `/${lng}`);
+        };
         i18n.changeLanguage(value);
         navigate(convertPathname(value));
       }}

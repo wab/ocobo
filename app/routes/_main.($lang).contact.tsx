@@ -9,9 +9,11 @@ import { ContactForm } from '~/components/ContactForm';
 import { Illustration } from '~/components/ui/Illustration';
 import i18nServer from '~/localization/i18n.server';
 import { getLang } from '~/utils/lang';
+import { redirectWithLocale } from '~/utils/redirections';
 
-export async function loader({ params }: LoaderFunctionArgs) {
-  const t = await i18nServer.getFixedT(getLang(params), 'contact');
+export async function loader(args: LoaderFunctionArgs) {
+  redirectWithLocale(args);
+  const t = await i18nServer.getFixedT(getLang(args.params), 'contact');
   return json({
     title: t('meta.title'),
     description: t('meta.description'),

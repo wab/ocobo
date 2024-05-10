@@ -7,9 +7,11 @@ import {
 import { Choose, Hero, Method, Needs, Team } from '~/components/strategy';
 import i18nServer from '~/localization/i18n.server';
 import { getLang } from '~/utils/lang';
+import { redirectWithLocale } from '~/utils/redirections';
 
-export async function loader({ params }: LoaderFunctionArgs) {
-  const t = await i18nServer.getFixedT(getLang(params), 'strategy');
+export async function loader(args: LoaderFunctionArgs) {
+  await redirectWithLocale(args);
+  const t = await i18nServer.getFixedT(getLang(args.params), 'strategy');
   return json({
     title: t('meta.title'),
     description: t('meta.description'),
