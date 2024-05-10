@@ -23,4 +23,8 @@ export const keyframes = defineKeyframes({
     from: { height: 'var(--radix-accordion-content-height)' },
     to: { height: 0 },
   },
+  slide: {
+    '0%': { left: 0 },
+    '100%': { left: '-100%' },
+  },
 });

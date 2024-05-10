@@ -1,10 +1,8 @@
-import * as React from 'react';
-
-import { useTranslation } from 'react-i18next';
-import { useSnapCarousel } from 'react-snap-carousel';
+import { motion } from 'framer-motion';
 
 import { css } from '@ocobo/styled-system/css';
-import { carousel, carouselItem } from '@ocobo/styled-system/patterns';
+
+import { useWindowSize } from '~/hooks/useWindowSize';
 
 const items = [
   {
@@ -53,41 +51,62 @@ const items = [
   },
 ];
 
+const itemWidth = 150;
+const itemGap = 32;
+const slideWidth = itemWidth * items.length + itemGap * (items.length + 1);
+
 const ToolCarousel = () => {
-  const { scrollRef, snapPointIndexes, pages, activePageIndex, goTo } =
-    useSnapCarousel();
+  const browserWidth = useWindowSize();
 
-  React.useEffect(() => {
-    const timeout = setTimeout(() => {
-      if (activePageIndex === pages.length - 1) {
-        goTo(0);
-      } else {
-        goTo(activePageIndex + 1);
-      }
-    }, 5000);
-    return () => clearTimeout(timeout);
-  }, [activePageIndex, pages, goTo]);
-
+  const delta = slideWidth - browserWidth.width;
+  const duplicateItems = [...items, ...items];
   return (
-    <ul ref={scrollRef} className={carousel()}>
-      {items.map((item, i) => (
-        <li
-          key={item.src}
-          className={carouselItem({
-            shouldScrollSnapAlignStart: snapPointIndexes.has(i),
-          })}
-        >
-          <img
-            src={item.src}
-            alt={item.title}
+    <div
+      className={css({
+        overflow: 'hidden',
+        position: 'relative',
+        width: '100%',
+      })}
+    >
+      <motion.ul
+        className={css({
+          display: 'inline-flex',
+          alignItems: 'center',
+          gap: itemGap + 'px',
+          w: 'auto',
+          px: itemGap + 'px',
+        })}
+        animate={{
+          x: [0, -delta + 'px', 0],
+          transition: {
+            ease: 'linear',
+            duration: delta / 15,
+            repeat: Infinity,
+          },
+        }}
+      >
+        {duplicateItems.map((item, i) => (
+          <li
+            key={item.src + i}
             className={css({
-              maxHeight: 50,
-              maxWidth: 150,
+              width: itemWidth,
+              flexShrink: 0,
             })}
-          />
-        </li>
-      ))}
-    </ul>
+          >
+            <img
+              src={item.src}
+              alt={item.title}
+              className={css({
+                maxHeight: 50,
+                maxWidth: 150,
+                display: 'block',
+                mx: 'auto',
+              })}
+            />
+          </li>
+        ))}
+      </motion.ul>
+    </div>
   );
 };
 
