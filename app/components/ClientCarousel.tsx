@@ -1,3 +1,5 @@
+import React from 'react';
+
 import { motion } from 'framer-motion';
 import { useTranslation } from 'react-i18next';
 
@@ -69,7 +71,9 @@ const itemGap = 16;
 const slideWidth =
   (itemWidth * items.length + itemGap * (items.length + 1)) * 2;
 
-const ClientCarousel = () => {
+const ClientCarousel: React.FunctionComponent<{
+  shouldDisplayTitle?: boolean;
+}> = ({ shouldDisplayTitle }) => {
   const { t } = useTranslation('common');
   const browserWidth = useWindowSize();
 
@@ -90,14 +94,16 @@ const ClientCarousel = () => {
           textAlign: 'center',
         })}
       >
-        <p
-          className={css({
-            textStyle: 'heading2',
-            mb: 6,
-          })}
-        >
-          {t('clients.title')}
-        </p>
+        {shouldDisplayTitle && (
+          <p
+            className={css({
+              textStyle: 'heading2',
+              mb: 6,
+            })}
+          >
+            {t('clients.title')}
+          </p>
+        )}
         <div
           className={css({
             overflow: 'hidden',

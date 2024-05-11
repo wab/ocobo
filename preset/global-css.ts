@@ -15,7 +15,7 @@ export const globalCss = defineGlobalStyles({
   },
 
   'p + p, h1 + p,  h2 + p,  h3 + p': {
-    mt: '[1em]',
+    mt: '1em',
   },
 
   'p, li, h1, h2, h3, h4, h5, h6': {

@@ -7,7 +7,6 @@ import {
   ScrollRestoration,
   useLoaderData,
   useRouteLoaderData,
-  MetaFunction,
 } from '@remix-run/react';
 import { SpeedInsights } from '@vercel/speed-insights/remix';
 import { useTranslation } from 'react-i18next';
@@ -52,8 +51,6 @@ export function Layout({ children }: { children: React.ReactNode }) {
   // Get the locale from the loader
   const loaderData = useRouteLoaderData<typeof loader>('root');
   const { i18n } = useTranslation();
-
-  console.log('loaderData', loaderData);
 
   return (
     <html lang={loaderData?.locale ?? 'fr'} dir={i18n.dir()} translate="no">

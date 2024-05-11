@@ -15,6 +15,7 @@ export const link = defineRecipe({
     color: 'inherit',
     gap: '2',
     position: 'relative',
+    pb: '2px',
 
     _before: {
       content: '""',
@@ -24,7 +25,7 @@ export const link = defineRecipe({
       width: '[calc(100% - 40px)]',
       transition: 'all',
       position: 'absolute',
-      bottom: '-2',
+      bottom: 0,
     },
 
     _after: {

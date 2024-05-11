@@ -1,6 +1,6 @@
 import * as React from 'react';
 
-import { NavLink } from '@remix-run/react';
+import { NavLink, useNavigation } from '@remix-run/react';
 import { MenuIcon, X } from 'lucide-react';
 
 import { css, cx } from '@ocobo/styled-system/css';
@@ -13,12 +13,16 @@ import { MainMenu } from './MainMenu';
 import { useMobileMenuContext } from './MobileMenu';
 import { Container } from './ui/Container';
 import { IconButton } from './ui/IconButton';
+import { Spinner } from './ui/Spinner';
 
 type ScrollState = 'at-top' | 'scrolling-up' | 'scrolling-down';
 
 const Header: React.FunctionComponent<{ ghost?: boolean }> = ({ ghost }) => {
+  const navigation = useNavigation();
   const mobileMenu = useMobileMenuContext();
   const getLocalizedPath = useLocalizedPathname();
+
+  const scrollIndicatorRef = React.useRef<HTMLDivElement>(null);
 
   const [scrollState, setScrollState] = React.useState<ScrollState>('at-top');
 
@@ -30,6 +34,7 @@ const Header: React.FunctionComponent<{ ghost?: boolean }> = ({ ghost }) => {
         previousScrollY < window.scrollY ? 'scrolling-down' : 'scrolling-up';
       const state = window.scrollY < 30 ? 'at-top' : direction;
       previousScrollY = window.scrollY;
+
       setScrollState(state);
     };
 
@@ -54,7 +59,9 @@ const Header: React.FunctionComponent<{ ghost?: boolean }> = ({ ghost }) => {
           },
           '&:not(.ghost[data-scroll-state="at-top"]) > .header-inner': {
             bg: 'background',
-            borderColor: 'dark',
+          },
+          '&:not(.ghost[data-scroll-state="at-top"]) .header-border': {
+            bgColor: 'dark',
           },
         }),
         ghost ? 'ghost' : '',
@@ -64,8 +71,6 @@ const Header: React.FunctionComponent<{ ghost?: boolean }> = ({ ghost }) => {
         className={cx(
           'header-inner',
           css({
-            borderBottom: 'thin',
-            borderColor: 'transparent',
             minWidth: '320px',
             position: 'fixed',
             height: 'inherit',
@@ -76,6 +81,7 @@ const Header: React.FunctionComponent<{ ghost?: boolean }> = ({ ghost }) => {
             userSelect: 'none',
             boxShadow: '0 1px transparent',
             transition: 'background-color 180ms, box-shadow 180ms',
+            pb: '5px',
           }),
         )}
       >
@@ -98,6 +104,7 @@ const Header: React.FunctionComponent<{ ghost?: boolean }> = ({ ghost }) => {
                 })}
               />
             </NavLink>
+            {navigation.state === 'loading' ? <Spinner /> : null}
             <MainMenu />
             <div
               className={css({
@@ -124,6 +131,38 @@ const Header: React.FunctionComponent<{ ghost?: boolean }> = ({ ghost }) => {
             </div>
           </div>
         </Container>
+        <div
+          className={cx(
+            'header-border',
+            css({
+              h: '1px',
+              w: 'full',
+              position: 'absolute',
+              bottom: '0',
+              left: '0',
+              bg: 'transparent',
+            }),
+          )}
+        />
+        <div
+          ref={scrollIndicatorRef}
+          className={cx(
+            'header-scroll-indicator',
+            css({
+              h: '5px',
+              w: 'full',
+              position: 'absolute',
+              bottom: '-5px',
+              left: '0',
+              bg: 'var(--scroll-progress-bar-color)',
+              transformOrigin: '0 50%',
+              animationTimeline: 'scroll(root)',
+              animationName: 'scaleProgress',
+              animationDuration: 'auto',
+              animationTimingFunction: 'linear',
+            }),
+          )}
+        />
       </div>
     </div>
   );

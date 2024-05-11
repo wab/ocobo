@@ -2,7 +2,7 @@ export const url = {
   homepage: '/',
   strategy: '/strategies-revenue-operations',
   projects: '/projets-revops',
-  stories: '/stories',
+  stories: '/clients',
   about: '/about',
   careers: '/careers',
   news: '/news',
