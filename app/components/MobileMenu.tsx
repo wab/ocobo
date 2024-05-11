@@ -3,7 +3,7 @@ import * as React from 'react';
 import { createContext } from '@radix-ui/react-context';
 import * as Portal from '@radix-ui/react-portal';
 import { Slot } from '@radix-ui/react-slot';
-import { useLocation } from '@remix-run/react';
+import { useNavigation } from '@remix-run/react';
 import { RemoveScroll } from 'react-remove-scroll';
 
 import { css } from '@ocobo/styled-system/css';
@@ -18,7 +18,7 @@ const MobileMenuProvider: React.FunctionComponent<React.PropsWithChildren> = ({
 }) => {
   const [open, setOpen] = React.useState(false);
 
-  const { pathname } = useLocation();
+  const { state } = useNavigation();
 
   React.useEffect(() => {
     // Dismiss mobile keyboard if focusing an input (e.g. when searching)
@@ -27,10 +27,9 @@ const MobileMenuProvider: React.FunctionComponent<React.PropsWithChildren> = ({
     }
 
     setOpen(false);
-  }, [pathname]);
+  }, [state]);
 
   React.useEffect(() => {
-    // Match @media (--md)
     const mediaQueryList = window.matchMedia('(min-width: 1024px)');
 
     const handleChange = () => {

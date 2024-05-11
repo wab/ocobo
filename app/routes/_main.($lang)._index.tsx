@@ -39,7 +39,7 @@ export default function Index() {
   return (
     <div>
       <Hero />
-      <ClientCarousel />
+      <ClientCarousel shouldDisplayTitle />
       <Stories />
       <Faster />
       <Better />

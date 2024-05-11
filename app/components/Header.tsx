@@ -1,7 +1,7 @@
 import * as React from 'react';
 
-import { NavLink } from '@remix-run/react';
-import { MenuIcon, X } from 'lucide-react';
+import { NavLink, useNavigation } from '@remix-run/react';
+import { MenuIcon, XIcon } from 'lucide-react';
 
 import { css, cx } from '@ocobo/styled-system/css';
 import { flex } from '@ocobo/styled-system/patterns';
@@ -13,10 +13,12 @@ import { MainMenu } from './MainMenu';
 import { useMobileMenuContext } from './MobileMenu';
 import { Container } from './ui/Container';
 import { IconButton } from './ui/IconButton';
+import { Spinner } from './ui/Spinner';
 
 type ScrollState = 'at-top' | 'scrolling-up' | 'scrolling-down';
 
 const Header: React.FunctionComponent<{ ghost?: boolean }> = ({ ghost }) => {
+  const navigation = useNavigation();
   const mobileMenu = useMobileMenuContext();
   const getLocalizedPath = useLocalizedPathname();
 
@@ -98,6 +100,14 @@ const Header: React.FunctionComponent<{ ghost?: boolean }> = ({ ghost }) => {
                 })}
               />
             </NavLink>
+            {navigation.state === 'loading' ? (
+              <Spinner
+                className={css({
+                  color: 'gray',
+                  translateY: '2px',
+                })}
+              />
+            ) : null}
             <MainMenu />
             <div
               className={css({
@@ -116,7 +126,7 @@ const Header: React.FunctionComponent<{ ghost?: boolean }> = ({ ghost }) => {
                 onClick={() => mobileMenu.setOpen((open) => !open)}
               >
                 {mobileMenu.open ? (
-                  <X className={icon({ size: 'lg' })} />
+                  <XIcon className={icon({ size: 'lg' })} />
                 ) : (
                   <MenuIcon className={icon({ size: 'lg' })} />
                 )}

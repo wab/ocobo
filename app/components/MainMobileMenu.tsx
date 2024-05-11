@@ -63,7 +63,7 @@ const MainMobileMenu = () => {
                 <div className={itemStyles()}>
                   <NavLink to={url} className={className ?? triggerStyles()}>
                     {title}
-                    {!className && <ChevronRight />}
+                    {subItems && subItems.length > 0 && <ChevronRight />}
                   </NavLink>
                 </div>
               ) : (

@@ -27,4 +27,8 @@ export const keyframes = defineKeyframes({
     '0%': { left: 0 },
     '100%': { left: '-100%' },
   },
+  scaleProgress: {
+    '0%': { transform: 'scaleX(0)' },
+    '100%': { transform: 'scaleX(1)' },
+  },
 });

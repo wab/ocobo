@@ -11,5 +11,6 @@ export const subtitle = defineRecipe({
     textTransform: 'uppercase',
     textStyle: 'large',
     fontWeight: 'bold',
+    position: 'relative',
   },
 });
