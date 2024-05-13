@@ -7,6 +7,7 @@ import {
   ScrollRestoration,
   useLoaderData,
   useRouteLoaderData,
+  MetaFunction,
 } from '@remix-run/react';
 import { SpeedInsights } from '@vercel/speed-insights/remix';
 import { useTranslation } from 'react-i18next';
@@ -43,7 +44,8 @@ export const handle = { i18n: ['common', 'home', 'strategy', 'projects'] };
 
 export async function loader({ params }: LoaderFunctionArgs) {
   const locale = getLang(params);
-  return json({ locale });
+
+  return json({ locale, env: process.env.VERCEL_ENV });
 }
 
 export function Layout({ children }: { children: React.ReactNode }) {
@@ -51,14 +53,16 @@ export function Layout({ children }: { children: React.ReactNode }) {
   const loaderData = useRouteLoaderData<typeof loader>('root');
   const { i18n } = useTranslation();
 
+  console.log('loaderData', loaderData);
+
   return (
     <html lang={loaderData?.locale ?? 'fr'} dir={i18n.dir()} translate="no">
       <head>
         <meta charSet="utf-8" />
         <meta name="viewport" content="width=device-width, initial-scale=1" />
-        {/* TODO: remove this when in production */}
-        <meta name="robots" content="noindex, nofollow" />
-
+        {loaderData?.env !== 'production' && (
+          <meta name="robots" content="noindex" />
+        )}
         <Meta />
         <Links />
       </head>
