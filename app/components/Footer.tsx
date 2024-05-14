@@ -32,7 +32,11 @@ const FooterMenu: React.FunctionComponent<{
   items: Array<TItem>;
 }> = ({ title, items }) => {
   return (
-    <div>
+    <div
+      className={css({
+        pr: { base: '0', lg: '8' },
+      })}
+    >
       <Title>{title}</Title>
       <ul className={css({ textStyle: 'small' })}>
         {items.map(({ title, path }) => (
@@ -141,6 +145,8 @@ const Footer = () => {
         path: item.url,
       })) ?? [];
 
+  const stories = items?.find((item) => item.key === 'stories');
+
   return (
     <footer>
       <div
@@ -179,10 +185,47 @@ const Footer = () => {
             </GridItem>
 
             <GridItem colSpan={{ base: 1, lg: 2 }}>
-              <FooterMenu
-                title={t('footer.resources.title')}
-                items={resources}
-              />
+              <div>
+                <Title>{t('footer.resources.title')}</Title>
+                <ul className={css({ textStyle: 'small' })}>
+                  {stories && (
+                    <li className={css({ mb: '3' })}>
+                      <NavLink
+                        to={url.stories}
+                        className={css({
+                          color: 'white/60',
+                          textDecoration: 'none',
+                          position: 'relative',
+
+                          _hover: {
+                            color: 'white',
+                          },
+                        })}
+                      >
+                        {stories.title}
+                      </NavLink>
+                    </li>
+                  )}
+                  {resources.map(({ title, path }) => (
+                    <li key={title} className={css({ mb: '3' })}>
+                      <NavLink
+                        to={path}
+                        className={css({
+                          color: 'white/60',
+                          textDecoration: 'none',
+                          position: 'relative',
+
+                          _hover: {
+                            color: 'white',
+                          },
+                        })}
+                      >
+                        {title}
+                      </NavLink>
+                    </li>
+                  ))}
+                </ul>
+              </div>
             </GridItem>
             <GridItem colSpan={{ base: 2, lg: 3 }}>
               <Title>{t('footer.newsletter.title')}</Title>

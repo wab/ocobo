@@ -1,8 +1,69 @@
 import { css } from '@ocobo/styled-system/css';
+import { circle } from '@ocobo/styled-system/patterns';
 
+import { Avatar } from '../ui/Avatar';
+import { Carousel } from '../ui/Carousel';
 import { Container } from '../ui/Container';
 
-const Stories = () => {
+type TItem = {
+  id: string;
+  slug: string;
+  quote: string;
+  name: string;
+  speaker: string;
+  role: string;
+};
+
+const StoryCard: React.FunctionComponent<{ item: TItem }> = ({ item }) => {
+  const colors = ['mint', 'coral', 'sky', 'yellow'];
+  const color = colors[(item.id.length + 1) % colors.length];
+
+  return (
+    <Carousel.Item
+      className={css({
+        display: 'flex',
+        alignItems: 'center',
+        gap: 8,
+        bg: `${color}.light`,
+        py: '8',
+        px: '80px',
+        borderTop: 'thick',
+        borderColor: color,
+        minH: 'full',
+      })}
+    >
+      <div
+        className={css({
+          flexShrink: 0,
+        })}
+      >
+        <Avatar
+          src={`/clients/${item.slug}-avatar.png`}
+          alt={item.speaker}
+          className={circle({ size: '120px' })}
+        />
+      </div>
+      <div>
+        <blockquote>
+          {item.quote}
+          <aside>
+            <cite
+              className={css({
+                textStyle: 'small',
+                fontWeight: 'bold',
+                fontStyle: 'normal',
+              })}
+            >
+              {item.speaker} {item.role} @ {item.name}
+            </cite>
+          </aside>
+        </blockquote>
+      </div>
+    </Carousel.Item>
+  );
+};
+
+const Stories: React.FunctionComponent<{ items: TItem[] }> = ({ items }) => {
   return (
     <section
       className={css({
@@ -21,21 +82,16 @@ const Stories = () => {
       })}
     >
       <Container>
-        <div
+        <Carousel.Root
+          renderItem={({ item }) => <StoryCard item={item} />}
+          items={items}
           className={css({
-            bg: 'mint.light',
-            py: '8',
-            px: '4rem',
-            borderTop: 'thick',
-            borderColor: 'mint',
             width: '4/6',
             mx: 'auto',
+            bg: 'transparent',
+            h: '250px',
           })}
-        >
-          Lorem ipsum dolor sit amet consectetur adipisicing elit. Velit quod
-          nobis molestias facere itaque, explicabo tempore optio, excepturi ab
-          quo expedita at. Dicta, minima minus autem saepe ut nam dolorum!
-        </div>
+        />
       </Container>
     </section>
   );

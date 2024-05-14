@@ -2,7 +2,7 @@ import { css } from '@ocobo/styled-system/css';
 
 import { StoryFrontmatter } from '~/modules/validation.server';
 
-import { StoryAvatar } from './StoryAvatar';
+import { StorySpeaker } from './StorySpeaker';
 
 interface StoryHeaderProps {
   item: StoryFrontmatter;
@@ -35,7 +35,7 @@ const StoryHeader: React.FunctionComponent<StoryHeaderProps> = ({
       >
         {item.subtitle}
       </p>
-      <StoryAvatar item={item} slug={slug} />
+      <StorySpeaker item={item} slug={slug} />
       <p
         className={css({
           textStyle: 'large',

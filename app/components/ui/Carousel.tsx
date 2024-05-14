@@ -1,0 +1,146 @@
+import * as React from 'react';
+
+import { AnimatePresence, motion } from 'framer-motion';
+import { ChevronLeftIcon, ChevronRightIcon } from 'lucide-react';
+
+import { css, cx } from '@ocobo/styled-system/css';
+import { styled } from '@ocobo/styled-system/jsx';
+import { icon } from '@ocobo/styled-system/recipes';
+
+const NavButton = styled('button', {
+  base: {
+    color: 'dark',
+    cursor: 'pointer',
+    p: '2',
+    _hover: {
+      color: 'dark',
+    },
+    _disabled: {
+      color: 'gray.light',
+      cursor: 'not-allowed',
+    },
+  },
+});
+
+const variants = {
+  enter: (direction: number) => {
+    return {
+      y: direction > 0 ? 100 : -100,
+      opacity: 0,
+    };
+  },
+  center: {
+    zIndex: 1,
+    y: 0,
+    opacity: 1,
+  },
+  exit: (direction: number) => {
+    return {
+      zIndex: 0,
+      y: direction < 0 ? 100 : -100,
+      opacity: 0,
+    };
+  },
+};
+
+type CarouselItemProps = React.HTMLAttributes<HTMLDivElement>;
+
+const Item: React.FunctionComponent<
+  React.ComponentProps<typeof motion.div>
+> = ({ children, className, ...props }) => (
+  <motion.div
+    variants={variants}
+    initial="enter"
+    animate="center"
+    exit="exit"
+    className={cx(
+      css({
+        position: 'absolute',
+        top: 0,
+        left: 0,
+        right: 0,
+        bottom: 0,
+      }),
+      className,
+    )}
+    {...props}
+  >
+    {children}
+  </motion.div>
+);
+
+interface CarouselRenderItemProps<T> {
+  item: T;
+}
+
+interface CarouselProps<T> extends React.HTMLAttributes<HTMLDivElement> {
+  items: T[];
+  renderItem: (
+    props: CarouselRenderItemProps<T>,
+  ) => React.ReactElement<CarouselItemProps>;
+}
+
+const Root = <T extends { id: string }>({
+  items,
+  renderItem,
+  className,
+  ...props
+}: CarouselProps<T>) => {
+  const [[page, direction], setPage] = React.useState([0, 0]);
+  const paginate = (newDirection: number) => {
+    setPage([page + newDirection, newDirection]);
+  };
+  return (
+    <div>
+      <div
+        className={cx(
+          css({
+            position: 'relative',
+          }),
+          className,
+        )}
+        {...props}
+      >
+        <AnimatePresence initial={false} custom={direction}>
+          {items.map((item, index) => {
+            if (index !== page) {
+              return null;
+            }
+            return (
+              <React.Fragment key={item.id}>
+                {renderItem({
+                  item,
+                })}
+              </React.Fragment>
+            );
+          })}
+        </AnimatePresence>
+        <div
+          className={css({
+            width: 'full',
+            display: 'flex',
+            justifyContent: 'space-between',
+            position: 'absolute',
+            top: '50%',
+            left: 0,
+            translateY: '-50%',
+            zIndex: 2,
+            px: '4',
+          })}
+        >
+          <NavButton onClick={() => paginate(-1)} disabled={page === 0}>
+            <ChevronLeftIcon className={icon({ size: 'lg' })} />
+          </NavButton>
+
+          <NavButton
+            onClick={() => paginate(1)}
+            disabled={page === items.length - 1}
+          >
+            <ChevronRightIcon className={icon({ size: 'lg' })} />
+          </NavButton>
+        </div>
+      </div>
+    </div>
+  );
+};
+export const Carousel = { Root, Item };

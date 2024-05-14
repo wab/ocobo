@@ -9,7 +9,7 @@ import { StoryFrontmatter } from '~/modules/validation.server';
 import type { MarkdocFile } from '~/types';
 import { url } from '~/utils/url';
 
-import { StoryAvatar } from './StoryAvatar';
+import { StorySpeaker } from './StorySpeaker';
 
 interface StoryItemProps {
   item: MarkdocFile<StoryFrontmatter>['frontmatter'];
@@ -126,7 +126,7 @@ const StoryItem: React.FunctionComponent<StoryItemProps> = ({
           })}
         >
           <hr />
-          <StoryAvatar item={item} slug={slug} />
+          <StorySpeaker item={item} slug={slug} />
         </div>
       </div>
     </article>

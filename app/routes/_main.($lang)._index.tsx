@@ -1,8 +1,11 @@
+import React from 'react';
+
 import {
-  json,
+  defer,
   type LoaderFunctionArgs,
   type MetaFunction,
 } from '@remix-run/node';
+import { Await, useLoaderData } from '@remix-run/react';
 
 import { ClientCarousel } from '~/components/ClientCarousel';
 import {
@@ -16,15 +19,31 @@ import {
   Tools,
 } from '~/components/homepage';
 import i18nServer from '~/localization/i18n.server';
+import { fetchStories } from '~/modules/utils.server';
 import { getLang } from '~/utils/lang';
 import { redirectWithLocale } from '~/utils/redirections';
 
 export async function loader(args: LoaderFunctionArgs) {
   redirectWithLocale(args);
   const t = await i18nServer.getFixedT(getLang(args.params), 'home');
-  return json({
+
+  const [status, state, files] = await fetchStories();
+
+  if (status !== 200 || !files) {
+    throw Error(`Error (${status}) ${state}: Failed to fetch blog articles.`);
+  }
+
+  const stories = files.sort((a, b) => {
+    return (
+      new Date(b.frontmatter.date).getTime() -
+      new Date(a.frontmatter.date).getTime()
+    );
+  });
+
+  return defer({
     title: t('meta.title'),
     description: t('meta.description'),
+    stories,
   });
 }
 
@@ -36,11 +55,30 @@ export const meta: MetaFunction<typeof loader> = ({ data }) => {
 };
 
 export default function Index() {
+  const { stories } = useLoaderData<typeof loader>();
   return (
     <div>
       <Hero />
       <ClientCarousel shouldDisplayTitle />
-      <Stories />
+      <React.Suspense fallback={<div>loading...</div>}>
+        <Await resolve={stories}>
+          {(stories) => (
+            <Stories
+              items={stories.map((story) => ({
+                id: story.slug,
+                slug: story.slug,
+                speaker: story.frontmatter.speaker,
+                role: story.frontmatter.role,
+                name: story.frontmatter.name,
+                quote:
+                  story.frontmatter.quotes[
+                    Math.floor(Math.random() * story.frontmatter.quotes.length)
+                  ],
+              }))}
+            />
+          )}
+        </Await>
+      </React.Suspense>
       <Faster />
       <Better />
       <Aligned />

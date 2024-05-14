@@ -1,15 +1,16 @@
 import { css } from '@ocobo/styled-system/css';
-import { circle } from '@ocobo/styled-system/patterns';
 
 import { StoryFrontmatter } from '~/modules/validation.server';
 import type { MarkdocFile } from '~/types';
 
-interface StoryAvatarProps {
+import { Avatar } from '../ui/Avatar';
+
+interface StorySpeakerProps {
   item: MarkdocFile<StoryFrontmatter>['frontmatter'];
   slug: string;
 }
 
-const StoryAvatar: React.FunctionComponent<StoryAvatarProps> = ({
+const StorySpeaker: React.FunctionComponent<StorySpeakerProps> = ({
   item,
   slug,
 }) => {
@@ -23,11 +24,7 @@ const StoryAvatar: React.FunctionComponent<StoryAvatarProps> = ({
       })}
     >
       <div>
-        <img
-          src={`/clients/${slug}-avatar.png`}
-          alt={item.name}
-          className={circle({ size: '70px' })}
-        />
+        <Avatar src={`/clients/${slug}-avatar.png`} alt={item.name} />
       </div>
       <div>
         <strong>{item.speaker}</strong>
@@ -37,6 +34,6 @@ const StoryAvatar: React.FunctionComponent<StoryAvatarProps> = ({
   );
 };
 
-StoryAvatar.displayName = 'StoryAvatar';
+StorySpeaker.displayName = 'StorySpeaker';
 
-export { StoryAvatar };
+export { StorySpeaker };
