@@ -27,11 +27,7 @@ export async function loader(args: LoaderFunctionArgs) {
   redirectWithLocale(args);
   const t = await i18nServer.getFixedT(getLang(args.params), 'home');
 
-  const [status, state, files] = await fetchStories();
-
-  if (status !== 200 || !files) {
-    throw Error(`Error (${status}) ${state}: Failed to fetch blog articles.`);
-  }
+  const files = await fetchStories();
 
   const stories = files.sort((a, b) => {
     return (

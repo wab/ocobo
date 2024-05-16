@@ -2,7 +2,7 @@ import Markdoc from '@markdoc/markdoc';
 import yaml from 'js-yaml';
 import invariant from 'tiny-invariant';
 
-import type { ActionResult, MarkdocFile } from '~/types';
+import type { ActionResult, MarkdocFile, TvalidateFrontMatter } from '~/types';
 
 import { config } from '../config';
 
@@ -26,9 +26,7 @@ export async function fetchMarkdownFile<FrontMatter>(
   accessToken: string,
   path: string,
   slug = '',
-  hasValidFrontMatter: (
-    attributes: unknown,
-  ) => attributes is FrontMatter & Record<string, unknown>,
+  hasValidFrontMatter: TvalidateFrontMatter<FrontMatter>,
 ): Promise<ActionResult<FetchMarkdownFileResState, MarkdocFile<FrontMatter>>> {
   const contentUrl = getContentPath(path, slug);
 

@@ -2,8 +2,7 @@ import { useTranslation } from 'react-i18next';
 
 import { css } from '@ocobo/styled-system/css';
 
-import { StoryFrontmatter } from '~/modules/validation.server';
-import type { MarkdocFile } from '~/types';
+import type { MarkdocFile, StoryFrontmatter } from '~/types';
 
 import { StoryDeliverables } from './StoryDeliverables';
 import { StoryHeader } from './StoryHeader';

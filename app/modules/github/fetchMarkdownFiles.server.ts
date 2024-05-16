@@ -1,4 +1,4 @@
-import type { ActionResult, MarkdocFile } from '~/types';
+import type { ActionResult, MarkdocFile, TvalidateFrontMatter } from '~/types';
 
 import {
   fetchFileItems,
@@ -18,9 +18,7 @@ export enum FetchMarkdownFilesResState {
 export async function fetchMarkdownFiles<FrontMatter>(
   accessToken: string,
   directoryUrl: string,
-  hasValidFrontMatter: (
-    attributes: unknown,
-  ) => attributes is FrontMatter & Record<string, unknown>,
+  hasValidFrontMatter: TvalidateFrontMatter<FrontMatter>,
 ): Promise<
   ActionResult<FetchMarkdownFilesResState, MarkdocFile<FrontMatter>[]>
 > {

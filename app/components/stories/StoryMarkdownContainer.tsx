@@ -6,7 +6,7 @@ import { QuoteIcon } from 'lucide-react';
 import { css, cx } from '@ocobo/styled-system/css';
 import { icon, subtitle } from '@ocobo/styled-system/recipes';
 
-import { MarkdownContainer } from '../ui/MarkdowContainer';
+import { MarkdownContainer } from '../MarkdowContainer';
 
 export function Container({ children }: HTMLAttributes<HTMLElement>) {
   return (
@@ -251,7 +251,6 @@ export function StoryMarkdownContainer({
   content,
   ...props
 }: StoryMarkdownContainerProps) {
-  console.log('StoryMarkdownContainer', content);
   return (
     <MarkdownContainer
       {...props}

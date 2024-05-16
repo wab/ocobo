@@ -12,11 +12,7 @@ export async function loader({ request }: LoaderFunctionArgs) {
   const searchParams = new URLSearchParams(url.search);
   const tag = searchParams.get('tag');
 
-  const [status, state, files] = await fetchStories();
-
-  if (status !== 200 || !files) {
-    throw Error(`Error (${status}) ${state}: Failed to fetch blog articles.`);
-  }
+  const files = await fetchStories();
 
   const entries = files
     .filter((entry) => !tag || entry.frontmatter.tags.includes(tag))

@@ -30,12 +30,7 @@ export async function loader({ params }: LoaderFunctionArgs) {
       return redirect(`/clients/${newSlug}`);
     }
   }
-
-  const [status, state, article] = await fetchStory(slug);
-
-  if (status !== 200 || !article) {
-    throw Error(`Error (${status}) ${state}: Failed to fetch blog articles.`);
-  }
+  const article = await fetchStory(slug);
 
   return defer(
     { article },

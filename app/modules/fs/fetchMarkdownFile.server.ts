@@ -4,7 +4,7 @@ import Markdoc from '@markdoc/markdoc';
 import yaml from 'js-yaml';
 import invariant from 'tiny-invariant';
 
-import type { ActionResult, MarkdocFile } from '~/types';
+import type { ActionResult, MarkdocFile, TvalidateFrontMatter } from '~/types';
 
 import { config } from '../config';
 
@@ -25,9 +25,7 @@ const getContentPath = (url: string, slug: string): string => {
 export async function fetchMarkdownFileFs<FrontMatter>(
   path: string,
   slug: string,
-  hasValidFrontMatter: (
-    attributes: unknown,
-  ) => attributes is FrontMatter & Record<string, unknown>,
+  hasValidFrontMatter: TvalidateFrontMatter<FrontMatter>,
 ): Promise<ActionResult<FetchMarkdownFileResState, MarkdocFile<FrontMatter>>> {
   const file = await fs.readFile(getContentPath(path, slug), 'utf8');
   if (!file) {
