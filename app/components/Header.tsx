@@ -50,7 +50,10 @@ const Header: React.FunctionComponent<{ ghost?: boolean }> = ({ ghost }) => {
       data-mobile-menu-open={mobileMenu.open}
       className={cx(
         css({
-          height: 'var(--main-header-height)',
+          height: {
+            base: 'var(--main-header-height-mobile)',
+            lg: 'var(--main-header-height)',
+          },
           '&[data-scroll-state="scrolling-down"] .header-inner': {
             transitionDuration: '30ms, 120ms',
           },
@@ -95,7 +98,7 @@ const Header: React.FunctionComponent<{ ghost?: boolean }> = ({ ghost }) => {
                 alt="Ocobo"
                 className={css({
                   display: 'block',
-                  height: '46px',
+                  height: { base: '40px', lg: '46px' },
                   translateY: '-5px',
                 })}
               />

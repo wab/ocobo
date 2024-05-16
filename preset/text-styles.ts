@@ -54,7 +54,7 @@ export const textStyles = defineTextStyles({
     value: {
       fontFamily: 'body',
       fontWeight: 400,
-      fontSize: { base: '1.2rem', lg: '1rem', '2xl': '1.125rem' },
+      fontSize: '1rem',
       lineHeight: 1,
     },
   },

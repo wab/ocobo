@@ -42,7 +42,10 @@ const Aside: React.FunctionComponent<React.PropsWithChildren<unknown>> = ({
       <div
         className={css({
           position: { base: 'static', lg: 'sticky' },
-          top: 'var(--main-header-height)',
+          top: {
+            base: 'var(--main-header-height-mobile)',
+            lg: 'var(--main-header-height)',
+          },
           pt: '8',
         })}
       >

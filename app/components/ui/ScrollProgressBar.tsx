@@ -22,7 +22,10 @@ const ScrollProgressBar: React.FunctionComponent<ScrollProgressBarProps> = ({
           h: '5px',
           w: 'full',
           position: 'sticky',
-          top: 'var(--main-header-height)',
+          top: {
+            base: 'var(--main-header-height-mobile)',
+            lg: 'var(--main-header-height)',
+          },
           left: '0',
           bg: variant,
           transformOrigin: '0 50%',

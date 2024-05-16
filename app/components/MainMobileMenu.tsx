@@ -54,7 +54,7 @@ const MainMobileMenu = () => {
           className={flex({
             direction: 'column',
             minHeight:
-              'calc((var(--vh, 1vh) * 100) - var(--main-header-height))',
+              'calc((var(--vh, 1vh) * 100) - var(--main-header-height-mobil))',
           })}
         >
           {items.map(({ key, title, url, subItems, className }) => (

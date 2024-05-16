@@ -17,8 +17,8 @@ const items = [
     title: 'Citron',
   },
   {
-    src: '/clients/dotworld-white.png',
-    title: 'Dotworld',
+    src: '/clients/wttj-white.png',
+    title: 'Welcome To The Jungle',
   },
   {
     src: '/clients/fabriq-white.png',
@@ -32,9 +32,10 @@ const items = [
     src: '/clients/leeway-white.png',
     title: 'Leeway',
   },
+
   {
-    src: '/clients/movivolt-white.png',
-    title: 'Movivolt',
+    src: '/clients/qonto-white.png',
+    title: 'Qonto',
   },
   {
     src: '/clients/qare-white.png',
@@ -45,8 +46,8 @@ const items = [
     title: 'Qobra',
   },
   {
-    src: '/clients/qonto-white.png',
-    title: 'Qonto',
+    src: '/clients/movivolt-white.png',
+    title: 'Movivolt',
   },
   {
     src: '/clients/resilience-white.png',
@@ -61,8 +62,8 @@ const items = [
     title: 'Steeple',
   },
   {
-    src: '/clients/wttj-white.png',
-    title: 'Welcome To The Jungle',
+    src: '/clients/dotworld-white.png',
+    title: 'Dotworld',
   },
 ];
 

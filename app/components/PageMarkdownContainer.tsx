@@ -182,14 +182,14 @@ export function Table({
         {...props}
         className={css({
           borderCollapse: 'collapse',
-          width: '100%',
+          maxWidth: '100%',
           mb: '1em',
           textStyle: 'small',
           '& th, & td': {
             border: '1px solid',
             borderColor: 'gray',
             py: '0.5em',
-            px: '1em',
+            px: '0.5em',
           },
         })}
       >
