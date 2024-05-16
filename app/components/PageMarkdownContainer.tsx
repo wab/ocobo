@@ -1,0 +1,302 @@
+import type { RenderableTreeNode } from '@markdoc/markdoc';
+import { QuoteIcon } from 'lucide-react';
+
+import { css, cx } from '@ocobo/styled-system/css';
+import { icon } from '@ocobo/styled-system/recipes';
+
+import { MarkdownContainer } from './MarkdowContainer';
+
+export function Container({ children }: React.HTMLAttributes<HTMLElement>) {
+  return (
+    <div
+      className={css({
+        '& p, h3, h4, h5, h6, ol, ul, blockquote': {
+          '& + *': {
+            mt: '1em',
+          },
+        },
+      })}
+    >
+      {children}
+    </div>
+  );
+}
+
+type HeadingProps = React.HTMLAttributes<HTMLHeadingElement> & {
+  level?: number;
+};
+
+export function H1({
+  children,
+  ...props
+}: React.HTMLAttributes<HTMLHeadingElement>) {
+  return (
+    <h1
+      {...props}
+      className={css({
+        textStyle: 'heading1',
+      })}
+    >
+      {children}
+    </h1>
+  );
+}
+
+export function Heading({ children, level = 2, ...props }: HeadingProps) {
+  if (level === 1) {
+    return (
+      <h1
+        {...props}
+        className={css({
+          textStyle: 'heading1',
+        })}
+      >
+        {children}
+      </h1>
+    );
+  }
+  if (level === 2) {
+    return (
+      <h2
+        {...props}
+        className={css({
+          textStyle: 'heading2',
+        })}
+      >
+        {children}
+      </h2>
+    );
+  }
+  if (level === 3) {
+    return (
+      <h3
+        {...props}
+        className={css({
+          textStyle: 'heading3',
+        })}
+      >
+        {children}
+      </h3>
+    );
+  }
+  if (level === 4) {
+    return (
+      <h4
+        {...props}
+        className={css({
+          textStyle: 'large',
+        })}
+      >
+        {children}
+      </h4>
+    );
+  }
+  return (
+    <h5
+      {...props}
+      className={css({
+        textStyle: 'medium',
+        fontWeight: 'bold',
+      })}
+    >
+      {children}
+    </h5>
+  );
+}
+
+type ListProps = React.HTMLAttributes<HTMLElement> & {
+  ordered?: boolean;
+};
+
+export function List({ children, ordered, ...props }: ListProps) {
+  if (ordered) {
+    return (
+      <ol
+        className={css({
+          textStyle: 'medium',
+          listStyleType: 'decimal',
+          pl: '1em',
+        })}
+        {...props}
+      >
+        {children}
+      </ol>
+    );
+  }
+  return (
+    <ul
+      className={css({
+        textStyle: 'medium',
+        listStyleType: 'disc',
+        pl: '1em',
+      })}
+      {...props}
+    >
+      {children}
+    </ul>
+  );
+}
+
+export function ListItem({
+  children,
+  ...props
+}: React.HTMLAttributes<HTMLLIElement>) {
+  return (
+    <li
+      className={css({
+        mb: '0.5em',
+        _last: {
+          mb: 0,
+        },
+      })}
+      {...props}
+    >
+      {children}
+    </li>
+  );
+}
+
+export function Paragraph({
+  children,
+  ...props
+}: React.HTMLAttributes<HTMLParagraphElement>) {
+  return (
+    <p
+      {...props}
+      className={css({
+        textStyle: 'medium',
+      })}
+    >
+      {children}
+    </p>
+  );
+}
+
+export function Table({
+  children,
+  ...props
+}: React.HTMLAttributes<HTMLTableElement>) {
+  return (
+    <div>
+      <table
+        {...props}
+        className={css({
+          borderCollapse: 'collapse',
+          width: '100%',
+          mb: '1em',
+          textStyle: 'small',
+          '& th, & td': {
+            border: '1px solid',
+            borderColor: 'gray',
+            py: '0.5em',
+            px: '1em',
+          },
+        })}
+      >
+        {children}
+      </table>
+    </div>
+  );
+}
+
+export function TH({
+  children,
+  ...props
+}: React.HTMLAttributes<HTMLTableCellElement>) {
+  return (
+    <th
+      {...props}
+      className={css({
+        fontWeight: 'bold',
+        textAlign: 'left',
+        bg: 'gray.light',
+      })}
+    >
+      {children}
+    </th>
+  );
+}
+
+type TDProps = React.HTMLAttributes<HTMLTableCellElement> & {
+  color?: 'green' | 'red' | 'default';
+};
+
+export function TD({ children, ...props }: TDProps) {
+  return <td {...props}>{children}</td>;
+}
+
+type QuoteProps = React.HTMLAttributes<HTMLElement> & {
+  author?: string;
+  url?: string;
+};
+
+export function Quote({ children, author, url, ...props }: QuoteProps) {
+  return (
+    <blockquote cite={url} {...props}>
+      <QuoteIcon
+        className={cx(
+          icon({ size: 'lg' }),
+          css({
+            display: 'inline-block',
+            mr: '0.5em',
+            color: 'mint',
+          }),
+        )}
+      />
+      {children}
+
+      {author && (
+        <aside className="inline">
+          <span className="text-3xl font-bold"> &minus;</span>
+          <cite> {author}</cite>
+        </aside>
+      )}
+    </blockquote>
+  );
+}
+
+export function Link({
+  href = '/404',
+  children,
+  ...props
+}: React.AnchorHTMLAttributes<HTMLAnchorElement>) {
+  return (
+    <a
+      href={href}
+      className={css({
+        textDecoration: 'underline',
+      })}
+      {...props}
+    >
+      {children}
+    </a>
+  );
+}
+
+type StoryMarkdownContainerProps = {
+  content: RenderableTreeNode;
+};
+
+export function PageMarkdownContainer({
+  content,
+  ...props
+}: StoryMarkdownContainerProps) {
+  return (
+    <MarkdownContainer
+      {...props}
+      content={content}
+      components={{
+        Container,
+        Heading,
+        Paragraph,
+        List,
+        ListItem,
+        Link,
+        Quote,
+        Table,
+        TH,
+        TD,
+      }}
+    />
+  );
+}

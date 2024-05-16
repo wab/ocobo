@@ -262,10 +262,10 @@ const Footer = () => {
             })}
           </div>
           <div>
-            <NavLink to="/legal">Confidentialité</NavLink>
+            <NavLink to="/legal/confidentialite">Confidentialité</NavLink>
           </div>
           <div>
-            <NavLink to="/cgu">Conditions d&apos;utilisations</NavLink>
+            <NavLink to="/legal/cgu">Conditions d&apos;utilisations</NavLink>
           </div>
         </Flex>
       </Container>
