@@ -5,8 +5,7 @@ import { css, cx } from '@ocobo/styled-system/css';
 import { VisuallyHidden } from '@ocobo/styled-system/jsx';
 import { link } from '@ocobo/styled-system/recipes';
 
-import { StoryFrontmatter } from '~/modules/validation.server';
-import type { MarkdocFile } from '~/types';
+import type { MarkdocFile, StoryFrontmatter } from '~/types';
 import { url } from '~/utils/url';
 
 import { StorySpeaker } from './StorySpeaker';

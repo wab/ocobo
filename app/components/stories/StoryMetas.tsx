@@ -4,11 +4,11 @@ import { css } from '@ocobo/styled-system/css';
 import { flex } from '@ocobo/styled-system/patterns';
 import { icon } from '@ocobo/styled-system/recipes';
 
-import { StoryFrontmatter } from '~/modules/validation.server';
+import { StoryFrontmatter } from '~/types';
 
-import { Card } from './Card';
+import { AsideCard } from '../AsideCard';
 
-interface StoryMetasProps extends React.ComponentProps<typeof Card.Root> {
+interface StoryMetasProps extends React.ComponentProps<typeof AsideCard.Root> {
   item: StoryFrontmatter;
 }
 
@@ -17,15 +17,15 @@ const StoryMetas: React.FunctionComponent<StoryMetasProps> = ({
   ...props
 }) => {
   return (
-    <Card.Root {...props}>
-      <Card.Title>
+    <AsideCard.Root {...props}>
+      <AsideCard.Title>
         <img
           src={`/clients/${item.slug}-white.png`}
           alt={item.name}
           width={100}
         />
-      </Card.Title>
-      <Card.Section>
+      </AsideCard.Title>
+      <AsideCard.Section>
         <ul>
           {item.tags.map((item) => {
             return (
@@ -40,14 +40,14 @@ const StoryMetas: React.FunctionComponent<StoryMetasProps> = ({
             );
           })}
         </ul>
-      </Card.Section>
-      <Card.Section>
+      </AsideCard.Section>
+      <AsideCard.Section>
         <div className={flex({ gap: 3 })}>
           <TimerIcon className={icon({ size: 'lg' })} />
           {item.duration}
         </div>
-      </Card.Section>
-      <Card.Section>
+      </AsideCard.Section>
+      <AsideCard.Section>
         <div className={flex({ gap: 3 })}>
           <MessageSquareTextIcon className={icon({ size: 'lg' })} />
           <ul>
@@ -60,8 +60,8 @@ const StoryMetas: React.FunctionComponent<StoryMetasProps> = ({
             })}
           </ul>
         </div>
-      </Card.Section>
-      <Card.Section>
+      </AsideCard.Section>
+      <AsideCard.Section>
         <div className={flex({ gap: 3 })}>
           <WrenchIcon className={icon({ size: 'lg' })} />
           <ul>
@@ -74,8 +74,8 @@ const StoryMetas: React.FunctionComponent<StoryMetasProps> = ({
             })}
           </ul>
         </div>
-      </Card.Section>
-    </Card.Root>
+      </AsideCard.Section>
+    </AsideCard.Root>
   );
 };
 

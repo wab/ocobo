@@ -1,8 +1,8 @@
 import { useTranslation } from 'react-i18next';
 
-import { StoryFrontmatter } from '~/modules/validation.server';
+import { StoryFrontmatter } from '~/types';
 
-import { Card } from './Card';
+import { AsideCard } from '../AsideCard';
 
 interface StoryDeliverablesProps {
   items: StoryFrontmatter['deliverables'];
@@ -13,16 +13,16 @@ const StoryDeliverables: React.FunctionComponent<StoryDeliverablesProps> = ({
 }) => {
   const { t } = useTranslation();
   return (
-    <Card.Root>
-      <Card.Title>{t('clients.deliverables')}</Card.Title>
-      <Card.Section>
-        <Card.List>
+    <AsideCard.Root>
+      <AsideCard.Title>{t('clients.deliverables')}</AsideCard.Title>
+      <AsideCard.Section>
+        <AsideCard.List>
           {items.map((item, i) => {
             return <li key={`deliverable-${i}`}>{item}</li>;
           })}
-        </Card.List>
-      </Card.Section>
-    </Card.Root>
+        </AsideCard.List>
+      </AsideCard.Section>
+    </AsideCard.Root>
   );
 };
 

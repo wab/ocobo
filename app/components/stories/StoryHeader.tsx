@@ -1,6 +1,6 @@
 import { css } from '@ocobo/styled-system/css';
 
-import { StoryFrontmatter } from '~/modules/validation.server';
+import { StoryFrontmatter } from '~/types';
 
 import { StorySpeaker } from './StorySpeaker';
 

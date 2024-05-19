@@ -1,7 +1,6 @@
 import { css } from '@ocobo/styled-system/css';
 
-import { type StoryFrontmatter } from '~/modules/validation.server';
-import type { MarkdocFile } from '~/types';
+import type { MarkdocFile, StoryFrontmatter } from '~/types';
 
 import { StoryItem } from './StoryItem';
 

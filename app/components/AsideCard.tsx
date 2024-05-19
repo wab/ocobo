@@ -44,4 +44,4 @@ const List = styled('ul', {
   },
 });
 
-export const Card = { Root, Title, Section, List };
+export const AsideCard = { Root, Title, Section, List };
