@@ -4,7 +4,7 @@ import { css, cx } from '@ocobo/styled-system/css';
 
 interface ScrollProgressBarProps
   extends React.ComponentProps<typeof motion.div> {
-  variant?: 'coral' | 'mint' | 'dark';
+  variant?: 'coral' | 'mint' | 'sky' | 'dark';
 }
 
 const ScrollProgressBar: React.FunctionComponent<ScrollProgressBarProps> = ({

@@ -35,6 +35,16 @@ export type PageFrontmatter = {
   description: string;
 };
 
+export type BlogpostFrontmatter = {
+  title: string;
+  description: string;
+  author: string;
+  image: string;
+  date: string;
+  tags: string[];
+  read: string;
+};
+
 export type TvalidateFrontMatter<T> = (
   attributes: unknown,
 ) => attributes is T & Record<string, unknown>;

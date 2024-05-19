@@ -1,6 +1,10 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
 
-import { PageFrontmatter, StoryFrontmatter } from '~/types';
+import {
+  BlogpostFrontmatter,
+  PageFrontmatter,
+  StoryFrontmatter,
+} from '~/types';
 
 export function validateStoryFrontMatter(
   attributes: unknown,
@@ -19,6 +23,16 @@ export function validateStoryFrontMatter(
 export function validatePageFrontMatter(
   attributes: unknown,
 ): attributes is PageFrontmatter {
+  return (
+    !!attributes &&
+    typeof attributes !== 'function' &&
+    typeof attributes === 'object'
+  );
+}
+
+export function validateBlogpostFrontMatter(
+  attributes: unknown,
+): attributes is BlogpostFrontmatter {
   return (
     !!attributes &&
     typeof attributes !== 'function' &&

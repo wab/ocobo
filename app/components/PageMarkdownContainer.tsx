@@ -239,7 +239,7 @@ export function Quote({ children, author, url, ...props }: QuoteProps) {
           css({
             display: 'inline-block',
             mr: '0.5em',
-            color: 'mint',
+            color: 'gray',
           }),
         )}
       />
@@ -273,6 +273,25 @@ export function Link({
   );
 }
 
+export function Callout({
+  children,
+  ...props
+}: React.AnchorHTMLAttributes<HTMLDivElement>) {
+  return (
+    <div
+      className={css({
+        p: 4,
+        mb: 4,
+        bleft: 'sky',
+        bg: 'sky.light',
+      })}
+      {...props}
+    >
+      {children}
+    </div>
+  );
+}
+
 type StoryMarkdownContainerProps = {
   content: RenderableTreeNode;
 };
@@ -296,6 +315,7 @@ export function PageMarkdownContainer({
         Table,
         TH,
         TD,
+        Callout,
       }}
     />
   );

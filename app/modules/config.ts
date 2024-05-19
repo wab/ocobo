@@ -105,5 +105,9 @@ export const config: Config = {
         return new Markdoc.Tag('Quote', attributes, children);
       },
     },
+    callout: {
+      render: 'Callout',
+      attributes: {},
+    },
   },
 };

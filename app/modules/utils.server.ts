@@ -8,6 +8,7 @@ import { fetchMarkdownFiles } from './github/fetchMarkdownFiles.server';
 import {
   validateStoryFrontMatter,
   validatePageFrontMatter,
+  validateBlogpostFrontMatter,
 } from './validation.server';
 
 async function fetchMarkdownEntries<T>(
@@ -121,4 +122,40 @@ const fetchPage = async (path: string, slug: string) => {
   return article;
 };
 
-export { fetchPages, fetchPage, fetchStory, fetchStories };
+const fetchBlogPosts = async () => {
+  const [status, state, files] = await fetchMarkdownEntries(
+    'blog/fr',
+    validateBlogpostFrontMatter,
+  );
+
+  if (status !== 200 || !files) {
+    throw Error(`Error (${status}) ${state}: Failed to fetch blogposts.`);
+  }
+
+  return files;
+};
+
+const fetchBlogPost = async (slug: string) => {
+  const [status, state, article] = await fetchMarkdownEntry(
+    'blog/fr',
+    slug,
+    validateBlogpostFrontMatter,
+  );
+
+  if (status !== 200 || !article) {
+    throw Error(
+      `Error (${status}) ${state}: Failed to fetch blogpost ${slug}.`,
+    );
+  }
+
+  return article;
+};
+
+export {
+  fetchPages,
+  fetchPage,
+  fetchStory,
+  fetchStories,
+  fetchBlogPosts,
+  fetchBlogPost,
+};

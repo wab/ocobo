@@ -1,4 +1,3 @@
-import { cx } from '@ocobo/styled-system/css';
 import { circle } from '@ocobo/styled-system/patterns';
 
 interface AvatarProps extends React.ImgHTMLAttributes<HTMLImageElement> {}
