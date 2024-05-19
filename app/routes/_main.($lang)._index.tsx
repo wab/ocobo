@@ -29,12 +29,20 @@ export async function loader(args: LoaderFunctionArgs) {
 
   const files = await fetchStories();
 
-  const stories = files.sort((a, b) => {
-    return (
-      new Date(b.frontmatter.date).getTime() -
-      new Date(a.frontmatter.date).getTime()
-    );
-  });
+  const stories = files
+    .map((item) => ({
+      ...item,
+      quote:
+        item.frontmatter.quotes[
+          Math.floor(Math.random() * item.frontmatter.quotes.length)
+        ],
+    }))
+    .sort((a, b) => {
+      return (
+        new Date(b.frontmatter.date).getTime() -
+        new Date(a.frontmatter.date).getTime()
+      );
+    });
 
   return defer({
     title: t('meta.title'),
@@ -66,10 +74,7 @@ export default function Index() {
                 speaker: story.frontmatter.speaker,
                 role: story.frontmatter.role,
                 name: story.frontmatter.name,
-                quote:
-                  story.frontmatter.quotes[
-                    Math.floor(Math.random() * story.frontmatter.quotes.length)
-                  ],
+                quote: story.quote,
               }))}
             />
           )}
