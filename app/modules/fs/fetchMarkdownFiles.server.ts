@@ -20,7 +20,7 @@ async function fetchMarkdownFilesFs<FrontMatter>(
 ): Promise<
   ActionResult<FetchMarkdownFilesResState, MarkdocFile<FrontMatter>[]>
 > {
-  console.debug('fs/fetchMarkdownFiles called');
+  // console.debug('fs/fetchMarkdownFiles called');
 
   const entries = await fs.readdir(path, {
     encoding: 'utf8',

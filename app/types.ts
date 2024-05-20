@@ -15,7 +15,6 @@ export type MarkdocFile<FrontMatter> = {
 
 export type StoryFrontmatter = {
   name: string;
-  slug: string;
   date: string;
   title: string;
   subtitle: string;

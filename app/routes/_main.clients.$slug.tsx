@@ -1,4 +1,4 @@
-import { json, redirect, type LoaderFunctionArgs } from '@remix-run/node';
+import { MetaFunction, json, type LoaderFunctionArgs } from '@remix-run/node';
 import { useLoaderData } from '@remix-run/react';
 
 import { css } from '@ocobo/styled-system/css';
@@ -7,10 +7,8 @@ import { StoryArticle } from '~/components/stories';
 import { Container } from '~/components/ui/Container';
 import { ScrollProgressBar } from '~/components/ui/ScrollProgressBar';
 import { fetchStory } from '~/modules/utils.server';
-
-const redirects: Record<string, string | undefined> = {
-  'legacy-slug': 'new-slug',
-};
+import { getLang } from '~/utils/lang';
+import { getMetaTags } from '~/utils/metatags';
 
 export async function loader({ params }: LoaderFunctionArgs) {
   const { slug } = params;
@@ -22,12 +20,6 @@ export async function loader({ params }: LoaderFunctionArgs) {
     throw new Response('Not Found', { status: 404 });
   }
 
-  if (Object.keys(redirects).includes(slug)) {
-    const newSlug = redirects[slug];
-    if (newSlug) {
-      return redirect(`/clients/${newSlug}`);
-    }
-  }
   const article = await fetchStory(slug);
 
   return json(
@@ -35,6 +27,14 @@ export async function loader({ params }: LoaderFunctionArgs) {
     { headers: { 'cache-control': 'public, max-age=7200' } },
   );
 }
+
+export const meta: MetaFunction<typeof loader> = ({ data, params }) => {
+  return getMetaTags({
+    title: data?.article.frontmatter.title,
+    description: data?.article.frontmatter.subtitle,
+    locale: getLang(params),
+  });
+};
 
 export default function Index() {
   const { article } = useLoaderData<typeof loader>();

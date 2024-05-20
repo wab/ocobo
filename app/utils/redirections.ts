@@ -1,6 +1,9 @@
 import { type LoaderFunctionArgs, redirect } from '@remix-run/node';
 
-export function redirectWithLocale({ request, params }: LoaderFunctionArgs) {
+export async function redirectWithLocale({
+  request,
+  params,
+}: LoaderFunctionArgs) {
   const { pathname } = new URL(request.url);
 
   if (!params.lang) {
