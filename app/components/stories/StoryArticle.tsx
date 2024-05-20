@@ -25,6 +25,7 @@ const StoryArticle: React.FunctionComponent<StoryArticleProps> = ({
       <LayoutPost.Aside>
         <StoryMetas
           item={article.frontmatter}
+          slug={article.slug}
           className={css({
             hideBelow: 'lg',
           })}

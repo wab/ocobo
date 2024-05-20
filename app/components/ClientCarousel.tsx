@@ -29,8 +29,8 @@ const items = [
     title: 'Idex',
   },
   {
-    src: '/clients/leeway-white.png',
-    title: 'Leeway',
+    src: '/clients/tomorro-white.png',
+    title: 'Tomorro',
   },
 
   {

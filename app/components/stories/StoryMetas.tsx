@@ -10,20 +10,18 @@ import { AsideCard } from '../AsideCard';
 
 interface StoryMetasProps extends React.ComponentProps<typeof AsideCard.Root> {
   item: StoryFrontmatter;
+  slug: string;
 }
 
 const StoryMetas: React.FunctionComponent<StoryMetasProps> = ({
   item,
+  slug,
   ...props
 }) => {
   return (
     <AsideCard.Root {...props}>
       <AsideCard.Title>
-        <img
-          src={`/clients/${item.slug}-white.png`}
-          alt={item.name}
-          width={100}
-        />
+        <img src={`/clients/${slug}-white.png`} alt={item.name} width={100} />
       </AsideCard.Title>
       <AsideCard.Section>
         <ul>
