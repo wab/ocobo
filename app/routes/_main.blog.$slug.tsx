@@ -1,7 +1,5 @@
-import * as React from 'react';
-
-import { defer, redirect, type LoaderFunctionArgs } from '@remix-run/node';
-import { Await, useLoaderData } from '@remix-run/react';
+import { json, redirect, type LoaderFunctionArgs } from '@remix-run/node';
+import { useLoaderData } from '@remix-run/react';
 
 import { css } from '@ocobo/styled-system/css';
 
@@ -32,7 +30,7 @@ export async function loader({ params }: LoaderFunctionArgs) {
   }
   const article = await fetchBlogPost(slug);
 
-  return defer(
+  return json(
     { article },
     { headers: { 'cache-control': 'public, max-age=7200' } },
   );

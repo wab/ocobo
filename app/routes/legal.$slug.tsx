@@ -1,7 +1,5 @@
-import * as React from 'react';
-
-import { LoaderFunctionArgs, defer } from '@remix-run/node';
-import { Await, useLoaderData } from '@remix-run/react';
+import { LoaderFunctionArgs, json } from '@remix-run/node';
+import { useLoaderData } from '@remix-run/react';
 
 import { css } from '@ocobo/styled-system/css';
 
@@ -20,7 +18,7 @@ export async function loader({ params }: LoaderFunctionArgs) {
 
   const page = await fetchPage('legal', slug);
 
-  return defer(
+  return json(
     { page },
     { headers: { 'cache-control': 'public, max-age=7200' } },
   );
@@ -34,11 +32,7 @@ export default function Index() {
         padding: '2rem 0',
       })}
     >
-      <React.Suspense fallback={<div>loading...</div>}>
-        <Await resolve={page}>
-          {(page) => <PageMarkdownContainer content={page.content} />}
-        </Await>
-      </React.Suspense>
+      <PageMarkdownContainer content={page.content} />
     </article>
   );
 }
