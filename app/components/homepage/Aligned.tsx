@@ -6,14 +6,12 @@ import { Grid, GridItem } from '@ocobo/styled-system/jsx';
 import { center } from '@ocobo/styled-system/patterns';
 import { link, section } from '@ocobo/styled-system/recipes';
 
-import { useLocalizedPathname } from '~/hooks/useLocalizedPathname';
 import { url } from '~/utils/url';
 
 import { Container } from '../ui/Container';
 
 const Aligned = () => {
   const { t } = useTranslation('home');
-  const getLocalizedPath = useLocalizedPathname();
 
   return (
     <section className={section()}>
@@ -52,7 +50,7 @@ const Aligned = () => {
               />
             </div>
             <p>
-              <NavLink to={getLocalizedPath(url.stories)} className={link()}>
+              <NavLink to={url.stories} className={link()}>
                 {t('aligned.cta')}
               </NavLink>
             </p>
