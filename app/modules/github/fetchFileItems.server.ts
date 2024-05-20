@@ -34,7 +34,7 @@ export async function fetchFileItems(
   accessToken: string,
   directoryUrl: string,
 ): Promise<ActionResult<FetchFileItemsResState, FileItem[]>> {
-  console.debug('fetchFileItems called');
+  // console.debug('fetchFileItems called');
 
   const headers = new Headers();
   headers.set('Accept', 'application/vnd.github.v3.object');

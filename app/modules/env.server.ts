@@ -11,7 +11,7 @@ export function getPublicEnvVars(): PublicEnvVars {
   };
 }
 
-const DEV_FETCH_FROM = 'locale';
+const DEV_FETCH_FROM = 'github';
 
 export function getPrivateEnvVars(): PrivateEnvVars {
   const githubRepoAPIUrl = `https://api.github.com/repos/${process.env.GITHUB_ACCOUNT}/${process.env.GITHUB_REPO}/contents`;
