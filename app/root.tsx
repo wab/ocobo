@@ -43,7 +43,14 @@ export const handle = { i18n: ['common'] };
 
 export async function loader({ params }: LoaderFunctionArgs) {
   const locale = getLang(params);
-  return json({ locale, env: process.env.VERCEL_ENV });
+  const isProduction = process.env.NODE_ENV === 'production';
+
+  return json({
+    locale,
+    isProduction,
+    shouldLoadScript:
+      isProduction || process.env.SHOULD_LOAD_TRACKING_SCRIPTS === 'true',
+  });
 }
 
 export function Layout({ children }: { children: React.ReactNode }) {
@@ -56,11 +63,31 @@ export function Layout({ children }: { children: React.ReactNode }) {
       <head>
         <meta charSet="utf-8" />
         <meta name="viewport" content="width=device-width, initial-scale=1" />
-        {loaderData?.env !== 'production' && (
-          <meta name="robots" content="noindex" />
-        )}
+        {!loaderData?.isProduction && <meta name="robots" content="noindex" />}
         <Meta />
         <Links />
+
+        {loaderData?.shouldLoadScript && (
+          <>
+            <script
+              src="https://tag.clearbitscripts.com/v1/pk_38c2f75e7330f98606d3fda7c9686cc9/tags.js"
+              referrerPolicy="strict-origin-when-cross-origin"
+            />
+
+            <script
+              type="text/javascript"
+              id="hs-script-loader"
+              async
+              defer
+              src="//js-eu1.hs-scripts.com/27107933.js"
+            />
+
+            <script
+              type="text/javascript"
+              src="//js-eu1.hsforms.net/forms/embed/v2.js"
+            />
+          </>
+        )}
       </head>
       <body>
         {children}
