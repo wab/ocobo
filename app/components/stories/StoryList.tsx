@@ -4,46 +4,42 @@ import type { MarkdocFile, StoryFrontmatter } from '~/types';
 
 import { StoryItem } from './StoryItem';
 
-import { Container } from '../ui/Container';
-
 interface StoryListProps {
   items: MarkdocFile<StoryFrontmatter>[];
 }
 
 const StoryList: React.FunctionComponent<StoryListProps> = ({ items }) => {
   return (
-    <Container>
-      <ul
-        className={css({
-          py: { base: 0, lg: 12 },
-        })}
-      >
-        {items.map((entry, i) => (
-          <li
-            key={entry.slug}
+    <ul
+      className={css({
+        py: { base: 0, lg: 12 },
+      })}
+    >
+      {items.map((entry, i) => (
+        <li
+          key={entry.slug}
+          className={css({
+            py: 8,
+            position: 'relative',
+          })}
+        >
+          <div
             className={css({
-              py: 8,
-              position: 'relative',
+              position: 'absolute',
+              top: 0,
+              left: '50%',
+              right: 0,
+              bottom: 0,
+              width: '100vw',
+              translateX: '-50%',
+              bg: i % 2 === 0 ? 'transparent' : 'mint.light',
+              hideFrom: 'lg',
             })}
-          >
-            <div
-              className={css({
-                position: 'absolute',
-                top: 0,
-                left: '50%',
-                right: 0,
-                bottom: 0,
-                width: '100vw',
-                translateX: '-50%',
-                bg: i % 2 === 0 ? 'transparent' : 'mint.light',
-                hideFrom: 'lg',
-              })}
-            />
-            <StoryItem slug={entry.slug} item={entry.frontmatter} index={i} />
-          </li>
-        ))}
-      </ul>
-    </Container>
+          />
+          <StoryItem slug={entry.slug} item={entry.frontmatter} index={i} />
+        </li>
+      ))}
+    </ul>
   );
 };
 

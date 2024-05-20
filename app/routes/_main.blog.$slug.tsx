@@ -1,4 +1,9 @@
-import { json, redirect, type LoaderFunctionArgs } from '@remix-run/node';
+import {
+  MetaFunction,
+  json,
+  redirect,
+  type LoaderFunctionArgs,
+} from '@remix-run/node';
 import { useLoaderData } from '@remix-run/react';
 
 import { css } from '@ocobo/styled-system/css';
@@ -7,6 +12,8 @@ import { BlogArticle } from '~/components/blog';
 import { Container } from '~/components/ui/Container';
 import { ScrollProgressBar } from '~/components/ui/ScrollProgressBar';
 import { fetchBlogPost } from '~/modules/utils.server';
+import { getLang } from '~/utils/lang';
+import { getMetaTags } from '~/utils/metatags';
 
 const redirects: Record<string, string | undefined> = {
   'legacy-slug': 'new-slug',
@@ -35,6 +42,15 @@ export async function loader({ params }: LoaderFunctionArgs) {
     { headers: { 'cache-control': 'public, max-age=7200' } },
   );
 }
+
+export const meta: MetaFunction<typeof loader> = ({ data, params }) => {
+  return getMetaTags({
+    title: data?.article.frontmatter.title,
+    description: data?.article.frontmatter.description,
+    image: data?.article.frontmatter.image,
+    locale: getLang(params),
+  });
+};
 
 export default function Index() {
   const { article } = useLoaderData<typeof loader>();

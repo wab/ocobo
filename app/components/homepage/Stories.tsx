@@ -32,7 +32,7 @@ const StoryCard: React.FunctionComponent<{ item: TItem }> = ({ item }) => {
         px: '80px',
         borderTop: 'thick',
         borderColor: color,
-        minH: 'full',
+        h: 'full',
       })}
     >
       <div
@@ -76,7 +76,7 @@ const StoryCard: React.FunctionComponent<{ item: TItem }> = ({ item }) => {
   );
 };
 
-const Stories: React.FunctionComponent<{ items: TItem[] }> = ({ items }) => {
+const Section: React.FunctionComponent<React.PropsWithChildren> = (props) => {
   return (
     <section
       className={css({
@@ -95,19 +95,31 @@ const Stories: React.FunctionComponent<{ items: TItem[] }> = ({ items }) => {
       })}
     >
       <Container>
-        <Carousel.Root
-          renderItem={({ item }) => <StoryCard item={item} />}
-          items={items}
+        <div
           className={css({
             width: '4/6',
             mx: 'auto',
             bg: 'transparent',
             h: '250px',
           })}
-        />
+        >
+          {props.children}
+        </div>
       </Container>
     </section>
   );
 };
+const Inner: React.FunctionComponent<{ items: TItem[] }> = ({ items }) => {
+  return (
+    <Carousel.Root
+      renderItem={({ item }) => <StoryCard item={item} />}
+      items={items}
+      className={css({
+        w: 'full',
+        h: 'full',
+      })}
+    />
+  );
+};
 
-export { Stories };
+export const Stories = { Section, Inner };

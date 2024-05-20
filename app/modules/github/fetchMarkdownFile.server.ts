@@ -30,7 +30,7 @@ export async function fetchMarkdownFile<FrontMatter>(
 ): Promise<ActionResult<FetchMarkdownFileResState, MarkdocFile<FrontMatter>>> {
   const contentUrl = getContentPath(path, slug);
 
-  console.debug(`fetchMarkdownFile called for ${contentUrl}`);
+  // console.debug(`fetchMarkdownFile called for ${contentUrl}`);
 
   const headers = new Headers();
   headers.set('Accept', 'application/vnd.github.v3.raw');

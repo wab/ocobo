@@ -1,10 +1,12 @@
-import { LoaderFunctionArgs, json } from '@remix-run/node';
+import { LoaderFunctionArgs, MetaFunction, json } from '@remix-run/node';
 import { useLoaderData } from '@remix-run/react';
 
 import { css } from '@ocobo/styled-system/css';
 
 import { PageMarkdownContainer } from '~/components/PageMarkdownContainer';
 import { fetchPage } from '~/modules/utils.server';
+import { getLang } from '~/utils/lang';
+import { getMetaTags } from '~/utils/metatags';
 
 export async function loader({ params }: LoaderFunctionArgs) {
   const { slug } = params;
@@ -23,6 +25,14 @@ export async function loader({ params }: LoaderFunctionArgs) {
     { headers: { 'cache-control': 'public, max-age=7200' } },
   );
 }
+
+export const meta: MetaFunction<typeof loader> = ({ data, params }) => {
+  return getMetaTags({
+    title: data?.page.frontmatter.title,
+    description: data?.page.frontmatter.description,
+    locale: getLang(params),
+  });
+};
 
 export default function Index() {
   const { page } = useLoaderData<typeof loader>();

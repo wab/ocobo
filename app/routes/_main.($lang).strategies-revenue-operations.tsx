@@ -7,7 +7,9 @@ import {
 import { Choose, Hero, Method, Needs, Team } from '~/components/strategy';
 import i18nServer from '~/localization/i18n.server';
 import { getLang } from '~/utils/lang';
+import { getMetaTags } from '~/utils/metatags';
 import { redirectWithLocale } from '~/utils/redirections';
+import { getImageOgFullPath } from '~/utils/url';
 
 export async function loader(args: LoaderFunctionArgs) {
   await redirectWithLocale(args);
@@ -15,14 +17,20 @@ export async function loader(args: LoaderFunctionArgs) {
   return json({
     title: t('meta.title'),
     description: t('meta.description'),
+    ogImageSrc: getImageOgFullPath('strategy', args.request.url),
   });
 }
 
-export const meta: MetaFunction<typeof loader> = ({ data }) => {
-  return [
-    { title: data?.title },
-    { name: 'description', content: data?.description },
-  ];
+export const meta: MetaFunction<typeof loader> = ({ data, params }) => {
+  if (!data) {
+    return [];
+  }
+  return getMetaTags({
+    title: data.title,
+    description: data.description,
+    locale: getLang(params),
+    image: data.ogImageSrc,
+  });
 };
 
 export default function Index() {

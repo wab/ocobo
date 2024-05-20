@@ -14,16 +14,15 @@ import { Input } from '~/components/ui/Input';
 import { Label } from '~/components/ui/Label';
 import { Logocobo } from '~/components/ui/Logocobo';
 import { Select } from '~/components/ui/Select';
+import { getMetaTags } from '~/utils/metatags';
 
 export const meta: MetaFunction = () => {
-  return [
-    { title: 'Ocobo • design system' },
-    {
-      name: 'description',
-      content:
-        "le design syste d'Ocobo est un ensemble de composants réutilisables, guidés par des principes de design, qui peuvent être assemblés pour construire n'importe quel nombre d'applications.",
-    },
-  ];
+  return getMetaTags({
+    title: 'design system',
+    description:
+      "ensemble de composants réutilisables, guidés par des principes de design, qui peuvent être assemblés pour construire n'importe quel nombre d'applications.",
+    locale: 'fr',
+  });
 };
 
 const Section = styled('section', {

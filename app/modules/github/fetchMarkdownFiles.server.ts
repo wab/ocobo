@@ -22,7 +22,7 @@ export async function fetchMarkdownFiles<FrontMatter>(
 ): Promise<
   ActionResult<FetchMarkdownFilesResState, MarkdocFile<FrontMatter>[]>
 > {
-  console.debug('fetchMarkdownFiles called');
+  // console.debug('fetchMarkdownFiles called');
 
   const [status, state, items] = await fetchFileItems(
     accessToken,
