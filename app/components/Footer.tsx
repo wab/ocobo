@@ -34,7 +34,7 @@ const FooterMenu: React.FunctionComponent<{
   return (
     <div className={css({})}>
       <Title>{title}</Title>
-      <ul className={css({ textStyle: 'medium' })}>
+      <ul className={css({ textStyle: 'nav' })}>
         {items.map(({ title, path }) => (
           <li key={title} className={css({ mb: '3' })}>
             <NavLink
@@ -195,7 +195,7 @@ const Footer = () => {
             >
               <div>
                 <Title>{t('footer.resources.title')}</Title>
-                <ul className={css({ textStyle: 'medium' })}>
+                <ul className={css({ textStyle: 'nav' })}>
                   {stories && (
                     <li className={css({ mb: '3' })}>
                       <NavLink
