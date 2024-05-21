@@ -87,8 +87,12 @@ const Root = <T extends { id: string }>({
   ...props
 }: CarouselProps<T>) => {
   const [[page, direction], setPage] = React.useState([0, 0]);
-  const paginate = (newDirection: number) => {
-    setPage([page + newDirection, newDirection]);
+
+  const onClickPrev = () => {
+    setPage(([page]) => [page === 0 ? items.length - 1 : page - 1, -1]);
+  };
+  const onClickNext = () => {
+    setPage(([page]) => [page === items.length - 1 ? 0 : page + 1, 1]);
   };
   return (
     <div>
@@ -128,14 +132,11 @@ const Root = <T extends { id: string }>({
             px: '4',
           })}
         >
-          <NavButton onClick={() => paginate(-1)} disabled={page === 0}>
+          <NavButton onClick={onClickPrev}>
             <ChevronLeftIcon className={icon({ size: 'lg' })} />
           </NavButton>
 
-          <NavButton
-            onClick={() => paginate(1)}
-            disabled={page === items.length - 1}
-          >
+          <NavButton onClick={onClickNext}>
             <ChevronRightIcon className={icon({ size: 'lg' })} />
           </NavButton>
         </div>
