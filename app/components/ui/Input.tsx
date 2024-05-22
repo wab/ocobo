@@ -1,4 +1,4 @@
-import { css, cva, cx } from '@ocobo/styled-system/css';
+import { cva, cx } from '@ocobo/styled-system/css';
 
 const input = cva({
   base: {
