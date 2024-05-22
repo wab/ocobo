@@ -76,15 +76,10 @@ export function Layout({ children }: { children: React.ReactNode }) {
 
             <script
               type="text/javascript"
-              id="hs-script-loader"
+              id="hs-script-loader-2"
               async
               defer
               src="//js-eu1.hs-scripts.com/27107933.js"
-            />
-
-            <script
-              type="text/javascript"
-              src="//js-eu1.hsforms.net/forms/embed/v2.js"
             />
           </>
         )}

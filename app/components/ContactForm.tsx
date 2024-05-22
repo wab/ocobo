@@ -1,98 +1,39 @@
-import { Form } from '@remix-run/react';
-import { useTranslation } from 'react-i18next';
+import * as React from 'react';
 
-import { css } from '@ocobo/styled-system/css';
+import { useHubspotForm } from '@aaronhayes/react-use-hubspot-form';
 
-import { Button } from './ui/Button';
-import { Input } from './ui/Input';
-import { Label } from './ui/Label';
-import { Select } from './ui/Select';
+import { contactFormId, portalId } from '~/utils/hubspot';
 
-const ContactForm: React.FunctionComponent<React.PropsWithChildren> = (
-  props,
-) => {
-  const { t } = useTranslation(['contact']);
+import { HubspotFormWrapper } from './ui/HubspotFormWrapper';
+import { Loader } from './ui/Loader';
+
+const ContactForm: React.FunctionComponent<
+  React.HTMLAttributes<HTMLDivElement>
+> = (props) => {
+  const [isFormReady, setIsFormReady] = React.useState(false);
+  useHubspotForm({
+    portalId,
+    formId: contactFormId,
+    target: '#contactForm',
+    cssClass: 'contact-form',
+    onFormReady: () => setIsFormReady(true),
+  });
 
   return (
-    <Form>
-      <div
-        className={css({
-          mb: '6',
-        })}
-      >
-        <Label htmlFor="email">{t('form.email', { ns: 'contact' })}*</Label>
-        <Input id="email" name="email" type="email" required />
-      </div>
-
-      <div
-        className={css({
-          display: 'flex',
-          flexWrap: 'wrap',
-          gap: '6',
-          mb: '6',
-        })}
-      >
-        <div className={css({ w: { base: 'full', lg: '1/2' } })}>
-          <Label htmlFor="firstname">
-            {t('form.firstname', { ns: 'contact' })}*
-          </Label>
-          <Input id="firstname" name="firstname" required />
-        </div>
-        <div className={css({ w: { base: 'full', lg: '1/2' } })}>
-          <Label htmlFor="lastname">
-            {t('form.lastname', { ns: 'contact' })}*
-          </Label>
-          <Input id="lastname" name="lastname" required />
-        </div>
-      </div>
-      <div
-        className={css({
-          mb: '6',
-        })}
-      >
-        <Label htmlFor="job">{t('form.job', { ns: 'contact' })}*</Label>
-        <Input id="job" name="job" required />
-      </div>
-      <div
-        className={css({
-          mb: '6',
-        })}
-      >
-        <Label htmlFor="team">{t('form.team', { ns: 'contact' })}*</Label>
-        <Select.Root name="team" defaultValue="1" required>
-          <Select.Trigger id="team">
-            <Select.Value />
-          </Select.Trigger>
-          <Select.Content>
-            <Select.Group>
-              <Select.Item value="1">1-10</Select.Item>
-              <Select.Item value="11">11-50</Select.Item>
-              <Select.Item value="50">50+</Select.Item>
-            </Select.Group>
-          </Select.Content>
-        </Select.Root>
-      </div>
-      <div
-        className={css({
-          mb: '6',
-        })}
-      >
-        <Label htmlFor="source">{t('form.source', { ns: 'contact' })}*</Label>
-        <Input id="source" name="source" required />
-      </div>
-      {props.children}
-      <div className={css({ textAlign: { base: 'center', lg: 'right' } })}>
-        <Button
-          type="submit"
-          variant="outline"
-          className={css({
-            minWidth: { base: '2/3', lg: 'auto' },
-          })}
-        >
-          {t('form.submit', { ns: 'contact' })}
-        </Button>
-      </div>
-    </Form>
+    <>
+      {!isFormReady && <Loader />}
+      <HubspotFormWrapper id="contactForm" {...props} />
+      <script type="text/javascript" src="https://app.distro.so/inbound.js" />
+      <script
+        type="text/javascript"
+        dangerouslySetInnerHTML={{
+          __html: `
+                window.distro = new Distro({ routerId: '9' })
+                distro.schedule('hsForm_${contactFormId}')
+              `,
+        }}
+      />
+    </>
   );
 };
 

@@ -11,8 +11,8 @@ import { useMenuItems } from '~/hooks/useMenuItems';
 import { url } from '~/utils/url';
 
 import { LanguageSwitcher } from './LanguageSwitcher';
+import { NewsletterForm } from './NewsletterForm';
 import { Container } from './ui/Container';
-import { Input } from './ui/Input';
 import { Logocobo } from './ui/Logocobo';
 
 const Title = styled('p', {
@@ -240,9 +240,7 @@ const Footer = () => {
               css={{ mt: { base: '6', lg: 0 } }}
             >
               <Title>{t('footer.newsletter.title')}</Title>
-              <div className={css({ mb: '6' })}>
-                <Input placeholder="nom@email.com" />
-              </div>
+              <NewsletterForm className={css({ mb: '6' })} />
               <div
                 className={flex({
                   justifyContent: { base: 'center', lg: 'end' },
