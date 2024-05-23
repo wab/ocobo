@@ -12,6 +12,7 @@ export const globalCss = defineGlobalStyles({
     bg: 'background',
     color: 'foreground',
     fontFamily: 'body',
+    overflowX: 'hidden',
   },
 
   'p + p, h1 + p,  h2 + p,  h3 + p': {
