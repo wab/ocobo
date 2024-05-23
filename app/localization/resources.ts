@@ -9,7 +9,10 @@ import fr_home from '../../locales/fr/home.json';
 import fr_projects from '../../locales/fr/projects.json';
 import fr_strategy from '../../locales/fr/strategy.json';
 
-export const languages = ['en', 'fr'] as const;
+export const languages = [
+  'fr',
+  //'en'
+] as const;
 
 export const resources = {
   fr: {
