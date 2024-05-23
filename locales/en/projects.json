@@ -59,5 +59,10 @@
     "Target setting and performance monitoring system",
     "Implementation of a commission management platform",
     "Team training"
-  ]
+  ],
+  "team.title": "L’équipe Ocobo, experte de votre écosystème",
+  "team.description_desktop": "Notre équipe <0>maîtrise les outils utilisés par les meilleures équipes</0> Marketing, Sales et Clients. Elle audite et déploie quotidiennement les stratégies et processus dans des systèmes différents et vous guidera dans vos choix.",
+  "team.description_mobile": "Nous collaborons directement au sein de vos systèmes et outils avec votre équipe.",
+  "contact.title": "Présentez votre projet à un expert RevOps",
+  "contact.description": "Prenez rendez-vous pour découvrir si nous sommes le partenaire idéal pour vous accompagner dans la réalisation de votre projet."
 }

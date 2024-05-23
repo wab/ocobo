@@ -15,6 +15,7 @@ import { useChangeLanguage } from 'remix-i18next/react';
 import styles from '~/index.css?url';
 import { getLang } from '~/utils/lang';
 
+import { Error } from './components/Error';
 import { useSetViewportHeight } from './hooks/useSetViewportHeight';
 
 export const links: LinksFunction = () => [
@@ -91,6 +92,14 @@ export function Layout({ children }: { children: React.ReactNode }) {
         <SpeedInsights />
       </body>
     </html>
+  );
+}
+
+export function ErrorBoundary() {
+  return (
+    <Error.Container>
+      <Error.Message />
+    </Error.Container>
   );
 }
 
