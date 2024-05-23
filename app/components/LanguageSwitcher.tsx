@@ -5,13 +5,12 @@ import { css } from '@ocobo/styled-system/css';
 import { flex } from '@ocobo/styled-system/patterns';
 
 import { supportedLngs } from '~/localization/i18n';
-import { Language } from '~/localization/resources';
 import { getLang } from '~/utils/lang';
 
 import { Select } from './ui/Select';
 
 const Flag: React.FunctionComponent<{
-  lang?: Language;
+  lang?: 'en' | 'fr';
 }> = (props) => {
   switch (props.lang) {
     case 'en':
@@ -68,7 +67,7 @@ const LanguageSwitcher = () => {
   const { t, i18n } = useTranslation();
   const lang = getLang(params);
 
-  if (!params.lang) return null;
+  if (!params.lang || supportedLngs.length < 2) return null;
 
   return (
     <Select.Root
