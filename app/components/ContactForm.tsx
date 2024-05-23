@@ -23,16 +23,6 @@ const ContactForm: React.FunctionComponent<
     <>
       {!isFormReady && <Loader />}
       <HubspotFormWrapper id="contactForm" {...props} />
-      <script type="text/javascript" src="https://app.distro.so/inbound.js" />
-      <script
-        type="text/javascript"
-        dangerouslySetInnerHTML={{
-          __html: `
-                window.distro = new Distro({ routerId: '9' })
-                distro.schedule('hsForm_${contactFormId}')
-              `,
-        }}
-      />
     </>
   );
 };

@@ -17,6 +17,7 @@ import { getLang } from '~/utils/lang';
 
 import { Error } from './components/Error';
 import { useSetViewportHeight } from './hooks/useSetViewportHeight';
+import { contactFormId } from './utils/hubspot';
 
 export const links: LinksFunction = () => [
   { rel: 'stylesheet', href: styles },
@@ -49,6 +50,7 @@ export async function loader({ params }: LoaderFunctionArgs) {
   return json({
     locale,
     isProduction,
+    gaTrackingId: process.env.GA_TRACKING_ID,
     shouldLoadScript:
       isProduction || process.env.SHOULD_LOAD_TRACKING_SCRIPTS === 'true',
   });
@@ -71,6 +73,24 @@ export function Layout({ children }: { children: React.ReactNode }) {
         {loaderData?.shouldLoadScript && (
           <>
             <script
+              async
+              src={`https://www.googletagmanager.com/gtag/js?id=${loaderData?.gaTrackingId}`}
+            />
+            <script
+              async
+              id="gtag-init"
+              dangerouslySetInnerHTML={{
+                __html: `
+                window.dataLayer = window.dataLayer || [];
+                function gtag(){dataLayer.push(arguments);}
+                gtag('js', new Date());
+                gtag('config', '${loaderData?.gaTrackingId}', {
+                  page_path: window.location.pathname,
+                });
+              `,
+              }}
+            />
+            <script
               src="https://tag.clearbitscripts.com/v1/pk_38c2f75e7330f98606d3fda7c9686cc9/tags.js"
               referrerPolicy="strict-origin-when-cross-origin"
             />
@@ -90,6 +110,16 @@ export function Layout({ children }: { children: React.ReactNode }) {
         <ScrollRestoration />
         <Scripts />
         <SpeedInsights />
+        <script type="text/javascript" src="https://app.distro.so/inbound.js" />
+        <script
+          type="text/javascript"
+          dangerouslySetInnerHTML={{
+            __html: `
+                window.distro = new Distro({ routerId: '9' })
+                distro.schedule('#hsForm_${contactFormId}')
+              `,
+          }}
+        />
       </body>
     </html>
   );
