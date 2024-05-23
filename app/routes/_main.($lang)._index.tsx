@@ -6,6 +6,7 @@ import {
   type MetaFunction,
 } from '@remix-run/node';
 import { Await, useLoaderData } from '@remix-run/react';
+import { ClientOnly } from 'remix-utils/client-only';
 
 import { css } from '@ocobo/styled-system/css';
 
@@ -81,20 +82,24 @@ export default function Index() {
       <Hero />
       <ClientCarousel shouldDisplayTitle />
       <Stories.Section>
-        <React.Suspense
-          fallback={
-            <Loader
-              className={css({
-                h: 'full',
-                translateY: '50px',
-              })}
-            />
-          }
-        >
-          <Await resolve={stories}>
-            {(stories) => <Stories.Inner items={stories} />}
-          </Await>
-        </React.Suspense>
+        <ClientOnly>
+          {() => (
+            <React.Suspense
+              fallback={
+                <Loader
+                  className={css({
+                    h: 'full',
+                    translateY: '50px',
+                  })}
+                />
+              }
+            >
+              <Await resolve={stories}>
+                {(stories) => <Stories.Inner items={stories} />}
+              </Await>
+            </React.Suspense>
+          )}
+        </ClientOnly>
       </Stories.Section>
       <Faster />
       <Better />
