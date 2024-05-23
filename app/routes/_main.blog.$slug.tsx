@@ -1,9 +1,4 @@
-import {
-  MetaFunction,
-  json,
-  redirect,
-  type LoaderFunctionArgs,
-} from '@remix-run/node';
+import { MetaFunction, json, type LoaderFunctionArgs } from '@remix-run/node';
 import { useLoaderData } from '@remix-run/react';
 
 import { css } from '@ocobo/styled-system/css';
@@ -15,10 +10,6 @@ import { fetchBlogPost } from '~/modules/utils.server';
 import { getLang } from '~/utils/lang';
 import { getMetaTags } from '~/utils/metatags';
 
-const redirects: Record<string, string | undefined> = {
-  'legacy-slug': 'new-slug',
-};
-
 export async function loader({ params }: LoaderFunctionArgs) {
   const { slug } = params;
 
@@ -29,12 +20,6 @@ export async function loader({ params }: LoaderFunctionArgs) {
     throw new Response('Not Found', { status: 404 });
   }
 
-  if (Object.keys(redirects).includes(slug)) {
-    const newSlug = redirects[slug];
-    if (newSlug) {
-      return redirect(`/clients/${newSlug}`);
-    }
-  }
   const article = await fetchBlogPost(slug);
 
   return json(
