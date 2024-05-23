@@ -1,23 +1,11 @@
 import * as React from 'react';
 
-import { useHubspotForm } from '@aaronhayes/react-use-hubspot-form';
+import { newsletterFormId } from '~/utils/hubspot';
 
-import { newsletterFormId, portalId } from '~/utils/hubspot';
+import { HubspotForm } from './HubspotForm';
 
-import { HubspotFormWrapper } from './ui/HubspotFormWrapper';
-
-const NewsletterForm: React.FunctionComponent<
-  React.HTMLAttributes<HTMLDivElement>
-> = (props) => {
-  useHubspotForm({
-    portalId,
-    formId: newsletterFormId,
-    target: '#newsletterForm',
-  });
-
-  return (
-    <HubspotFormWrapper id="newsletterForm" {...props}></HubspotFormWrapper>
-  );
+const NewsletterForm: React.FunctionComponent = () => {
+  return <HubspotForm formId={newsletterFormId} />;
 };
 
 NewsletterForm.displayName = 'NewsletterForm';
