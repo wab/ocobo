@@ -76,6 +76,7 @@ const BlogItem: React.FunctionComponent<BlogItemProps> = ({ item, slug }) => {
         <p
           className={css({
             hideBelow: 'lg',
+            lineClamp: 4,
           })}
         >
           {item.description}
