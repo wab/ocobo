@@ -11,6 +11,7 @@ import {
 import { SpeedInsights } from '@vercel/speed-insights/remix';
 import { useTranslation } from 'react-i18next';
 import { useChangeLanguage } from 'remix-i18next/react';
+import { ExternalScripts } from 'remix-utils/external-scripts';
 
 import styles from '~/index.css?url';
 import { getLang } from '~/utils/lang';
@@ -68,7 +69,7 @@ export function Layout({ children }: { children: React.ReactNode }) {
         <Meta />
         <Links />
 
-        {loaderData?.shouldLoadScript && (
+        {/* {loaderData?.shouldLoadScript && (
           <>
             <script
               src="https://tag.clearbitscripts.com/v1/pk_38c2f75e7330f98606d3fda7c9686cc9/tags.js"
@@ -83,11 +84,13 @@ export function Layout({ children }: { children: React.ReactNode }) {
               src="//js-eu1.hs-scripts.com/27107933.js"
             />
           </>
-        )}
+        )} */}
+        <ExternalScripts />
       </head>
       <body>
         {children}
         <ScrollRestoration />
+
         <Scripts />
         <SpeedInsights />
       </body>
