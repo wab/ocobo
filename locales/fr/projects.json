@@ -1,0 +1,68 @@
+{
+  "meta.title": "Les Projets RevOps qui font avancer votre organisation",
+  "meta.description": "Ocobo déploie l'ensemble des ressources et compétences nécessaires au bon déroulement et à la réussite de vos projets RevOps.",
+  "hero.title": "Un projet RevOps qui tacle un problème urgent",
+  "hero.subtitle": "Une problématique RevOps à laquelle vous n’avez pas l’expertise ou la bande passante pour la solutionner en interne ?",
+  "hero.description": "Ocobo passe immédiatement en mode “solution” et déploie l’ensemble des ressources et compétences nécessaires pour la résoudre efficacement.",
+  "hero.description_mobile": "Une problématique RevOps ? Ocobo passe en mode “solution” et déploie l’ensemble des ressources et compétences nécessaires pour la résoudre efficacement.",
+  "levers.title": "Des projets sur l’ensemble du cycle de vie du client <0>et basés sur les leviers d’excellence de votre organisation\u00a0:</0>",
+  "levers.team.title": "Équipe & planification",
+  "levers.team.items.0.title": "Architecture des stratégies Revenues",
+  "levers.team.items.0.items": [
+    "Sales-Led",
+    "Product-Led",
+    "Channel Sales",
+    "Field, ou outside Sales",
+    "Land & Expand"
+  ],
+  "levers.team.items.1.title": "Rôles et missions des équipes",
+  "levers.team.items.1.items": [
+    "Revenue team",
+    "Acquisition (Outbound/Inbound)",
+    "Expansion (CSM/AM)",
+    "Routines et fréquences"
+  ],
+  "levers.team.items.2.title": "Segmentation et attribution",
+  "levers.team.items.2.items": [
+    "ICPs / Tiering / Scoring / Assignation",
+    "Quotas et Territory Planning"
+  ],
+  "levers.process.title": "Process & Outils",
+  "levers.process.items.0.title": "Processus",
+  "levers.process.items.0.items": [
+    "Funnel de vente (acquisition / expansion)",
+    "Mapping du customer journey",
+    "Quote to cash (devis, catalogue produit, facturation)",
+    "Omnichannel customer operations"
+  ],
+  "levers.process.items.1.title": "Tooling",
+  "levers.process.items.1.description": "Déploiement / Refonte / Evolution / Migration :",
+  "levers.process.items.1.items": [
+    "CRM & Sales Engagement Plateform",
+    "Hub Marketing",
+    "Customer Engagement Platform",
+    "Compensation Platform",
+    "Billing",
+    "Help Desk & Ticketing"
+  ],
+  "levers.data.title": "Data & Performance",
+  "levers.data.items": [
+    "Modélisation des KPIs du cycle de vie du client",
+    "Modèles de budgétisation",
+    "Revenue Forecasting",
+    "Tableaux de bords & Rapports par fonction (C-level, Manager, IC)"
+  ],
+  "levers.income.title": "Rémunération variable",
+  "levers.income.items": [
+    "Structure des plans de rémunération",
+    "Préparation et fiabilisation du modèle de donnée",
+    "Système de target setting et de contrôle de la performance",
+    "Implémentation d’une plateforme de gestion des commissions",
+    "Formation des équipes"
+  ],
+  "team.title": "L’équipe Ocobo, experte de votre écosystème",
+  "team.description_desktop": "Notre équipe <0>maîtrise les outils utilisés par les meilleures équipes</0> Marketing, Sales et Clients. Elle audite et déploie quotidiennement les stratégies et processus dans des systèmes différents et vous guidera dans vos choix.",
+  "team.description_mobile": "Nous collaborons directement au sein de vos systèmes et outils avec votre équipe.",
+  "contact.title": "Présentez votre projet à un expert RevOps",
+  "contact.description": "Prenez rendez-vous pour découvrir si nous sommes le partenaire idéal pour vous accompagner dans la réalisation de votre projet."
+}

@@ -2,7 +2,12 @@ node_modules
 
 /.cache
 /build
-/public/build
 .env
+/.vercel
 
 .DS_store
+*.code-workspace
+
+## Panda
+styled-system
+styled-system-studio

@@ -1,32 +1,22 @@
 import { Outlet } from '@remix-run/react';
 
-import { Footer } from '~/components/Footer';
-import { Navbar } from '~/components/Navbar';
+import { Grid, GridItem } from '@ocobo/styled-system/jsx';
 
-export function links() {
-  return [
-    {
-      rel: 'stylesheet',
-      href: 'https://fonts.googleapis.com/css2?family=Dancing+Script:wght@400;700&display=swap',
-    },
-    {
-      rel: 'icon',
-      href: '/favicon-blog.png',
-      type: 'image/png',
-    },
-  ];
-}
+import { LayoutMain } from '~/components/LayoutMain';
+import { Container } from '~/components/ui/Container';
+import { ScrollProgressBar } from '~/components/ui/ScrollProgressBar';
 
-export default function MediaIndex() {
+export default function Index() {
   return (
-    <div className="relative">
-      <Navbar />
-      <div className="relative px-6 text-dark desktop:pt-28">
-        <div className="lg:prose-2xl prose mx-auto py-10 dark:prose-invert prose-a:text-coral">
-          <Outlet />
-        </div>
-      </div>
-      <Footer />
-    </div>
+    <LayoutMain>
+      <ScrollProgressBar />
+      <Container isMobileFullWidth>
+        <Grid columns={{ base: 1, lg: 6 }}>
+          <GridItem colSpan={4}>
+            <Outlet />
+          </GridItem>
+        </Grid>
+      </Container>
+    </LayoutMain>
   );
 }

@@ -1,113 +1,81 @@
-import * as React from 'react';
-import type { ActionFunctionArgs, LoaderFunctionArgs } from '@remix-run/node';
-import { json, redirect } from '@remix-run/node';
+import { type LoaderFunctionArgs, json, LinksFunction } from '@remix-run/node';
 import {
   Links,
-  LiveReload,
   Meta,
   Outlet,
   Scripts,
   ScrollRestoration,
   useLoaderData,
-  useLocation,
+  useRouteLoaderData,
 } from '@remix-run/react';
-import clsx from 'clsx';
-import * as gtag from '~/utils/gtags.client';
-import { ThemeProvider, useTheme } from '~/utils/theme-provider';
-import { gdprConsent } from '~/utils/cookies';
-import { CookieBanner } from '~/components/CookieBanner';
+import { SpeedInsights } from '@vercel/speed-insights/remix';
+import { useTranslation } from 'react-i18next';
+import { useChangeLanguage } from 'remix-i18next/react';
 
-import styles from './styles/app.css';
+import styles from '~/index.css?url';
+import { getLang } from '~/utils/lang';
 
-export function links() {
-  return [
-    { rel: 'preconnect', href: 'https://fonts.googleapis.com' },
-    {
-      rel: 'preconnect',
-      href: 'https://fonts.gstatic.com',
-      crossOrigin: true.toString(),
-    },
-    {
-      rel: 'stylesheet',
-      href: 'https://fonts.googleapis.com/css2?family=Montserrat+Alternates:ital,wght@0,300;0,400;0,500;0,700;1,300;1,400;1,500;1,700&display=swap',
-    },
-    {
-      rel: 'stylesheet',
-      href: 'https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,400;0,700;1,400;1,700&display=swap',
-    },
+import { Error } from './components/Error';
+import { useSetViewportHeight } from './hooks/useSetViewportHeight';
+import { contactFormId } from './utils/hubspot';
 
-    { rel: 'stylesheet', href: styles },
-    {
-      rel: 'icon',
-      href: '/favicon.ico',
-      type: 'image/png',
-    },
-  ];
-}
+export const links: LinksFunction = () => [
+  { rel: 'stylesheet', href: styles },
+  {
+    rel: 'apple-touch-icon',
+    sizes: '180x180',
+    href: 'apple-touch-icon.png',
+  },
+  {
+    rel: 'icon',
+    type: 'image/png',
+    sizes: '32x32',
+    href: '/favicon-32x32.png',
+  },
+  {
+    rel: 'icon',
+    type: 'image/png',
+    sizes: '16x16',
+    href: '/favicon-16x16.png',
+  },
+  { rel: 'manifest', href: '/site.webmanifest' },
+];
 
-export async function action({ request }: ActionFunctionArgs) {
-  const formData = await request.formData();
-  const cookieHeader = request.headers.get('Cookie');
-  const cookie = (await gdprConsent.parse(cookieHeader)) || {};
+export const handle = { i18n: ['common'] };
 
-  if (formData.get('accept-gdpr') === 'true') {
-    cookie.gdprConsent = true;
-  }
+export async function loader({ params }: LoaderFunctionArgs) {
+  const locale = getLang(params);
+  const isProduction = process.env.NODE_ENV === 'production';
 
-  if (formData.get('accept-gdpr') === 'false') {
-    cookie.gdprConsent = false;
-  }
-
-  return redirect(request.headers.get('Referer') ?? '?', {
-    headers: {
-      'Set-Cookie': await gdprConsent.serialize(cookie),
-    },
-  });
-}
-
-// Load the GA tracking id from the .env
-export async function loader({ request }: LoaderFunctionArgs) {
-  const cookieHeader = request.headers.get('Cookie');
-  const cookie = (await gdprConsent.parse(cookieHeader)) || {};
   return json({
+    locale,
+    isProduction,
     gaTrackingId: process.env.GA_TRACKING_ID,
-    showGdprBanner: cookie.gdprConsent === undefined,
-    cookieConsent: cookie.gdprConsent,
-    ENV: {
-      HUBSPOT_PORTAL_ID: process.env.HUBSPOT_PORTAL_ID,
-    },
+    shouldLoadScript:
+      isProduction || process.env.SHOULD_LOAD_TRACKING_SCRIPTS === 'true',
   });
 }
 
-function App() {
-  const [theme] = useTheme();
-  const location = useLocation();
-  const { gaTrackingId, showGdprBanner, cookieConsent, ENV } = useLoaderData<typeof loader>();
-
-  React.useEffect(() => {
-    if (gaTrackingId?.length) {
-      gtag.pageview(location.pathname, gaTrackingId);
-    }
-  }, [location, gaTrackingId]);
-
-  const isTrackingEnabled = process.env.NODE_ENV === 'production' && Boolean(cookieConsent);
+export function Layout({ children }: { children: React.ReactNode }) {
+  // Get the locale from the loader
+  const loaderData = useRouteLoaderData<typeof loader>('root');
+  const { i18n } = useTranslation();
 
   return (
-    <html lang="en" className={clsx(theme)}>
+    <html lang={loaderData?.locale ?? 'fr'} dir={i18n.dir()} translate="no">
       <head>
         <meta charSet="utf-8" />
-        <meta name="viewport" content="width=device-width,initial-scale=1" />
+        <meta name="viewport" content="width=device-width, initial-scale=1" />
+        {!loaderData?.isProduction && <meta name="robots" content="noindex" />}
         <Meta />
         <Links />
-        <script
-          src="https://tag.clearbitscripts.com/v1/pk_38c2f75e7330f98606d3fda7c9686cc9/tags.js"
-          referrerPolicy="strict-origin-when-cross-origin"
-        />
-      </head>
-      <body className="relative dark:bg-dark">
-        {isTrackingEnabled ? (
+
+        {loaderData?.shouldLoadScript && (
           <>
-            <script async src={`https://www.googletagmanager.com/gtag/js?id=${gaTrackingId}`} />
+            <script
+              async
+              src={`https://www.googletagmanager.com/gtag/js?id=${loaderData?.gaTrackingId}`}
+            />
             <script
               async
               id="gtag-init"
@@ -116,33 +84,59 @@ function App() {
                 window.dataLayer = window.dataLayer || [];
                 function gtag(){dataLayer.push(arguments);}
                 gtag('js', new Date());
-                gtag('config', '${gaTrackingId}', {
+                gtag('config', '${loaderData?.gaTrackingId}', {
                   page_path: window.location.pathname,
                 });
               `,
               }}
             />
+            <script
+              src="https://tag.clearbitscripts.com/v1/pk_38c2f75e7330f98606d3fda7c9686cc9/tags.js"
+              referrerPolicy="strict-origin-when-cross-origin"
+            />
+
+            <script
+              type="text/javascript"
+              id="hs-script-loader-2"
+              async
+              defer
+              src="//js-eu1.hs-scripts.com/27107933.js"
+            />
           </>
-        ) : null}
-        <CookieBanner isVisible={showGdprBanner} />
-        <Outlet />
+        )}
+      </head>
+      <body>
+        {children}
         <ScrollRestoration />
+        <Scripts />
+        <SpeedInsights />
+        <script type="text/javascript" src="https://app.distro.so/inbound.js" />
         <script
+          type="text/javascript"
           dangerouslySetInnerHTML={{
-            __html: `window.ENV = ${JSON.stringify(ENV)}`,
+            __html: `
+                window.distro = new Distro({ routerId: '9' })
+                distro.schedule('#hsForm_${contactFormId}')
+              `,
           }}
         />
-        <Scripts />
-        <LiveReload />
       </body>
     </html>
   );
 }
 
-export default function AppWithProviders() {
+export function ErrorBoundary() {
   return (
-    <ThemeProvider>
-      <App />
-    </ThemeProvider>
+    <Error.Container>
+      <Error.Message />
+    </Error.Container>
   );
+}
+
+export default function App() {
+  const { locale } = useLoaderData<typeof loader>();
+  // change the language of the instance to the locale detected by the loader
+  useChangeLanguage(locale);
+  useSetViewportHeight();
+  return <Outlet />;
 }

@@ -1,2 +1,0 @@
-export const mailto = `benjamin.boileux@ocobo.co?bcc=alexis.michel@ocobo.co&subject=1er%20rdv%20de%20discussion&body=Bonjour%20l'%C3%A9quipe%20Ocobo%2C%0D%0A%0D%0AJ'aimerais%20d%C3%A9couvrir%20vos%20services%20afin%20de%20d%C3%A9terminer%20si%20vous%20pouvez%20m'aider%20%C3%A0%20d%C3%A9velopper%20ma%20soci%C3%A9t%C3%A9.%0D%0A%0D%0AVoici%20mes%20prochaines%20disponibilit%C3%A9s%20%3A%0D%0A%0D%0A-%20remplacer%0D%0A-%20remplacer%0D%0A%0D%0ACordialement%2C`;
-export const contactLink = 'https://meetings-eu1.hubspot.com/benjamin-boileux/call-strategique';

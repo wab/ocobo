@@ -1,34 +1,35 @@
 import * as React from 'react';
 
-const HubspotForm: React.FunctionComponent<{
+import { portalId } from '~/utils/hubspot';
+
+interface HubspotFormProps extends React.HTMLAttributes<HTMLDivElement> {
   formId: string;
-}> = ({ formId }) => {
+}
+
+const HubspotForm: React.FunctionComponent<HubspotFormProps> = ({
+  formId,
+  ...props
+}) => {
   React.useEffect(() => {
-    // @ts-ignore
-    const portalId = window.ENV.HUBSPOT_PORTAL_ID;
     const script = document.createElement('script');
     script.src = 'https://js.hsforms.net/forms/v2.js';
     document.body.appendChild(script);
 
     script.addEventListener('load', () => {
-      // @ts-ignore
+      // @ts-expect-error - hbspt is a global variable
       if (window.hbspt) {
-        // @ts-ignore
+        // @ts-expect-error - hbspt is a global variable
         window.hbspt.forms.create({
           region: 'eu1',
           portalId,
           formId,
-          target: '#hubspotForm',
+          target: `#hubspotForm-${formId}`,
         });
       }
     });
   }, [formId]);
 
-  return (
-    <div className="rounded-md bg-blue bg-opacity-20 p-8 shadow-sm">
-      <div id="hubspotForm" />
-    </div>
-  );
+  return <div id={`hubspotForm-${formId}`} {...props} />;
 };
 
 export { HubspotForm };
