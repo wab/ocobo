@@ -32,5 +32,8 @@
   "footer.resources.events": "Webinars & Events",
   "footer.resources.blog": "Blog",
   "footer.resources.tools": "Tools",
-  "footer.newsletter.title": "Don't miss our news"
+  "footer.newsletter.title": "Don't miss our news",
+  "error.title": "Oups, une erreur est survenue",
+  "error.description": "Cette page n'existe pas ou a été déplacée.",
+  "error.back": "Retour à l'accueil"
 }
