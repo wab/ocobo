@@ -77,7 +77,7 @@ const Header: React.FunctionComponent<{ ghost?: boolean }> = ({ ghost }) => {
             top: '0',
             left: '0',
             right: '0',
-            zIndex: '2',
+            zIndex: '20',
             userSelect: 'none',
             boxShadow: '0 1px transparent',
             transition: 'background-color 180ms, box-shadow 180ms',
