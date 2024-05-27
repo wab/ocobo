@@ -7,9 +7,6 @@ import { url } from '~/utils/url';
 
 import { useLocalizedPathname } from './useLocalizedPathname';
 
-const aboutUrl =
-  'https://ocobo.notion.site/Ocobo-Nous-rejoindre-b94fb96269cb4d6294cdf21569ebd479';
-
 type SubMenuItem = {
   key: string;
   title: string;
@@ -64,13 +61,13 @@ export const useMenuItems = (): MenuItem[] => {
         {
           key: 'about',
           title: t('navigation.company.about'),
-          url: aboutUrl,
+          url: 'https://ocobo.notion.site/Ocobo-Nous-rejoindre-b94fb96269cb4d6294cdf21569ebd479',
           variant: 'coral',
         },
         {
           key: 'careers',
           title: t('navigation.company.jobs'),
-          url: aboutUrl,
+          url: 'https://ocobo.notion.site/Ocobo-Nous-rejoindre-416ea4a060fb48d6a9666a8d4debfb6a?pvs=74',
           variant: 'coral',
         },
       ],
