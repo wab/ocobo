@@ -1,4 +1,9 @@
-import { type LoaderFunctionArgs, json, LinksFunction } from '@remix-run/node';
+import {
+  type LoaderFunctionArgs,
+  json,
+  LinksFunction,
+  SerializeFrom,
+} from '@remix-run/node';
 import {
   Links,
   Meta,
@@ -11,13 +16,16 @@ import {
 import { SpeedInsights } from '@vercel/speed-insights/remix';
 import { useTranslation } from 'react-i18next';
 import { useChangeLanguage } from 'remix-i18next/react';
+import {
+  ExternalScripts,
+  ExternalScriptsHandle,
+} from 'remix-utils/external-scripts';
 
 import styles from '~/index.css?url';
 import { getLang } from '~/utils/lang';
 
 import { Error } from './components/Error';
 import { useSetViewportHeight } from './hooks/useSetViewportHeight';
-import { contactFormId } from './utils/hubspot';
 
 export const links: LinksFunction = () => [
   { rel: 'stylesheet', href: styles },
@@ -41,8 +49,6 @@ export const links: LinksFunction = () => [
   { rel: 'manifest', href: '/site.webmanifest' },
 ];
 
-export const handle = { i18n: ['common'] };
-
 export async function loader({ params }: LoaderFunctionArgs) {
   const locale = getLang(params);
   const isProduction = process.env.NODE_ENV === 'production';
@@ -55,6 +61,43 @@ export async function loader({ params }: LoaderFunctionArgs) {
       isProduction || process.env.SHOULD_LOAD_TRACKING_SCRIPTS === 'true',
   });
 }
+
+type LoaderData = SerializeFrom<typeof loader>;
+
+interface AppHandle extends ExternalScriptsHandle<LoaderData> {
+  i18n: string[];
+}
+
+export const handle: AppHandle = {
+  i18n: ['common'],
+  scripts({ data }) {
+    const scriptsToLoad = [];
+
+    if (data?.shouldLoadScript) {
+      scriptsToLoad.push({
+        src: `https://www.googletagmanager.com/gtag/js?id=${data?.gaTrackingId}`,
+      });
+      scriptsToLoad.push({
+        src: 'https://tag.clearbitscripts.com/v1/pk_38c2f75e7330f98606d3fda7c9686cc9/tags.js',
+      });
+      scriptsToLoad.push({
+        src: '//js-eu1.hs-scripts.com/27107933.js',
+        async: true,
+        defer: true,
+        id: 'hs-script-loader',
+      });
+    }
+    scriptsToLoad.push({
+      src: '//js-eu1.hsforms.net/forms/embed/v2.js',
+      async: true,
+    });
+    scriptsToLoad.push({
+      src: 'https://app.distro.so/inbound.js',
+      async: true,
+    });
+    return scriptsToLoad;
+  },
+};
 
 export function Layout({ children }: { children: React.ReactNode }) {
   // Get the locale from the loader
@@ -74,10 +117,6 @@ export function Layout({ children }: { children: React.ReactNode }) {
           <>
             <script
               async
-              src={`https://www.googletagmanager.com/gtag/js?id=${loaderData?.gaTrackingId}`}
-            />
-            <script
-              async
               id="gtag-init"
               dangerouslySetInnerHTML={{
                 __html: `
@@ -90,36 +129,15 @@ export function Layout({ children }: { children: React.ReactNode }) {
               `,
               }}
             />
-            <script
-              src="https://tag.clearbitscripts.com/v1/pk_38c2f75e7330f98606d3fda7c9686cc9/tags.js"
-              referrerPolicy="strict-origin-when-cross-origin"
-            />
-
-            <script
-              type="text/javascript"
-              id="hs-script-loader-2"
-              async
-              defer
-              src="//js-eu1.hs-scripts.com/27107933.js"
-            />
           </>
         )}
       </head>
       <body>
         {children}
         <ScrollRestoration />
+        <ExternalScripts />
         <Scripts />
         <SpeedInsights />
-        <script type="text/javascript" src="https://app.distro.so/inbound.js" />
-        <script
-          type="text/javascript"
-          dangerouslySetInnerHTML={{
-            __html: `
-                window.distro = new Distro({ routerId: '9' })
-                distro.schedule('#hsForm_${contactFormId}')
-              `,
-          }}
-        />
       </body>
     </html>
   );

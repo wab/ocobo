@@ -1,11 +1,19 @@
 import * as React from 'react';
 
-import { newsletterFormId } from '~/utils/hubspot';
+import { useHydrated } from 'remix-utils/use-hydrated';
 
-import { HubspotForm } from './HubspotForm';
+import { createHubSpotForm, newsletterFormId } from '~/utils/hubspot';
 
 const NewsletterForm: React.FunctionComponent = () => {
-  return <HubspotForm formId={newsletterFormId} />;
+  const isHydrated = useHydrated();
+
+  React.useEffect(() => {
+    if (!isHydrated) return;
+
+    createHubSpotForm(newsletterFormId, '.newsletter-form');
+  }, [isHydrated]);
+
+  return <div className="newsletter-form" />;
 };
 
 NewsletterForm.displayName = 'NewsletterForm';

@@ -1,11 +1,24 @@
 import * as React from 'react';
 
-import { contactFormId } from '~/utils/hubspot';
+import { useHydrated } from 'remix-utils/use-hydrated';
 
-import { HubspotForm } from './HubspotForm';
+import {
+  createHubSpotForm,
+  scheduleDistro,
+  contactFormId,
+} from '~/utils/hubspot';
 
 const ContactForm: React.FunctionComponent = () => {
-  return <HubspotForm formId={contactFormId} />;
+  const isHydrated = useHydrated();
+
+  React.useEffect(() => {
+    if (!isHydrated) return;
+
+    createHubSpotForm(contactFormId, '.hbspt-form');
+    scheduleDistro(contactFormId);
+  }, [isHydrated]);
+
+  return <div className="hbspt-form" />;
 };
 
 export { ContactForm };
