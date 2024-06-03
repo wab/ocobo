@@ -87,14 +87,14 @@ export const handle: AppHandle = {
         id: 'hs-script-loader',
       });
     }
-    scriptsToLoad.push({
-      src: '//js-eu1.hsforms.net/forms/embed/v2.js',
-      async: true,
-    });
-    scriptsToLoad.push({
-      src: 'https://app.distro.so/inbound.js',
-      async: true,
-    });
+    // scriptsToLoad.push({
+    //   src: '//js-eu1.hsforms.net/forms/embed/v2.js',
+    //   async: true,
+    // });
+    // scriptsToLoad.push({
+    //   src: 'https://app.distro.so/inbound.js',
+    //   async: true,
+    // });
     return scriptsToLoad;
   },
 };
