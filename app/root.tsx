@@ -71,31 +71,23 @@ interface AppHandle extends ExternalScriptsHandle<LoaderData> {
 export const handle: AppHandle = {
   i18n: ['common'],
   scripts({ data }) {
-    const scriptsToLoad = [];
-
     if (data?.shouldLoadScript) {
-      scriptsToLoad.push({
-        src: `https://www.googletagmanager.com/gtag/js?id=${data?.gaTrackingId}`,
-      });
-      scriptsToLoad.push({
-        src: 'https://tag.clearbitscripts.com/v1/pk_38c2f75e7330f98606d3fda7c9686cc9/tags.js',
-      });
-      scriptsToLoad.push({
-        src: '//js-eu1.hs-scripts.com/27107933.js',
-        async: true,
-        defer: true,
-        id: 'hs-script-loader',
-      });
+      return [
+        {
+          src: `https://www.googletagmanager.com/gtag/js?id=${data?.gaTrackingId}`,
+        },
+        {
+          src: 'https://tag.clearbitscripts.com/v1/pk_38c2f75e7330f98606d3fda7c9686cc9/tags.js',
+        },
+        {
+          src: '//js-eu1.hs-scripts.com/27107933.js',
+          async: true,
+          defer: true,
+          id: 'hs-script-loader',
+        },
+      ];
     }
-    scriptsToLoad.push({
-      src: '//js-eu1.hsforms.net/forms/embed/v2.js',
-      async: true,
-    });
-    scriptsToLoad.push({
-      src: 'https://app.distro.so/inbound.js',
-      async: true,
-    });
-    return scriptsToLoad;
+    return [];
   },
 };
 
