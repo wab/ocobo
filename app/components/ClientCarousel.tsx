@@ -9,8 +9,8 @@ import { useWindowSize } from '~/hooks/useWindowSize';
 
 const items = [
   {
-    src: '/clients/chr-group-white.png',
-    title: 'Chr group',
+    src: '/clients/epack-white.png',
+    title: 'ePack Hygiène - CHR group',
   },
   {
     src: '/clients/citron-white.png',
