@@ -61,13 +61,13 @@ export const useMenuItems = (): MenuItem[] => {
         {
           key: 'about',
           title: t('navigation.company.about'),
-          url: 'https://ocobo.notion.site/Ocobo-Nous-rejoindre-b94fb96269cb4d6294cdf21569ebd479',
+          url: url.about,
           variant: 'coral',
         },
         {
           key: 'careers',
           title: t('navigation.company.jobs'),
-          url: 'https://ocobo.notion.site/Ocobo-Nous-rejoindre-416ea4a060fb48d6a9666a8d4debfb6a?pvs=74',
+          url: url.careers,
           variant: 'coral',
         },
       ],

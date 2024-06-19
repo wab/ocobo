@@ -1,4 +1,9 @@
-import { LoaderFunctionArgs, MetaFunction, json } from '@remix-run/node';
+import {
+  LoaderFunctionArgs,
+  MetaFunction,
+  json,
+  redirect,
+} from '@remix-run/node';
 import { useLoaderData } from '@remix-run/react';
 
 import { css } from '@ocobo/styled-system/css';
@@ -16,6 +21,10 @@ export async function loader({ params }: LoaderFunctionArgs) {
     // so throw immediately to stop executing code
     // and show the not found page
     throw new Response('Not Found', { status: 404 });
+  }
+
+  if (slug === 'politique-confidentialite') {
+    throw redirect('/legal/confidentialite', 301);
   }
 
   const page = await fetchPage('legal', slug);
