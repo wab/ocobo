@@ -27,14 +27,14 @@ const StoryHeader: React.FunctionComponent<StoryHeaderProps> = ({
       >
         {item.title}
       </h1>
-      <p
+      {/* <p
         className={css({
           textStyle: 'large',
           fontWeight: { base: 'bold', lg: 'normal' },
         })}
       >
         {item.subtitle}
-      </p>
+      </p> */}
       <StorySpeaker item={item} slug={slug} />
       <p
         className={css({
