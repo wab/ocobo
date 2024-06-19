@@ -37,8 +37,9 @@ export async function loader({ request }: LoaderFunctionArgs) {
 
 export const meta: MetaFunction<typeof loader> = () => {
   return getMetaTags({
-    title: 'Blog',
-    description: 'Découvrez les articles de notre blog',
+    title: 'Le blog des Revenue Operations',
+    description:
+      "Le blog d'Ocobo éclaire les leaders Revenue et les équipes RevOps avec des ressources sur les tendances et les meilleures pratiques du marché.",
   });
 };
 
