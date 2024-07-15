@@ -12,6 +12,8 @@ const tags = {
   ops: 'L’Ops',
   compensation: 'Compensation',
   deployment: 'Déploiement',
+  revenue: 'Revenue Operations',
+  performance: 'Performance',
 };
 
 const getAuthor = (slug: string) => {
