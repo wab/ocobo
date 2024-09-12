@@ -10,6 +10,10 @@ import { fetchBlogPost } from '~/modules/utils.server';
 import { getLang } from '~/utils/lang';
 import { getMetaTags } from '~/utils/metatags';
 
+export const handle = {
+  scripts: () => [{ src: 'https://player.ausha.co/ausha-player.js' }],
+};
+
 export async function loader({ params }: LoaderFunctionArgs) {
   const { slug } = params;
 

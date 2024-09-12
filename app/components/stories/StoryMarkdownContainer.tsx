@@ -223,11 +223,13 @@ export function Quote({ children, author, url, ...props }: QuoteProps) {
     <blockquote cite={url} {...props}>
       <QuoteIcon
         className={cx(
-          icon({ size: 'lg' }),
+          icon({ size: 'md' }),
           css({
             display: 'inline-block',
             mr: '0.5em',
             color: 'mint',
+            float: 'left',
+            translateY: '4px',
           }),
         )}
       />

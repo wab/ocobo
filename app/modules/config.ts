@@ -61,19 +61,8 @@ export const config: Config = {
     blockquote: {
       render: 'Quote',
       attributes: {
-        author: { type: String, required: true },
-      },
-      transform: (node, config) => {
-        const attributes = node.transformAttributes(config);
-        let children = node.transformChildren(config);
-        if (
-          children.length &&
-          children[0] instanceof Markdoc.Tag &&
-          children[0].name === 'Paragraph'
-        ) {
-          children = children[0]?.children;
-        }
-        return new Markdoc.Tag('Quote', attributes, children);
+        author: { type: String },
+        url: { type: String },
       },
     },
   },
@@ -87,27 +76,24 @@ export const config: Config = {
     statement: {
       render: 'Statement',
     },
-    blockquote: {
-      render: 'Quote',
-      attributes: {
-        author: { type: String, required: true },
-      },
-      transform: (node, config) => {
-        const attributes = node.transformAttributes(config);
-        let children = node.transformChildren(config);
-        if (
-          children.length &&
-          children[0] instanceof Markdoc.Tag &&
-          children[0].name === 'Paragraph'
-        ) {
-          children = children[0]?.children;
-        }
-        return new Markdoc.Tag('Quote', attributes, children);
-      },
-    },
     callout: {
       render: 'Callout',
       attributes: {},
+    },
+    aushaPlayer: {
+      render: 'AushaPlayer',
+      attributes: {
+        podcastId: {
+          type: String,
+          required: true,
+        },
+        showId: {
+          type: String,
+        },
+        title: {
+          type: String,
+        },
+      },
     },
   },
 };
