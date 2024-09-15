@@ -232,7 +232,7 @@ type QuoteProps = React.HTMLAttributes<HTMLElement> & {
 
 export function Quote({ children, author, url, ...props }: QuoteProps) {
   return (
-    <blockquote cite={url} {...props}>
+    <blockquote cite={url} className={css({ fontStyle: 'italic' })} {...props}>
       <QuoteIcon
         className={cx(
           icon({ size: 'md' }),
