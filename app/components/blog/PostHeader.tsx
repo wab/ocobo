@@ -27,7 +27,7 @@ const PostHeader: React.FunctionComponent<BlogpostHeaderProps> = ({ item }) => {
           bleft: 'sky',
         })}
       >
-        {item.description}
+        {item.exerpt || item.description}
       </p>
 
       <img

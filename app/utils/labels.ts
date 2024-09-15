@@ -14,6 +14,8 @@ const tags = {
   deployment: 'Déploiement',
   revenue: 'Revenue Operations',
   performance: 'Performance',
+  'revenue-echoes': 'Revenue Echoes',
+  podcast: 'Podcast',
 };
 
 const getAuthor = (slug: string) => {

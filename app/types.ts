@@ -37,6 +37,7 @@ export type PageFrontmatter = {
 export type BlogpostFrontmatter = {
   title: string;
   description: string;
+  exerpt?: string;
   author: string;
   image: string;
   date: string;
