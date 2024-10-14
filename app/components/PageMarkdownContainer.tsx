@@ -239,7 +239,7 @@ export function Quote({ children, author, url, ...props }: QuoteProps) {
           css({
             display: 'inline-block',
             mr: '0.5em',
-            color: 'gray',
+            color: 'sky',
             float: 'left',
             translateY: '4px',
           }),
