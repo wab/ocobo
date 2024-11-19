@@ -1,8 +1,13 @@
+import * as React from 'react';
+
 import type { RenderableTreeNode } from '@markdoc/markdoc';
 import { QuoteIcon } from 'lucide-react';
+import { useHydrated } from 'remix-utils/use-hydrated';
 
 import { css, cx } from '@ocobo/styled-system/css';
 import { icon } from '@ocobo/styled-system/recipes';
+
+import { createHubSpotForm, loadHubSpotScript } from '~/utils/hubspot';
 
 import { MarkdownContainer } from './MarkdowContainer';
 
@@ -319,6 +324,41 @@ export function AushaPlayer({ podcastId, showId, title }: AushaPlayerProps) {
   );
 }
 
+type HubspotFormProps = React.HTMLAttributes<HTMLDivElement> & {
+  formId?: string;
+};
+
+export function HubspotForm({ formId }: HubspotFormProps) {
+  const isHydrated = useHydrated();
+  const scriptsLoaded = React.useRef(false);
+
+  React.useEffect(() => {
+    if (!isHydrated || scriptsLoaded.current || !formId) return;
+    loadHubSpotScript()
+      .then(() => {
+        createHubSpotForm(formId, '.hubspot-form');
+      })
+      .catch((error) => {
+        console.error('Error loading scripts', error);
+      });
+    scriptsLoaded.current = true;
+  }, [isHydrated, formId]);
+
+  return (
+    <div
+      className={cx(
+        css({
+          p: 4,
+          mb: 4,
+          bleft: 'mint',
+          bg: 'mint.light',
+        }),
+        'hubspot-form',
+      )}
+    />
+  );
+}
+
 type StoryMarkdownContainerProps = {
   content: RenderableTreeNode;
 };
@@ -344,6 +384,7 @@ export function PageMarkdownContainer({
         TD,
         Callout,
         AushaPlayer,
+        HubspotForm,
       }}
     />
   );

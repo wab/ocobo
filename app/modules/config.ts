@@ -95,5 +95,14 @@ export const config: Config = {
         },
       },
     },
+    hubspotForm: {
+      render: 'HubspotForm',
+      attributes: {
+        formId: {
+          type: String,
+          required: true,
+        },
+      },
+    },
   },
 };
