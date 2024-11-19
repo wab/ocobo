@@ -85,6 +85,12 @@ export const useMenuItems = (): MenuItem[] => {
           shouldHide: true,
         },
         {
+          key: 'podcasts',
+          title: t('navigation.resources.podcasts'),
+          url: url.podcasts,
+          variant: 'mint',
+        },
+        {
           key: 'webinars',
           title: t('navigation.resources.webinars'),
           url: 'https://app.getcontrast.io/ocobo',

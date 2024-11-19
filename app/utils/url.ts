@@ -10,10 +10,11 @@ export const url = {
   news: '/news',
   webinars: '/webinars',
   blog: '/blog',
-  tools: '/tools',
   contact: '/contact',
+  tools: '/tools',
   privacy: '/privacy',
   notFound: '/404',
+  podcasts: 'https://podcast.ausha.co/revenue-echoes',
 };
 
 export const getImageOgFullPath = (name: string, url: string) => {
