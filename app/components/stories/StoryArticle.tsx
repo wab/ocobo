@@ -6,7 +6,7 @@ import type { MarkdocFile, StoryFrontmatter } from '~/types';
 
 import { StoryDeliverables } from './StoryDeliverables';
 import { StoryHeader } from './StoryHeader';
-import { StoryMarkdownContainer } from './StoryMarkdownContainer';
+import { StoryMarkdownContainer, YoutubePlayer } from './StoryMarkdownContainer';
 import { StoryMetas } from './StoryMetas';
 
 import { LayoutPost } from '../LayoutPost';
@@ -39,6 +39,12 @@ const StoryArticle: React.FunctionComponent<StoryArticleProps> = ({
         </Breadcrumb>
         <StoryHeader item={article.frontmatter} slug={article.slug} />
         <StoryMarkdownContainer content={article.content} />
+        {article.frontmatter.youtubeId && (
+          <YoutubePlayer
+            id={article.frontmatter.youtubeId}
+            className={css({ mt: 8 })}
+          />
+        )}
       </LayoutPost.Main>
     </LayoutPost.Root>
   );

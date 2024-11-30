@@ -1,5 +1,4 @@
 import type { Config } from '@markdoc/markdoc';
-import Markdoc from '@markdoc/markdoc';
 
 export const config: Config = {
   nodes: {
@@ -101,6 +100,18 @@ export const config: Config = {
         formId: {
           type: String,
           required: true,
+        },
+      },
+    },
+    youtubePlayer: {
+      render: 'PlayerYoutube',
+      attributes: {
+        id: {
+          type: String,
+          required: true,
+        },
+        title: {
+          type: String,
         },
       },
     },

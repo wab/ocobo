@@ -7,6 +7,7 @@ import { css, cx } from '@ocobo/styled-system/css';
 import { icon, subtitle } from '@ocobo/styled-system/recipes';
 
 import { MarkdownContainer } from '../MarkdowContainer';
+import { PlayerYoutube } from '../PlayerYoutube';
 
 export function Container({ children }: HTMLAttributes<HTMLElement>) {
   return (
@@ -103,6 +104,24 @@ export function Heading({ children, level = 2, ...props }: HeadingProps) {
     >
       {children}
     </h5>
+  );
+}
+
+export function Link({
+  href = '/404',
+  children,
+  ...props
+}: React.AnchorHTMLAttributes<HTMLAnchorElement>) {
+  return (
+    <a
+      href={href}
+      className={css({
+        textDecoration: 'underline',
+      })}
+      {...props}
+    >
+      {children}
+    </a>
   );
 }
 
@@ -245,6 +264,22 @@ export function Quote({ children, author, url, ...props }: QuoteProps) {
   );
 }
 
+type YoutubeProps = HTMLAttributes<HTMLElement> & {
+  id?: string;
+  title?: string;
+};
+
+export function YoutubePlayer({ id, title, ...props }: YoutubeProps) {
+  if (!id) {
+    return null;
+  }
+  return (
+    <div {...props}>
+      <PlayerYoutube id={id} title={title ?? ''} />
+    </div>
+  );
+}
+
 type StoryMarkdownContainerProps = {
   content: RenderableTreeNode;
 };
@@ -264,13 +299,14 @@ export function StoryMarkdownContainer({
         List,
         ListItem,
         // CodeBlock: CodeBlock,
-        // Link: MarkdownLinkWrapper,
+        Link,
         // TweetEmbed: TweetEmbed,
         // Statement: Statement,
         Quote,
         Table,
         TH,
         TD,
+        YoutubePlayer,
       }}
     />
   );

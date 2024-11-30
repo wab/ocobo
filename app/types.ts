@@ -27,6 +27,7 @@ export type StoryFrontmatter = {
   tools: string[];
   quotes: string[];
   deliverables: string[];
+  youtubeId?: string;
 };
 
 export type PageFrontmatter = {
