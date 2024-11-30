@@ -8,6 +8,7 @@ import { link, section } from '@ocobo/styled-system/recipes';
 
 import { url } from '~/utils/url';
 
+import { PlayerYoutube } from '../PlayerYoutube';
 import { Container } from '../ui/Container';
 
 const Aligned = () => {
@@ -43,11 +44,7 @@ const Aligned = () => {
                 mb: '6',
               })}
             >
-              <img
-                src="/logos/tomorro.png"
-                alt="Tomorro"
-                className={css({ display: 'block', w: '60%' })}
-              />
+              <PlayerYoutube id="-xpYK2HEw3M" title="Revenue Connect: Simplifier l'adoption d'une solution (Benjamin Boileux & Raphaëlle Martin-Neuville)" />
             </div>
             <p>
               <NavLink to={url.stories} className={link()}>
