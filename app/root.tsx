@@ -1,8 +1,8 @@
 import {
+  type LinksFunction,
   type LoaderFunctionArgs,
+  type SerializeFrom,
   json,
-  LinksFunction,
-  SerializeFrom,
 } from '@remix-run/node';
 import {
   Links,
@@ -18,13 +18,13 @@ import { useTranslation } from 'react-i18next';
 import { useChangeLanguage } from 'remix-i18next/react';
 import {
   ExternalScripts,
-  ExternalScriptsHandle,
+  type ExternalScriptsHandle,
 } from 'remix-utils/external-scripts';
 
 import styles from '~/index.css?url';
 import { getLang } from '~/utils/lang';
 
-import { Error } from './components/Error';
+import { ErrorMessage } from './components/ErrorMessage';
 import { useSetViewportHeight } from './hooks/useSetViewportHeight';
 
 export const links: LinksFunction = () => [
@@ -106,12 +106,11 @@ export function Layout({ children }: { children: React.ReactNode }) {
         <Links />
 
         {loaderData?.shouldLoadScript && (
-          <>
-            <script
-              async
-              id="gtag-init"
-              dangerouslySetInnerHTML={{
-                __html: `
+          <script
+            async
+            id="gtag-init"
+            dangerouslySetInnerHTML={{
+              __html: `
                 window.dataLayer = window.dataLayer || [];
                 function gtag(){dataLayer.push(arguments);}
                 gtag('js', new Date());
@@ -119,9 +118,8 @@ export function Layout({ children }: { children: React.ReactNode }) {
                   page_path: window.location.pathname,
                 });
               `,
-              }}
-            />
-          </>
+            }}
+          />
         )}
       </head>
       <body>
@@ -136,11 +134,7 @@ export function Layout({ children }: { children: React.ReactNode }) {
 }
 
 export function ErrorBoundary() {
-  return (
-    <Error.Container>
-      <Error.Message />
-    </Error.Container>
-  );
+  return <ErrorMessage />;
 }
 
 export default function App() {

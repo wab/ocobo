@@ -42,4 +42,12 @@ const Message: React.FunctionComponent<
   );
 };
 
-export const Error = { Container, Message };
+const ErrorMessage = () => {
+  return (
+    <Container>
+      <Message />
+    </Container>
+  );
+};
+
+export { ErrorMessage };

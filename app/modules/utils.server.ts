@@ -6,9 +6,9 @@ import { fetchMarkdownFilesFs } from './fs/fetchMarkdownFiles.server';
 import { fetchMarkdownFile } from './github/fetchMarkdownFile.server';
 import { fetchMarkdownFiles } from './github/fetchMarkdownFiles.server';
 import {
-  validateStoryFrontMatter,
-  validatePageFrontMatter,
   validateBlogpostFrontMatter,
+  validatePageFrontMatter,
+  validateStoryFrontMatter,
 } from './validation.server';
 
 async function fetchMarkdownEntries<T>(

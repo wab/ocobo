@@ -6,7 +6,7 @@ const PlayerYoutube: React.FunctionComponent<{
   id: string;
   title?: string;
   className?: string;
-}> = ({ id, title,  ...props }) => {
+}> = ({ id, title, ...props }) => {
   return (
     <div {...props}>
       <iframe

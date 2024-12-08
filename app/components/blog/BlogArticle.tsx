@@ -5,7 +5,7 @@ import { css } from '@ocobo/styled-system/css';
 import { flex } from '@ocobo/styled-system/patterns';
 import { icon } from '@ocobo/styled-system/recipes';
 
-import type { MarkdocFile, BlogpostFrontmatter } from '~/types';
+import type { BlogpostFrontmatter, MarkdocFile } from '~/types';
 import { url } from '~/utils/url';
 
 import { PostHeader } from './PostHeader';

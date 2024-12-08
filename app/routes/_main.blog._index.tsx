@@ -1,6 +1,6 @@
 import * as React from 'react';
 
-import { MetaFunction, defer, type LoaderFunctionArgs } from '@remix-run/node';
+import { type LoaderFunctionArgs, MetaFunction, defer } from '@remix-run/node';
 import { Await, useLoaderData } from '@remix-run/react';
 
 import { css } from '@ocobo/styled-system/css';

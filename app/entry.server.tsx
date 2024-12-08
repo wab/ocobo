@@ -2,8 +2,8 @@ import { resolve } from 'node:path';
 import { PassThrough } from 'stream';
 
 import {
-  createReadableStreamFromReadable,
   type EntryContext,
+  createReadableStreamFromReadable,
 } from '@remix-run/node';
 import { RemixServer } from '@remix-run/react';
 import { createInstance } from 'i18next';

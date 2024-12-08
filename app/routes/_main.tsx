@@ -2,15 +2,13 @@ import { Outlet, useNavigation } from '@remix-run/react';
 
 import { css } from '@ocobo/styled-system/css';
 
-import { Error } from '~/components/Error';
+import { ErrorMessage } from '~/components/ErrorMessage';
 import { LayoutMain } from '~/components/LayoutMain';
 
 export function ErrorBoundary() {
   return (
     <LayoutMain>
-      <Error.Container>
-        <Error.Message />
-      </Error.Container>
+      <ErrorMessage />
     </LayoutMain>
   );
 }

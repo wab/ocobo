@@ -6,7 +6,10 @@ import type { MarkdocFile, StoryFrontmatter } from '~/types';
 
 import { StoryDeliverables } from './StoryDeliverables';
 import { StoryHeader } from './StoryHeader';
-import { StoryMarkdownContainer, YoutubePlayer } from './StoryMarkdownContainer';
+import {
+  StoryMarkdownContainer,
+  YoutubePlayer,
+} from './StoryMarkdownContainer';
 import { StoryMetas } from './StoryMetas';
 
 import { LayoutPost } from '../LayoutPost';

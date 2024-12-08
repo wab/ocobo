@@ -3,11 +3,11 @@ import * as React from 'react';
 import { useHydrated } from 'remix-utils/use-hydrated';
 
 import {
-  createHubSpotForm,
-  scheduleDistro,
   contactFormId,
-  loadHubSpotScript,
+  createHubSpotForm,
   loadDistroScript,
+  loadHubSpotScript,
+  scheduleDistro,
 } from '~/utils/hubspot';
 
 const ContactForm: React.FunctionComponent = () => {

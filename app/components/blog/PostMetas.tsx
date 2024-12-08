@@ -1,4 +1,4 @@
-import { TagsIcon, CalendarDaysIcon, CoffeeIcon } from 'lucide-react';
+import { CalendarDaysIcon, CoffeeIcon, TagsIcon } from 'lucide-react';
 
 import { css } from '@ocobo/styled-system/css';
 import { circle, flex } from '@ocobo/styled-system/patterns';

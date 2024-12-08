@@ -44,7 +44,10 @@ const Aligned = () => {
                 mb: '6',
               })}
             >
-              <PlayerYoutube id="-xpYK2HEw3M" title="Revenue Connect: Simplifier l'adoption d'une solution (Benjamin Boileux & Raphaëlle Martin-Neuville)" />
+              <PlayerYoutube
+                id="-xpYK2HEw3M"
+                title="Revenue Connect: Simplifier l'adoption d'une solution (Benjamin Boileux & Raphaëlle Martin-Neuville)"
+              />
             </div>
             <p>
               <NavLink to={url.stories} className={link()}>
