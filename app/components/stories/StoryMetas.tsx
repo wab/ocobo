@@ -1,4 +1,4 @@
-import { TimerIcon, MessageSquareTextIcon, WrenchIcon } from 'lucide-react';
+import { MessageSquareTextIcon, TimerIcon, WrenchIcon } from 'lucide-react';
 
 import { css } from '@ocobo/styled-system/css';
 import { flex } from '@ocobo/styled-system/patterns';

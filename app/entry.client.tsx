@@ -1,4 +1,4 @@
-import { startTransition, StrictMode } from 'react';
+import { StrictMode, startTransition } from 'react';
 
 import { RemixBrowser } from '@remix-run/react';
 import i18next from 'i18next';

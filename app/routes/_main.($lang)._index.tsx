@@ -1,9 +1,9 @@
 import * as React from 'react';
 
 import {
-  defer,
   type LoaderFunctionArgs,
   type MetaFunction,
+  defer,
 } from '@remix-run/node';
 import { Await, useLoaderData } from '@remix-run/react';
 import { ClientOnly } from 'remix-utils/client-only';

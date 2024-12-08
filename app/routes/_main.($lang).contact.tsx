@@ -1,4 +1,4 @@
-import { LoaderFunctionArgs, json, type MetaFunction } from '@remix-run/node';
+import { LoaderFunctionArgs, type MetaFunction, json } from '@remix-run/node';
 import { Trans, useTranslation } from 'react-i18next';
 
 import { css, cx } from '@ocobo/styled-system/css';

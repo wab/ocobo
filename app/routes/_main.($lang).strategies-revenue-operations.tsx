@@ -1,7 +1,7 @@
 import {
-  json,
   type LoaderFunctionArgs,
   type MetaFunction,
+  json,
 } from '@remix-run/node';
 
 import { Choose, Hero, Method, Needs, Team } from '~/components/strategy';
