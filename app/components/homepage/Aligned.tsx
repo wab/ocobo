@@ -36,19 +36,13 @@ const Aligned = () => {
           </GridItem>
           <GridItem className={css({ hideBelow: 'md' })} />
           <GridItem colSpan={{ base: 1, lg: 5 }}>
-            <div
-              className={center({
-                w: 'full',
-                h: { base: '190px', lg: '290px' },
-                bg: '#283F2B',
-                mb: '6',
+            <PlayerYoutube
+              id="-xpYK2HEw3M"
+              title="Revenue Connect: Simplifier l'adoption d'une solution (Benjamin Boileux & Raphaëlle Martin-Neuville)"
+              className={css({
+                mb: '4',
               })}
-            >
-              <PlayerYoutube
-                id="-xpYK2HEw3M"
-                title="Revenue Connect: Simplifier l'adoption d'une solution (Benjamin Boileux & Raphaëlle Martin-Neuville)"
-              />
-            </div>
+            />
             <p>
               <NavLink to={url.stories} className={link()}>
                 {t('aligned.cta')}

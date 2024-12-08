@@ -9,16 +9,29 @@ const PlayerYoutube: React.FunctionComponent<{
 }> = ({ id, title, ...props }) => {
   return (
     <div {...props}>
-      <iframe
-        width="560"
-        height="315"
-        src={`https://www.youtube.com/embed/${id}?rel=0`}
-        title={title || 'Youtube Player'}
-        allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
-        referrerPolicy="strict-origin-when-cross-origin"
-        allowFullScreen
-        className={css({ aspectRatio: '16 / 9', maxW: '100%' })}
-      />
+      <div
+        className={css({
+          overflow: 'hidden',
+          pb: '56.25%',
+          position: 'relative',
+          h: '0',
+        })}
+      >
+        <iframe
+          src={`https://www.youtube.com/embed/${id}?rel=0`}
+          title={title || 'Youtube Player'}
+          allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+          referrerPolicy="strict-origin-when-cross-origin"
+          allowFullScreen
+          className={css({
+            w: '100%',
+            h: '100%',
+            position: 'absolute',
+            top: '0',
+            left: '0',
+          })}
+        />
+      </div>
     </div>
   );
 };
