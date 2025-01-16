@@ -269,7 +269,7 @@ type YoutubeProps = HTMLAttributes<HTMLElement> & {
   title?: string;
 };
 
-export function YoutubePlayer({ id, title, ...props }: YoutubeProps) {
+function YoutubePlayer({ id, title, ...props }: YoutubeProps) {
   if (!id) {
     return null;
   }

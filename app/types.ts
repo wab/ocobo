@@ -44,6 +44,7 @@ export type BlogpostFrontmatter = {
   date: string;
   tags: string[];
   read: string;
+  youtubeId?: string;
 };
 
 export type TvalidateFrontMatter<T> = (

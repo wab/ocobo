@@ -182,25 +182,23 @@ export function Table({
   ...props
 }: React.HTMLAttributes<HTMLTableElement>) {
   return (
-    <div>
-      <table
-        {...props}
-        className={css({
-          borderCollapse: 'collapse',
-          maxWidth: '100%',
-          mb: '1em',
-          textStyle: 'small',
-          '& th, & td': {
-            border: '1px solid',
-            borderColor: 'gray',
-            py: '0.5em',
-            px: '0.5em',
-          },
-        })}
-      >
-        {children}
-      </table>
-    </div>
+    <table
+      {...props}
+      className={css({
+        borderCollapse: 'collapse',
+        maxWidth: '100%',
+        mb: '2em',
+        textStyle: 'small',
+        '& th, & td': {
+          border: '1px solid',
+          borderColor: 'gray',
+          py: '0.5em',
+          px: '0.5em',
+        },
+      })}
+    >
+      {children}
+    </table>
   );
 }
 

@@ -15,7 +15,7 @@ export const globalCss = defineGlobalStyles({
     overflowX: 'hidden',
   },
 
-  'p + p, h1 + p,  h2 + p,  h3 + p, h1 + h2, h2 + h3': {
+  'p + p, h1 + p,  h2 + p,  h3 + p, h1 + h2, h2 + h3, h2 + table': {
     mt: '1em',
   },
 

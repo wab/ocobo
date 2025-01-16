@@ -13,6 +13,7 @@ import { PostMetas } from './PostMetas';
 
 import { LayoutPost } from '../LayoutPost';
 import { PageMarkdownContainer } from '../PageMarkdownContainer';
+import { PlayerYoutube } from '../PlayerYoutube';
 
 interface BlogArticleProps {
   article: MarkdocFile<BlogpostFrontmatter>;
@@ -36,6 +37,12 @@ const BlogArticle: React.FunctionComponent<BlogArticleProps> = ({
         </p>
         <PostHeader item={article.frontmatter} />
         <PageMarkdownContainer content={article.content} />
+        {article.frontmatter.youtubeId && (
+          <PlayerYoutube
+            id={article.frontmatter.youtubeId}
+            className={css({ mt: 8 })}
+          />
+        )}
       </LayoutPost.Main>
     </LayoutPost.Root>
   );
