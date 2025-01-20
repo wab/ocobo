@@ -309,16 +309,14 @@ export function AushaPlayer({ podcastId, showId, title }: AushaPlayerProps) {
   const src = `https://player.ausha.co/?${showIdParam}color=%23FE9C87&podcastId=${podcastId}&v=3&playerId=${playerId}`;
 
   return (
-    <div>
-      <iframe
-        title={title || 'Ausha Podcast Player'}
-        loading="lazy"
-        id={playerId}
-        height="220"
-        width="100%"
-        src={src}
-      />
-    </div>
+    <iframe
+      title={title || 'Ausha Podcast Player'}
+      loading="lazy"
+      id={playerId}
+      height="220"
+      width="100%"
+      src={src}
+    />
   );
 }
 
