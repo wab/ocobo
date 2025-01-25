@@ -38,24 +38,31 @@ export async function fetchMarkdownFiles<FrontMatter>(
     ];
   }
 
-  const mdFiles: MarkdocFile<FrontMatter>[] = [];
-  for (const item of items) {
-    const [fetchStatus, fetchState, file] = await fetchMarkdownFile(
+  // Fetch all files in parallel using Promise.all
+  const filePromises = items.map((item) =>
+    fetchMarkdownFile(
       accessToken,
       directoryUrl,
       item.slug,
       hasValidFrontMatter,
-    );
+    ),
+  );
+
+  const results = await Promise.all(filePromises);
+
+  const mdFiles: MarkdocFile<FrontMatter>[] = [];
+  for (const [fetchStatus, fetchState, file] of results) {
     if (fetchStatus !== 200 || !file) {
       if (fetchState === FetchMarkdownFileResState.fileIgnored) {
         continue;
       }
       console.error(
-        `FetchMarkdownFiles failed for ${directoryUrl}/${item.slug} with [${fetchStatus}] ${fetchState}.`,
+        `FetchMarkdownFiles failed with [${fetchStatus}] ${fetchState}.`,
       );
       return [fetchStatus, FetchMarkdownFilesResState.internalError, undefined];
     }
     mdFiles.push(file);
   }
+
   return [200, FetchMarkdownFilesResState.success, mdFiles];
 }
