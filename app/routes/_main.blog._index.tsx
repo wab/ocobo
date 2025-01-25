@@ -15,23 +15,35 @@ export async function loader({ request }: LoaderFunctionArgs) {
   const url = new URL(request.url);
   const searchParams = new URLSearchParams(url.search);
   const tag = searchParams.get('tag');
+  const refresh = searchParams.has('refresh');
 
-  const postsPromise = fetchBlogPosts();
+  const cacheControl = refresh
+    ? 'no-cache, no-store, must-revalidate'
+    : 'public, max-age=7200, s-maxage=7200';
 
-  const posts = postsPromise.then((data) =>
-    data
+  const posts = fetchBlogPosts(refresh).then(([status, state, data]) => {
+    if (status !== 200 || !data) {
+      throw new Error(`Failed to fetch blog posts: ${state}`);
+    }
+
+    return data
       .filter((entry) => !tag || entry.frontmatter.tags.includes(tag))
       .sort((a, b) => {
         return (
           new Date(b.frontmatter.date).getTime() -
           new Date(a.frontmatter.date).getTime()
         );
-      }),
-  );
+      });
+  });
 
   return defer(
     { posts },
-    { headers: { 'cache-control': 'public, max-age=7200' } },
+    {
+      headers: {
+        'Cache-Control': cacheControl,
+        Vary: 'Accept-Encoding, Accept, X-Requested-With',
+      },
+    },
   );
 }
 

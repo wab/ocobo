@@ -1,4 +1,6 @@
 import { TvalidateFrontMatter } from '~/types';
+import type { BlogpostFrontmatter, StoryFrontmatter } from '~/types';
+import type { MarkdocFile } from '~/types';
 
 import { getPrivateEnvVars } from './env.server';
 import { fetchMarkdownFileFs } from './fs/fetchMarkdownFile.server';
@@ -68,7 +70,24 @@ const fetchMarkdownEntry = async <T>(
   }
 };
 
-const fetchStories = async () => {
+// Cache for stories with 2-hour TTL
+let storiesCache: {
+  stories: [number, string, MarkdocFile<StoryFrontmatter>[]];
+  timestamp: number;
+} | null = null;
+
+const CACHE_TTL = 2 * 60 * 60 * 1000; // 2 hours in milliseconds
+
+const fetchStories = async (forceRefresh = false) => {
+  // Return cached stories if they exist and haven't expired
+  if (
+    !forceRefresh &&
+    storiesCache &&
+    Date.now() - storiesCache.timestamp < CACHE_TTL
+  ) {
+    return storiesCache.stories;
+  }
+
   const [status, state, files] = await fetchMarkdownEntries(
     'stories/fr',
     validateStoryFrontMatter,
@@ -78,7 +97,13 @@ const fetchStories = async () => {
     throw Error(`Error (${status}) ${state}: Failed to fetch stories.`);
   }
 
-  return files;
+  // Update cache
+  storiesCache = {
+    stories: [status, state, files],
+    timestamp: Date.now(),
+  };
+
+  return [status, state, files];
 };
 
 const fetchStory = async (slug: string) => {
@@ -122,17 +147,34 @@ const fetchPage = async (path: string, slug: string) => {
   return article;
 };
 
-const fetchBlogPosts = async () => {
-  const [status, state, files] = await fetchMarkdownEntries(
+// Cache for blog posts with 2-hour TTL
+let blogPostsCache: {
+  posts: Awaited<ReturnType<typeof fetchMarkdownEntries<BlogpostFrontmatter>>>;
+  timestamp: number;
+} | null = null;
+
+const fetchBlogPosts = async (forceRefresh = false) => {
+  // Return cached posts if they exist and haven't expired
+  if (
+    !forceRefresh &&
+    blogPostsCache &&
+    Date.now() - blogPostsCache.timestamp < CACHE_TTL
+  ) {
+    return blogPostsCache.posts;
+  }
+
+  const posts = await fetchMarkdownEntries<BlogpostFrontmatter>(
     'blog/fr',
     validateBlogpostFrontMatter,
   );
 
-  if (status !== 200 || !files) {
-    throw Error(`Error (${status}) ${state}: Failed to fetch blogposts.`);
-  }
+  // Update cache
+  blogPostsCache = {
+    posts,
+    timestamp: Date.now(),
+  };
 
-  return files;
+  return posts;
 };
 
 const fetchBlogPost = async (slug: string) => {
