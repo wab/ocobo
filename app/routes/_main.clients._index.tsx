@@ -10,6 +10,7 @@ import { Hero, StoryList } from '~/components/stories';
 import { Container } from '~/components/ui/Container';
 import { Loader } from '~/components/ui/Loader';
 import { fetchStories } from '~/modules/utils.server';
+import type { MarkdocFile, StoryFrontmatter } from '~/types';
 import { getMetaTags } from '~/utils/metatags';
 import { getImageOgFullPath } from '~/utils/url';
 
@@ -17,26 +18,38 @@ export async function loader({ request }: LoaderFunctionArgs) {
   const url = new URL(request.url);
   const searchParams = new URLSearchParams(url.search);
   const tag = searchParams.get('tag');
+  const refresh = searchParams.has('refresh');
 
-  const storiesPromise = fetchStories();
+  const cacheControl = refresh
+    ? 'no-cache, no-store, must-revalidate'
+    : 'public, max-age=7200, s-maxage=7200';
 
-  const stories = storiesPromise.then((data) =>
-    data
+  const stories = fetchStories(refresh).then(([status, state, data]) => {
+    if (status !== 200 || !data) {
+      throw new Error(`Failed to fetch stories: ${state}`);
+    }
+
+    return (data as MarkdocFile<StoryFrontmatter>[])
       .filter((entry) => !tag || entry.frontmatter.tags.includes(tag))
       .sort((a, b) => {
         return (
           new Date(b.frontmatter.date).getTime() -
           new Date(a.frontmatter.date).getTime()
         );
-      }),
-  );
+      });
+  });
 
   return defer(
     {
       stories,
       ogImageSrc: getImageOgFullPath('clients', request.url),
     },
-    { headers: { 'cache-control': 'public, max-age=7200' } },
+    {
+      headers: {
+        'Cache-Control': cacheControl,
+        Vary: 'Accept-Encoding, Accept, X-Requested-With',
+      },
+    },
   );
 }
 

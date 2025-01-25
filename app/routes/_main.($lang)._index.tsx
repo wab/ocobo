@@ -24,6 +24,7 @@ import {
 import { Loader } from '~/components/ui/Loader';
 import i18nServer from '~/localization/i18n.server';
 import { fetchStories } from '~/modules/utils.server';
+import type { MarkdocFile, StoryFrontmatter } from '~/types';
 import { getLang } from '~/utils/lang';
 import { getMetaTags } from '~/utils/metatags';
 import { redirectWithLocale } from '~/utils/redirections';
@@ -32,16 +33,26 @@ import { getImageOgFullPath } from '~/utils/url';
 export async function loader(args: LoaderFunctionArgs) {
   await redirectWithLocale(args);
   const t = await i18nServer.getFixedT(getLang(args.params), 'home');
+  const url = new URL(args.request.url);
+  const refresh = url.searchParams.has('refresh');
 
-  const storiesPromise = fetchStories().then((data) => {
-    return data
+  const cacheControl = refresh
+    ? 'no-cache, no-store, must-revalidate'
+    : 'public, max-age=7200, s-maxage=7200';
+
+  const stories = fetchStories(refresh).then(([status, state, data]) => {
+    if (status !== 200 || !data) {
+      throw new Error(`Failed to fetch stories: ${state}`);
+    }
+
+    return (data as MarkdocFile<StoryFrontmatter>[])
       .sort((a, b) => {
         return (
           new Date(b.frontmatter.date).getTime() -
           new Date(a.frontmatter.date).getTime()
         );
       })
-      .map((item) => ({
+      .map((item: MarkdocFile<StoryFrontmatter>) => ({
         id: item.slug,
         slug: item.slug,
         speaker: item.frontmatter.speaker,
@@ -54,12 +65,20 @@ export async function loader(args: LoaderFunctionArgs) {
       }));
   });
 
-  return defer({
-    title: t('meta.title'),
-    description: t('meta.description'),
-    stories: storiesPromise,
-    ogImageSrc: getImageOgFullPath('homepage', args.request.url),
-  });
+  return defer(
+    {
+      title: t('meta.title'),
+      description: t('meta.description'),
+      stories,
+      ogImageSrc: getImageOgFullPath('homepage', args.request.url),
+    },
+    {
+      headers: {
+        'Cache-Control': cacheControl,
+        Vary: 'Accept-Encoding, Accept, X-Requested-With',
+      },
+    },
+  );
 }
 
 export const meta: MetaFunction<typeof loader> = ({ data, params }) => {
