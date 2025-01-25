@@ -1,4 +1,5 @@
 import { TvalidateFrontMatter } from '~/types';
+import type { BlogpostFrontmatter } from '~/types';
 
 import { getPrivateEnvVars } from './env.server';
 import { fetchMarkdownFileFs } from './fs/fetchMarkdownFile.server';
@@ -122,17 +123,35 @@ const fetchPage = async (path: string, slug: string) => {
   return article;
 };
 
-const fetchBlogPosts = async () => {
-  const [status, state, files] = await fetchMarkdownEntries(
+// Cache for blog posts with 2-hour TTL
+let blogPostsCache: {
+  posts: Awaited<ReturnType<typeof fetchMarkdownEntries<BlogpostFrontmatter>>>;
+  timestamp: number;
+} | null = null;
+const CACHE_TTL = 2 * 60 * 60 * 1000; // 2 hours in milliseconds
+
+const fetchBlogPosts = async (forceRefresh = false) => {
+  // Return cached posts if they exist and haven't expired
+  if (
+    !forceRefresh &&
+    blogPostsCache &&
+    Date.now() - blogPostsCache.timestamp < CACHE_TTL
+  ) {
+    return blogPostsCache.posts;
+  }
+
+  const posts = await fetchMarkdownEntries<BlogpostFrontmatter>(
     'blog/fr',
     validateBlogpostFrontMatter,
   );
 
-  if (status !== 200 || !files) {
-    throw Error(`Error (${status}) ${state}: Failed to fetch blogposts.`);
-  }
+  // Update cache
+  blogPostsCache = {
+    posts,
+    timestamp: Date.now(),
+  };
 
-  return files;
+  return posts;
 };
 
 const fetchBlogPost = async (slug: string) => {
