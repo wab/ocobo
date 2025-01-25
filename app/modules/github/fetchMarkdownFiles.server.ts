@@ -22,8 +22,6 @@ export async function fetchMarkdownFiles<FrontMatter>(
 ): Promise<
   ActionResult<FetchMarkdownFilesResState, MarkdocFile<FrontMatter>[]>
 > {
-  // console.debug('fetchMarkdownFiles called');
-
   const [status, state, items] = await fetchFileItems(
     accessToken,
     directoryUrl,
@@ -38,24 +36,40 @@ export async function fetchMarkdownFiles<FrontMatter>(
     ];
   }
 
+  // Process files in batches of 10 to avoid overwhelming the API
+  const batchSize = 10;
   const mdFiles: MarkdocFile<FrontMatter>[] = [];
-  for (const item of items) {
-    const [fetchStatus, fetchState, file] = await fetchMarkdownFile(
-      accessToken,
-      directoryUrl,
-      item.slug,
-      hasValidFrontMatter,
+
+  for (let i = 0; i < items.length; i += batchSize) {
+    const batch = items.slice(i, i + batchSize);
+    const batchPromises = batch.map((item) =>
+      fetchMarkdownFile(
+        accessToken,
+        directoryUrl,
+        item.slug,
+        hasValidFrontMatter,
+      ),
     );
-    if (fetchStatus !== 200 || !file) {
-      if (fetchState === FetchMarkdownFileResState.fileIgnored) {
-        continue;
+
+    const batchResults = await Promise.all(batchPromises);
+
+    for (const [fetchStatus, fetchState, file] of batchResults) {
+      if (fetchStatus !== 200 || !file) {
+        if (fetchState === FetchMarkdownFileResState.fileIgnored) {
+          continue;
+        }
+        console.error(
+          `FetchMarkdownFiles failed with [${fetchStatus}] ${fetchState}.`,
+        );
+        return [
+          fetchStatus,
+          FetchMarkdownFilesResState.internalError,
+          undefined,
+        ];
       }
-      console.error(
-        `FetchMarkdownFiles failed for ${directoryUrl}/${item.slug} with [${fetchStatus}] ${fetchState}.`,
-      );
-      return [fetchStatus, FetchMarkdownFilesResState.internalError, undefined];
+      mdFiles.push(file);
     }
-    mdFiles.push(file);
   }
+
   return [200, FetchMarkdownFilesResState.success, mdFiles];
 }

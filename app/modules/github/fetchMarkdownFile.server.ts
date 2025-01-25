@@ -30,60 +30,72 @@ export async function fetchMarkdownFile<FrontMatter>(
 ): Promise<ActionResult<FetchMarkdownFileResState, MarkdocFile<FrontMatter>>> {
   const contentUrl = getContentPath(path, slug);
 
-  // console.debug(`fetchMarkdownFile called for ${contentUrl}`);
+  // Create headers object directly instead of using Headers class
+  const headers = {
+    Accept: 'application/vnd.github.v3.raw',
+    Authorization: `token ${accessToken}`,
+    'User-Agent': 'ocobo-posts',
+  };
 
-  const headers = new Headers();
-  headers.set('Accept', 'application/vnd.github.v3.raw');
-  // don't confuse with OAuth auth token flow, this requires a private accessToken of the GitHub account
-  headers.set('Authorization', `token ${accessToken}`);
-  headers.set('User-Agent', 'ocobo-posts');
+  // Add timeout handling
+  const controller = new AbortController();
+  const timeout = setTimeout(() => controller.abort(), 5000); // 5 second timeout
 
-  const response = await fetch(contentUrl, { headers });
-  if (!response.ok || response.status !== 200) {
-    console.error(
-      `GitHub fetch markdown API request failed: ok: ${response.ok} (${response.status}): ${response.statusText}`,
-    );
-    if (response.status === 404) {
+  try {
+    const response = await fetch(contentUrl, {
+      headers,
+      signal: controller.signal,
+      cache: 'force-cache', // Enable caching
+    });
+
+    clearTimeout(timeout);
+
+    if (!response.ok || response.status !== 200) {
+      console.error(
+        `GitHub fetch markdown API request failed: ok: ${response.ok} (${response.status}): ${response.statusText}`,
+      );
       return [
         response.status,
-        FetchMarkdownFileResState.fileNotFound,
+        response.status === 404
+          ? FetchMarkdownFileResState.fileNotFound
+          : FetchMarkdownFileResState.internalError,
         undefined,
       ];
     }
+
+    const markdown = await response.text();
+    const ast = Markdoc.parse(markdown);
+    const frontmatter = ast.attributes.frontmatter
+      ? yaml.load(ast.attributes.frontmatter)
+      : {};
+
+    if (frontmatter?.ignore) {
+      return [404, FetchMarkdownFileResState.fileIgnored, undefined];
+    }
+
+    try {
+      invariant(
+        hasValidFrontMatter(frontmatter),
+        `File ${contentUrl} is missing frontmatter attributes`,
+      );
+    } catch (error: unknown) {
+      console.error(error);
+      return [500, FetchMarkdownFileResState.fileFrontmatterMissing, undefined];
+    }
+
+    const content = Markdoc.transform(ast, config);
     return [
-      response.status,
-      FetchMarkdownFileResState.internalError,
-      undefined,
+      200,
+      FetchMarkdownFileResState.success,
+      { slug, frontmatter, content, markdown },
     ];
+  } catch (error) {
+    clearTimeout(timeout);
+    if (error.name === 'AbortError') {
+      console.error('Request timed out');
+      return [408, FetchMarkdownFileResState.internalError, undefined];
+    }
+    console.error('Fetch error:', error);
+    return [500, FetchMarkdownFileResState.internalError, undefined];
   }
-
-  const markdown = await response.text();
-  const ast = Markdoc.parse(markdown);
-  const frontmatter = ast.attributes.frontmatter
-    ? yaml.load(ast.attributes.frontmatter)
-    : {};
-  if (
-    frontmatter &&
-    typeof frontmatter === 'object' &&
-    'ignore' in frontmatter &&
-    frontmatter.ignore
-  ) {
-    return [404, FetchMarkdownFileResState.fileIgnored, undefined];
-  }
-  try {
-    invariant(
-      hasValidFrontMatter(frontmatter),
-      `File ${contentUrl} is missing frontmatter attributes`,
-    );
-  } catch (error: unknown) {
-    console.error(error);
-    return [500, FetchMarkdownFileResState.fileFrontmatterMissing, undefined];
-  }
-
-  const content = Markdoc.transform(ast, config);
-  return [
-    200,
-    FetchMarkdownFileResState.success,
-    { slug, frontmatter, content, markdown },
-  ];
 }
