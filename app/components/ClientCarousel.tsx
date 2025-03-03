@@ -65,6 +65,10 @@ const items = [
     src: '/clients/dotworld-white.png',
     title: 'Dotworld',
   },
+  {
+    src: '/clients/cybelangel-white.png',
+    title: 'CybelAngel',
+  },
 ];
 
 const itemWidth = 140;
