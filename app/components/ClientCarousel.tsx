@@ -69,6 +69,10 @@ const items = [
     src: '/clients/cybelangel-white.png',
     title: 'CybelAngel',
   },
+  {
+    src: '/clients/yousign-white.png',
+    title: 'Yousign',
+  },
 ];
 
 const itemWidth = 140;
