@@ -1,6 +1,8 @@
-import { css } from '@ocobo/styled-system/css';
+import { css, cx } from '@ocobo/styled-system/css';
 import { circle } from '@ocobo/styled-system/patterns';
 
+import { icon } from '@ocobo/styled-system/recipes';
+import { QuoteIcon } from 'lucide-react';
 import { Avatar } from '../ui/Avatar';
 import { Carousel } from '../ui/Carousel';
 import { Container } from '../ui/Container';
@@ -45,6 +47,18 @@ const StoryCard: React.FunctionComponent<{ item: TItem }> = ({ item }) => {
       </div>
       <div>
         <blockquote>
+          <QuoteIcon
+            className={cx(
+              icon({ size: 'md' }),
+              css({
+                display: 'inline-block',
+                mr: '0.5em',
+                color,
+                float: 'left',
+                translateY: '4px',
+              }),
+            )}
+          />
           {item.quote}
           <aside>
             <cite
