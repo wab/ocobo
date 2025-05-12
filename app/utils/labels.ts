@@ -2,6 +2,7 @@ const authors = {
   benjamin: 'Benjamin Boileux',
   aude: 'Aude Cadiot',
   corentin: 'Corentin Guérin',
+  ethel: 'Ethel Gosset',
 };
 
 const tags = {
