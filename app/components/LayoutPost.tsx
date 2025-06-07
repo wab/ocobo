@@ -46,7 +46,6 @@ const Aside: React.FunctionComponent<React.PropsWithChildren<unknown>> = ({
             base: 'var(--main-header-height-mobile)',
             lg: 'var(--main-header-height)',
           },
-          pt: '8',
         })}
       >
         {children}

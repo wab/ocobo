@@ -1,8 +1,8 @@
 import { css } from '@ocobo/styled-system/css';
 
-import { StoryFrontmatter } from '~/modules/validation.server';
-import type { MarkdocFile } from '~/types';
+import type { MarkdocFile, StoryFrontmatter } from '~/types';
 
+import { circle } from '@ocobo/styled-system/patterns';
 import { Avatar } from '../ui/Avatar';
 
 interface StorySpeakerProps {
@@ -17,18 +17,26 @@ const StorySpeaker: React.FunctionComponent<StorySpeakerProps> = ({
   return (
     <div
       className={css({
-        display: 'flex',
+        display: 'grid',
+        gridTemplateColumns: 'auto 1fr',
         alignItems: 'center',
-        gap: 4,
+        gap: 8,
         py: 6,
       })}
     >
       <div>
-        <Avatar src={`/clients/${slug}-avatar.png`} alt={item.name} />
+        <Avatar
+          src={`/clients/${slug}-avatar.png`}
+          alt={item.name}
+          className={circle({
+            size: 140,
+          })}
+        />
       </div>
       <div>
-        <strong>{item.speaker}</strong>
-        <div>{`${item.role} @ ${item.name}`}</div>
+        <div className={css({ textStyle: 'heading3' })}>{item.speaker}</div>
+        <div className={css({ fontStyle: 'italic' })}>{item.role}</div>
+        <div className={css({})}>{item.description}</div>
       </div>
     </div>
   );

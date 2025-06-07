@@ -63,7 +63,8 @@ const Title: React.FunctionComponent<
       className={cx(
         css({
           fontWeight: 'bold',
-          bg: variant === 'page' ? 'mint' : 'sky',
+          bg: variant === 'page' ? 'mint.dark' : 'sky.dark',
+          color: 'white',
           height: '90px',
           display: 'flex',
           alignItems: 'center',

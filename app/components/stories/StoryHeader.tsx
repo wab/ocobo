@@ -17,33 +17,16 @@ const StoryHeader: React.FunctionComponent<StoryHeaderProps> = ({
     <header
       className={css({
         mb: '8',
-        maxW: { base: '100%', lg: '5/6' },
       })}
     >
       <h1
         className={css({
-          textStyle: 'heading1',
+          textStyle: 'heading2',
         })}
       >
         {item.title}
       </h1>
-      {/* <p
-        className={css({
-          textStyle: 'large',
-          fontWeight: { base: 'bold', lg: 'normal' },
-        })}
-      >
-        {item.subtitle}
-      </p> */}
       <StorySpeaker item={item} slug={slug} />
-      <p
-        className={css({
-          textStyle: 'large',
-          bleft: 'mint',
-        })}
-      >
-        {item.description}
-      </p>
     </header>
   );
 };
