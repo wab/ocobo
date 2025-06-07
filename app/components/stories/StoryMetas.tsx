@@ -20,9 +20,17 @@ const StoryMetas: React.FunctionComponent<StoryMetasProps> = ({
 }) => {
   return (
     <AsideCard.Root {...props}>
-      <AsideCard.Title>
-        <img src={`/clients/${slug}-white.png`} alt={item.name} width={100} />
-      </AsideCard.Title>
+      <img
+        src={`/clients/${slug}-white.png`}
+        alt={item.name}
+        className={css({
+          bg: 'mint.dark',
+          p: 4,
+          width: '100%',
+          height: 'auto',
+        })}
+      />
+
       <AsideCard.Section>
         <ul>
           {item.tags.map((item) => {
