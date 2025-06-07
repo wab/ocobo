@@ -73,6 +73,10 @@ const items = [
     src: '/clients/yousign-white.png',
     title: 'Yousign',
   },
+  {
+    src: '/clients/vibe-co-white.png',
+    title: 'Vibe.co',
+  },
 ];
 
 const itemWidth = 140;
