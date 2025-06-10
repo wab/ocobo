@@ -18,10 +18,13 @@ const StorySpeaker: React.FunctionComponent<StorySpeakerProps> = ({
     <div
       className={css({
         display: 'grid',
-        gridTemplateColumns: 'auto 1fr',
         alignItems: 'center',
         gap: 8,
         py: 6,
+
+        md: {
+          gridTemplateColumns: 'auto 1fr',
+        },
       })}
     >
       <div>
