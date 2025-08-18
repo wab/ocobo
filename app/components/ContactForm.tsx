@@ -10,7 +10,9 @@ import {
   scheduleDistro,
 } from '~/utils/hubspot';
 
-const ContactForm: React.FunctionComponent = () => {
+const ContactForm: React.FunctionComponent<React.PropsWithChildren> = ({
+  children,
+}) => {
   const isHydrated = useHydrated();
   const scriptsLoaded = React.useRef(false);
 
@@ -32,7 +34,12 @@ const ContactForm: React.FunctionComponent = () => {
     scriptsLoaded.current = true;
   }, [isHydrated]);
 
-  return <div className="hbspt-form" />;
+  return (
+    <div>
+      <div className="hbspt-form" />
+      {children}
+    </div>
+  );
 };
 
 export { ContactForm };

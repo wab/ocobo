@@ -1,11 +1,7 @@
 import * as React from 'react';
 
-import {
-  type LoaderFunctionArgs,
-  type MetaFunction,
-  defer,
-} from '@remix-run/node';
-import { Await, useLoaderData } from '@remix-run/react';
+import { type LoaderFunctionArgs, type MetaFunction } from 'react-router';
+import { Await, useLoaderData } from 'react-router';
 import { ClientOnly } from 'remix-utils/client-only';
 
 import { css } from '@ocobo/styled-system/css';
@@ -36,7 +32,7 @@ export async function loader(args: LoaderFunctionArgs) {
   const url = new URL(args.request.url);
   const refresh = url.searchParams.has('refresh');
 
-  const cacheControl = refresh
+  const _cacheControl = refresh
     ? 'no-cache, no-store, must-revalidate'
     : 'public, max-age=7200, s-maxage=7200';
 
@@ -60,20 +56,12 @@ export async function loader(args: LoaderFunctionArgs) {
       }));
   });
 
-  return defer(
-    {
-      title: t('meta.title'),
-      description: t('meta.description'),
-      stories,
-      ogImageSrc: getImageOgFullPath('homepage', args.request.url),
-    },
-    {
-      headers: {
-        'Cache-Control': cacheControl,
-        Vary: 'Accept-Encoding, Accept, X-Requested-With',
-      },
-    },
-  );
+  return {
+    title: t('meta.title'),
+    description: t('meta.description'),
+    stories,
+    ogImageSrc: getImageOgFullPath('homepage', args.request.url),
+  };
 }
 
 export const meta: MetaFunction<typeof loader> = ({ data, params }) => {

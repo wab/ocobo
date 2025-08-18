@@ -1,7 +1,7 @@
 import * as React from 'react';
 
-import { type LoaderFunctionArgs, MetaFunction, defer } from '@remix-run/node';
-import { Await, useLoaderData } from '@remix-run/react';
+import { type LoaderFunctionArgs, MetaFunction } from 'react-router';
+import { Await, useLoaderData } from 'react-router';
 
 import { css } from '@ocobo/styled-system/css';
 
@@ -36,15 +36,13 @@ export async function loader({ request }: LoaderFunctionArgs) {
       });
   });
 
-  return defer(
-    { posts },
-    {
-      headers: {
-        'Cache-Control': cacheControl,
-        Vary: 'Accept-Encoding, Accept, X-Requested-With',
-      },
+  return {
+    posts,
+    headers: {
+      'Cache-Control': cacheControl,
+      Vary: 'Accept-Encoding, Accept, X-Requested-With',
     },
-  );
+  };
 }
 
 export const meta: MetaFunction<typeof loader> = () => {

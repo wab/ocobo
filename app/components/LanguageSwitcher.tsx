@@ -1,5 +1,5 @@
-import { useLocation, useNavigate, useParams } from '@remix-run/react';
 import { useTranslation } from 'react-i18next';
+import { useLocation, useNavigate, useParams } from 'react-router';
 
 import { css } from '@ocobo/styled-system/css';
 import { flex } from '@ocobo/styled-system/patterns';

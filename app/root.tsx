@@ -1,9 +1,6 @@
-import {
-  type LinksFunction,
-  type LoaderFunctionArgs,
-  type SerializeFrom,
-  json,
-} from '@remix-run/node';
+import { SpeedInsights } from '@vercel/speed-insights/react';
+import { useTranslation } from 'react-i18next';
+import { type LinksFunction, type LoaderFunctionArgs } from 'react-router';
 import {
   Links,
   Meta,
@@ -12,9 +9,7 @@ import {
   ScrollRestoration,
   useLoaderData,
   useRouteLoaderData,
-} from '@remix-run/react';
-import { SpeedInsights } from '@vercel/speed-insights/remix';
-import { useTranslation } from 'react-i18next';
+} from 'react-router';
 import { useChangeLanguage } from 'remix-i18next/react';
 import {
   ExternalScripts,
@@ -53,16 +48,16 @@ export async function loader({ params }: LoaderFunctionArgs) {
   const locale = getLang(params);
   const isProduction = process.env.NODE_ENV === 'production';
 
-  return json({
+  return {
     locale,
     isProduction,
     gaTrackingId: process.env.GA_TRACKING_ID,
     shouldLoadScript:
       isProduction || process.env.SHOULD_LOAD_TRACKING_SCRIPTS === 'true',
-  });
+  };
 }
 
-type LoaderData = SerializeFrom<typeof loader>;
+type LoaderData = Awaited<ReturnType<typeof loader>>;
 
 interface AppHandle extends ExternalScriptsHandle<LoaderData> {
   i18n: string[];

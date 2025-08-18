@@ -3,8 +3,8 @@ import * as React from 'react';
 import { createContext } from '@radix-ui/react-context';
 import * as Portal from '@radix-ui/react-portal';
 import { Slot } from '@radix-ui/react-slot';
-import { useNavigation } from '@remix-run/react';
 import { RemoveScroll } from 'react-remove-scroll';
+import { useNavigation } from 'react-router';
 
 import { css } from '@ocobo/styled-system/css';
 

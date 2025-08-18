@@ -1,4 +1,4 @@
-import { Outlet, useNavigation } from '@remix-run/react';
+import { Outlet, useNavigation } from 'react-router';
 
 import { css } from '@ocobo/styled-system/css';
 

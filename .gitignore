@@ -11,3 +11,6 @@ node_modules
 ## Panda
 styled-system
 styled-system-studio
+
+## React Router
+.react-router/

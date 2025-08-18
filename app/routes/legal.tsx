@@ -1,4 +1,4 @@
-import { Outlet } from '@remix-run/react';
+import { Outlet } from 'react-router';
 
 import { Grid, GridItem } from '@ocobo/styled-system/jsx';
 

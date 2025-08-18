@@ -9,18 +9,18 @@ This file provides guidance to Claude Code (claude.ai/code) when working with co
 - **Start production server**: `pnpm start` or `npm start`
 - **Code quality checks**: `pnpm check` or `npm run check`
 - **Fix formatting/linting**: `pnpm check:fix` or `npm run check:fix`
-- **Type checking**: `pnpm typecheck` or `npm run typecheck`
+- **Type checking**: `pnpm typecheck` or `npm run typecheck` (includes type generation)
 - **Generate styled system**: `pnpm prepare` or `npm run prepare`
 
 ## Architecture Overview
 
-This is a **Remix** application with **internationalization** (i18n) support, using **Panda CSS** for styling and **Vercel** for deployment.
+This is a **React Router v7** application (formerly Remix) with **internationalization** (i18n) support, using **Panda CSS** for styling and **Vercel** for deployment.
 
 ### Key Technologies
-- **Remix**: Full-stack React framework with file-based routing
+- **React Router v7**: Full-stack React framework with file-based routing (evolved from Remix)
 - **Panda CSS**: CSS-in-JS solution with atomic CSS generation
 - **React i18next**: Internationalization with French/English support
-- **TypeScript**: Primary language
+- **TypeScript**: Primary language with automatic type generation
 - **Biome**: Code formatting and linting
 - **Vercel**: Deployment platform
 

@@ -1,6 +1,6 @@
-import { NavLink } from '@remix-run/react';
 import { CoffeeIcon, DotIcon, PenToolIcon } from 'lucide-react';
 import { useTranslation } from 'react-i18next';
+import { NavLink } from 'react-router';
 
 import { css } from '@ocobo/styled-system/css';
 import { flex } from '@ocobo/styled-system/patterns';
