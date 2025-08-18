@@ -29,14 +29,21 @@ export async function loader({ request }: LoaderFunctionArgs) {
       throw new Error(`Failed to fetch stories: ${state}`);
     }
 
-    return (data as MarkdocFile<StoryFrontmatter>[])
-      .filter((entry) => !tag || entry.frontmatter.tags.includes(tag))
-      .sort((a, b) => {
-        return (
-          new Date(b.frontmatter.date).getTime() -
-          new Date(a.frontmatter.date).getTime()
-        );
-      });
+    const entries = data as MarkdocFile<StoryFrontmatter>[];
+
+    // Pre-filter and sort efficiently
+    const filteredEntries = tag
+      ? entries.filter((entry) => entry.frontmatter.tags.includes(tag))
+      : entries;
+
+    // Cache date objects to avoid repeated parsing
+    return filteredEntries
+      .map((entry) => ({
+        ...entry,
+        _sortDate: new Date(entry.frontmatter.date).getTime(),
+      }))
+      .sort((a, b) => b._sortDate - a._sortDate)
+      .map(({ _sortDate, ...entry }) => entry); // Remove the sort helper
   });
 
   return {

@@ -1,4 +1,5 @@
 import { CoffeeIcon, DotIcon, PenToolIcon } from 'lucide-react';
+import React from 'react';
 import { useTranslation } from 'react-i18next';
 import { NavLink } from 'react-router';
 
@@ -18,83 +19,87 @@ interface BlogItemProps {
   index: number;
 }
 
-const BlogItem: React.FunctionComponent<BlogItemProps> = ({ item, slug }) => {
-  const { t } = useTranslation();
+const BlogItem: React.FunctionComponent<BlogItemProps> = React.memo(
+  ({ item, slug }) => {
+    const { t } = useTranslation();
 
-  return (
-    <article
-      className={flex({
-        direction: 'column',
-        gap: 4,
-        position: 'relative',
-        height: 'full',
-      })}
-    >
-      <NavLink to={`${url.blog}/${slug}`}>
-        <img
-          src={item.image}
-          alt="logo"
-          className={css({ borderRadius: '8' })}
-        />
-      </NavLink>
-
-      <div className={css({})}>
-        <h2
-          className={css({
-            textStyle: 'heading2',
-          })}
-        >
-          {item.title}
-        </h2>
-
-        <div
-          className={css({
-            display: 'flex',
-            gap: '2',
-            alignItems: 'center',
-            my: 4,
-            textStyle: 'small',
-          })}
-        >
-          <PenToolIcon className={icon({ size: 'md' })} />
-          {getAuthor(item.author)}
-          <DotIcon className={icon({ size: 'md' })} />
-          <CoffeeIcon className={icon({ size: 'md' })} />
-          {item.read}
-        </div>
-
-        <ul className={flex({ gap: 3, alignItems: 'center', my: 4 })}>
-          {item.tags.map((item) => {
-            return (
-              <li key={item} className={css({})}>
-                <Tag>{getTag(item)}</Tag>
-              </li>
-            );
-          })}
-        </ul>
-
-        <p
-          className={css({
-            hideBelow: 'lg',
-            lineClamp: 4,
-          })}
-        >
-          {item.description}
-        </p>
-      </div>
-      <p
-        className={css({
-          textStyle: 'small',
-          mt: 'auto',
+    return (
+      <article
+        className={flex({
+          direction: 'column',
+          gap: 4,
+          position: 'relative',
+          height: 'full',
         })}
       >
-        <NavLink to={`${url.blog}/${slug}`} className={link()}>
-          {t('see_more')}
+        <NavLink to={`${url.blog}/${slug}`}>
+          <img
+            src={item.image}
+            alt={item.title}
+            loading="lazy"
+            decoding="async"
+            className={css({ borderRadius: '8' })}
+          />
         </NavLink>
-      </p>
-    </article>
-  );
-};
+
+        <div className={css({})}>
+          <h2
+            className={css({
+              textStyle: 'heading2',
+            })}
+          >
+            {item.title}
+          </h2>
+
+          <div
+            className={css({
+              display: 'flex',
+              gap: '2',
+              alignItems: 'center',
+              my: 4,
+              textStyle: 'small',
+            })}
+          >
+            <PenToolIcon className={icon({ size: 'md' })} />
+            {getAuthor(item.author)}
+            <DotIcon className={icon({ size: 'md' })} />
+            <CoffeeIcon className={icon({ size: 'md' })} />
+            {item.read}
+          </div>
+
+          <ul className={flex({ gap: 3, alignItems: 'center', my: 4 })}>
+            {item.tags.map((item) => {
+              return (
+                <li key={item} className={css({})}>
+                  <Tag>{getTag(item)}</Tag>
+                </li>
+              );
+            })}
+          </ul>
+
+          <p
+            className={css({
+              hideBelow: 'lg',
+              lineClamp: 4,
+            })}
+          >
+            {item.description}
+          </p>
+        </div>
+        <p
+          className={css({
+            textStyle: 'small',
+            mt: 'auto',
+          })}
+        >
+          <NavLink to={`${url.blog}/${slug}`} className={link()}>
+            {t('see_more')}
+          </NavLink>
+        </p>
+      </article>
+    );
+  },
+);
 
 BlogItem.displayName = 'BlogItem';
 

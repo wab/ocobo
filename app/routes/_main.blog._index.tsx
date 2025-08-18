@@ -26,14 +26,19 @@ export async function loader({ request }: LoaderFunctionArgs) {
       throw new Error(`Failed to fetch blog posts: ${state}`);
     }
 
-    return data
-      .filter((entry) => !tag || entry.frontmatter.tags.includes(tag))
-      .sort((a, b) => {
-        return (
-          new Date(b.frontmatter.date).getTime() -
-          new Date(a.frontmatter.date).getTime()
-        );
-      });
+    // Pre-filter and sort efficiently
+    const filteredPosts = tag
+      ? data.filter((entry) => entry.frontmatter.tags.includes(tag))
+      : data;
+
+    // Cache date objects to avoid repeated parsing
+    return filteredPosts
+      .map((entry) => ({
+        ...entry,
+        _sortDate: new Date(entry.frontmatter.date).getTime(),
+      }))
+      .sort((a, b) => b._sortDate - a._sortDate)
+      .map(({ _sortDate, ...entry }) => entry); // Remove the sort helper
   });
 
   return {
