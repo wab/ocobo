@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useMemo } from 'react';
 
 import { motion } from 'framer-motion';
 import { useTranslation } from 'react-i18next';
@@ -81,8 +81,6 @@ const items = [
 
 const itemWidth = 140;
 const itemGap = 16;
-const slideWidth =
-  (itemWidth * items.length + itemGap * (items.length + 1)) * 2;
 
 const ClientCarousel: React.FunctionComponent<{
   shouldDisplayTitle?: boolean;
@@ -90,8 +88,17 @@ const ClientCarousel: React.FunctionComponent<{
   const { t } = useTranslation('common');
   const browserWidth = useWindowSize();
 
-  const delta = slideWidth - browserWidth.width;
-  const duplicateItems = [...items, ...items, ...items];
+  const slideWidth = useMemo(
+    () => (itemWidth * items.length + itemGap * (items.length + 1)) * 2,
+    [],
+  );
+
+  const delta = useMemo(
+    () => slideWidth - browserWidth.width,
+    [slideWidth, browserWidth.width],
+  );
+
+  const duplicateItems = useMemo(() => [...items, ...items, ...items], []);
 
   if (browserWidth.width === 0) {
     return null;
@@ -153,6 +160,8 @@ const ClientCarousel: React.FunctionComponent<{
                 <img
                   src={item.src}
                   alt={item.title}
+                  loading="lazy"
+                  decoding="async"
                   className={css({
                     maxH: '60px',
                     w: 'auto',
