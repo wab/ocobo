@@ -41,19 +41,32 @@ export async function loader(args: LoaderFunctionArgs) {
       throw new Error(`Failed to fetch stories: ${state}`);
     }
 
-    return (data as MarkdocFile<StoryFrontmatter>[])
-      .sort(() => Math.random() - 0.5)
-      .map((item: MarkdocFile<StoryFrontmatter>) => ({
-        id: item.slug,
-        slug: item.slug,
-        speaker: item.frontmatter.speaker,
-        role: item.frontmatter.role,
-        name: item.frontmatter.name,
-        quote:
-          item.frontmatter.quotes[
-            Math.floor(Math.random() * item.frontmatter.quotes.length)
-          ],
-      }));
+    // Use a more efficient shuffle algorithm (Fisher-Yates)
+    const shuffleArray = <T,>(array: T[]): T[] => {
+      const shuffled = [...array];
+      for (let i = shuffled.length - 1; i > 0; i--) {
+        const j = Math.floor(Math.random() * (i + 1));
+        [shuffled[i], shuffled[j]] = [shuffled[j], shuffled[i]];
+      }
+      return shuffled;
+    };
+
+    return shuffleArray(data as MarkdocFile<StoryFrontmatter>[]).map(
+      (item: MarkdocFile<StoryFrontmatter>) => {
+        // Pre-select a random quote to avoid multiple random calls
+        const randomQuoteIndex = Math.floor(
+          Math.random() * item.frontmatter.quotes.length,
+        );
+        return {
+          id: item.slug,
+          slug: item.slug,
+          speaker: item.frontmatter.speaker,
+          role: item.frontmatter.role,
+          name: item.frontmatter.name,
+          quote: item.frontmatter.quotes[randomQuoteIndex],
+        };
+      },
+    );
   });
 
   return {

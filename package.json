@@ -1,11 +1,12 @@
 {
   "engines": {
-    "node": ">=18.0.0"
+    "node": ">=22.0.0"
   },
   "name": "ocobo",
   "private": true,
   "scripts": {
     "build": "react-router build",
+    "build:analyze": "ANALYZE=true react-router build",
     "check": "biome check",
     "check:error": "biome check --diagnostic-level=error",
     "check:fix": "biome check --write",

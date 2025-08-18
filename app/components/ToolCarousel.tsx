@@ -1,4 +1,5 @@
 import { motion } from 'framer-motion';
+import { useMemo } from 'react';
 
 import { css } from '@ocobo/styled-system/css';
 
@@ -53,13 +54,21 @@ const items = [
 
 const itemWidth = 150;
 const itemGap = 32;
-const slideWidth = itemWidth * items.length + itemGap * (items.length + 1);
 
 const ToolCarousel = () => {
   const browserWidth = useWindowSize();
 
-  const delta = slideWidth - browserWidth.width;
-  const duplicateItems = [...items, ...items];
+  const slideWidth = useMemo(
+    () => itemWidth * items.length + itemGap * (items.length + 1),
+    [],
+  );
+
+  const delta = useMemo(
+    () => slideWidth - browserWidth.width,
+    [slideWidth, browserWidth.width],
+  );
+
+  const duplicateItems = useMemo(() => [...items, ...items], []);
   return (
     <div
       className={css({

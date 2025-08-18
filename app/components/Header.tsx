@@ -26,13 +26,22 @@ const Header: React.FunctionComponent<{ ghost?: boolean }> = ({ ghost }) => {
 
   React.useEffect(() => {
     let previousScrollY = window.scrollY;
+    let ticking = false;
 
     const handleScroll = () => {
-      const direction =
-        previousScrollY < window.scrollY ? 'scrolling-down' : 'scrolling-up';
-      const state = window.scrollY < 30 ? 'at-top' : direction;
-      previousScrollY = window.scrollY;
-      setScrollState(state);
+      if (!ticking) {
+        requestAnimationFrame(() => {
+          const direction =
+            previousScrollY < window.scrollY
+              ? 'scrolling-down'
+              : 'scrolling-up';
+          const state = window.scrollY < 30 ? 'at-top' : direction;
+          previousScrollY = window.scrollY;
+          setScrollState(state);
+          ticking = false;
+        });
+        ticking = true;
+      }
     };
 
     if (ghost) {
