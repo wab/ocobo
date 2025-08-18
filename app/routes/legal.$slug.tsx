@@ -1,10 +1,5 @@
-import {
-  LoaderFunctionArgs,
-  MetaFunction,
-  json,
-  redirect,
-} from '@remix-run/node';
-import { useLoaderData } from '@remix-run/react';
+import { LoaderFunctionArgs, MetaFunction, redirect } from 'react-router';
+import { useLoaderData } from 'react-router';
 
 import { css } from '@ocobo/styled-system/css';
 
@@ -29,10 +24,10 @@ export async function loader({ params }: LoaderFunctionArgs) {
 
   const page = await fetchPage('legal', slug);
 
-  return json(
-    { page },
-    { headers: { 'cache-control': 'public, max-age=7200' } },
-  );
+  return {
+    page,
+    headers: { 'cache-control': 'public, max-age=7200' },
+  };
 }
 
 export const meta: MetaFunction<typeof loader> = ({ data, params }) => {

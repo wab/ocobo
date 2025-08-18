@@ -1,5 +1,5 @@
-import { type LoaderFunctionArgs, MetaFunction, json } from '@remix-run/node';
-import { useLoaderData } from '@remix-run/react';
+import { type LoaderFunctionArgs, MetaFunction } from 'react-router';
+import { useLoaderData } from 'react-router';
 
 import { css } from '@ocobo/styled-system/css';
 
@@ -26,10 +26,10 @@ export async function loader({ params }: LoaderFunctionArgs) {
 
   const article = await fetchBlogPost(slug);
 
-  return json(
-    { article },
-    { headers: { 'cache-control': 'public, max-age=7200' } },
-  );
+  return {
+    article,
+    headers: { 'cache-control': 'public, max-age=7200' },
+  };
 }
 
 export const meta: MetaFunction<typeof loader> = ({ data, params }) => {

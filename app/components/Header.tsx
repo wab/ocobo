@@ -1,7 +1,7 @@
 import * as React from 'react';
 
-import { NavLink, useNavigation } from '@remix-run/react';
 import { MenuIcon, XIcon } from 'lucide-react';
+import { NavLink, useNavigation } from 'react-router';
 
 import { css, cx } from '@ocobo/styled-system/css';
 import { flex } from '@ocobo/styled-system/patterns';

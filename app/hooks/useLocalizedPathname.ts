@@ -1,4 +1,4 @@
-import { type NavLinkProps, useParams } from '@remix-run/react';
+import { type NavLinkProps, useParams } from 'react-router';
 
 import { getLang } from '~/utils/lang';
 

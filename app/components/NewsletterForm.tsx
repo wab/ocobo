@@ -8,7 +8,9 @@ import {
   newsletterFormId,
 } from '~/utils/hubspot';
 
-const NewsletterForm: React.FunctionComponent = () => {
+const NewsletterForm: React.FunctionComponent<{
+  className?: string;
+}> = ({ className }) => {
   const isHydrated = useHydrated();
   const scriptsLoaded = React.useRef(false);
 
@@ -24,7 +26,7 @@ const NewsletterForm: React.FunctionComponent = () => {
     scriptsLoaded.current = true;
   }, [isHydrated]);
 
-  return <div className="newsletter-form" />;
+  return <div className={`newsletter-form ${className || ''}`} />;
 };
 
 NewsletterForm.displayName = 'NewsletterForm';

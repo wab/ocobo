@@ -1,6 +1,6 @@
 import * as React from 'react';
 
-import { NavLink } from '@remix-run/react';
+import { NavLink } from 'react-router';
 
 import { css } from '@ocobo/styled-system/css';
 

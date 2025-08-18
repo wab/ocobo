@@ -1,5 +1,5 @@
-import { LoaderFunctionArgs, type MetaFunction, json } from '@remix-run/node';
 import { Trans, useTranslation } from 'react-i18next';
+import { LoaderFunctionArgs, type MetaFunction } from 'react-router';
 
 import { css, cx } from '@ocobo/styled-system/css';
 import { Container, Grid, GridItem } from '@ocobo/styled-system/jsx';
@@ -16,11 +16,11 @@ import { getImageOgFullPath } from '~/utils/url';
 export async function loader(args: LoaderFunctionArgs) {
   await redirectWithLocale(args);
   const t = await i18nServer.getFixedT(getLang(args.params), 'contact');
-  return json({
+  return {
     title: t('meta.title'),
     description: t('meta.description'),
     ogImageSrc: getImageOgFullPath('contact', args.request.url),
-  });
+  };
 }
 
 export const meta: MetaFunction<typeof loader> = ({ data, params }) => {

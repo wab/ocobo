@@ -10,7 +10,7 @@
     "useIgnoreFile": false
   },
   "files": {
-    "ignore": ["@ocobo", "build", "node_modules", "public"],
+    "ignore": ["@ocobo", "build", "node_modules", "public", ".react-router"],
     "ignoreUnknown": false
   },
   "formatter": {

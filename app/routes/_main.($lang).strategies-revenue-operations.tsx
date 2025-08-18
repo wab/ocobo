@@ -1,8 +1,4 @@
-import {
-  type LoaderFunctionArgs,
-  type MetaFunction,
-  json,
-} from '@remix-run/node';
+import { type LoaderFunctionArgs, type MetaFunction } from 'react-router';
 
 import { Choose, Hero, Method, Needs, Team } from '~/components/strategy';
 import i18nServer from '~/localization/i18n.server';
@@ -14,11 +10,11 @@ import { getImageOgFullPath } from '~/utils/url';
 export async function loader(args: LoaderFunctionArgs) {
   await redirectWithLocale(args);
   const t = await i18nServer.getFixedT(getLang(args.params), 'strategy');
-  return json({
+  return {
     title: t('meta.title'),
     description: t('meta.description'),
     ogImageSrc: getImageOgFullPath('strategy', args.request.url),
-  });
+  };
 }
 
 export const meta: MetaFunction<typeof loader> = ({ data, params }) => {

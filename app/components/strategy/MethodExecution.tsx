@@ -1,5 +1,5 @@
-import { NavLink } from '@remix-run/react';
 import { useTranslation } from 'react-i18next';
+import { NavLink } from 'react-router';
 
 import { css, cx } from '@ocobo/styled-system/css';
 import { Grid, GridItem } from '@ocobo/styled-system/jsx';

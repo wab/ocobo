@@ -1,8 +1,4 @@
-import {
-  type LoaderFunctionArgs,
-  type MetaFunction,
-  json,
-} from '@remix-run/node';
+import { type LoaderFunctionArgs, type MetaFunction } from 'react-router';
 
 import { ClientCarousel } from '~/components/ClientCarousel';
 import { Hero, Levers, Team } from '~/components/projects';
@@ -16,11 +12,11 @@ import { getImageOgFullPath } from '~/utils/url';
 export async function loader(args: LoaderFunctionArgs) {
   await redirectWithLocale(args);
   const t = await i18nServer.getFixedT(getLang(args.params), 'projects');
-  return json({
+  return {
     title: t('meta.title'),
     description: t('meta.description'),
     ogImageSrc: getImageOgFullPath('revops', args.request.url),
-  });
+  };
 }
 
 export const meta: MetaFunction<typeof loader> = ({ data, params }) => {

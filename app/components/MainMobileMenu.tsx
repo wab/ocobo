@@ -1,7 +1,7 @@
 import * as React from 'react';
 
-import { NavLink } from '@remix-run/react';
 import { ChevronRight } from 'lucide-react';
+import { NavLink } from 'react-router';
 
 import { cva } from '@ocobo/styled-system/css';
 import { styled } from '@ocobo/styled-system/jsx';

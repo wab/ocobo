@@ -1,5 +1,5 @@
-import { Form } from '@remix-run/react';
 import { useTranslation } from 'react-i18next';
+import { Form } from 'react-router';
 
 import { css } from '@ocobo/styled-system/css';
 

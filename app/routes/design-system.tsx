@@ -1,5 +1,5 @@
-import type { MetaFunction } from '@remix-run/node';
 import { Check, ChevronRight, Menu, X } from 'lucide-react';
+import type { MetaFunction } from 'react-router';
 
 import { css, cx } from '@ocobo/styled-system/css';
 import { styled } from '@ocobo/styled-system/jsx';

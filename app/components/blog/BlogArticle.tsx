@@ -1,5 +1,5 @@
-import { NavLink } from '@remix-run/react';
 import { ChevronLeftCircleIcon } from 'lucide-react';
+import { NavLink } from 'react-router';
 
 import { css } from '@ocobo/styled-system/css';
 import { flex } from '@ocobo/styled-system/patterns';
