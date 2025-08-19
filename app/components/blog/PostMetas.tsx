@@ -4,6 +4,7 @@ import { css } from '@ocobo/styled-system/css';
 import { circle, flex } from '@ocobo/styled-system/patterns';
 import { icon } from '@ocobo/styled-system/recipes';
 
+import { ASSETS_BASE_URL } from '~/config/assets';
 import { BlogpostFrontmatter } from '~/types';
 import { getAuthor, getTag } from '~/utils/labels';
 
@@ -34,7 +35,7 @@ const PostMetas: React.FunctionComponent<BlogpostMetasProps> = ({
           className={flex({ gap: 3, fontWeight: 'bold', alignItems: 'center' })}
         >
           <Avatar
-            src={`/team/${item.author}.jpeg`}
+            src={`${ASSETS_BASE_URL}/team/${item.author}.jpeg`}
             alt={item.author}
             className={circle({ size: '32px' })}
           />

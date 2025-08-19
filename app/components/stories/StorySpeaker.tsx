@@ -1,5 +1,6 @@
 import { css } from '@ocobo/styled-system/css';
 
+import { ASSETS_BASE_URL } from '~/config/assets';
 import type { MarkdocFile, StoryFrontmatter } from '~/types';
 
 import { circle } from '@ocobo/styled-system/patterns';
@@ -29,7 +30,7 @@ const StorySpeaker: React.FunctionComponent<StorySpeakerProps> = ({
     >
       <div>
         <Avatar
-          src={`/clients/${slug}-avatar.png`}
+          src={`${ASSETS_BASE_URL}/clients/${slug}-avatar.png`}
           alt={item.name}
           className={circle({
             size: 140,

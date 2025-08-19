@@ -4,77 +4,78 @@ import { motion } from 'framer-motion';
 import { useTranslation } from 'react-i18next';
 
 import { css } from '@ocobo/styled-system/css';
+import { ASSETS_BASE_URL } from '~/config/assets';
 
 import { useWindowSize } from '~/hooks/useWindowSize';
 
 const items = [
   {
-    src: '/clients/epack-white.png',
+    src: `${ASSETS_BASE_URL}/clients/epack-white.png`,
     title: 'ePack Hygiène - CHR group',
   },
   {
-    src: '/clients/citron-white.png',
+    src: `${ASSETS_BASE_URL}/clients/citron-white.png`,
     title: 'Citron',
   },
   {
-    src: '/clients/wttj-white.png',
+    src: `${ASSETS_BASE_URL}/clients/wttj-white.png`,
     title: 'Welcome To The Jungle',
   },
   {
-    src: '/clients/fabriq-white.png',
+    src: `${ASSETS_BASE_URL}/clients/fabriq-white.png`,
     title: 'Fabriq',
   },
   {
-    src: '/clients/idex-white.png',
+    src: `${ASSETS_BASE_URL}/clients/idex-white.png`,
     title: 'Idex',
   },
   {
-    src: '/clients/tomorro-white.png',
+    src: `${ASSETS_BASE_URL}/clients/tomorro-white.png`,
     title: 'Tomorro',
   },
 
   {
-    src: '/clients/qonto-white.png',
+    src: `${ASSETS_BASE_URL}/clients/qonto-white.png`,
     title: 'Qonto',
   },
   {
-    src: '/clients/qare-white.png',
+    src: `${ASSETS_BASE_URL}/clients/qare-white.png`,
     title: 'Qare',
   },
   {
-    src: '/clients/qobra-white.png',
+    src: `${ASSETS_BASE_URL}/clients/qobra-white.png`,
     title: 'Qobra',
   },
   {
-    src: '/clients/movivolt-white.png',
+    src: `${ASSETS_BASE_URL}/clients/movivolt-white.png`,
     title: 'Movivolt',
   },
   {
-    src: '/clients/resilience-white.png',
+    src: `${ASSETS_BASE_URL}/clients/resilience-white.png`,
     title: 'Resilience',
   },
   {
-    src: '/clients/sortlist-white.png',
+    src: `${ASSETS_BASE_URL}/clients/sortlist-white.png`,
     title: 'Sortlist',
   },
   {
-    src: '/clients/steeple-white.png',
+    src: `${ASSETS_BASE_URL}/clients/steeple-white.png`,
     title: 'Steeple',
   },
   {
-    src: '/clients/dotworld-white.png',
+    src: `${ASSETS_BASE_URL}/clients/dotworld-white.png`,
     title: 'Dotworld',
   },
   {
-    src: '/clients/cybelangel-white.png',
+    src: `${ASSETS_BASE_URL}/clients/cybelangel-white.png`,
     title: 'CybelAngel',
   },
   {
-    src: '/clients/yousign-white.png',
+    src: `${ASSETS_BASE_URL}/clients/yousign-white.png`,
     title: 'Yousign',
   },
   {
-    src: '/clients/vibe-co-white.png',
+    src: `${ASSETS_BASE_URL}/clients/vibe-co-white.png`,
     title: 'Vibe.co',
   },
 ];
