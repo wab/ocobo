@@ -4,20 +4,21 @@ import { css, cx } from '@ocobo/styled-system/css';
 import { Grid, GridItem } from '@ocobo/styled-system/jsx';
 import { square } from '@ocobo/styled-system/patterns';
 import { section } from '@ocobo/styled-system/recipes';
+import { ASSETS_BASE_URL } from '~/config/assets';
 
 import { Container } from '../ui/Container';
 
 const teamImages = [
   {
-    src: '/team/benjamin.jpeg',
+    src: `${ASSETS_BASE_URL}/team/benjamin.jpeg`,
     alt: 'Benjamin Boileux',
   },
   {
-    src: '/team/aude.jpeg',
+    src: `${ASSETS_BASE_URL}/team/aude.jpeg`,
     alt: 'Aude Cadiot',
   },
   {
-    src: '/team/corentin.jpeg',
+    src: `${ASSETS_BASE_URL}/team/corentin.jpeg`,
     alt: 'Corentin Guérin',
   },
 ];

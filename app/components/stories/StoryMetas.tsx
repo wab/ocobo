@@ -4,6 +4,7 @@ import { css } from '@ocobo/styled-system/css';
 import { flex } from '@ocobo/styled-system/patterns';
 import { icon } from '@ocobo/styled-system/recipes';
 
+import { ASSETS_BASE_URL } from '~/config/assets';
 import { StoryFrontmatter } from '~/types';
 
 import { AsideCard } from '../AsideCard';
@@ -21,7 +22,7 @@ const StoryMetas: React.FunctionComponent<StoryMetasProps> = ({
   return (
     <AsideCard.Root {...props}>
       <img
-        src={`/clients/${slug}-white.png`}
+        src={`${ASSETS_BASE_URL}/clients/${slug}-white.png`}
         alt={item.name}
         className={css({
           bg: 'mint.dark',

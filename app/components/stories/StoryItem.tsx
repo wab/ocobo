@@ -5,6 +5,7 @@ import { NavLink } from 'react-router';
 import { css } from '@ocobo/styled-system/css';
 import { link } from '@ocobo/styled-system/recipes';
 
+import { ASSETS_BASE_URL } from '~/config/assets';
 import type { MarkdocFile, StoryFrontmatter } from '~/types';
 import { url } from '~/utils/url';
 
@@ -45,7 +46,7 @@ const StoryItem: React.FunctionComponent<StoryItemProps> = React.memo(
           })}
         >
           <img
-            src={`/clients/${slug}-avatar.png`}
+            src={`${ASSETS_BASE_URL}/clients/${slug}-avatar.png`}
             alt="logo"
             loading={index < 4 ? 'eager' : 'lazy'}
             decoding="async"
@@ -79,7 +80,7 @@ const StoryItem: React.FunctionComponent<StoryItemProps> = React.memo(
             })}
           >
             <img
-              src={`/clients/${slug}-white.png`}
+              src={`${ASSETS_BASE_URL}/clients/${slug}-white.png`}
               alt={item.name}
               loading="lazy"
               decoding="async"

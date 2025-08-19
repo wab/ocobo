@@ -3,6 +3,7 @@ import { circle } from '@ocobo/styled-system/patterns';
 
 import { icon } from '@ocobo/styled-system/recipes';
 import { QuoteIcon } from 'lucide-react';
+import { ASSETS_BASE_URL } from '~/config/assets';
 import { Avatar } from '../ui/Avatar';
 import { Carousel } from '../ui/Carousel';
 import { Container } from '../ui/Container';
@@ -40,7 +41,7 @@ const StoryCard: React.FunctionComponent<{ item: TItem }> = ({ item }) => {
         })}
       >
         <Avatar
-          src={`/clients/${item.slug}-avatar.png`}
+          src={`${ASSETS_BASE_URL}/clients/${item.slug}-avatar.png`}
           alt={item.speaker}
           className={circle({ size: '120px' })}
         />
