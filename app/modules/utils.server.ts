@@ -1,3 +1,10 @@
+/**
+ * Content management utilities
+ *
+ * This module provides high-level functions for fetching and caching content
+ * from either local filesystem (development) or GitHub API (production).
+ * Includes intelligent caching and content type validation.
+ */
 import { TvalidateFrontMatter } from '~/types';
 import type { BlogpostFrontmatter, StoryFrontmatter } from '~/types';
 import type { MarkdocFile } from '~/types';
@@ -13,6 +20,10 @@ import {
   validateStoryFrontMatter,
 } from './validation.server';
 
+/**
+ * Generic function to fetch multiple markdown files from either source
+ * Automatically switches between local filesystem and GitHub based on environment
+ */
 async function fetchMarkdownEntries<T>(
   path: string,
   validateFrontMatter: TvalidateFrontMatter<T>,
@@ -40,6 +51,10 @@ async function fetchMarkdownEntries<T>(
   }
 }
 
+/**
+ * Generic function to fetch a single markdown file from either source
+ * Automatically switches between local filesystem and GitHub based on environment
+ */
 const fetchMarkdownEntry = async <T>(
   path: string,
   slug: string,
@@ -70,14 +85,35 @@ const fetchMarkdownEntry = async <T>(
   }
 };
 
-// Cache for stories with 2-hour TTL
+// ========================================
+// CACHING CONFIGURATION
+// ========================================
+
+/**
+ * Cache duration: 2 hours in milliseconds
+ * Balances performance with content freshness
+ */
+const CACHE_TTL = 2 * 60 * 60 * 1000;
+
+/**
+ * In-memory cache for client stories
+ * Reduces API calls and improves performance for frequently accessed content
+ */
 let storiesCache: {
   stories: [number, string, MarkdocFile<StoryFrontmatter>[]];
   timestamp: number;
 } | null = null;
 
-const CACHE_TTL = 2 * 60 * 60 * 1000; // 2 hours in milliseconds
+// ========================================
+// CLIENT STORIES FUNCTIONS
+// ========================================
 
+/**
+ * Fetches all client stories with intelligent caching
+ *
+ * @param forceRefresh - Skip cache and fetch fresh data
+ * @returns Array of story markdown files with metadata
+ */
 const fetchStories = async (forceRefresh = false) => {
   // Return cached stories if they exist and haven't expired
   if (
@@ -106,6 +142,12 @@ const fetchStories = async (forceRefresh = false) => {
   return [status, state, files];
 };
 
+/**
+ * Fetches a single client story by slug
+ *
+ * @param slug - Story identifier (filename without extension)
+ * @returns Single story markdown file with metadata
+ */
 const fetchStory = async (slug: string) => {
   const [status, state, article] = await fetchMarkdownEntry(
     'stories/fr',
@@ -120,6 +162,17 @@ const fetchStory = async (slug: string) => {
   return article;
 };
 
+// ========================================
+// GENERIC PAGE FUNCTIONS
+// ========================================
+
+/**
+ * Fetches all pages from a specified directory
+ * Used for legal pages, media content, etc.
+ *
+ * @param path - Directory path relative to content root
+ * @returns Array of page markdown files
+ */
 const fetchPages = async (path: string) => {
   const [status, state, files] = await fetchMarkdownEntries(
     path,
@@ -133,6 +186,13 @@ const fetchPages = async (path: string) => {
   return files;
 };
 
+/**
+ * Fetches a single page by path and slug
+ *
+ * @param path - Directory path relative to content root
+ * @param slug - Page identifier (filename without extension)
+ * @returns Single page markdown file
+ */
 const fetchPage = async (path: string, slug: string) => {
   const [status, state, article] = await fetchMarkdownEntry(
     path,
@@ -147,12 +207,25 @@ const fetchPage = async (path: string, slug: string) => {
   return article;
 };
 
-// Cache for blog posts with 2-hour TTL
+// ========================================
+// BLOG POSTS FUNCTIONS
+// ========================================
+
+/**
+ * In-memory cache for blog posts
+ * Reduces API calls and improves performance for blog listing pages
+ */
 let blogPostsCache: {
   posts: Awaited<ReturnType<typeof fetchMarkdownEntries<BlogpostFrontmatter>>>;
   timestamp: number;
 } | null = null;
 
+/**
+ * Fetches all blog posts with intelligent caching
+ *
+ * @param forceRefresh - Skip cache and fetch fresh data
+ * @returns Array of blog post markdown files with metadata
+ */
 const fetchBlogPosts = async (forceRefresh = false) => {
   // Return cached posts if they exist and haven't expired
   if (
@@ -177,6 +250,12 @@ const fetchBlogPosts = async (forceRefresh = false) => {
   return posts;
 };
 
+/**
+ * Fetches a single blog post by slug
+ *
+ * @param slug - Blog post identifier (filename without extension)
+ * @returns Single blog post markdown file with metadata
+ */
 const fetchBlogPost = async (slug: string) => {
   const [status, state, article] = await fetchMarkdownEntry(
     'blog/fr',
@@ -192,6 +271,10 @@ const fetchBlogPost = async (slug: string) => {
 
   return article;
 };
+
+// ========================================
+// EXPORTS
+// ========================================
 
 export {
   fetchPages,

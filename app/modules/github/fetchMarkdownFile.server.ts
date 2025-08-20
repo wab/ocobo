@@ -1,3 +1,9 @@
+/**
+ * GitHub API single markdown file fetching utilities
+ *
+ * This module provides functions to fetch and parse individual markdown files
+ * from a GitHub repository via the GitHub API with enhanced error handling.
+ */
 import Markdoc from '@markdoc/markdoc';
 import yaml from 'js-yaml';
 import invariant from 'tiny-invariant';
@@ -6,6 +12,9 @@ import type { ActionResult, MarkdocFile, TvalidateFrontMatter } from '~/types';
 
 import { config } from '../config';
 
+/**
+ * Possible states when fetching a markdown file from GitHub
+ */
 export enum FetchMarkdownFileResState {
   fileNotFound = 'file_not_found',
   fileFrontmatterMissing = 'file_frontmatter_missing',
@@ -14,6 +23,10 @@ export enum FetchMarkdownFileResState {
   success = 'success',
 }
 
+/**
+ * Constructs the GitHub API URL for a specific markdown file
+ * Handles empty slug by using 'index.md' as default
+ */
 const getContentPath = (url: string, slug: string): string => {
   let fileName = slug;
   if (slug === '') {
@@ -22,6 +35,18 @@ const getContentPath = (url: string, slug: string): string => {
   return `${url}/${fileName}.md`;
 };
 
+/**
+ * Fetches and parses a markdown file from GitHub API
+ *
+ * Includes timeout handling, caching, and comprehensive error handling
+ * for robust production use.
+ *
+ * @param accessToken - GitHub personal access token
+ * @param path - Base GitHub API path for the repository directory
+ * @param slug - File identifier (without .md extension)
+ * @param hasValidFrontMatter - Function to validate frontmatter structure
+ * @returns Parsed markdown file with frontmatter and transformed content
+ */
 export async function fetchMarkdownFile<FrontMatter>(
   accessToken: string,
   path: string,
@@ -30,14 +55,14 @@ export async function fetchMarkdownFile<FrontMatter>(
 ): Promise<ActionResult<FetchMarkdownFileResState, MarkdocFile<FrontMatter>>> {
   const contentUrl = getContentPath(path, slug);
 
-  // Create headers object directly instead of using Headers class
+  // Setup GitHub API request headers with authentication
   const headers = {
     Accept: 'application/vnd.github.v3.raw',
     Authorization: `token ${accessToken}`,
     'User-Agent': 'ocobo-posts',
   };
 
-  // Add timeout handling
+  // Setup request timeout to prevent hanging requests
   const controller = new AbortController();
   const timeout = setTimeout(() => controller.abort(), 5000); // 5 second timeout
 
@@ -45,7 +70,7 @@ export async function fetchMarkdownFile<FrontMatter>(
     const response = await fetch(contentUrl, {
       headers,
       signal: controller.signal,
-      cache: 'force-cache', // Enable caching
+      cache: 'force-cache', // Enable HTTP caching for better performance
     });
 
     clearTimeout(timeout);
@@ -69,7 +94,12 @@ export async function fetchMarkdownFile<FrontMatter>(
       ? yaml.load(ast.attributes.frontmatter)
       : {};
 
-    if (frontmatter?.ignore) {
+    if (
+      frontmatter &&
+      typeof frontmatter === 'object' &&
+      'ignore' in frontmatter &&
+      frontmatter.ignore
+    ) {
       return [404, FetchMarkdownFileResState.fileIgnored, undefined];
     }
 
@@ -89,9 +119,9 @@ export async function fetchMarkdownFile<FrontMatter>(
       FetchMarkdownFileResState.success,
       { slug, frontmatter, content, markdown },
     ];
-  } catch (error) {
+  } catch (error: unknown) {
     clearTimeout(timeout);
-    if (error.name === 'AbortError') {
+    if (error instanceof Error && error.name === 'AbortError') {
       console.error('Request timed out');
       return [408, FetchMarkdownFileResState.internalError, undefined];
     }

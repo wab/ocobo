@@ -1,11 +1,21 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
 
+/**
+ * Frontmatter validation utilities
+ *
+ * This module provides type guards for validating markdown frontmatter
+ * to ensure content files have the required metadata structure.
+ */
 import {
   BlogpostFrontmatter,
   PageFrontmatter,
   StoryFrontmatter,
 } from '~/types';
 
+/**
+ * Validates that attributes conform to StoryFrontmatter structure
+ * Stories require title, description, tags array, and date object
+ */
 export function validateStoryFrontMatter(
   attributes: unknown,
 ): attributes is StoryFrontmatter {
@@ -20,6 +30,10 @@ export function validateStoryFrontMatter(
   );
 }
 
+/**
+ * Validates that attributes conform to PageFrontmatter structure
+ * Pages have minimal requirements - just need to be a valid object
+ */
 export function validatePageFrontMatter(
   attributes: unknown,
 ): attributes is PageFrontmatter {
@@ -30,6 +44,10 @@ export function validatePageFrontMatter(
   );
 }
 
+/**
+ * Validates that attributes conform to BlogpostFrontmatter structure
+ * Blog posts have minimal requirements - just need to be a valid object
+ */
 export function validateBlogpostFrontMatter(
   attributes: unknown,
 ): attributes is BlogpostFrontmatter {

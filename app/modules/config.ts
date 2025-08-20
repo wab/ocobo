@@ -1,6 +1,17 @@
+/**
+ * Markdoc configuration for rendering markdown content
+ *
+ * This file defines how markdown elements are transformed into React components.
+ * It includes custom nodes for enhanced content rendering and tags for embedded content.
+ */
 import type { Config } from '@markdoc/markdoc';
 
+/**
+ * Main Markdoc configuration object
+ * Maps markdown elements to React components and defines custom tags
+ */
 export const config: Config = {
+  // Define how standard markdown nodes are rendered
   nodes: {
     document: {
       render: 'Container',
@@ -65,6 +76,7 @@ export const config: Config = {
       },
     },
   },
+  // Define custom tags for embedded content
   tags: {
     tweet: {
       render: 'TweetEmbed',

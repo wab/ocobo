@@ -1,3 +1,9 @@
+/**
+ * Local filesystem multiple markdown files fetching utilities
+ *
+ * This module provides functions to read and parse multiple markdown files
+ * from a directory in the local filesystem during development.
+ */
 import fs from 'fs/promises';
 
 import Markdoc from '@markdoc/markdoc';
@@ -8,19 +14,29 @@ import type { ActionResult, MarkdocFile, TvalidateFrontMatter } from '~/types';
 
 import { config } from '../config';
 
+/**
+ * Possible states when fetching multiple markdown files from filesystem
+ */
 enum FetchMarkdownFilesResState {
   directoryNotFound = 'directory_not_found',
   internalError = 'internal_error',
   success = 'success',
 }
 
+/**
+ * Fetches and parses all markdown files from a local directory
+ *
+ * @param path - Directory path containing markdown files
+ * @param hasValidFrontMatter - Function to validate frontmatter structure
+ * @returns Array of parsed markdown files with frontmatter and content
+ */
 async function fetchMarkdownFilesFs<FrontMatter>(
   path: string,
   hasValidFrontMatter: TvalidateFrontMatter<FrontMatter>,
 ): Promise<
   ActionResult<FetchMarkdownFilesResState, MarkdocFile<FrontMatter>[]>
 > {
-  // console.debug('fs/fetchMarkdownFiles called');
+  // Read all entries from the specified directory
 
   const entries = await fs.readdir(path, {
     encoding: 'utf8',
