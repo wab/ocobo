@@ -11,6 +11,11 @@ import invariant from 'tiny-invariant';
 import type { ActionResult, MarkdocFile, TvalidateFrontMatter } from '~/types';
 
 import { config } from '../config';
+import {
+  FrontmatterValidationError,
+  GitHubAPIError,
+  toContentError,
+} from '../errors';
 
 /**
  * Possible states when fetching a markdown file from GitHub
@@ -76,9 +81,17 @@ export async function fetchMarkdownFile<FrontMatter>(
     clearTimeout(timeout);
 
     if (!response.ok || response.status !== 200) {
-      console.error(
-        `GitHub fetch markdown API request failed: ok: ${response.ok} (${response.status}): ${response.statusText}`,
+      const errorMessage = `GitHub API request failed: ${response.status} ${response.statusText}`;
+      console.error(errorMessage);
+
+      // Convert to proper error type but maintain backward compatibility
+      const _error = new GitHubAPIError(
+        errorMessage,
+        response.status,
+        response.statusText,
+        { contentUrl },
       );
+
       return [
         response.status,
         response.status === 404
@@ -109,7 +122,12 @@ export async function fetchMarkdownFile<FrontMatter>(
         `File ${contentUrl} is missing frontmatter attributes`,
       );
     } catch (error: unknown) {
-      console.error(error);
+      const validationError = new FrontmatterValidationError(
+        contentUrl,
+        ['Invalid frontmatter structure'],
+        { originalError: error },
+      );
+      console.error(validationError.message);
       return [500, FetchMarkdownFileResState.fileFrontmatterMissing, undefined];
     }
 
@@ -121,11 +139,24 @@ export async function fetchMarkdownFile<FrontMatter>(
     ];
   } catch (error: unknown) {
     clearTimeout(timeout);
+
     if (error instanceof Error && error.name === 'AbortError') {
-      console.error('Request timed out');
+      const timeoutError = new GitHubAPIError(
+        'Request timed out',
+        408,
+        'Request Timeout',
+        { contentUrl, timeout: 5000 },
+      );
+      console.error(timeoutError.message);
       return [408, FetchMarkdownFileResState.internalError, undefined];
     }
-    console.error('Fetch error:', error);
+
+    const fetchError = toContentError(
+      error,
+      `Failed to fetch markdown file: ${contentUrl}`,
+      { contentUrl },
+    );
+    console.error('Fetch error:', fetchError.message);
     return [500, FetchMarkdownFileResState.internalError, undefined];
   }
 }
