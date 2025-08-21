@@ -315,6 +315,7 @@ export const contentCache = new ContentCache({
 
 /**
  * Cache key builders for different content types
+ * @deprecated Use LanguageCacheKeys from ./language.ts instead
  */
 export const CacheKeys = {
   /**

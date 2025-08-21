@@ -9,7 +9,7 @@ import { beforeEach, vi } from 'vitest';
 beforeEach(() => {
   // Reset all mocks before each test
   vi.clearAllMocks();
-  
+
   // Set default environment variables for tests
   process.env.NODE_ENV = 'test';
   process.env.GITHUB_ACCOUNT = 'test-account';
@@ -20,13 +20,13 @@ beforeEach(() => {
 // Global test utilities
 global.mockConsole = () => {
   const originalConsole = { ...console };
-  
+
   beforeEach(() => {
     vi.spyOn(console, 'log').mockImplementation(() => {});
     vi.spyOn(console, 'error').mockImplementation(() => {});
     vi.spyOn(console, 'warn').mockImplementation(() => {});
     vi.spyOn(console, 'debug').mockImplementation(() => {});
   });
-  
+
   return originalConsole;
 };

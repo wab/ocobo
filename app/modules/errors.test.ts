@@ -1,15 +1,15 @@
 /**
  * Tests for custom error types and error handling utilities
  */
-import { describe, it, expect } from 'vitest';
+import { describe, expect, it } from 'vitest';
 import {
+  ConfigurationError,
   ContentError,
   ContentFetchError,
   ContentNotFoundError,
-  FrontmatterValidationError,
-  ConfigurationError,
-  GitHubAPIError,
   FileSystemError,
+  FrontmatterValidationError,
+  GitHubAPIError,
   isContentError,
   toContentError,
 } from './errors';
@@ -69,7 +69,7 @@ describe('ContentFetchError', () => {
       'Failed to fetch from GitHub',
       'github',
       'stories/fr',
-      404
+      404,
     );
 
     expect(error.message).toBe('Failed to fetch from GitHub');
@@ -86,7 +86,7 @@ describe('ContentFetchError', () => {
       'filesystem',
       '/path/to/file',
       undefined,
-      context
+      context,
     );
 
     expect(error.status).toBe(500); // default
@@ -111,7 +111,11 @@ describe('ContentNotFoundError', () => {
 
   it('should include context in error details', () => {
     const context = { language: 'fr', path: 'stories/fr' };
-    const error = new ContentNotFoundError('blog post', 'missing-post', context);
+    const error = new ContentNotFoundError(
+      'blog post',
+      'missing-post',
+      context,
+    );
 
     expect(error.context).toMatchObject({
       contentType: 'blog post',
@@ -131,11 +135,11 @@ describe('FrontmatterValidationError', () => {
     ];
     const error = new FrontmatterValidationError(
       '/path/to/content.md',
-      validationErrors
+      validationErrors,
     );
 
     expect(error.message).toBe(
-      'Invalid frontmatter in /path/to/content.md: Missing required field: title, Invalid date format, Tags must be an array'
+      'Invalid frontmatter in /path/to/content.md: Missing required field: title, Invalid date format, Tags must be an array',
     );
     expect(error.code).toBe('FRONTMATTER_VALIDATION_ERROR');
     expect(error.status).toBe(422);
@@ -149,7 +153,7 @@ describe('FrontmatterValidationError', () => {
     const error = new FrontmatterValidationError(
       'content.md',
       ['Invalid YAML'],
-      context
+      context,
     );
 
     expect(error.context).toMatchObject({
@@ -165,7 +169,7 @@ describe('ConfigurationError', () => {
   it('should create configuration error with config key', () => {
     const error = new ConfigurationError(
       'Missing required environment variable',
-      'GITHUB_ACCESS_TOKEN'
+      'GITHUB_ACCESS_TOKEN',
     );
 
     expect(error.message).toBe('Missing required environment variable');
@@ -190,7 +194,7 @@ describe('GitHubAPIError', () => {
       'API rate limit exceeded',
       429,
       'Rate limit exceeded',
-      { retryAfter: 3600 }
+      { retryAfter: 3600 },
     );
 
     expect(error.message).toBe('API rate limit exceeded');
@@ -219,7 +223,7 @@ describe('FileSystemError', () => {
       'Permission denied',
       'read',
       '/path/to/file.md',
-      context
+      context,
     );
 
     expect(error.message).toBe('Permission denied');
@@ -248,7 +252,9 @@ describe('FileSystemError', () => {
 
 describe('isContentError', () => {
   it('should return true for ContentError instances', () => {
-    expect(isContentError(new ContentFetchError('test', 'github', 'path'))).toBe(true);
+    expect(
+      isContentError(new ContentFetchError('test', 'github', 'path')),
+    ).toBe(true);
     expect(isContentError(new ContentNotFoundError('type', 'id'))).toBe(true);
     expect(isContentError(new ConfigurationError('test'))).toBe(true);
   });
@@ -294,7 +300,9 @@ describe('toContentError', () => {
   });
 
   it('should convert non-Error values to ConfigurationError', () => {
-    const result = toContentError('string error', 'Default message', { test: true });
+    const result = toContentError('string error', 'Default message', {
+      test: true,
+    });
 
     expect(result).toBeInstanceOf(ConfigurationError);
     expect(result.message).toBe('Default message');
@@ -310,13 +318,16 @@ describe('toContentError', () => {
 
     expect(nullResult).toBeInstanceOf(ConfigurationError);
     expect(undefinedResult).toBeInstanceOf(ConfigurationError);
-    
+
     expect(nullResult.context?.originalError).toBe('null');
     expect(undefinedResult.context?.originalError).toBe('undefined');
   });
 
   it('should handle objects without message', () => {
-    const objectError = { code: 'CUSTOM_ERROR', details: 'Something went wrong' };
+    const objectError = {
+      code: 'CUSTOM_ERROR',
+      details: 'Something went wrong',
+    };
     const result = toContentError(objectError, 'Default message');
 
     expect(result.message).toBe('Default message');

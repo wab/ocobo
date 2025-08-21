@@ -21,6 +21,13 @@ import { fetchMarkdownFilesFs } from './fs/fetchMarkdownFiles.server';
 import { fetchMarkdownFile } from './github/fetchMarkdownFile.server';
 import { fetchMarkdownFiles } from './github/fetchMarkdownFiles.server';
 import {
+  ContentPaths,
+  DEFAULT_LANGUAGE,
+  type Language,
+  LanguageCacheKeys,
+  normalizeLanguage,
+} from './language';
+import {
   validateBlogpostFrontMatter,
   validatePageFrontMatter,
   validateStoryFrontMatter,
@@ -193,8 +200,12 @@ const fetchMarkdownEntry = async <T>(
  * @param language - Content language (defaults to French)
  * @returns Array of story markdown files with metadata
  */
-const fetchStories = async (forceRefresh = false, language = 'fr') => {
-  const cacheKey = CacheKeys.stories(language);
+const fetchStories = async (
+  forceRefresh = false,
+  language: Language = DEFAULT_LANGUAGE,
+) => {
+  const normalizedLanguage = normalizeLanguage(language);
+  const cacheKey = LanguageCacheKeys.stories(normalizedLanguage);
 
   // Try to get from cache first
   if (!forceRefresh) {
@@ -209,7 +220,7 @@ const fetchStories = async (forceRefresh = false, language = 'fr') => {
 
   try {
     const [status, state, files] = await fetchMarkdownEntries(
-      `stories/${language}`,
+      ContentPaths.stories(normalizedLanguage),
       validateStoryFrontMatter,
     );
 
@@ -225,7 +236,7 @@ const fetchStories = async (forceRefresh = false, language = 'fr') => {
     return result;
   } catch (error) {
     throw toContentError(error, 'Failed to fetch stories', {
-      language,
+      language: normalizedLanguage,
       forceRefresh,
     });
   }
@@ -238,8 +249,12 @@ const fetchStories = async (forceRefresh = false, language = 'fr') => {
  * @param language - Content language (defaults to French)
  * @returns Single story markdown file with metadata
  */
-const fetchStory = async (slug: string, language = 'fr') => {
-  const cacheKey = CacheKeys.story(slug, language);
+const fetchStory = async (
+  slug: string,
+  language: Language = DEFAULT_LANGUAGE,
+) => {
+  const normalizedLanguage = normalizeLanguage(language);
+  const cacheKey = LanguageCacheKeys.story(slug, normalizedLanguage);
 
   // Try to get from cache first
   const cached =
@@ -250,7 +265,7 @@ const fetchStory = async (slug: string, language = 'fr') => {
 
   try {
     const article = await fetchMarkdownEntry(
-      `stories/${language}`,
+      ContentPaths.stories(normalizedLanguage),
       slug,
       validateStoryFrontMatter,
     );
@@ -262,7 +277,7 @@ const fetchStory = async (slug: string, language = 'fr') => {
   } catch (error) {
     throw toContentError(error, `Failed to fetch story: ${slug}`, {
       slug,
-      language,
+      language: normalizedLanguage,
     });
   }
 };
@@ -316,7 +331,7 @@ const fetchPages = async (path: string, forceRefresh = false) => {
  * @returns Single page markdown file
  */
 const fetchPage = async (path: string, slug: string) => {
-  const cacheKey = CacheKeys.page(path, slug);
+  const cacheKey = LanguageCacheKeys.page(path, slug);
 
   // Try to get from cache first
   const cached = await contentCache.get<MarkdocFile<any>>(cacheKey);
@@ -354,8 +369,12 @@ const fetchPage = async (path: string, slug: string) => {
  * @param language - Content language (defaults to French)
  * @returns Array of blog post markdown files with metadata
  */
-const fetchBlogPosts = async (forceRefresh = false, language = 'fr') => {
-  const cacheKey = CacheKeys.blogPosts(language);
+const fetchBlogPosts = async (
+  forceRefresh = false,
+  language: Language = DEFAULT_LANGUAGE,
+) => {
+  const normalizedLanguage = normalizeLanguage(language);
+  const cacheKey = LanguageCacheKeys.blogPosts(normalizedLanguage);
 
   // Try to get from cache first
   if (!forceRefresh) {
@@ -370,7 +389,7 @@ const fetchBlogPosts = async (forceRefresh = false, language = 'fr') => {
 
   try {
     const posts = await fetchMarkdownEntries<BlogpostFrontmatter>(
-      `blog/${language}`,
+      ContentPaths.blog(normalizedLanguage),
       validateBlogpostFrontMatter,
     );
 
@@ -380,7 +399,7 @@ const fetchBlogPosts = async (forceRefresh = false, language = 'fr') => {
     return posts;
   } catch (error) {
     throw toContentError(error, 'Failed to fetch blog posts', {
-      language,
+      language: normalizedLanguage,
       forceRefresh,
     });
   }
@@ -393,8 +412,12 @@ const fetchBlogPosts = async (forceRefresh = false, language = 'fr') => {
  * @param language - Content language (defaults to French)
  * @returns Single blog post markdown file with metadata
  */
-const fetchBlogPost = async (slug: string, language = 'fr') => {
-  const cacheKey = CacheKeys.blogPost(slug, language);
+const fetchBlogPost = async (
+  slug: string,
+  language: Language = DEFAULT_LANGUAGE,
+) => {
+  const normalizedLanguage = normalizeLanguage(language);
+  const cacheKey = LanguageCacheKeys.blogPost(slug, normalizedLanguage);
 
   // Try to get from cache first
   const cached =
@@ -405,7 +428,7 @@ const fetchBlogPost = async (slug: string, language = 'fr') => {
 
   try {
     const article = await fetchMarkdownEntry(
-      `blog/${language}`,
+      ContentPaths.blog(normalizedLanguage),
       slug,
       validateBlogpostFrontMatter,
     );
@@ -417,7 +440,7 @@ const fetchBlogPost = async (slug: string, language = 'fr') => {
   } catch (error) {
     throw toContentError(error, `Failed to fetch blog post: ${slug}`, {
       slug,
-      language,
+      language: normalizedLanguage,
     });
   }
 };
@@ -435,21 +458,23 @@ export const clearContentCache = () => {
 };
 
 /**
- * Invalidate specific content type caches
+ * Invalidate specific content type caches with language-aware patterns
  */
 export const invalidateContentCache = {
-  stories: (language?: string) => {
+  stories: (language?: Language) => {
     if (language) {
-      contentCache.invalidate(`story:${language}:.*`);
+      const normalizedLang = normalizeLanguage(language);
+      contentCache.invalidate(LanguageCacheKeys.storiesPattern(normalizedLang));
     } else {
-      contentCache.invalidate('story:.*');
+      contentCache.invalidate(LanguageCacheKeys.storiesPattern());
     }
   },
-  blogPosts: (language?: string) => {
+  blogPosts: (language?: Language) => {
     if (language) {
-      contentCache.invalidate(`blog:${language}:.*`);
+      const normalizedLang = normalizeLanguage(language);
+      contentCache.invalidate(LanguageCacheKeys.blogPattern(normalizedLang));
     } else {
-      contentCache.invalidate('blog:.*');
+      contentCache.invalidate(LanguageCacheKeys.blogPattern());
     }
   },
   pages: (path?: string) => {
@@ -458,6 +483,10 @@ export const invalidateContentCache = {
     } else {
       contentCache.invalidate('page:.*');
     }
+  },
+  language: (language: Language) => {
+    const normalizedLang = normalizeLanguage(language);
+    contentCache.invalidate(LanguageCacheKeys.languagePattern(normalizedLang));
   },
 };
 

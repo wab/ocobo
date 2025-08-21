@@ -1,8 +1,9 @@
 /**
  * Tests for ContentCache service
  */
-import { describe, it, expect, beforeEach, vi, afterEach } from 'vitest';
-import { ContentCache, CacheKeys } from './cache';
+import { afterEach, beforeEach, describe, expect, it, vi } from 'vitest';
+import { CacheKeys, ContentCache } from './cache';
+import { LanguageCacheKeys } from './language';
 
 describe('ContentCache', () => {
   let cache: ContentCache;
@@ -75,7 +76,7 @@ describe('ContentCache', () => {
       expect(await cache.get('test-key')).toBe('test-value');
 
       // Wait for expiration
-      await new Promise(resolve => setTimeout(resolve, 20));
+      await new Promise((resolve) => setTimeout(resolve, 20));
 
       expect(await cache.get('test-key')).toBeNull();
     });
@@ -92,7 +93,7 @@ describe('ContentCache', () => {
       await cache.set('key2', 'value2', 1000);
 
       // Wait for first key to expire
-      await new Promise(resolve => setTimeout(resolve, 20));
+      await new Promise((resolve) => setTimeout(resolve, 20));
 
       const cleaned = cache.cleanup();
       expect(cleaned).toBe(1);
@@ -154,7 +155,7 @@ describe('ContentCache', () => {
       const stats = cache.getStats();
       expect(stats.maxSize).toBe(1024);
       expect(stats.entryCount).toBe(0);
-      
+
       // Basic verification that cache settings are correct
       expect(stats.maxSize).toBeGreaterThan(0);
     });
@@ -176,7 +177,7 @@ describe('ContentCache', () => {
 
     it('should invalidate entries matching string pattern', async () => {
       const deleted = cache.invalidate('blog:*');
-      
+
       expect(deleted).toBeGreaterThan(0);
       expect(await cache.get('blog:en:post1')).toBeNull();
       expect(await cache.get('blog:fr:post1')).toBeNull();
@@ -186,7 +187,7 @@ describe('ContentCache', () => {
 
     it('should invalidate entries matching regex pattern', async () => {
       const deleted = cache.invalidate(/blog:.*:post1/);
-      
+
       expect(deleted).toBe(2);
       expect(await cache.get('blog:en:post1')).toBeNull();
       expect(await cache.get('blog:fr:post1')).toBeNull();
@@ -194,7 +195,7 @@ describe('ContentCache', () => {
 
     it('should invalidate specific language entries', async () => {
       const deleted = cache.invalidate('*:en:*');
-      
+
       expect(deleted).toBeGreaterThan(0);
       expect(await cache.get('blog:en:post1')).toBeNull();
       expect(await cache.get('story:en:story1')).toBeNull();
@@ -269,11 +270,47 @@ describe('CacheKeys', () => {
       expect(CacheKeys.pages('media/videos')).toBe('pages:media:videos');
 
       expect(CacheKeys.page('legal', 'terms')).toBe('page:legal:terms');
-      expect(CacheKeys.page('media/videos', 'intro')).toBe('page:media:videos:intro');
+      expect(CacheKeys.page('media/videos', 'intro')).toBe(
+        'page:media:videos:intro',
+      );
     });
 
     it('should handle special characters in paths', () => {
-      expect(CacheKeys.page('path/with/slashes', 'slug')).toBe('page:path:with:slashes:slug');
+      expect(CacheKeys.page('path/with/slashes', 'slug')).toBe(
+        'page:path:with:slashes:slug',
+      );
+    });
+  });
+
+  describe('Language-Aware Cache Keys', () => {
+    it('should generate correct language-aware stories cache keys', () => {
+      expect(LanguageCacheKeys.stories()).toBe('stories:fr:all');
+      expect(LanguageCacheKeys.stories('en')).toBe('stories:en:all');
+    });
+
+    it('should generate correct language-aware story cache keys', () => {
+      expect(LanguageCacheKeys.story('my-story')).toBe('story:fr:my-story');
+      expect(LanguageCacheKeys.story('my-story', 'en')).toBe(
+        'story:en:my-story',
+      );
+    });
+
+    it('should generate correct language-aware blog cache keys', () => {
+      expect(LanguageCacheKeys.blogPosts()).toBe('blog:fr:all');
+      expect(LanguageCacheKeys.blogPosts('en')).toBe('blog:en:all');
+
+      expect(LanguageCacheKeys.blogPost('my-post')).toBe('blog:fr:my-post');
+      expect(LanguageCacheKeys.blogPost('my-post', 'en')).toBe(
+        'blog:en:my-post',
+      );
+    });
+
+    it('should generate correct invalidation patterns', () => {
+      expect(LanguageCacheKeys.languagePattern('fr')).toBe('*:fr:*');
+      expect(LanguageCacheKeys.storiesPattern('en')).toBe('story*:en:*');
+      expect(LanguageCacheKeys.storiesPattern()).toBe('story*');
+      expect(LanguageCacheKeys.blogPattern('fr')).toBe('blog*:fr:*');
+      expect(LanguageCacheKeys.blogPattern()).toBe('blog*');
     });
   });
 });

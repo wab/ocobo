@@ -1,6 +1,6 @@
-import { defineConfig } from 'vitest/config';
 import { resolve } from 'path';
 import tsconfigPaths from 'vite-tsconfig-paths';
+import { defineConfig } from 'vitest/config';
 
 export default defineConfig({
   plugins: [tsconfigPaths()],
@@ -20,9 +20,7 @@ export default defineConfig({
     coverage: {
       provider: 'v8',
       reporter: ['text', 'json', 'html'],
-      include: [
-        'app/modules/**/*.{js,ts}',
-      ],
+      include: ['app/modules/**/*.{js,ts}'],
       exclude: [
         'app/modules/**/*.{test,spec}.{js,ts}',
         'app/modules/**/index.{js,ts}',

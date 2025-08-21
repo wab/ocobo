@@ -1,8 +1,8 @@
 /**
  * Tests for environment configuration validation
  */
-import { describe, it, expect, beforeEach, vi } from 'vitest';
-import { getPublicEnvVars, getPrivateEnvVars } from './env.server';
+import { afterEach, beforeEach, describe, expect, it, vi } from 'vitest';
+import { getPrivateEnvVars, getPublicEnvVars } from './env.server';
 import { ConfigurationError } from './errors';
 
 // Mock untildify
@@ -79,7 +79,8 @@ describe('Environment Configuration', () => {
       expect(result).toEqual({
         env: 'development',
         githubAccessToken: 'test-token-123',
-        githubRepoAPIUrl: 'https://api.github.com/repos/test-account/test-repo/contents',
+        githubRepoAPIUrl:
+          'https://api.github.com/repos/test-account/test-repo/contents',
         readContentFrom: 'locale',
         localeRepoAPIUrl: '/home/user/projects/test-repo',
       });
@@ -105,14 +106,18 @@ describe('Environment Configuration', () => {
 
         expect(() => getPrivateEnvVars()).toThrow(ConfigurationError);
         expect(() => getPrivateEnvVars()).toThrow(
-          'GITHUB_ACCOUNT environment variable is required'
+          'GITHUB_ACCOUNT environment variable is required',
         );
-        
+
         try {
           getPrivateEnvVars();
         } catch (error) {
-          expect((error as ConfigurationError).configKey).toBe('GITHUB_ACCOUNT');
-          expect((error as ConfigurationError).code).toBe('CONFIGURATION_ERROR');
+          expect((error as ConfigurationError).configKey).toBe(
+            'GITHUB_ACCOUNT',
+          );
+          expect((error as ConfigurationError).code).toBe(
+            'CONFIGURATION_ERROR',
+          );
         }
       });
 
@@ -121,7 +126,7 @@ describe('Environment Configuration', () => {
 
         expect(() => getPrivateEnvVars()).toThrow(ConfigurationError);
         expect(() => getPrivateEnvVars()).toThrow(
-          'GITHUB_ACCOUNT environment variable is required'
+          'GITHUB_ACCOUNT environment variable is required',
         );
       });
 
@@ -130,7 +135,7 @@ describe('Environment Configuration', () => {
 
         expect(() => getPrivateEnvVars()).toThrow(ConfigurationError);
         expect(() => getPrivateEnvVars()).toThrow(
-          'GITHUB_REPO environment variable is required'
+          'GITHUB_REPO environment variable is required',
         );
 
         try {
@@ -151,13 +156,15 @@ describe('Environment Configuration', () => {
 
         expect(() => getPrivateEnvVars()).toThrow(ConfigurationError);
         expect(() => getPrivateEnvVars()).toThrow(
-          'GITHUB_ACCESS_TOKEN environment variable is required for content fetching'
+          'GITHUB_ACCESS_TOKEN environment variable is required for content fetching',
         );
 
         try {
           getPrivateEnvVars();
         } catch (error) {
-          expect((error as ConfigurationError).configKey).toBe('GITHUB_ACCESS_TOKEN');
+          expect((error as ConfigurationError).configKey).toBe(
+            'GITHUB_ACCESS_TOKEN',
+          );
         }
       });
 
@@ -183,7 +190,7 @@ describe('Environment Configuration', () => {
         const result = getPrivateEnvVars();
 
         expect(result.githubRepoAPIUrl).toBe(
-          'https://api.github.com/repos/my-org/my-repo/contents'
+          'https://api.github.com/repos/my-org/my-repo/contents',
         );
       });
 
@@ -202,7 +209,7 @@ describe('Environment Configuration', () => {
         const result = getPrivateEnvVars();
 
         expect(result.githubRepoAPIUrl).toBe(
-          'https://api.github.com/repos/user-name/repo_name.test/contents'
+          'https://api.github.com/repos/user-name/repo_name.test/contents',
         );
       });
     });
@@ -211,9 +218,9 @@ describe('Environment Configuration', () => {
       it('should have proper error handling structure', () => {
         // Test that the function exists and basic validation works
         delete process.env.GITHUB_ACCOUNT;
-        
+
         expect(() => getPrivateEnvVars()).toThrow(ConfigurationError);
-        
+
         // Restore for other tests
         process.env.GITHUB_ACCOUNT = 'test-account';
       });
@@ -225,9 +232,11 @@ describe('Environment Configuration', () => {
           getPrivateEnvVars();
         } catch (error) {
           expect(error).toBeInstanceOf(ConfigurationError);
-          expect((error as ConfigurationError).configKey).toBe('GITHUB_ACCOUNT');
+          expect((error as ConfigurationError).configKey).toBe(
+            'GITHUB_ACCOUNT',
+          );
           expect((error as ConfigurationError).message).toBe(
-            'GITHUB_ACCOUNT environment variable is required'
+            'GITHUB_ACCOUNT environment variable is required',
           );
         }
       });
