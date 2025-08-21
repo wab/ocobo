@@ -1,0 +1,32 @@
+/**
+ * Vitest test setup file
+ * This file runs before all test files and sets up global test environment
+ */
+
+import { beforeEach, vi } from 'vitest';
+
+// Mock environment variables for tests
+beforeEach(() => {
+  // Reset all mocks before each test
+  vi.clearAllMocks();
+  
+  // Set default environment variables for tests
+  process.env.NODE_ENV = 'test';
+  process.env.GITHUB_ACCOUNT = 'test-account';
+  process.env.GITHUB_REPO = 'test-repo';
+  process.env.GITHUB_ACCESS_TOKEN = 'test-token';
+});
+
+// Global test utilities
+global.mockConsole = () => {
+  const originalConsole = { ...console };
+  
+  beforeEach(() => {
+    vi.spyOn(console, 'log').mockImplementation(() => {});
+    vi.spyOn(console, 'error').mockImplementation(() => {});
+    vi.spyOn(console, 'warn').mockImplementation(() => {});
+    vi.spyOn(console, 'debug').mockImplementation(() => {});
+  });
+  
+  return originalConsole;
+};

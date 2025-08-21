@@ -15,3 +15,6 @@ styled-system-studio
 ## React Router
 .react-router/
 .vercel
+
+## Test coverage
+/coverage
