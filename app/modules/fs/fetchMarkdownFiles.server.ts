@@ -56,7 +56,7 @@ async function fetchMarkdownFilesFs<FrontMatter>(
       const markdown = file.toString();
       const ast = Markdoc.parse(markdown);
       const frontmatter = ast.attributes.frontmatter
-        ? yaml.load(ast.attributes.frontmatter)
+        ? yaml.load(ast.attributes.frontmatter, { schema: yaml.CORE_SCHEMA })
         : {};
       if (
         frontmatter &&

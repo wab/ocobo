@@ -7,6 +7,7 @@ import {
   ContentError,
   ContentFetchError,
   ContentNotFoundError,
+  ContentValidationError,
   FileSystemError,
   FrontmatterValidationError,
   GitHubAPIError,
@@ -247,6 +248,85 @@ describe('FileSystemError', () => {
     expect(readError.operation).toBe('read');
     expect(writeError.operation).toBe('write');
     expect(listError.operation).toBe('list');
+  });
+});
+
+describe('ContentValidationError', () => {
+  it('should create error with validation issues', () => {
+    const issues = [
+      'title: Required field is missing',
+      'date: Invalid date format',
+    ];
+    const error = new ContentValidationError(
+      'Invalid frontmatter',
+      'story',
+      issues,
+      { slug: 'test-story' },
+    );
+
+    expect(error.message).toContain('Invalid frontmatter');
+    expect(error.message).toContain('Issues:');
+    expect(error.message).toContain(issues[0]);
+    expect(error.message).toContain(issues[1]);
+    expect(error.code).toBe('CONTENT_VALIDATION_ERROR');
+    expect(error.status).toBe(422);
+    expect(error.contentType).toBe('story');
+    expect(error.validationIssues).toEqual(issues);
+  });
+
+  it('should include context in error', () => {
+    const context = {
+      slug: 'test-post',
+      attributes: { title: 'incomplete' },
+      zodError: { issues: [] },
+    };
+    const error = new ContentValidationError(
+      'Validation failed',
+      'blogpost',
+      ['Missing fields'],
+      context,
+    );
+
+    expect(error.context).toMatchObject(context);
+    expect(error.context?.contentType).toBe('blogpost');
+    expect(error.context?.validationIssues).toEqual(['Missing fields']);
+  });
+
+  it('should handle empty validation issues', () => {
+    const error = new ContentValidationError('Validation failed', 'page', []);
+
+    expect(error.validationIssues).toEqual([]);
+    expect(error.message).toContain('Issues:');
+  });
+
+  it('should extend ContentError properly', () => {
+    const error = new ContentValidationError('Test validation error', 'story', [
+      'issue1',
+      'issue2',
+    ]);
+
+    expect(error).toBeInstanceOf(ContentError);
+    expect(error).toBeInstanceOf(ContentValidationError);
+    expect(error.name).toBe('ContentValidationError');
+  });
+
+  it('should serialize to JSON correctly', () => {
+    const error = new ContentValidationError(
+      'Validation failed',
+      'story',
+      ['Missing title', 'Invalid date'],
+      { source: 'test' },
+    );
+
+    const json = error.toJSON();
+    expect(json.name).toBe('ContentValidationError');
+    expect(json.code).toBe('CONTENT_VALIDATION_ERROR');
+    expect(json.status).toBe(422);
+    expect(json.context?.contentType).toBe('story');
+    expect(json.context?.validationIssues).toEqual([
+      'Missing title',
+      'Invalid date',
+    ]);
   });
 });
 

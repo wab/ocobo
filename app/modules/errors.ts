@@ -95,6 +95,25 @@ export class FrontmatterValidationError extends ContentError {
 }
 
 /**
+ * Error thrown when content validation fails (Zod-powered)
+ */
+export class ContentValidationError extends ContentError {
+  constructor(
+    message: string,
+    public readonly contentType: string,
+    public readonly validationIssues: string[],
+    context?: Record<string, unknown>,
+  ) {
+    const detailedMessage = `${message}. Issues: ${validationIssues.join('; ')}`;
+    super(detailedMessage, 'CONTENT_VALIDATION_ERROR', 422, {
+      ...context,
+      contentType,
+      validationIssues,
+    });
+  }
+}
+
+/**
  * Error thrown when environment configuration is invalid
  */
 export class ConfigurationError extends ContentError {

@@ -13,39 +13,12 @@ export type MarkdocFile<FrontMatter> = {
   frontmatter: FrontMatter;
 };
 
-export type StoryFrontmatter = {
-  name: string;
-  date: string;
-  title: string;
-  subtitle: string;
-  description: string;
-  speaker: string;
-  role: string;
-  duration: string;
-  scopes: string[];
-  tags: string[];
-  tools: string[];
-  quotes: string[];
-  deliverables: string[];
-  youtubeId?: string;
-};
-
-export type PageFrontmatter = {
-  title: string;
-  description: string;
-};
-
-export type BlogpostFrontmatter = {
-  title: string;
-  description: string;
-  exerpt?: string;
-  author: string;
-  image: string;
-  date: string;
-  tags: string[];
-  read: string;
-  youtubeId?: string;
-};
+// Re-export Zod-inferred types for consistency
+export type {
+  StoryFrontmatter,
+  BlogpostFrontmatter,
+  PageFrontmatter,
+} from './modules/schemas';
 
 export type TvalidateFrontMatter<T> = (
   attributes: unknown,
