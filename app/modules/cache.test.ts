@@ -7,7 +7,9 @@ import { LanguageCacheKeys } from './language';
 
 describe('ContentCache', () => {
   let cache: ContentCache;
-  const _mockConsoleLog = vi.spyOn(console, 'log').mockImplementation(() => {});
+  const _mockConsoleLog = vi.spyOn(console, 'log').mockImplementation(() => {
+    // Mock console.log for testing
+  });
 
   beforeEach(() => {
     cache = new ContentCache({

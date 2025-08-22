@@ -3,7 +3,6 @@ import { NavLink } from 'react-router';
 
 import { css } from '@ocobo/styled-system/css';
 import { Grid, GridItem } from '@ocobo/styled-system/jsx';
-import { center } from '@ocobo/styled-system/patterns';
 import { link, section } from '@ocobo/styled-system/recipes';
 
 import { url } from '~/utils/url';

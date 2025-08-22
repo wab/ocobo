@@ -102,7 +102,9 @@ describe('Zod Schemas Validation', () => {
     it('should log warnings for unknown fields when using validateWithSchema', () => {
       const consoleWarnSpy = vi
         .spyOn(console, 'warn')
-        .mockImplementation(() => {});
+        .mockImplementation(() => {
+          // Mock console.warn for testing
+        });
       const dataWithExtraFields = {
         ...validStoryData,
         extraField: 'allowed',

@@ -351,7 +351,9 @@ describe('Zod-Powered Validation Functions', () => {
 
         expect(validationError.context?.attributes).toBe(invalidData);
         expect(validationError.context?.zodError).toBeDefined();
-        expect((validationError.context?.zodError as any)?.issues).toBeDefined();
+        expect(
+          (validationError.context?.zodError as any)?.issues,
+        ).toBeDefined();
       }
     });
 

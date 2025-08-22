@@ -54,7 +54,9 @@ export function createContentSource(): ContentSource {
   } = getPrivateEnvVars();
 
   // Log content source for debugging
-  console.info(`🔗 Content Source: ${readContentFrom === 'github' ? 'GitHub API' : 'Local Filesystem'}`);
+  console.info(
+    `🔗 Content Source: ${readContentFrom === 'github' ? 'GitHub API' : 'Local Filesystem'}`,
+  );
 
   switch (readContentFrom) {
     case 'github':

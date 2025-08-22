@@ -1,13 +1,17 @@
 /**
  * Tests for the generic content API
  */
-import { beforeEach, describe, expect, it, vi } from 'vitest';
+import { beforeEach, describe, expect, it } from 'vitest';
 import { ContentValidators, GenericContentFetcher } from './api';
 import type { ContentSource } from './types';
 
 // Mock content source for testing
 const mockContentSource: ContentSource = {
-  async fetchSingle<T>(_path: string, slug: string, _validator: any): Promise<any> {
+  async fetchSingle<_T>(
+    _path: string,
+    slug: string,
+    _validator: any,
+  ): Promise<any> {
     if (slug === 'test-story') {
       return [
         200,
@@ -37,7 +41,7 @@ const mockContentSource: ContentSource = {
     return [404, 'not_found', undefined];
   },
 
-  async fetchMultiple<T>(_path: string, _validator: any): Promise<any> {
+  async fetchMultiple<_T>(_path: string, _validator: any): Promise<any> {
     return [200, 'success', []];
   },
 

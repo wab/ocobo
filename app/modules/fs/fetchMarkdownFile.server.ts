@@ -13,11 +13,7 @@ import invariant from 'tiny-invariant';
 import type { ActionResult, MarkdocFile, TvalidateFrontMatter } from '~/types';
 
 import { config } from '../config';
-import {
-  FileSystemError,
-  FrontmatterValidationError,
-  toContentError,
-} from '../errors';
+import { FileSystemError, FrontmatterValidationError } from '../errors';
 
 /**
  * Possible states when fetching a markdown file from filesystem

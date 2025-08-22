@@ -22,10 +22,18 @@ beforeEach(() => {
   const originalConsole = { ...console };
 
   beforeEach(() => {
-    vi.spyOn(console, 'log').mockImplementation(() => {});
-    vi.spyOn(console, 'error').mockImplementation(() => {});
-    vi.spyOn(console, 'warn').mockImplementation(() => {});
-    vi.spyOn(console, 'debug').mockImplementation(() => {});
+    vi.spyOn(console, 'log').mockImplementation(() => {
+      // Mock console.log for testing
+    });
+    vi.spyOn(console, 'error').mockImplementation(() => {
+      // Mock console.error for testing
+    });
+    vi.spyOn(console, 'warn').mockImplementation(() => {
+      // Mock console.warn for testing
+    });
+    vi.spyOn(console, 'debug').mockImplementation(() => {
+      // Mock console.debug for testing
+    });
   });
 
   return originalConsole;

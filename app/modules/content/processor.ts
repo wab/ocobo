@@ -8,8 +8,6 @@
 import Markdoc from '@markdoc/markdoc';
 import yaml from 'js-yaml';
 import invariant from 'tiny-invariant';
-
-import type { MarkdocFile } from '~/types';
 import { ContentValidationError } from '../errors';
 
 import type {

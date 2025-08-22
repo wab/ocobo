@@ -56,7 +56,7 @@ export async function loader() {
     }
     return [];
   });
-  
+
   const postsQuery = fetchBlogposts().then((result) => {
     const [, state, data] = result;
     if (state === 'success' && data) {

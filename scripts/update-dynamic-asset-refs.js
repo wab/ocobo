@@ -6,7 +6,7 @@
  * Run: node scripts/update-dynamic-asset-refs.js
  */
 
-import { dirname, join } from 'path';
+import { dirname } from 'path';
 import { fileURLToPath } from 'url';
 import { readFile, writeFile } from 'fs/promises';
 

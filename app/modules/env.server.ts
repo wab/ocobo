@@ -1,10 +1,3 @@
-/**
- * Environment variables configuration and validation
- *
- * This module provides type-safe access to environment variables,
- * separating public (client-side) and private (server-only) configuration.
- */
-import invariant from 'tiny-invariant';
 import untildify from 'untildify';
 
 import { ConfigurationError } from './errors';
@@ -62,7 +55,9 @@ export function getPrivateEnvVars(): PrivateEnvVars {
     const localeRepoAPIUrl = untildify(`~/projects/${githubRepo}`);
 
     const readContentFrom: 'locale' | 'github' =
-      process.env.NODE_ENV === 'production' ? 'github' : (DEV_FETCH_FROM as 'locale' | 'github');
+      process.env.NODE_ENV === 'production'
+        ? 'github'
+        : (DEV_FETCH_FROM as 'locale' | 'github');
 
     return {
       ...getPublicEnvVars(),

@@ -17,7 +17,11 @@ import {
 
 describe('ContentError (Base Class)', () => {
   class TestContentError extends ContentError {
-    constructor(message: string, status = 500, context?: Record<string, unknown>) {
+    constructor(
+      message: string,
+      status = 500,
+      context?: Record<string, unknown>,
+    ) {
       super(message, 'TEST_ERROR', status, context);
     }
   }
