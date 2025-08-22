@@ -8,55 +8,42 @@ import { css } from '@ocobo/styled-system/css';
 import { BlogList } from '~/components/blog';
 import { Container } from '~/components/ui/Container';
 import { Loader } from '~/components/ui/Loader';
+import { createHybridLoader } from '~/modules/cache';
 import { fetchBlogposts } from '~/modules/content';
 import { getMetaTags } from '~/utils/metatags';
 
-export async function loader({ request }: LoaderFunctionArgs) {
-  const url = new URL(request.url);
-  const searchParams = new URLSearchParams(url.search);
-  const tag = searchParams.get('tag');
-  const refresh = searchParams.has('refresh');
+export const loader = createHybridLoader(
+  async ({ request }: LoaderFunctionArgs) => {
+    const url = new URL(request.url);
+    const tag = url.searchParams.get('tag');
 
-  const cacheControl = refresh
-    ? 'no-cache, no-store, must-revalidate'
-    : 'public, max-age=7200, s-maxage=7200';
+    const [status, state, blogData] = await fetchBlogposts();
 
-  const posts = fetchBlogposts()
-    .then(([status, state, data]) => {
-      // Handle errors gracefully - return empty array instead of throwing
-      if (status !== 200 || !data) {
-        console.error(`Failed to fetch blog posts: ${state}`);
-        return []; // Return empty array so the page still renders
-      }
+    // Handle errors gracefully
+    if (status !== 200 || !blogData) {
+      console.error(`Failed to fetch blog posts: ${state}`);
+      return { posts: [], isError: true };
+    }
 
-      // Pre-filter and sort efficiently
-      const filteredPosts = tag
-        ? data.filter((entry) => entry.frontmatter.tags.includes(tag))
-        : data;
+    // Filter and sort posts
+    const filteredPosts = tag
+      ? blogData.filter((entry) => entry.frontmatter.tags.includes(tag))
+      : blogData;
 
-      // Cache date objects to avoid repeated parsing
-      return filteredPosts
-        .map((entry) => ({
-          ...entry,
-          _sortDate: new Date(entry.frontmatter.date).getTime(),
-        }))
-        .sort((a, b) => b._sortDate - a._sortDate)
-        .map(({ _sortDate, ...entry }) => entry); // Remove the sort helper
-    })
-    .catch((error) => {
-      // Additional error handling in case of unexpected errors
-      console.error('Unexpected error fetching blog posts:', error);
-      return []; // Return empty array so the page still renders
-    });
+    const posts = filteredPosts
+      .map((entry) => ({
+        ...entry,
+        _sortDate: new Date(entry.frontmatter.date).getTime(),
+      }))
+      .sort((a, b) => b._sortDate - a._sortDate)
+      .map(({ _sortDate, ...entry }) => entry);
 
-  return {
-    posts,
-    headers: {
-      'Cache-Control': cacheControl,
-      Vary: 'Accept-Encoding, Accept, X-Requested-With',
-    },
-  };
-}
+    return { posts, isError: false };
+  },
+  'blogPost', // Use blog post cache strategy
+);
+
+// Headers now handled by entry.server.tsx - framework-native cache control!
 
 export const meta: MetaFunction<typeof loader> = () => {
   return getMetaTags({

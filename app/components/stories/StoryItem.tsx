@@ -52,7 +52,7 @@ const StoryItem: React.FunctionComponent<StoryItemProps> = React.memo(
             decoding="async"
             width={340}
             height={340}
-            fetchPriority={index < 2 ? 'high' : 'auto'}
+            {...({ fetchpriority: index < 2 ? 'high' : 'auto' } as any)}
             className={css({
               width: '100%',
               height: '340px',

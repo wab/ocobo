@@ -12,8 +12,17 @@ import { ServerRouter } from 'react-router';
 
 import * as i18n from '~/localization/i18n'; // your i18n configuration file
 import i18nServer from '~/localization/i18n.server';
+import {
+  getCacheHeaders,
+  getCacheStrategyForPath,
+  logCacheStrategy,
+  shouldBypassCache,
+} from '~/modules/cache';
 
 import { returnLanguageIfSupported } from './localization/resources';
+
+// Log cache strategy on server startup
+logCacheStrategy();
 
 const ABORT_DELAY = 35000;
 
@@ -57,6 +66,16 @@ export default async function handleRequest(
           const body = new PassThrough();
           const stream = createReadableStreamFromReadable(body);
           responseHeaders.set('Content-Type', 'text/html');
+
+          // Apply framework-native cache headers at response level
+          const cacheStrategy = getCacheStrategyForPath(pathname);
+          const bypassCache = shouldBypassCache(request);
+          const cacheHeaders = getCacheHeaders(cacheStrategy, bypassCache);
+
+          // Set cache headers on response (bypasses Vercel framework-level override)
+          for (const [key, value] of Object.entries(cacheHeaders)) {
+            responseHeaders.set(key, value);
+          }
 
           resolve(
             new Response(stream, {

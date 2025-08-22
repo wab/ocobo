@@ -42,6 +42,9 @@ export async function fetchMarkdownFiles<FrontMatter>(
 ): Promise<
   ActionResult<FetchMarkdownFilesResState, MarkdocFile<FrontMatter>[]>
 > {
+  console.log(
+    `🔥 GitHub API CALL: fetchMarkdownFiles for directory: ${directoryUrl}`,
+  );
   const [status, state, items] = await fetchFileItems(
     accessToken,
     directoryUrl,

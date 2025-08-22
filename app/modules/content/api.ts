@@ -109,7 +109,8 @@ export const pageFetcher = new PageFetcher();
 export const genericFetcher = new GenericContentFetcher();
 
 /**
- * Convenience functions with improved API - automatically handle path construction
+ * Simplified convenience functions - direct calls without complex caching
+ * Caching is now handled at the HTTP response level in route loaders
  */
 export async function fetchStory(slug: string = '', language: string = 'fr') {
   const path = `stories/${language}`;

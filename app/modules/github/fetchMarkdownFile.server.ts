@@ -58,6 +58,9 @@ export async function fetchMarkdownFile<FrontMatter>(
   slug = '',
   hasValidFrontMatter: TvalidateFrontMatter<FrontMatter>,
 ): Promise<ActionResult<FetchMarkdownFileResState, MarkdocFile<FrontMatter>>> {
+  console.log(
+    `🔥 GitHub API CALL: fetchMarkdownFile for path: ${path}, slug: ${slug}`,
+  );
   const contentUrl = getContentPath(path, slug);
 
   // Setup GitHub API request headers with authentication

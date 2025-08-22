@@ -1,9 +1,51 @@
 /**
  * Tests for the generic content API
  */
-import { beforeEach, describe, expect, it } from 'vitest';
-import { ContentValidators, GenericContentFetcher } from './api';
+import { beforeEach, describe, expect, it, vi } from 'vitest';
 import type { ContentSource } from './types';
+
+// Mock environment variables before importing modules
+vi.mock('../env.server', () => ({
+  getPrivateEnvVars: () => ({
+    githubAccount: 'test-account',
+    githubRepo: 'test-repo',
+    githubAccessToken: 'test-token',
+    readContentFrom: 'test',
+  }),
+}));
+
+// Mock filesystem operations to avoid actual file system access
+vi.mock('./sources/filesystem', () => ({
+  FilesystemContentSource: class MockFilesystemContentSource {
+    async fetchSingle() {
+      return [404, 'not_found', undefined];
+    }
+    async fetchMultiple() {
+      return [200, 'success', []];
+    }
+    async fetchMetadata() {
+      return [200, 'success', []];
+    }
+  },
+}));
+
+// Mock GitHub API to avoid actual network requests
+vi.mock('./sources/github', () => ({
+  GitHubContentSource: class MockGitHubContentSource {
+    async fetchSingle() {
+      return [404, 'not_found', undefined];
+    }
+    async fetchMultiple() {
+      return [200, 'success', []];
+    }
+    async fetchMetadata() {
+      return [200, 'success', []];
+    }
+  },
+}));
+
+// Import after mocking
+import { ContentValidators, GenericContentFetcher } from './api';
 
 // Mock content source for testing
 const mockContentSource: ContentSource = {
@@ -54,6 +96,7 @@ describe('GenericContentFetcher', () => {
   let fetcher: GenericContentFetcher;
 
   beforeEach(() => {
+    // Pass the mock content source explicitly
     fetcher = new GenericContentFetcher(mockContentSource);
   });
 
