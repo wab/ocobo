@@ -40,97 +40,94 @@ const CommonSchemas = {
  * Story frontmatter schema
  * Stories represent client case studies and testimonials
  */
-export const StoryFrontmatterSchema = z
-  .object({
-    /** Client/project name */
-    name: CommonSchemas.nonEmptyString,
+export const StoryFrontmatterSchema = z.object({
+  /** Client/project name */
+  name: CommonSchemas.nonEmptyString,
 
-    /** Publication/project date */
-    date: CommonSchemas.dateString,
+  /** Publication/project date */
+  date: CommonSchemas.dateString,
 
-    /** Main title of the story */
-    title: CommonSchemas.nonEmptyString,
+  /** Main title of the story */
+  title: CommonSchemas.nonEmptyString,
 
-    /** Subtitle or tagline */
-    subtitle: CommonSchemas.nonEmptyString,
+  /** Subtitle or tagline */
+  subtitle: CommonSchemas.nonEmptyString,
 
-    /** Brief description of the story */
-    description: CommonSchemas.nonEmptyString,
+  /** Brief description of the story */
+  description: CommonSchemas.nonEmptyString,
 
-    /** Name of the person giving testimonial */
-    speaker: CommonSchemas.nonEmptyString,
+  /** Name of the person giving testimonial */
+  speaker: CommonSchemas.nonEmptyString,
 
-    /** Role/position of the speaker */
-    role: CommonSchemas.nonEmptyString,
+  /** Role/position of the speaker */
+  role: CommonSchemas.nonEmptyString,
 
-    /** Project duration */
-    duration: CommonSchemas.nonEmptyString,
+  /** Project duration */
+  duration: CommonSchemas.nonEmptyString,
 
-    /** Project scopes/areas covered */
-    scopes: CommonSchemas.stringArray,
+  /** Project scopes/areas covered */
+  scopes: CommonSchemas.stringArray,
 
-    /** Categorization tags */
-    tags: CommonSchemas.stringArray,
+  /** Categorization tags */
+  tags: CommonSchemas.stringArray,
 
-    /** Tools and technologies used */
-    tools: CommonSchemas.stringArray,
+  /** Tools and technologies used */
+  tools: CommonSchemas.stringArray,
 
-    /** Key quotes from the client */
-    quotes: CommonSchemas.stringArray,
+  /** Key quotes from the client */
+  quotes: CommonSchemas.stringArray,
 
-    /** Project deliverables */
-    deliverables: CommonSchemas.stringArray,
+  /** Project deliverables */
+  deliverables: CommonSchemas.stringArray,
 
-    /** Optional YouTube video ID */
-    youtubeId: CommonSchemas.youtubeId,
-  });
+  /** Optional YouTube video ID */
+  youtubeId: CommonSchemas.youtubeId,
+});
 
 /**
  * Blog post frontmatter schema
  * Blog posts are articles and insights
  */
-export const BlogpostFrontmatterSchema = z
-  .object({
-    /** Article title */
-    title: CommonSchemas.nonEmptyString,
+export const BlogpostFrontmatterSchema = z.object({
+  /** Article title */
+  title: CommonSchemas.nonEmptyString,
 
-    /** Article description/summary */
-    description: CommonSchemas.nonEmptyString,
+  /** Article description/summary */
+  description: CommonSchemas.nonEmptyString,
 
-    /** Optional excerpt (note: original has typo "exerpt") */
-    exerpt: CommonSchemas.nonEmptyString.optional(),
+  /** Optional excerpt (note: original has typo "exerpt") */
+  exerpt: CommonSchemas.nonEmptyString.optional(),
 
-    /** Author name */
-    author: CommonSchemas.nonEmptyString,
+  /** Author name */
+  author: CommonSchemas.nonEmptyString,
 
-    /** Featured image URL or path */
-    image: CommonSchemas.nonEmptyString,
+  /** Featured image URL or path */
+  image: CommonSchemas.nonEmptyString,
 
-    /** Publication date */
-    date: CommonSchemas.dateString,
+  /** Publication date */
+  date: CommonSchemas.dateString,
 
-    /** Article tags for categorization */
-    tags: CommonSchemas.stringArray,
+  /** Article tags for categorization */
+  tags: CommonSchemas.stringArray,
 
-    /** Estimated reading time */
-    read: CommonSchemas.nonEmptyString,
+  /** Estimated reading time */
+  read: CommonSchemas.nonEmptyString,
 
-    /** Optional YouTube video ID for video content */
-    youtubeId: CommonSchemas.youtubeId,
-  });
+  /** Optional YouTube video ID for video content */
+  youtubeId: CommonSchemas.youtubeId,
+});
 
 /**
  * Page frontmatter schema
  * Pages are static content like legal pages, about, etc.
  */
-export const PageFrontmatterSchema = z
-  .object({
-    /** Page title */
-    title: CommonSchemas.nonEmptyString,
+export const PageFrontmatterSchema = z.object({
+  /** Page title */
+  title: CommonSchemas.nonEmptyString,
 
-    /** Page description for SEO */
-    description: CommonSchemas.nonEmptyString,
-  });
+  /** Page description for SEO */
+  description: CommonSchemas.nonEmptyString,
+});
 
 /**
  * Inferred TypeScript types from Zod schemas

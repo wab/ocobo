@@ -8,7 +8,7 @@ import { css } from '@ocobo/styled-system/css';
 import { BlogList } from '~/components/blog';
 import { Container } from '~/components/ui/Container';
 import { Loader } from '~/components/ui/Loader';
-import { fetchBlogPosts } from '~/modules/utils.server';
+import { fetchBlogposts } from '~/modules/content';
 import { getMetaTags } from '~/utils/metatags';
 
 export async function loader({ request }: LoaderFunctionArgs) {
@@ -21,25 +21,33 @@ export async function loader({ request }: LoaderFunctionArgs) {
     ? 'no-cache, no-store, must-revalidate'
     : 'public, max-age=7200, s-maxage=7200';
 
-  const posts = fetchBlogPosts(refresh).then(([status, state, data]) => {
-    if (status !== 200 || !data) {
-      throw new Error(`Failed to fetch blog posts: ${state}`);
-    }
+  const posts = fetchBlogposts()
+    .then(([status, state, data]) => {
+      // Handle errors gracefully - return empty array instead of throwing
+      if (status !== 200 || !data) {
+        console.error(`Failed to fetch blog posts: ${state}`);
+        return []; // Return empty array so the page still renders
+      }
 
-    // Pre-filter and sort efficiently
-    const filteredPosts = tag
-      ? data.filter((entry) => entry.frontmatter.tags.includes(tag))
-      : data;
+      // Pre-filter and sort efficiently
+      const filteredPosts = tag
+        ? data.filter((entry) => entry.frontmatter.tags.includes(tag))
+        : data;
 
-    // Cache date objects to avoid repeated parsing
-    return filteredPosts
-      .map((entry) => ({
-        ...entry,
-        _sortDate: new Date(entry.frontmatter.date).getTime(),
-      }))
-      .sort((a, b) => b._sortDate - a._sortDate)
-      .map(({ _sortDate, ...entry }) => entry); // Remove the sort helper
-  });
+      // Cache date objects to avoid repeated parsing
+      return filteredPosts
+        .map((entry) => ({
+          ...entry,
+          _sortDate: new Date(entry.frontmatter.date).getTime(),
+        }))
+        .sort((a, b) => b._sortDate - a._sortDate)
+        .map(({ _sortDate, ...entry }) => entry); // Remove the sort helper
+    })
+    .catch((error) => {
+      // Additional error handling in case of unexpected errors
+      console.error('Unexpected error fetching blog posts:', error);
+      return []; // Return empty array so the page still renders
+    });
 
   return {
     posts,

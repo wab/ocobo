@@ -18,7 +18,7 @@ beforeEach(() => {
 });
 
 // Global test utilities
-global.mockConsole = () => {
+(global as any).mockConsole = () => {
   const originalConsole = { ...console };
 
   beforeEach(() => {

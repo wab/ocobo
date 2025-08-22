@@ -6,7 +6,7 @@ import { css } from '@ocobo/styled-system/css';
 import { BlogArticle } from '~/components/blog';
 import { Container } from '~/components/ui/Container';
 import { ScrollProgressBar } from '~/components/ui/ScrollProgressBar';
-import { fetchBlogPost } from '~/modules/utils.server';
+import { fetchBlogpost } from '~/modules/content';
 import { getLang } from '~/utils/lang';
 import { getMetaTags } from '~/utils/metatags';
 
@@ -24,7 +24,11 @@ export async function loader({ params }: LoaderFunctionArgs) {
     throw new Response('Not Found', { status: 404 });
   }
 
-  const article = await fetchBlogPost(slug);
+  const [status, _state, article] = await fetchBlogpost(slug);
+
+  if (status !== 200 || !article) {
+    throw new Response('Not Found', { status: 404 });
+  }
 
   return {
     article,

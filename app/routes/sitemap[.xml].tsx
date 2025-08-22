@@ -1,4 +1,4 @@
-import { fetchBlogPosts, fetchStories } from '~/modules/utils.server';
+import { fetchBlogposts, fetchStories } from '~/modules/content';
 
 const baseUrl = 'https://www.ocobo.co';
 
@@ -46,18 +46,27 @@ function generateSiteMap(
 }
 
 export async function loader() {
-  const storiesQuery = fetchStories().then((stories) =>
-    stories.map((story) => ({
-      slug: story.slug,
-      date: new Date(story.frontmatter.date),
-    })),
-  );
-  const postsQuery = fetchBlogPosts().then((stories) =>
-    stories.map((story) => ({
-      slug: story.slug,
-      date: new Date(story.frontmatter.date),
-    })),
-  );
+  const storiesQuery = fetchStories().then((result) => {
+    const [, state, data] = result;
+    if (state === 'success' && data) {
+      return data.map((story) => ({
+        slug: story.slug,
+        date: new Date(story.frontmatter.date),
+      }));
+    }
+    return [];
+  });
+  
+  const postsQuery = fetchBlogposts().then((result) => {
+    const [, state, data] = result;
+    if (state === 'success' && data) {
+      return data.map((post) => ({
+        slug: post.slug,
+        date: new Date(post.frontmatter.date),
+      }));
+    }
+    return [];
+  });
 
   const [stories, posts] = await Promise.all([storiesQuery, postsQuery]);
   return new Response(generateSiteMap(stories, posts), {

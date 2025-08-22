@@ -7,7 +7,7 @@ import { LanguageCacheKeys } from './language';
 
 describe('ContentCache', () => {
   let cache: ContentCache;
-  const mockConsoleLog = vi.spyOn(console, 'log').mockImplementation(() => {});
+  const _mockConsoleLog = vi.spyOn(console, 'log').mockImplementation(() => {});
 
   beforeEach(() => {
     cache = new ContentCache({
@@ -285,29 +285,29 @@ describe('CacheKeys', () => {
   describe('Language-Aware Cache Keys', () => {
     it('should generate correct language-aware stories cache keys', () => {
       expect(LanguageCacheKeys.stories()).toBe('stories:fr:all');
-      expect(LanguageCacheKeys.stories('en')).toBe('stories:en:all');
+      expect(LanguageCacheKeys.stories('fr')).toBe('stories:fr:all');
     });
 
     it('should generate correct language-aware story cache keys', () => {
       expect(LanguageCacheKeys.story('my-story')).toBe('story:fr:my-story');
-      expect(LanguageCacheKeys.story('my-story', 'en')).toBe(
-        'story:en:my-story',
+      expect(LanguageCacheKeys.story('my-story', 'fr')).toBe(
+        'story:fr:my-story',
       );
     });
 
     it('should generate correct language-aware blog cache keys', () => {
       expect(LanguageCacheKeys.blogPosts()).toBe('blog:fr:all');
-      expect(LanguageCacheKeys.blogPosts('en')).toBe('blog:en:all');
+      expect(LanguageCacheKeys.blogPosts('fr')).toBe('blog:fr:all');
 
       expect(LanguageCacheKeys.blogPost('my-post')).toBe('blog:fr:my-post');
-      expect(LanguageCacheKeys.blogPost('my-post', 'en')).toBe(
-        'blog:en:my-post',
+      expect(LanguageCacheKeys.blogPost('my-post', 'fr')).toBe(
+        'blog:fr:my-post',
       );
     });
 
     it('should generate correct invalidation patterns', () => {
       expect(LanguageCacheKeys.languagePattern('fr')).toBe('*:fr:*');
-      expect(LanguageCacheKeys.storiesPattern('en')).toBe('story*:en:*');
+      expect(LanguageCacheKeys.storiesPattern('fr')).toBe('story*:fr:*');
       expect(LanguageCacheKeys.storiesPattern()).toBe('story*');
       expect(LanguageCacheKeys.blogPattern('fr')).toBe('blog*:fr:*');
       expect(LanguageCacheKeys.blogPattern()).toBe('blog*');

@@ -4,7 +4,7 @@ import { useLoaderData } from 'react-router';
 import { css } from '@ocobo/styled-system/css';
 
 import { PageMarkdownContainer } from '~/components/PageMarkdownContainer';
-import { fetchPage } from '~/modules/utils.server';
+import { fetchPage } from '~/modules/content';
 import { getLang } from '~/utils/lang';
 import { getMetaTags } from '~/utils/metatags';
 
@@ -22,7 +22,11 @@ export async function loader({ params }: LoaderFunctionArgs) {
     throw redirect('/legal/confidentialite', 301);
   }
 
-  const page = await fetchPage('legal', slug);
+  const [status, _state, page] = await fetchPage('legal', slug);
+
+  if (status !== 200 || !page) {
+    throw new Response('Not Found', { status: 404 });
+  }
 
   return {
     page,

@@ -11,6 +11,8 @@
     "check:error": "biome check --diagnostic-level=error",
     "check:fix": "biome check --write",
     "dev": "react-router dev",
+    "dev:local": "CONTENT_SOURCE=locale react-router dev",
+    "dev:github": "CONTENT_SOURCE=github react-router dev",
     "prepare": "panda codegen",
     "start": "react-router-serve ./build/server/index.js",
     "test": "vitest",

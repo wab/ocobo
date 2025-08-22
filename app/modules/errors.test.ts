@@ -17,8 +17,8 @@ import {
 
 describe('ContentError (Base Class)', () => {
   class TestContentError extends ContentError {
-    constructor(message: string, status = 500) {
-      super(message, 'TEST_ERROR', status);
+    constructor(message: string, status = 500, context?: Record<string, unknown>) {
+      super(message, 'TEST_ERROR', status, context);
     }
   }
 
@@ -33,16 +33,14 @@ describe('ContentError (Base Class)', () => {
 
   it('should support context object', () => {
     const context = { userId: 123, path: '/test' };
-    const error = new TestContentError('Test message');
-    error.context = context;
+    const error = new TestContentError('Test message', 400, context);
 
     expect(error.context).toEqual(context);
   });
 
   it('should be serializable to JSON', () => {
     const context = { userId: 123 };
-    const error = new TestContentError('Test message', 404);
-    error.context = context;
+    const error = new TestContentError('Test message', 404, context);
 
     const json = error.toJSON();
 

@@ -100,22 +100,30 @@ describe('Zod Schemas Validation', () => {
     });
 
     it('should log warnings for unknown fields when using validateWithSchema', () => {
-      const consoleWarnSpy = vi.spyOn(console, 'warn').mockImplementation(() => {});
-      const dataWithExtraFields = { 
-        ...validStoryData, 
+      const consoleWarnSpy = vi
+        .spyOn(console, 'warn')
+        .mockImplementation(() => {});
+      const dataWithExtraFields = {
+        ...validStoryData,
         extraField: 'allowed',
-        Outils: 'Salesforce, Qobra'
+        Outils: 'Salesforce, Qobra',
       };
 
-      const result = validateWithSchema(StoryFrontmatterSchema, dataWithExtraFields, 'TestStory');
+      const result = validateWithSchema(
+        StoryFrontmatterSchema,
+        dataWithExtraFields,
+        'TestStory',
+      );
       expect(result.success).toBe(true);
-      
+
       // Should have logged a warning about unknown fields
       expect(consoleWarnSpy).toHaveBeenCalledWith(
-        expect.stringContaining('[TestStory] Unknown fields detected (consider cleanup):')
+        expect.stringContaining(
+          '[TestStory] Unknown fields detected (consider cleanup):',
+        ),
       );
       expect(consoleWarnSpy).toHaveBeenCalledWith(
-        expect.stringContaining('extraField, Outils')
+        expect.stringContaining('extraField, Outils'),
       );
 
       consoleWarnSpy.mockRestore();

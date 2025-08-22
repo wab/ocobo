@@ -23,7 +23,8 @@ export function getPublicEnvVars(): PublicEnvVars {
 }
 
 // In development, fetch content from local filesystem by default
-const DEV_FETCH_FROM = 'locale';
+// Can be overridden with CONTENT_SOURCE environment variable
+const DEV_FETCH_FROM = process.env.CONTENT_SOURCE || 'locale';
 
 /**
  * Get all environment variables including sensitive server-only values
@@ -60,8 +61,8 @@ export function getPrivateEnvVars(): PrivateEnvVars {
     const githubRepoAPIUrl = `https://api.github.com/repos/${githubAccount}/${githubRepo}/contents`;
     const localeRepoAPIUrl = untildify(`~/projects/${githubRepo}`);
 
-    const readContentFrom =
-      process.env.NODE_ENV === 'production' ? 'github' : DEV_FETCH_FROM;
+    const readContentFrom: 'locale' | 'github' =
+      process.env.NODE_ENV === 'production' ? 'github' : (DEV_FETCH_FROM as 'locale' | 'github');
 
     return {
       ...getPublicEnvVars(),
