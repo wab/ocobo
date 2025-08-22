@@ -1,4 +1,4 @@
-import { type LoaderFunctionArgs, MetaFunction } from 'react-router';
+import { type LoaderFunctionArgs, MetaFunction, data } from 'react-router';
 import { useLoaderData } from 'react-router';
 
 import { css } from '@ocobo/styled-system/css';
@@ -6,27 +6,37 @@ import { css } from '@ocobo/styled-system/css';
 import { StoryArticle } from '~/components/stories';
 import { Container } from '~/components/ui/Container';
 import { ScrollProgressBar } from '~/components/ui/ScrollProgressBar';
-import { fetchStory } from '~/modules/utils.server';
+import { createHybridLoader } from '~/modules/cache';
+import { fetchStory } from '~/modules/content';
 import { getLang } from '~/utils/lang';
 import { getMetaTags } from '~/utils/metatags';
 
-export async function loader({ params }: LoaderFunctionArgs) {
-  const { slug } = params;
+export const loader = createHybridLoader(
+  async ({ params }: LoaderFunctionArgs) => {
+    const { slug } = params;
 
-  if (!slug) {
-    // we know we can't render the component
-    // so throw immediately to stop executing code
-    // and show the not found page
-    throw new Response('Not Found', { status: 404 });
-  }
+    if (!slug) {
+      throw new Response('Not Found', { status: 404 });
+    }
 
-  const article = await fetchStory(slug);
+    const [status, _state, article] = await fetchStory(slug);
 
-  return {
-    article,
-    headers: { 'cache-control': 'public, max-age=7200' },
-  };
-}
+    if (status !== 200 || !article) {
+      throw new Response('Not Found', { status: 404 });
+    }
+
+    return data(
+      { article },
+      {
+        headers: {
+          'Cache-Control': 's-maxage=3600, stale-while-revalidate=86400',
+          Vary: 'Accept-Language',
+        },
+      },
+    );
+  },
+  'story', // Use story cache strategy
+);
 
 export const meta: MetaFunction<typeof loader> = ({ data, params }) => {
   return getMetaTags({

@@ -1,11 +1,23 @@
+/**
+ * GitHub API file metadata fetching utilities
+ *
+ * This module provides functions to fetch file metadata (without content)
+ * from a GitHub repository directory via the GitHub API.
+ */
 import type { ActionResult } from '~/types';
 
+/**
+ * Possible states when fetching file metadata from GitHub
+ */
 export enum FetchFileItemsResState {
   directoryNotFound = 'directory_not_found',
   internalError = 'internal_error',
   success = 'success',
 }
 
+/**
+ * GitHub API file object structure
+ */
 type GitHubFileObject = {
   name: string;
   path: string;
@@ -18,23 +30,33 @@ type GitHubFileObject = {
   type: string;
 };
 
+/**
+ * Simplified file metadata for internal use
+ */
 type FileItem = {
   slug: string;
   path: string;
 };
 
+/**
+ * GitHub API response structure for directory contents
+ */
 type GithubContentResponse = GitHubFileObject & {
   entries: GitHubFileObject[];
 };
 
 /**
- * fetches meta data about files without content from a given directory
+ * Fetches metadata about files (without content) from a GitHub directory
+ *
+ * @param accessToken - GitHub personal access token
+ * @param directoryUrl - Full GitHub API URL for the directory
+ * @returns Array of file metadata objects with slug and path
  */
 export async function fetchFileItems(
   accessToken: string,
   directoryUrl: string,
 ): Promise<ActionResult<FetchFileItemsResState, FileItem[]>> {
-  // console.debug('fetchFileItems called');
+  // Setup GitHub API request headers
 
   const headers = new Headers();
   headers.set('Accept', 'application/vnd.github.v3.object');

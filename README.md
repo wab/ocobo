@@ -1,119 +1,101 @@
 # Ocobo - React Router v7 Application
 
-A modern React Router v7 application with internationalization (i18n) support, built with Panda CSS and deployed on Vercel.
+A modern React Router v7 application with internationalization support, built with Panda CSS and deployed on Vercel.
 
-📖 See the [React Router docs](https://reactrouter.com/en/main) for details on supported features.
-
-## Tech Stack
-
-- **React Router v7** - Full-stack React framework with file-based routing
-- **Panda CSS** - CSS-in-JS solution with atomic CSS generation
-- **React i18next** - Internationalization with French/English support
-- **TypeScript** - Type-safe development
-- **Biome** - Code formatting and linting
-- **Vercel** - Deployment platform
-
-## Development
-
-Install dependencies:
+## Quick Start
 
 ```bash
+# Install dependencies
 pnpm install
-```
 
-Run the development server:
-
-```bash
+# Start development server
 pnpm dev
-```
 
-Generate CSS styles (run after modifying design tokens):
-
-```bash
+# Generate CSS styles (after design token changes)
 pnpm prepare
 ```
 
-## Code Quality
+## Tech Stack
 
-Check code formatting and linting:
+- **React Router v7** - Full-stack React framework
+- **Panda CSS** - Type-safe CSS-in-JS with atomic CSS
+- **React i18next** - French/English internationalization
+- **TypeScript** - Type-safe development
+- **Biome** - Code formatting and linting
+- **Vercel** - Edge deployment with caching
 
-```bash
-pnpm check
-```
-
-Auto-fix formatting and linting issues:
-
-```bash
-pnpm check:fix
-```
-
-Run type checking:
+## Development Commands
 
 ```bash
-pnpm typecheck
+pnpm dev          # Start development server
+pnpm build        # Build for production
+pnpm start        # Start production server
+pnpm check        # Check code quality
+pnpm check:fix    # Auto-fix formatting/linting
+pnpm typecheck    # Type checking
+pnpm prepare      # Generate CSS styles
 ```
-
-## Deployment
-
-Build the application for production:
-
-```bash
-pnpm build
-```
-
-Start the production server locally:
-
-```bash
-pnpm start
-```
-
-### Vercel Deployment
-
-This application is configured for deployment on Vercel with React Router v7 support. The build process includes:
-
-- Client and server build generation
-- Vercel-specific configuration in `vercel.json`
-- Automatic deployment preparation via `vercel/prepare.js`
-
-Deploy to Vercel:
-
-```bash
-vercel deploy
-```
-
-### Build Output
-
-The build process generates:
-
-- `build/client` - Static client assets
-- `build/server` - Server-side bundle
-- Vercel configuration for serverless deployment
 
 ## Project Structure
 
 ```
 app/
-├── routes/          # React Router file-based routing
-├── components/      # Reusable React components
-├── localization/    # i18n configuration
-├── modules/         # Business logic and utilities
-└── utils/           # Shared utilities
+├── routes/          # File-based routing
+├── components/      # React components
+├── modules/         # Business logic
+│   ├── content/     # Content fetching
+│   └── cache.ts     # Simple cache strategy
+└── localization/    # i18n configuration
 
-preset/              # Custom Panda CSS design system
+preset/              # Panda CSS design system
 ├── recipes/         # Component variants
-├── patterns/        # Layout patterns
 ├── tokens/          # Design tokens
-└── slot-recipes/    # Multi-part component recipes
+└── patterns/        # Layout patterns
 ```
 
-## Internationalization
+## Features
 
-- Supports French (default) and English
-- Route structure: `/` (French) and `/en/` (English)
-- Translation files in `locales/fr/` and `locales/en/`
+### Internationalization
+- French (default): `/`
+- English: `/en/`
+- Translation files in `locales/`
 
-## Content Management
+### Content Management
+- Markdown content fetched from GitHub API
+- Local filesystem for development
+- Markdoc parsing and rendering
 
-- Blog posts and client stories stored as Markdown in GitHub
-- Server-side content fetching using GitHub API
-- Markdoc for parsing and rendering Markdown content
+### Caching Strategy
+- Local development: No caching
+- Production: Vercel Edge Cache
+- Testing: `?refresh=1` parameter
+
+See [CACHE_STRATEGY.md](./CACHE_STRATEGY.md) for details.
+
+## Deployment
+
+The application is configured for Vercel deployment with:
+- Automatic builds on push
+- Edge caching for GitHub content
+- Serverless function optimization
+
+```bash
+vercel deploy
+```
+
+## Development Tips
+
+### Content Sources
+```bash
+# Use local files (development)
+CONTENT_SOURCE=locale pnpm dev
+
+# Use GitHub API (production-like)
+CONTENT_SOURCE=github pnpm dev
+```
+
+### Testing Cache
+```bash
+# Bypass cache during testing
+http://localhost:3000/blog?refresh=1
+```

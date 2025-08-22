@@ -10,7 +10,14 @@
     "useIgnoreFile": false
   },
   "files": {
-    "ignore": ["@ocobo", "build", "node_modules", "public", ".react-router"],
+    "ignore": [
+      "@ocobo",
+      "build",
+      "node_modules",
+      "public",
+      ".react-router",
+      "coverage"
+    ],
     "ignoreUnknown": false
   },
   "formatter": {
@@ -55,6 +62,7 @@
         "noUnsafeOptionalChaining": "error",
         "noUnusedLabels": "error",
         "noUnusedVariables": "error",
+        "noUnusedImports": "error",
         "useIsNan": "error",
         "useValidForDirection": "error",
         "useYield": "error"
@@ -70,7 +78,7 @@
         "noDuplicateClassMembers": "error",
         "noDuplicateObjectKeys": "error",
         "noDuplicateParameters": "error",
-        "noEmptyBlockStatements": "error",
+        "noEmptyBlockStatements": "warn",
         "noFallthroughSwitchClause": "error",
         "noFunctionAssign": "error",
         "noGlobalAssign": "error",

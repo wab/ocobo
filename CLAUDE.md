@@ -12,6 +12,12 @@ This file provides guidance to Claude Code (claude.ai/code) when working with co
 - **Type checking**: `pnpm typecheck` or `npm run typecheck` (includes type generation)
 - **Generate styled system**: `pnpm prepare` or `npm run prepare`
 
+### Content Source Testing
+
+- **Local filesystem** (default): `pnpm dev:local` - Uses content from `~/projects/ocobo-posts/`
+- **GitHub API**: `pnpm dev:github` - Fetches content from GitHub repository
+- **Custom source**: Set `CONTENT_SOURCE=github` or `CONTENT_SOURCE=locale` in `.env.local`
+
 ## Architecture Overview
 
 This is a **React Router v7** application (formerly Remix) with **internationalization** (i18n) support, using **Panda CSS** for styling and **Vercel** for deployment.

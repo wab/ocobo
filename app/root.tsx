@@ -1,3 +1,4 @@
+import { Analytics } from '@vercel/analytics/react';
 import { SpeedInsights } from '@vercel/speed-insights/react';
 import { useTranslation } from 'react-i18next';
 import { type LinksFunction, type LoaderFunctionArgs } from 'react-router';
@@ -122,6 +123,7 @@ export function Layout({ children }: { children: React.ReactNode }) {
         <ScrollRestoration />
         <ExternalScripts />
         <Scripts />
+        <Analytics />
         <SpeedInsights />
       </body>
     </html>

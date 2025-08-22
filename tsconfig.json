@@ -1,6 +1,5 @@
 {
   "include": [
-    ".react-router/types/**/*",
     "**/*.ts",
     "**/*.tsx",
     "**/.server/**/*.ts",
@@ -8,6 +7,7 @@
     "**/.client/**/*.ts",
     "**/.client/**/*.tsx"
   ],
+  "exclude": [".react-router/types/**/*"],
   "compilerOptions": {
     "lib": ["DOM", "DOM.Iterable", "ES2022"],
     "types": ["@react-router/node", "vite/client"],

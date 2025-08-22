@@ -88,12 +88,35 @@ const Root = <T extends { id: string }>({
 }: CarouselProps<T>) => {
   const [[page, direction], setPage] = React.useState([0, 0]);
 
+  // Handle empty state
+  if (items.length === 0) {
+    return (
+      <div
+        className={cx(
+          css({
+            position: 'relative',
+            display: 'flex',
+            alignItems: 'center',
+            justifyContent: 'center',
+            minHeight: '200px',
+            color: 'gray.medium',
+          }),
+          className,
+        )}
+        {...props}
+      >
+        <p className={css({ textAlign: 'center' })}>Aucun contenu disponible</p>
+      </div>
+    );
+  }
+
   const onClickPrev = () => {
     setPage(([page]) => [page === 0 ? items.length - 1 : page - 1, -1]);
   };
   const onClickNext = () => {
     setPage(([page]) => [page === items.length - 1 ? 0 : page + 1, 1]);
   };
+
   return (
     <div
       className={cx(
@@ -118,27 +141,31 @@ const Root = <T extends { id: string }>({
           );
         })}
       </AnimatePresence>
-      <div
-        className={css({
-          width: 'full',
-          display: 'flex',
-          justifyContent: 'space-between',
-          position: 'absolute',
-          top: '50%',
-          left: 0,
-          translateY: '-50%',
-          zIndex: 2,
-          px: '4',
-        })}
-      >
-        <NavButton onClick={onClickPrev}>
-          <ChevronLeftIcon className={icon({ size: 'lg' })} />
-        </NavButton>
 
-        <NavButton onClick={onClickNext}>
-          <ChevronRightIcon className={icon({ size: 'lg' })} />
-        </NavButton>
-      </div>
+      {/* Only show navigation if we have items */}
+      {items.length > 1 && (
+        <div
+          className={css({
+            width: 'full',
+            display: 'flex',
+            justifyContent: 'space-between',
+            position: 'absolute',
+            top: '50%',
+            left: 0,
+            translateY: '-50%',
+            zIndex: 2,
+            px: '4',
+          })}
+        >
+          <NavButton onClick={onClickPrev}>
+            <ChevronLeftIcon className={icon({ size: 'lg' })} />
+          </NavButton>
+
+          <NavButton onClick={onClickNext}>
+            <ChevronRightIcon className={icon({ size: 'lg' })} />
+          </NavButton>
+        </div>
+      )}
     </div>
   );
 };

@@ -9,52 +9,52 @@ import { ClientCarousel } from '~/components/ClientCarousel';
 import { Hero, StoryList } from '~/components/stories';
 import { Container } from '~/components/ui/Container';
 import { Loader } from '~/components/ui/Loader';
-import { fetchStories } from '~/modules/utils.server';
+import { createHybridLoader } from '~/modules/cache';
+import { fetchStories } from '~/modules/content';
 import type { MarkdocFile, StoryFrontmatter } from '~/types';
 import { getMetaTags } from '~/utils/metatags';
 import { getImageOgFullPath } from '~/utils/url';
 
-export async function loader({ request }: LoaderFunctionArgs) {
-  const url = new URL(request.url);
-  const searchParams = new URLSearchParams(url.search);
-  const tag = searchParams.get('tag');
-  const refresh = searchParams.has('refresh');
+export const loader = createHybridLoader(
+  async ({ request }: LoaderFunctionArgs) => {
+    const url = new URL(request.url);
+    const tag = url.searchParams.get('tag');
 
-  const cacheControl = refresh
-    ? 'no-cache, no-store, must-revalidate'
-    : 'public, max-age=7200, s-maxage=7200';
+    const [status, state, storiesData] = await fetchStories();
 
-  const stories = fetchStories(refresh).then(([status, state, data]) => {
-    if (status !== 200 || !data) {
-      throw new Error(`Failed to fetch stories: ${state}`);
+    // Handle errors gracefully
+    if (status !== 200 || !storiesData) {
+      console.error(`Failed to fetch stories: ${state}`);
+      return {
+        stories: [],
+        isError: true,
+        ogImageSrc: getImageOgFullPath('clients', request.url),
+      };
     }
 
-    const entries = data as MarkdocFile<StoryFrontmatter>[];
+    const entries = storiesData as MarkdocFile<StoryFrontmatter>[];
 
-    // Pre-filter and sort efficiently
+    // Filter and sort stories
     const filteredEntries = tag
       ? entries.filter((entry) => entry.frontmatter.tags.includes(tag))
       : entries;
 
-    // Cache date objects to avoid repeated parsing
-    return filteredEntries
+    const stories = filteredEntries
       .map((entry) => ({
         ...entry,
         _sortDate: new Date(entry.frontmatter.date).getTime(),
       }))
       .sort((a, b) => b._sortDate - a._sortDate)
-      .map(({ _sortDate, ...entry }) => entry); // Remove the sort helper
-  });
+      .map(({ _sortDate, ...entry }) => entry);
 
-  return {
-    stories,
-    ogImageSrc: getImageOgFullPath('clients', request.url),
-    headers: {
-      'Cache-Control': cacheControl,
-      Vary: 'Accept-Encoding, Accept, X-Requested-With',
-    },
-  };
-}
+    return {
+      stories,
+      isError: false,
+      ogImageSrc: getImageOgFullPath('clients', request.url),
+    };
+  },
+  'story', // Use story cache strategy
+);
 
 export const meta: MetaFunction<typeof loader> = ({ data }) => {
   if (!data) {

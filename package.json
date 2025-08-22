@@ -11,8 +11,14 @@
     "check:error": "biome check --diagnostic-level=error",
     "check:fix": "biome check --write",
     "dev": "react-router dev",
+    "dev:local": "CONTENT_SOURCE=locale react-router dev",
+    "dev:github": "CONTENT_SOURCE=github react-router dev",
     "prepare": "panda codegen",
     "start": "react-router-serve ./build/server/index.js",
+    "test": "vitest",
+    "test:run": "vitest run",
+    "test:coverage": "vitest run --coverage",
+    "test:watch": "vitest --watch",
     "typecheck": "react-router typegen && tsc"
   },
   "type": "module",
@@ -30,6 +36,7 @@
     "@react-router/node": "^7.8.1",
     "@react-router/serve": "^7.8.1",
     "@shadow-panda/style-context": "^0.7.1",
+    "@vercel/analytics": "^1.5.0",
     "@vercel/blob": "^1.1.1",
     "@vercel/speed-insights": "^1.2.0",
     "framer-motion": "^12.23.12",
@@ -49,7 +56,8 @@
     "remix-i18next": "^7.2.1",
     "remix-utils": "^8.8.0",
     "tiny-invariant": "^1.3.3",
-    "yaml-js": "^0.3.1"
+    "yaml-js": "^0.3.1",
+    "zod": "^4.0.17"
   },
   "devDependencies": {
     "@biomejs/biome": "1.9.4",
@@ -60,11 +68,14 @@
     "@react-router/dev": "^7.8.1",
     "@shadow-panda/preset": "^0.7.1",
     "@types/js-yaml": "^4.0.9",
+    "@types/node": "^24.3.0",
     "@types/react": "^18.3.18",
     "@types/react-dom": "^18.3.5",
+    "@vitest/coverage-v8": "^3.2.4",
     "typescript": "^5.9.2",
     "untildify": "^5.0.0",
     "vite": "^5.4.13",
-    "vite-tsconfig-paths": "^4.3.2"
+    "vite-tsconfig-paths": "^4.3.2",
+    "vitest": "^3.2.4"
   }
 }

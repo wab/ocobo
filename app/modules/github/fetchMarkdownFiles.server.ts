@@ -1,3 +1,9 @@
+/**
+ * GitHub API multiple markdown files fetching utilities
+ *
+ * This module provides functions to fetch and parse multiple markdown files
+ * from a GitHub repository directory with batch processing for performance.
+ */
 import type { ActionResult, MarkdocFile, TvalidateFrontMatter } from '~/types';
 
 import {
@@ -9,12 +15,26 @@ import {
   fetchMarkdownFile,
 } from './fetchMarkdownFile.server';
 
+/**
+ * Possible states when fetching multiple markdown files from GitHub
+ */
 export enum FetchMarkdownFilesResState {
   directoryNotFound = 'directory_not_found',
   internalError = 'internal_error',
   success = 'success',
 }
 
+/**
+ * Fetches and parses all markdown files from a GitHub repository directory
+ *
+ * Uses batch processing to avoid overwhelming the GitHub API with too many
+ * concurrent requests. Processes files in batches of 10.
+ *
+ * @param accessToken - GitHub personal access token
+ * @param directoryUrl - Full GitHub API URL for the directory
+ * @param hasValidFrontMatter - Function to validate frontmatter structure
+ * @returns Array of parsed markdown files with frontmatter and content
+ */
 export async function fetchMarkdownFiles<FrontMatter>(
   accessToken: string,
   directoryUrl: string,
@@ -22,6 +42,9 @@ export async function fetchMarkdownFiles<FrontMatter>(
 ): Promise<
   ActionResult<FetchMarkdownFilesResState, MarkdocFile<FrontMatter>[]>
 > {
+  console.log(
+    `🔥 GitHub API CALL: fetchMarkdownFiles for directory: ${directoryUrl}`,
+  );
   const [status, state, items] = await fetchFileItems(
     accessToken,
     directoryUrl,
@@ -36,7 +59,7 @@ export async function fetchMarkdownFiles<FrontMatter>(
     ];
   }
 
-  // Process files in batches of 10 to avoid overwhelming the API
+  // Process files in batches to respect GitHub API rate limits
   const batchSize = 10;
   const mdFiles: MarkdocFile<FrontMatter>[] = [];
 

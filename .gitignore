@@ -3,6 +3,7 @@ node_modules
 /.cache
 /build
 .env
+.env.local
 /.vercel
 
 .DS_store
@@ -15,3 +16,6 @@ styled-system-studio
 ## React Router
 .react-router/
 .vercel
+
+## Test coverage
+/coverage
