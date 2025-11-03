@@ -1,44 +1,70 @@
 {
   "meta.title": "RevOps & Stratégies Revenue",
   "meta.description": "Ocobo vous permet de faire plus avec moins. Organisez vos équipes, déployez des processus de pointe et boostez vos performances",
-  "hero.title": "RevOps pour\n Entreprises Modernes",
-  "hero.subtitle": "Agence leader en revenue operations et stratégies revenus b2b & b2c",
-  "hero.description": "Nous vous aidons à transformer l’organisation et les processus de vos équipes Revenue pour les rendre plus performantes et vous permettre d’atteindre vos objectifs de croissance et de rentabilité.",
-  "faster.title": "Plus vite à vos fins",
+  "hero.title": "Orchestrer le revenu.\nPas le chaos.",
+  "hero.subtitle": "Transformez votre approche Go-to-market en une expérience adoptée par vos équipes. Plus fluide. Plus prévisible. Plus performante.",
+  "hero.description": [
+    "Oubliez le CRM. Voici la première Revenue Experience Agency.",
+    "<0>Plus de 50 scale-ups nous ont fait confiance pour transformer leur système Revenue en levier de croissance prévisible :</0>",
+    [
+      "Une squad RevOps senior passée par les plus belles scale-ups B2B, intégrée à vos équipes.",
+      "Une méthode vivante et éprouvée qui structure l'exécution.",
+      "Une plateforme IA avec les meilleures solutions du marché intégrées qui aligne données, humains et décisions"
+    ],
+    "🙂 <0>Résultats :</0> une croissance fluide, prévisible et durable."
+  ],
+  "hero.cta": "Nos résultats",
+  "faster.title": "Pensez. Concevez. Opérez. Accélérez.",
   "faster.subtitle": "Profitez de la double compétence métier et technique de ceux qui l’ont déjà fait.",
-  "faster.description": "Atteignez vos objectifs et accélérez les initiatives de vos équipes Revenue - Marketing, Sales, Clients - grâce aux meilleures stratégies RevOps, et à l’aide d’experts intégrés à votre équipe. Nous évaluons votre organisation, identifions les bons leviers de croissance et travaillons dans le détail avec vous pour y parvenir.",
+  "faster.description": [
+    "Chaque transformation Revenue commence par une idée, mais ne crée de la valeur qu’à l’exécution.",
+    "Notre approche relie la stratégie à l’opérationnel, la réflexion à l’action.",
+    "Nous pensons les bons leviers — parce que nous les avons vécus —, concevons des solutions concrètes, opérons à vos côtés et accélérons ce qui fonctionne."
+  ],
   "faster.items": [
-    "Faites plus avec moins de ressources",
-    "Gagnez en performance avec des stratégies et des process de pointe",
-    "Planifiez, lancez et scalez des projets RevOps"
+    "Adoption et productivité des équipes en hausse",
+    "Données fiables, décisions plus rapides",
+    "Implémentations incrémentales et sans friction"
   ],
-  "better.title": "Avec la meilleure\n agence du marché",
-  "better.cards.0.title": "Ocobo",
+  "better.title": "La première Revenue Experience Agency du marché",
+  "better.cards.0.title": "Ce qui nous rend différents",
   "better.cards.0.items": [
-    "Allie connaissance métier et expertise technique",
-    "Structure et présente de la donnée utile",
-    "Déploie les dernières stratégies et les meilleurs pratiques",
-    "Brise les silos et connecte vos équipes"
+    "Une approche systémique qui aligne vision, équipes, données et les meilleurs outils du marché",
+    "Des résultats mesurables : adoption, vélocité commerciale, NRR, marges",
+    "Des équipes terrain qui ont opéré et transformé de l’intérieur des organisations B2B exigeantes",
+    "Partenariats technologiques de référence et intégrations natives pour des solutions clés en main"
   ],
-  "better.cards.1.title": "Les intégrateurs\n et les cabinets de conseil",
+  "better.cards.1.title": "Comment nous aidons",
   "better.cards.1.items": [
-    "Spécialistes d’un outil ou d’une thématique",
-    "Vous noient sous les tableaux",
-    "Utilisent des frameworks datés",
-    "Favorisent les silos (Sales Ops, Marketing Ops, CS Ops…)"
+    "Diagnostic et design de votre <0>Go-To-Market</0>",
+    "<0>Implémentation</0> et <0>intégration</0> CRM et stack RevOps complète",
+    "Run et amélioration continue avec une <0>squad RevOps intégrées</0>",
+    "<0>Mesure</0> et <0>pilotage</0> de la performance Revenue (cockpits, forecast, NRR et marge)"
   ],
-  "aligned.title": "Alignés sur vos objectifs",
-  "aligned.subtitle": "Un nouvel outil ne paiera pas vos factures.",
-  "aligned.description": "Nous nous concentrons sur les principaux facteurs de croissance et d'évolution d'une entreprise, tels que le revenu, le pipeline, et les métriques composant le NRR et la Sales Velocity.",
+  "aligned.title": "Ils ont vécu la Revenue Experience",
+  "aligned.subtitle": "Nos accompagnements transforment l’expérience Revenue sur le terrain.",
+  "aligned.description": "Découvrez comment des équipes B2B ont gagné en adoption, raccourci leurs cycles et amélioré NRR et marges grâce à notre trio Méthode × Plateforme IA × Squad RevOps.",
   "aligned.cta": "Découvrez nos cas clients",
   "stronger.title": "Remarquable seul.\n Incroyables ensemble.",
-  "stronger.description": "Nous analysons vos objectifs et initiatives clés, identifions vos principaux leviers de croissance, et élaborons un plan personnalisé pour vous aider à les atteindre.",
-  "stronger.cards.0.title": "Stratégies Revenue Operations",
-  "stronger.cards.0.description": "Nos experts en stratégies Revenue vous fournissent <0>un plan d’actions RevOps</0>, comprennent vos équipes et vos processus, optimisent la data, et brisent les silos.",
-  "stronger.cards.0.caption": "Analyses du funnel et mapping du customer journey. Organisation d’équipes. Forecasting & budgets. Segmentation. Territory Planning.",
-  "stronger.cards.1.title": "Projets Revenue Operations",
-  "stronger.cards.1.description": "L'appui d'experts en exécution <0>accélère le déploiement de vos initiatives</0> et vous permet de profiter de l’expertise de ceux qui l’ont déjà fait.",
-  "stronger.cards.1.caption": "Process de ventes. Support clients. Reports & Dashboards. Plan de rémunérations. Setup d’acquisition Inbound & Outbound.",
+  "stronger.description": "Contrairement aux approches figées ou aux outils vendus sans accompagnement, <0>nous combinons 3 leviers puissants (équipe, méthode, technologie)</0> pour garantir que la stratégie Revenue devienne une réalité concrète et mesurable.",
+  "stronger.cards.0.title": "RevOps Studio",
+  "stronger.cards.0.description": "Votre <0>squad RevOps sur-mesure</0>, déployée à la demande.",
+  "stronger.cards.0.items": [
+    "Des experts pluridisciplinaires qui connaissent la réalité terrain pour avoir opéré de l’intérieur dans les plus belles scale-ups.",
+    "Un modèle agile : immersion, design sprint, sprints d’implémentation — pour résoudre vite, transmettre et accélérer."
+  ],
+  "stronger.cards.1.title": "Revenue Experience System <0>TM</0>",
+  "stronger.cards.1.description": "Notre méthode propriétaire : une architecture claire, déclinée en blocs essentiels — <0>Alignement, Technologie, Performance et Enablement</0>.",
+  "stronger.cards.1.items": [
+    "Une boîte à outils et des playbooks vivants, conçus pour être adaptés et optimisés en continu avec les équipes.",
+    "Un socle commun qui structure votre Go-to-Market et votre pilotage Revenue, durablement."
+  ],
+  "stronger.cards.2.title": "Revenue AI Platform",
+  "stronger.cards.2.description": "Un écosystème technologique éprouvé, <0>co-construit avec les meilleurs partenaires technologiques</0>.",
+  "stronger.cards.2.items": [
+    "La stack idéale, rationalisée, intégrée et évolutive, adaptée à votre stade de croissance.",
+    "Des automatisations intelligentes et des agents IA pour maximiser l’impact humain et réduire le bruit opérationnel."
+  ],
   "tools.title": "Experts de vos technologies",
   "tools.description": "Nous collaborons directement au sein de vos systèmes et outils avec votre équipe, en élaborant une architecture robuste, qui évoluera avec le développement l’entreprise.",
   "contact.title": "Rencontrez un Expert RevOps",

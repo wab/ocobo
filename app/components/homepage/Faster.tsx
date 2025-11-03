@@ -23,10 +23,11 @@ const Faster = () => {
   const { t } = useTranslation('home');
 
   const items = t('faster.items', { returnObjects: true });
+  const descriptionItems = t('faster.description', { returnObjects: true });
   return (
     <section className={cx(section(), css({ overflow: 'hidden' }))}>
       <Container>
-        <Grid columns={{ base: 1, lg: 12 }}>
+        <Grid columns={{ base: 1, lg: 12 }} alignItems="center">
           <GridItem
             colSpan={{ base: 1, lg: 5 }}
             className={css({ textAlign: { base: 'center', lg: 'left' } })}
@@ -53,13 +54,18 @@ const Faster = () => {
             <p
               className={css({
                 textStyle: { base: 'medium', lg: 'heading3' },
+                mb: '6',
               })}
             >
               {t('faster.subtitle')}
             </p>
-            <p className={css({ hideBelow: 'lg' })}>
-              {t('faster.description')}
-            </p>
+            <div className={css({ hideBelow: 'lg' })}>
+              {Array.isArray(descriptionItems) &&
+                descriptionItems.length > 0 &&
+                descriptionItems.map((item, i) => (
+                  <p key={`item-${i}`}>{item}</p>
+                ))}
+            </div>
           </GridItem>
           <GridItem />
           <GridItem colSpan={{ base: 1, lg: 3 }}>

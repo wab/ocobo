@@ -1,4 +1,4 @@
-import { useTranslation } from 'react-i18next';
+import { Trans, useTranslation } from 'react-i18next';
 import { NavLink } from 'react-router';
 
 import { css } from '@ocobo/styled-system/css';
@@ -15,6 +15,8 @@ const Hero = () => {
   const { t } = useTranslation('home');
   const getLocalizedPath = useLocalizedPathname();
 
+  const descriptionItems = t('hero.description.2', { returnObjects: true });
+
   return (
     <header className={section()}>
       <Container>
@@ -30,24 +32,52 @@ const Hero = () => {
             </h1>
             <div
               className={css({
-                maxW: { base: 'none', lg: '8/12' },
+                maxW: { base: 'none', lg: '10/12' },
                 mt: '4',
+                display: 'grid',
+                gap: '6',
               })}
             >
-              <p className={css({ textStyle: 'heading3' })}>
-                {t('hero.subtitle')}
-              </p>
-              <p className={css({ hideBelow: 'lg' })}>
-                {t('hero.description')}
-              </p>
-              <p>
+              <div>
+                <Trans
+                  i18nKey={'hero.description.0'}
+                  ns="home"
+                  components={[<strong key="strong" />]}
+                />
+              </div>
+              <div>
+                <Trans
+                  i18nKey={'hero.description.1'}
+                  ns="home"
+                  components={[<strong key="strong" />]}
+                />
+              </div>
+              <ul className={css({ listStyle: 'disc', pl: '4' })}>
+                {Array.isArray(descriptionItems) &&
+                  descriptionItems.length > 0 &&
+                  descriptionItems.map((item, i) => (
+                    <li key={`item-${i}`}>{item}</li>
+                  ))}
+              </ul>
+              <div>
+                <Trans
+                  i18nKey={'hero.description.3'}
+                  ns="home"
+                  components={[<strong key="strong" />]}
+                />
+              </div>
+
+              <div className={css({ display: 'flex', gap: '4' })}>
                 <NavLink
                   to={getLocalizedPath(url.contact)}
-                  className={button()}
+                  className={button({ variant: 'solid' })}
                 >
                   {t('contact.cta', { ns: 'common' })}
                 </NavLink>
-              </p>
+                <NavLink to={url.stories} className={button()}>
+                  {t('hero.cta', { ns: 'home' })}
+                </NavLink>
+              </div>
             </div>
           </GridItem>
           <GridItem colSpan={{ base: 1, lg: 5 }}>

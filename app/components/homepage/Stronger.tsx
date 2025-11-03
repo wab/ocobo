@@ -12,8 +12,42 @@ import { Card } from '../ui/Card';
 import { Container } from '../ui/Container';
 import { Illustration } from '../ui/Illustration';
 
+const ItemList = ({ items }: { items: string[] }) => {
+  return (
+    <ul
+      className={css({
+        listStyleType: 'disc',
+        listStylePosition: 'outside',
+        textStyle: 'medium',
+        pl: '1.2em',
+      })}
+    >
+      {items.map((item) => {
+        return <li key={item}>{item}</li>;
+      })}
+    </ul>
+  );
+};
+
 const Stronger = () => {
   const { t } = useTranslation('home');
+
+  const items0 = t('stronger.cards.0.items', {
+    returnObjects: true,
+    components: [<strong key="strong" />],
+    ns: 'home',
+  }) as string[];
+  const items1 = t('stronger.cards.1.items', {
+    returnObjects: true,
+    components: [<strong key="strong" />],
+    ns: 'home',
+  }) as string[];
+
+  const items2 = t('stronger.cards.2.items', {
+    returnObjects: true,
+    components: [<strong key="strong" />],
+    ns: 'home',
+  }) as string[];
 
   return (
     <section className={css({ pos: 'relative' })}>
@@ -72,7 +106,11 @@ const Stronger = () => {
               textStyle: 'large',
             })}
           >
-            {t('stronger.description')}
+            <Trans
+              i18nKey="stronger.description"
+              components={[<strong key="strong" />]}
+              ns="home"
+            />
           </p>
         </div>
 
@@ -81,8 +119,7 @@ const Stronger = () => {
           alignItems="stretch"
           className={cx(section())}
         >
-          <GridItem className={css({ hideBelow: 'lg' })} />
-          <GridItem colSpan={{ base: 1, lg: 5 }}>
+          <GridItem colSpan={{ base: 1, lg: 4 }}>
             <Card.Root
               variant="yellow"
               isColoured
@@ -90,16 +127,14 @@ const Stronger = () => {
             >
               <Card.Title>{t('stronger.cards.0.title')}</Card.Title>
               <Card.Content>
-                <div className={css({ textStyle: 'large' })}>
+                <div className={css({ textStyle: 'medium' })}>
                   <Trans
                     i18nKey="stronger.cards.0.description"
                     components={[<strong key="strong" />]}
                     ns="home"
                   />
                 </div>
-                <div className={css({ hideBelow: 'lg', textStyle: 'small' })}>
-                  {t('stronger.cards.0.caption')}
-                </div>
+                <ItemList items={items0} />
                 <div
                   className={css({ mt: 'auto', pt: '4', textStyle: 'small' })}
                 >
@@ -110,20 +145,59 @@ const Stronger = () => {
               </Card.Content>
             </Card.Root>
           </GridItem>
-          <GridItem colSpan={{ base: 1, lg: 5 }}>
-            <Card.Root variant="sky" isColoured className={css({ h: 'full' })}>
-              <Card.Title>{t('stronger.cards.1.title')}</Card.Title>
+          <GridItem colSpan={{ base: 1, lg: 4 }}>
+            <Card.Root
+              variant="coral"
+              isColoured
+              className={css({ h: 'full' })}
+            >
+              <Card.Title>
+                <div>
+                  <Trans
+                    i18nKey="stronger.cards.1.title"
+                    components={[
+                      <sup
+                        key="sup"
+                        className={css({ fontSize: '0.5em', opacity: '0.5' })}
+                      >
+                        TM
+                      </sup>,
+                    ]}
+                    ns="home"
+                  />
+                </div>
+              </Card.Title>
               <Card.Content>
-                <div className={css({ textStyle: 'large' })}>
+                <div className={css({ textStyle: 'medium' })}>
                   <Trans
                     i18nKey="stronger.cards.1.description"
                     components={[<strong key="strong" />]}
                     ns="home"
                   />
                 </div>
-                <div className={css({ hideBelow: 'lg', textStyle: 'small' })}>
-                  {t('stronger.cards.1.caption')}
+                <ItemList items={items1} />
+                <div
+                  className={css({ mt: 'auto', pt: '4', textStyle: 'small' })}
+                >
+                  <NavLink to={url.projects} className={link()}>
+                    {t('see_more', { ns: 'common' })}
+                  </NavLink>
                 </div>
+              </Card.Content>
+            </Card.Root>
+          </GridItem>
+          <GridItem colSpan={{ base: 1, lg: 4 }}>
+            <Card.Root variant="sky" isColoured className={css({ h: 'full' })}>
+              <Card.Title>{t('stronger.cards.2.title')}</Card.Title>
+              <Card.Content>
+                <div className={css({ textStyle: 'medium' })}>
+                  <Trans
+                    i18nKey="stronger.cards.2.description"
+                    components={[<strong key="strong" />]}
+                    ns="home"
+                  />
+                </div>
+                <ItemList items={items2} />
                 <div
                   className={css({ mt: 'auto', pt: '4', textStyle: 'small' })}
                 >

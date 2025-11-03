@@ -1,4 +1,4 @@
-import { useTranslation } from 'react-i18next';
+import { Trans, useTranslation } from 'react-i18next';
 
 import { css, cx } from '@ocobo/styled-system/css';
 import { Grid, GridItem, styled } from '@ocobo/styled-system/jsx';
@@ -67,8 +67,15 @@ const Card = { Root, Title, List };
 const Better = () => {
   const { t } = useTranslation('home');
 
-  const items0 = t('better.cards.0.items', { returnObjects: true });
-  const items1 = t('better.cards.1.items', { returnObjects: true });
+  const items0 = t('better.cards.0.items', {
+    returnObjects: true,
+    ns: 'home',
+  }) as string[];
+  const items1 = t('better.cards.1.items', {
+    returnObjects: true,
+    ns: 'home',
+  }) as string[];
+
   return (
     <section
       className={cx(
@@ -90,22 +97,50 @@ const Better = () => {
           <GridItem className={css({ hideBelow: 'xl' })} />
           <GridItem colSpan={{ base: 1, lg: 6, xl: 5 }}>
             <Card.Root>
-              <Card.Title>{t('better.cards.0.title')}</Card.Title>
+              <Card.Title>
+                <Trans
+                  i18nKey="better.cards.0.title"
+                  ns="home"
+                  components={[<strong key="strong" />]}
+                />
+              </Card.Title>
               <Card.List isChecked>
                 {Array.isArray(items0) &&
-                  items0.map((item) => {
-                    return <li key={item}>{item}</li>;
+                  items0.map((_, index) => {
+                    return (
+                      <li key={index}>
+                        <Trans
+                          i18nKey={`better.cards.0.items.${index}`}
+                          ns="home"
+                          components={[<strong key="strong" />]}
+                        />
+                      </li>
+                    );
                   })}
               </Card.List>
             </Card.Root>
           </GridItem>
           <GridItem colSpan={{ base: 1, lg: 6, xl: 5 }}>
             <Card.Root>
-              <Card.Title>{t('better.cards.1.title')}</Card.Title>
-              <Card.List>
+              <Card.Title>
+                <Trans
+                  i18nKey="better.cards.1.title"
+                  ns="home"
+                  components={[<strong key="strong" />]}
+                />
+              </Card.Title>
+              <Card.List isChecked>
                 {Array.isArray(items1) &&
-                  items1.map((item) => {
-                    return <li key={item}>{item}</li>;
+                  items1.map((_, index) => {
+                    return (
+                      <li key={index}>
+                        <Trans
+                          i18nKey={`better.cards.1.items.${index}`}
+                          ns="home"
+                          components={[<strong key="strong" />]}
+                        />
+                      </li>
+                    );
                   })}
               </Card.List>
             </Card.Root>

@@ -54,7 +54,7 @@ const Title: React.FunctionComponent<
           textStyle: 'heading2',
           borderBottom: 'thin',
           borderColor: variant,
-          p: '0.5em 2.375rem 0.5em 2.375rem',
+          p: '0.5em 2rem 0.5em 2rem',
           minHeight: '3em',
           display: 'flex',
           alignItems: 'center',
@@ -76,7 +76,7 @@ const Content: React.FunctionComponent<
       className={cx(
         css({
           py: '2.375rem',
-          px: '2.375rem 4.5em',
+          px: '2rem',
           display: 'flex',
           flexDirection: 'column',
           gap: '4',
