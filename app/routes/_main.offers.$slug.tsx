@@ -1,8 +1,8 @@
 import type { LoaderFunctionArgs, MetaFunction } from 'react-router';
 import { data, useLoaderData } from 'react-router';
 
-import { Container } from '~/components/ui/Container';
 import { OfferArticle } from '~/components/offers/OfferArticle';
+import { Container } from '~/components/ui/Container';
 import { createHybridLoader } from '~/modules/cache';
 import { fetchOffer } from '~/modules/content';
 import { getLang } from '~/utils/lang';

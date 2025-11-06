@@ -1,8 +1,8 @@
 import type { LoaderFunctionArgs, MetaFunction } from 'react-router';
 import { useLoaderData } from 'react-router';
 
-import { Container } from '~/components/ui/Container';
 import { OfferList } from '~/components/offers/OfferList';
+import { Container } from '~/components/ui/Container';
 import { createHybridLoader } from '~/modules/cache';
 import { fetchOffers } from '~/modules/content';
 import { getLang } from '~/utils/lang';
@@ -13,7 +13,13 @@ export const loader = createHybridLoader(
     const language = getLang(params);
     const [status, state, offerData] = await fetchOffers(language);
 
-    // Handle errors gracefully
+    // Handle case where offers directory doesn't exist or has no content
+    // This is not an error, just means no offers are available yet
+    if (status === 404 || state === 'not_found') {
+      return { offers: [], isError: false };
+    }
+
+    // Handle actual errors (validation errors, source errors, etc.)
     if (status !== 200 || !offerData) {
       console.error(`Failed to fetch offers: ${state}`);
       return { offers: [], isError: true };

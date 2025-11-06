@@ -1,5 +1,5 @@
-import type { OfferFrontmatter } from '~/modules/schemas';
 import { css } from '@ocobo/styled-system/css';
+import type { OfferFrontmatter } from '~/modules/schemas';
 
 interface OfferHeaderProps {
   frontmatter: OfferFrontmatter;

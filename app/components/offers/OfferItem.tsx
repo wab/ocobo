@@ -1,7 +1,7 @@
-import { NavLink } from 'react-router';
-import type { OfferFrontmatter } from '~/modules/schemas';
 import { css } from '@ocobo/styled-system/css';
+import { NavLink } from 'react-router';
 import { useLocalizedPathname } from '~/hooks/useLocalizedPathname';
+import type { OfferFrontmatter } from '~/modules/schemas';
 import { url } from '~/utils/url';
 
 interface OfferItemProps {
@@ -25,7 +25,11 @@ export function OfferItem({ item, slug }: OfferItemProps) {
       })}
     >
       <h2
-        className={css({ fontSize: 'xl', fontWeight: 'bold', marginBottom: '4' })}
+        className={css({
+          fontSize: 'xl',
+          fontWeight: 'bold',
+          marginBottom: '4',
+        })}
       >
         {item.title}
       </h2>

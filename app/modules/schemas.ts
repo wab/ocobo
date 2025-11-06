@@ -296,7 +296,10 @@ export const Validators = {
   /**
    * Validate offer frontmatter with detailed error reporting
    */
-  offer: (data: unknown, context?: string): ValidationResult<OfferFrontmatter> =>
+  offer: (
+    data: unknown,
+    context?: string,
+  ): ValidationResult<OfferFrontmatter> =>
     validateWithSchema(OfferFrontmatterSchema, data, context),
 } as const;
 
@@ -320,7 +323,9 @@ export function isValidPageFrontmatter(data: unknown): data is PageFrontmatter {
   return PageFrontmatterSchema.safeParse(data).success;
 }
 
-export function isValidOfferFrontmatter(data: unknown): data is OfferFrontmatter {
+export function isValidOfferFrontmatter(
+  data: unknown,
+): data is OfferFrontmatter {
   return OfferFrontmatterSchema.safeParse(data).success;
 }
 

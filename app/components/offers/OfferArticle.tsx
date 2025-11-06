@@ -1,9 +1,9 @@
-import type { MarkdocFile } from '~/types';
-import type { OfferFrontmatter } from '~/modules/schemas';
 import { LayoutPost } from '~/components/LayoutPost';
+import type { OfferFrontmatter } from '~/modules/schemas';
+import type { MarkdocFile } from '~/types';
+import { OfferContent } from './OfferContent';
 import { OfferHeader } from './OfferHeader';
 import { OfferSidebar } from './OfferSidebar';
-import { OfferContent } from './OfferContent';
 
 interface OfferArticleProps {
   offer: MarkdocFile<OfferFrontmatter>;

@@ -1,5 +1,5 @@
-import type { OfferFrontmatter } from '~/modules/schemas';
 import { css } from '@ocobo/styled-system/css';
+import type { OfferFrontmatter } from '~/modules/schemas';
 
 interface OfferSidebarProps {
   frontmatter: OfferFrontmatter;
@@ -26,7 +26,11 @@ export function OfferSidebar({ frontmatter }: OfferSidebarProps) {
         </h3>
 
         <div
-          className={css({ display: 'flex', flexDirection: 'column', gap: '3' })}
+          className={css({
+            display: 'flex',
+            flexDirection: 'column',
+            gap: '3',
+          })}
         >
           <div>
             <div className={css({ fontWeight: 'semibold', marginBottom: '1' })}>

@@ -1,7 +1,7 @@
-import type { MarkdocFile } from '~/types';
-import type { OfferFrontmatter } from '~/modules/schemas';
-import { OfferItem } from './OfferItem';
 import { css } from '@ocobo/styled-system/css';
+import type { OfferFrontmatter } from '~/modules/schemas';
+import type { MarkdocFile } from '~/types';
+import { OfferItem } from './OfferItem';
 
 interface OfferListProps {
   items: MarkdocFile<OfferFrontmatter>[];
