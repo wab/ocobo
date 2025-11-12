@@ -18,6 +18,12 @@ This file provides guidance to Claude Code (claude.ai/code) when working with co
 - **GitHub API**: `pnpm dev:github` - Fetches content from GitHub repository
 - **Custom source**: Set `CONTENT_SOURCE=github` or `CONTENT_SOURCE=locale` in `.env.local`
 
+### Third-Party Integrations
+
+- **AGO Chatbot**: Set `AGO_API_KEY` and `AGO_BASEPATH` in `.env` to enable the chat widget
+- **Analytics**: Google Analytics, Clearbit, and HubSpot tracking (production only)
+- **Vercel**: Analytics and Speed Insights integration
+
 ## Architecture Overview
 
 This is a **React Router v7** application (formerly Remix) with **internationalization** (i18n) support, using **Panda CSS** for styling and **Vercel** for deployment.
