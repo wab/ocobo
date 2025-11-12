@@ -22,6 +22,7 @@ import { getLang } from '~/utils/lang';
 
 import { ErrorMessage } from './components/ErrorMessage';
 import { useSetViewportHeight } from './hooks/useSetViewportHeight';
+import AgoChatbot from './components/AGO';
 
 export const links: LinksFunction = () => [
   { rel: 'stylesheet', href: styles },
@@ -115,11 +116,12 @@ export function Layout({ children }: { children: React.ReactNode }) {
                 });
               `,
             }}
-          />
+          />          
         )}
       </head>
       <body>
         {children}
+        <AgoChatbot />
         <ScrollRestoration />
         <ExternalScripts />
         <Scripts />
