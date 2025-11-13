@@ -50,6 +50,7 @@ const getContentPath = (url: string, slug: string): string => {
  * @param path - Base GitHub API path for the repository directory
  * @param slug - File identifier (without .md extension)
  * @param hasValidFrontMatter - Function to validate frontmatter structure
+ * @param branch - Git branch to fetch from (defaults to 'main')
  * @returns Parsed markdown file with frontmatter and transformed content
  */
 export async function fetchMarkdownFile<FrontMatter>(
@@ -57,11 +58,17 @@ export async function fetchMarkdownFile<FrontMatter>(
   path: string,
   slug = '',
   hasValidFrontMatter: TvalidateFrontMatter<FrontMatter>,
+  branch: string = 'main',
 ): Promise<ActionResult<FetchMarkdownFileResState, MarkdocFile<FrontMatter>>> {
   console.log(
-    `🔥 GitHub API CALL: fetchMarkdownFile for path: ${path}, slug: ${slug}`,
+    `🔥 GitHub API CALL: fetchMarkdownFile for path: ${path}, slug: ${slug}, branch: ${branch}`,
   );
   const contentUrl = getContentPath(path, slug);
+
+  // Add branch parameter to the URL
+  const url = new URL(contentUrl);
+  url.searchParams.set('ref', branch);
+  const finalUrl = url.toString();
 
   // Setup GitHub API request headers with authentication
   const headers = {
@@ -75,7 +82,7 @@ export async function fetchMarkdownFile<FrontMatter>(
   const timeout = setTimeout(() => controller.abort(), 5000); // 5 second timeout
 
   try {
-    const response = await fetch(contentUrl, {
+    const response = await fetch(finalUrl, {
       headers,
       signal: controller.signal,
       cache: 'force-cache', // Enable HTTP caching for better performance

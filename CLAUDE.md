@@ -17,6 +17,7 @@ This file provides guidance to Claude Code (claude.ai/code) when working with co
 - **Local filesystem** (default): `pnpm dev:local` - Uses content from `~/projects/ocobo-posts/`
 - **GitHub API**: `pnpm dev:github` - Fetches content from GitHub repository
 - **Custom source**: Set `CONTENT_SOURCE=github` or `CONTENT_SOURCE=locale` in `.env.local`
+- **Branch targeting**: Set `GITHUB_BRANCH=offers` to test placeholder offers (defaults to `main`)
 
 ## Architecture Overview
 

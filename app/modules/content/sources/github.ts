@@ -26,14 +26,17 @@ export class GitHubContentSource implements ContentSource {
   private config: NonNullable<ContentSourceConfig['github']>;
   private timeout: number;
   private batchSize: number;
+  private branch: string;
 
   constructor(
     config: NonNullable<ContentSourceConfig['github']>,
     private markdocConfig: any,
+    branch: string = 'main',
   ) {
     this.config = config;
     this.timeout = config.timeout ?? 5000;
     this.batchSize = config.batchSize ?? 10;
+    this.branch = branch;
   }
 
   private getHeaders() {
@@ -49,7 +52,11 @@ export class GitHubContentSource implements ContentSource {
     const timeoutId = setTimeout(() => controller.abort(), this.timeout);
 
     try {
-      const response = await fetch(url, {
+      // Add branch parameter to URL
+      const urlWithBranch = new URL(url);
+      urlWithBranch.searchParams.set('ref', this.branch);
+
+      const response = await fetch(urlWithBranch.toString(), {
         headers: this.getHeaders(),
         signal: controller.signal,
         cache: 'force-cache',
