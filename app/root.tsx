@@ -53,8 +53,11 @@ export async function loader({ params }: LoaderFunctionArgs) {
     locale,
     isProduction,
     gaTrackingId: process.env.GA_TRACKING_ID,
+    agoBasePath: process.env.AGO_BASEPATH,
+    agoApiKey: process.env.AGO_API_KEY,
     shouldLoadScript:
       isProduction || process.env.SHOULD_LOAD_TRACKING_SCRIPTS === 'true',
+    shouldLoadAgo: Boolean(process.env.AGO_API_KEY),
   };
 }
 
@@ -67,8 +70,11 @@ interface AppHandle extends ExternalScriptsHandle<LoaderData> {
 export const handle: AppHandle = {
   i18n: ['common'],
   scripts({ data }) {
+    const scripts = [];
+
+    // Load tracking scripts (GTM, Clearbit, HubSpot)
     if (data?.shouldLoadScript) {
-      return [
+      scripts.push(
         {
           src: `https://www.googletagmanager.com/gtag/js?id=${data?.gaTrackingId}`,
         },
@@ -77,13 +83,20 @@ export const handle: AppHandle = {
         },
         {
           src: '//js-eu1.hs-scripts.com/27107933.js',
-          async: true,
-          defer: true,
           id: 'hs-script-loader',
         },
-      ];
+      );
     }
-    return [];
+
+    // Load AGO widget (functional, not just tracking)
+    if (data?.shouldLoadAgo) {
+      scripts.push({
+        src: 'https://useago.github.io/widgetjs/frame.js',
+        id: 'ago-widget',
+      });
+    }
+
+    return scripts;
   },
 };
 
@@ -117,12 +130,36 @@ export function Layout({ children }: { children: React.ReactNode }) {
             }}
           />
         )}
+
+        {loaderData?.shouldLoadAgo && (
+          <script
+            id="ago-config"
+            dangerouslySetInnerHTML={{
+              __html: `
+                window.AGO = {
+                  basepath: "${loaderData?.agoBasePath || 'https://ocobo.useago.com/'}",
+                  widgetApiKey: "${loaderData?.agoApiKey}",
+                  title: "🤖 Ocobot",
+                  icon: "https://media.licdn.com/dms/image/v2/D4E0BAQELEQbhWlOLCA/company-logo_200_200/company-logo_200_200/0/1716484672248/ocobofr_logo?e=1763596800&v=beta&t=AGsBXIuLYBJJrtvc35jvRkKOyrfqnpTvNsNttVOAJrM",
+                  prompt: "👋 Posez vos questions à l'IA — Ocobot vous explique notre approche, sans pitch de vente.",
+                  colors: {
+                    button: "#232323",
+                    header: "#232323",
+                    agentMessage: "#f7f5f2ff",
+                    agentMessageFont: "#232323"
+                  }
+                };
+              `,
+            }}
+          />
+        )}
       </head>
       <body>
         {children}
         <ScrollRestoration />
         <ExternalScripts />
         <Scripts />
+
         <Analytics />
         <SpeedInsights />
       </body>
