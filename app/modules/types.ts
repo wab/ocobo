@@ -21,6 +21,8 @@ export type PrivateEnvVars = PublicEnvVars & {
   readContentFrom: 'locale' | 'github';
   /** GitHub personal access token for API requests */
   githubAccessToken: string;
+  /** GitHub branch to target for content fetching */
+  githubBranch: string;
   /** Base URL for GitHub repository API */
   githubRepoAPIUrl: string;
   /** Local path to repository for development */

@@ -50,11 +50,13 @@ type GithubContentResponse = GitHubFileObject & {
  *
  * @param accessToken - GitHub personal access token
  * @param directoryUrl - Full GitHub API URL for the directory
+ * @param branch - Git branch to fetch from (defaults to 'main')
  * @returns Array of file metadata objects with slug and path
  */
 export async function fetchFileItems(
   accessToken: string,
   directoryUrl: string,
+  branch: string = 'main',
 ): Promise<ActionResult<FetchFileItemsResState, FileItem[]>> {
   // Setup GitHub API request headers
 
@@ -64,7 +66,11 @@ export async function fetchFileItems(
   headers.set('Authorization', `token ${accessToken}`);
   headers.set('User-Agent', 'ocobo-posts');
 
-  const response = await fetch(directoryUrl, { headers });
+  // Add branch parameter to the URL
+  const url = new URL(directoryUrl);
+  url.searchParams.set('ref', branch);
+
+  const response = await fetch(url.toString(), { headers });
   if (!response.ok || response.status !== 200) {
     console.error(
       `GitHub fetch markdown API request failed: ok: ${response.ok} (${response.status}): ${response.statusText}`,

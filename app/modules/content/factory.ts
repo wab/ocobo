@@ -15,7 +15,7 @@ import type { ContentSource, ContentSourceConfig } from './types';
  * Factory for creating content sources based on configuration
  */
 export class ContentSourceFactory {
-  static create(config: ContentSourceConfig): ContentSource {
+  static create(config: ContentSourceConfig, branch?: string): ContentSource {
     switch (config.source) {
       case 'github':
         if (!config.github) {
@@ -23,7 +23,11 @@ export class ContentSourceFactory {
             'GitHub configuration is required when source is "github"',
           );
         }
-        return new GitHubContentSource(config.github, config.markdocConfig);
+        return new GitHubContentSource(
+          config.github,
+          config.markdocConfig,
+          branch,
+        );
 
       case 'filesystem':
         if (!config.filesystem) {
@@ -51,6 +55,7 @@ export function createContentSource(): ContentSource {
     localeRepoAPIUrl,
     githubRepoAPIUrl,
     githubAccessToken,
+    githubBranch,
   } = getPrivateEnvVars();
 
   // Log content source for debugging
@@ -60,17 +65,22 @@ export function createContentSource(): ContentSource {
 
   switch (readContentFrom) {
     case 'github':
-      console.info(`📡 Using GitHub API: ${githubRepoAPIUrl}`);
-      return ContentSourceFactory.create({
-        source: 'github',
-        github: {
-          accessToken: githubAccessToken,
-          baseUrl: githubRepoAPIUrl,
-          timeout: 5000,
-          batchSize: 10,
+      console.info(
+        `📡 Using GitHub API: ${githubRepoAPIUrl} (branch: ${githubBranch})`,
+      );
+      return ContentSourceFactory.create(
+        {
+          source: 'github',
+          github: {
+            accessToken: githubAccessToken,
+            baseUrl: githubRepoAPIUrl,
+            timeout: 5000,
+            batchSize: 10,
+          },
+          markdocConfig,
         },
-        markdocConfig,
-      });
+        githubBranch,
+      );
 
     default:
     case 'locale':

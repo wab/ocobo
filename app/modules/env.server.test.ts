@@ -79,6 +79,7 @@ describe('Environment Configuration', () => {
       expect(result).toEqual({
         env: 'development',
         githubAccessToken: 'test-token-123',
+        githubBranch: 'main',
         githubRepoAPIUrl:
           'https://api.github.com/repos/test-account/test-repo/contents',
         readContentFrom: 'locale',
@@ -257,6 +258,7 @@ describe('Environment Configuration', () => {
         // Should have both public and private properties
         expect(result).toHaveProperty('env');
         expect(result).toHaveProperty('githubAccessToken');
+        expect(result).toHaveProperty('githubBranch');
         expect(result).toHaveProperty('githubRepoAPIUrl');
         expect(result).toHaveProperty('readContentFrom');
         expect(result).toHaveProperty('localeRepoAPIUrl');

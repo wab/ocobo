@@ -29,6 +29,7 @@ export function getPrivateEnvVars(): PrivateEnvVars {
     const githubAccount = process.env.GITHUB_ACCOUNT;
     const githubRepo = process.env.GITHUB_REPO;
     const githubAccessToken = process.env.GITHUB_ACCESS_TOKEN;
+    const githubBranch = process.env.GITHUB_BRANCH || 'main';
 
     if (!githubAccount || typeof githubAccount !== 'string') {
       throw new ConfigurationError(
@@ -62,6 +63,7 @@ export function getPrivateEnvVars(): PrivateEnvVars {
     return {
       ...getPublicEnvVars(),
       githubAccessToken,
+      githubBranch,
       githubRepoAPIUrl,
       readContentFrom,
       localeRepoAPIUrl,

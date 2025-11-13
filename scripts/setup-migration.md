@@ -14,13 +14,17 @@ vercel link
 vercel env add BLOB_READ_WRITE_TOKEN
 ```
 
-Add to `.env.local`:
-```env
-BLOB_READ_WRITE_TOKEN="your_token_here"
-GITHUB_ACCESS_TOKEN="your_github_token"
-GITHUB_ACCOUNT="your-username"
-GITHUB_REPO="ocobo-posts"
+Copy `.env.sample` to `.env.local` and configure:
+```bash
+cp .env.sample .env.local
 ```
+
+Then add your actual values to `.env.local`:
+- `BLOB_READ_WRITE_TOKEN` - Your Vercel Blob token
+- `GITHUB_ACCESS_TOKEN` - Your GitHub personal access token  
+- `GITHUB_ACCOUNT` - Your GitHub username (e.g., "wab")
+- `GITHUB_REPO` - Content repository name (e.g., "ocobo-posts")
+- `GITHUB_BRANCH` - Content branch (default: "main", testing: "offers")
 
 ## Migration Steps
 
